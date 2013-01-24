@@ -11,6 +11,8 @@ public class App
         System.out.println( "Hello World!" );
 
         Math m = new Math();
+        int[][] A = new int[2][2];
+
 
     }
 }
