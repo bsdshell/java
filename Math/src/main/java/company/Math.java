@@ -1,5 +1,7 @@
 package company;
 
+import java.util.List;
+
 public class Math {
     public Math(){}
     public int[][] multiply(int[][] A, int[][] B)
@@ -135,6 +137,8 @@ public class Math {
     }
     public int[] getPrime(int n)
     {return null;}
+    public boolean isPrime(int n)
+    { return false;}
     public long sqrt(long n)
     { return 0;}
     public long deterimine(long[][] matrix)
@@ -143,4 +147,11 @@ public class Math {
     }
     public boolean isInvertiable(long[][] matrix)
     { return true;}
+    public List<List<Integer>> permutation(int n)
+    { return null;}
+    public List<List<Integer>> combination(int n)
+    { return null;}
+
+    public List<Long> solve(List<Long> polynomial)
+    { return null;}
 }
