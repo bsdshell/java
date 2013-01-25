@@ -123,4 +123,24 @@ public class Math {
         }
         return C;
     }
+    public int gcd(int a, int b)
+    {
+        int ret = 0;
+        return ret;
+    }
+    public int lcm(int a, int b)
+    {
+        int ret = 0;
+        return ret;
+    }
+    public int[] getPrime(int n)
+    {return null;}
+    public long sqrt(long n)
+    { return 0;}
+    public long deterimine(long[][] matrix)
+    {
+        return 0;
+    }
+    public boolean isInvertiable(long[][] matrix)
+    { return true;}
 }
