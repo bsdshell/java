@@ -125,6 +125,7 @@ public class Math {
         }
         return C;
     }
+
     public int gcd(int a, int b)
     {
         if(a == 0 && b != 0)
@@ -158,8 +159,83 @@ public class Math {
     {return null;}
     public boolean isPrime(int n)
     { return false;}
-    public long sqrt(long n)
-    { return 0;}
+    public double sqrt(int n) //n >= 0
+    {
+        double ret = 1;
+        double left = 1;
+        double right = n;
+        if(n > 1)
+        {
+            while(left - right > 0.000001)
+            {
+                if(((left + right)/2)*((left+right)/2) - n > 0) // left------x--|--n
+                {
+                    right = (left + right)/2;
+                    ret = right;
+                }
+                if(((left + right)/2)*((left+right)/2) - n < 0) // left----|--x----
+                {
+                    left = (left + right)/2;
+                    ret = left;
+                }
+                else
+                    ret = (left + right)/2;
+            }
+        }
+        return ret;
+
+    }
+    public double rootofthree(int n)
+    {
+        double mid = 1l;
+        if(n > 1)
+        {
+            double left = 1;
+            double right = n;
+            double two = 2l;
+            while(right - left > 0.0001)
+            {
+                mid = (left + right)/two;
+                if(mid*mid*mid - n > 0)
+                {
+                    right = mid;
+                }
+                else if(mid*mid*mid -n < 0)
+                {
+                    left = mid;
+                }
+            }
+        }
+        return mid;
+    }
+    public double power(double value, int n)
+    {
+        if( n >= 0)
+        {
+            if(n == 0)
+                return 1;
+            if( n % 2 == 0)
+            {
+                return power(value, n/2)*power(value, n/2);
+            }
+            else
+            {
+                return value*power(value, (n-1)/2)*power(value, (n-1)/2);
+            }
+        }
+        else
+        {
+            if(n == -1)
+                return 1/value;
+            else
+            {
+                if(n % 2 == 0)
+                    return power(value, n/2)*power(value, n/2);
+                else
+                    return value*power(value, (n-1)/2)*power(value, (n-1)/2);
+            }
+        }
+    }
     public long deterimine(long[][] matrix)
     {
         return 0;

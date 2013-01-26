@@ -13,6 +13,10 @@ public class App
         Math m = new Math();
         int[][] A = new int[2][2];
 
+        double mid = m.rootofthree(8);
+        System.out.println("mid="+mid);
 
+        double p = m.power(0.3, -3);
+        System.out.println("p="+p);
     }
 }
