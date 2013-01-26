@@ -127,15 +127,34 @@ public class Math {
     }
     public int gcd(int a, int b)
     {
-        int ret = 0;
-        return ret;
+        if(a == 0 && b != 0)
+            return b;
+        else if( a != 0 && b == 0)
+            return a;
+        else if( a != 0 && b != 0)
+            if(a >= b)
+                return gcd(b, a%b);
+            else
+                return gcd(a, b%a);
+        else
+        {
+            System.out.println("Error: a and b can't be both zero");
+            return 0;
+        }
     }
     public int lcm(int a, int b)
     {
-        int ret = 0;
-        return ret;
+        if(a != 0 || a != 0)
+        {
+            return (a*b)/gcd(a, b);
+        }
+        else
+        {
+            System.out.println("Error: a and b can't be both zero");
+            return 0;
+        }
     }
-    public int[] getPrime(int n)
+    public int[] allPrime(int n)
     {return null;}
     public boolean isPrime(int n)
     { return false;}

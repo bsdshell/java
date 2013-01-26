@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/company/Math.java" line="129" mnemonic="1" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="6e6cc80a-9c75-441d-8291-38966da22271" name="Default" comment="" />
     <ignored path="Math.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/App.java" changelist="6e6cc80a-9c75-441d-8291-38966da22271" time="1359022393652" ignored="false" />
-    <file path="/Math.java" changelist="6e6cc80a-9c75-441d-8291-38966da22271" time="1359107635277" ignored="false" />
+    <file path="/Math.java" changelist="6e6cc80a-9c75-441d-8291-38966da22271" time="1359183142410" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +79,7 @@
       <file leaf-file-name="Math.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/company/Math.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="153" column="0" selection-start="4079" selection-end="4079" vertical-scroll-proportion="0.8029197">
+            <state line="159" column="20" selection-start="4254" selection-end="4254" vertical-scroll-proportion="0.6773256">
               <folding />
             </state>
           </provider>
@@ -98,7 +101,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="2128" />
+    <option name="x" value="1949" />
+    <option name="y" value="8" />
     <option name="width" value="1912" />
     <option name="height" value="1054" />
   </component>
@@ -342,7 +346,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="2128" y="0" width="1912" height="1054" extended-state="0" />
+    <frame x="1949" y="8" width="1912" height="1054" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -358,8 +362,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23814656" sideWeight="0.9204301" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.07956989" sideWeight="0.9967672" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23814656" sideWeight="0.77634406" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22365591" sideWeight="0.9967672" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -457,7 +461,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/company/Math.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="153" column="0" selection-start="4079" selection-end="4079" vertical-scroll-proportion="0.8029197">
+        <state line="159" column="20" selection-start="4254" selection-end="4254" vertical-scroll-proportion="0.6773256">
           <folding />
         </state>
       </provider>
