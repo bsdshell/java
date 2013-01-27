@@ -242,8 +242,36 @@ public class Math {
     }
     public boolean isInvertiable(long[][] matrix)
     { return true;}
-    public List<List<Integer>> permutation(int n)
-    { return null;}
+    public List<List<Integer>> permutation(int[] Arr, int k)
+    {
+        if( Arr != null)
+        {
+            if(Arr.length == k)
+            {
+
+                for(int i=0; i<Arr.length; i++)
+                    System.out.print("["+Arr[i]+"]");
+                System.out.println("");
+
+            }
+            else
+            {
+                for(int i=k; i< Arr.length; i++)
+                {
+                    int tmp = Arr[i];
+                    Arr[i] = Arr[k];
+                    Arr[k] = tmp;
+                    System.out.println("("+k+","+i+")");
+                    permutation(Arr, k+1);
+                    tmp = Arr[i];
+                    Arr[i] = Arr[k];
+                    Arr[k] = tmp;
+                }
+            }
+        }
+        return null;
+    }
+
     public List<List<Integer>> combination(int n)
     { return null;}
 

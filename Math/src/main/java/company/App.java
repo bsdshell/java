@@ -18,5 +18,7 @@ public class App
 
         double p = m.power(0.3, -3);
         System.out.println("p="+p);
+        int[] Arr = {1, 2, 3};
+        m.permutation(Arr, 0);
     }
 }
