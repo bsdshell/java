@@ -236,8 +236,85 @@ public class Math {
             }
         }
     }
-    public long deterimine(long[][] matrix)
+
+    public double powerInt(int value, int n)
     {
+        if( n >= 0)
+        {
+            if(n == 0)
+                return 1;
+            if( n % 2 == 0)
+            {
+                return power(value, n/2)*power(value, n/2);
+            }
+            else
+            {
+                return value*power(value, (n-1)/2)*power(value, (n-1)/2);
+            }
+        }
+        else
+        {
+            if(n == -1)
+                return 1/value;
+            else
+            {
+                if(n % 2 == 0)
+                    return power(value, n/2)*power(value, n/2);
+                else
+                    return value*power(value, (n-1)/2)*power(value, (n-1)/2);
+            }
+        }
+    }
+
+
+
+    public int[][] cofactor(int[][] A, int row, int col)
+    {
+        int len = 0;
+        int[][] B = null;
+        if(A != null && (len = A.length) > 0 && row < len && col < len)
+        {
+            B = new int[len-1][len-1];
+            int r1 = 0;
+            for(int r = 0; r < len; r++)
+            {
+                if(r != row)
+                {
+                    int c1 = 0;
+                    for(int c = 0; c < len; c++)
+                    {
+                        if(c != col)
+                        {
+                            B[r1][c1] = A[r][c];
+                            c1++;
+                        }
+                    }
+                    r1++;
+                }
+            }
+        }
+        return B;
+    }
+
+
+
+    public double deterimine(int[][] matrix)
+    {
+        if(matrix != null && matrix.length > 0)
+        {
+            if(matrix.length == 1)
+                return matrix[0][0];
+            else
+            {
+                double sum = 0;
+                for(int r=0; r<matrix.length; r++)
+                {
+                    int [][] cofactormatrix = cofactor(matrix, matrix.length-1, 0);
+                    sum += matrix[r][0]*powerInt(-1, r)*deterimine(cofactormatrix);
+                }
+                return sum;
+            }
+        }
         return 0;
     }
     public boolean isInvertiable(long[][] matrix)
