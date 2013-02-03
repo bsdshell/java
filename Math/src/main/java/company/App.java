@@ -20,5 +20,12 @@ public class App
         System.out.println("p="+p);
         int[] Arr = {1, 2, 3};
         m.permutation(Arr, 0);
+
+        int[][] matrix = {  {1, 2, 3},
+                            {3, 2, 1},
+                            {2, 1, 3}
+                          };
+        int det = m.deterimine(matrix);
+        System.out.println("det="+det);
     }
 }

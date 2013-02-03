@@ -298,7 +298,7 @@ public class Math {
 
 
 
-    public double deterimine(int[][] matrix)
+    public int deterimine(int[][] matrix)
     {
         if(matrix != null && matrix.length > 0)
         {
@@ -306,10 +306,10 @@ public class Math {
                 return matrix[0][0];
             else
             {
-                double sum = 0;
+                int sum = 0;
                 for(int r=0; r<matrix.length; r++)
                 {
-                    int [][] cofactormatrix = cofactor(matrix, matrix.length-1, 0);
+                    int [][] cofactormatrix = cofactor(matrix, r, 0);
                     sum += matrix[r][0]*powerInt(-1, r)*deterimine(cofactormatrix);
                 }
                 return sum;
