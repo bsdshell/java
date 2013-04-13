@@ -11,7 +11,7 @@ public class EnumExample
 {
     public static void main(String[] args)
     {
-        System.out.println(MyType.NUM.Value());
-        System.out.println(MyType.ROW.Value());
+        System.out.println("NUM="+MyType.NUM.Value());
+        System.out.println("ROW="+MyType.ROW.Value());
     }
 }
