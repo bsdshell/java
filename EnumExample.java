@@ -7,7 +7,6 @@ enum MyType
     MyType(int value){this.value=value;}
     int Value(){return this.value;}
 }
-
 public class EnumExample 
 {
     public static void main(String[] args)
@@ -15,5 +14,4 @@ public class EnumExample
         System.out.println(MyType.NUM.Value());
         System.out.println(MyType.ROW.Value());
     }
-    
 }
