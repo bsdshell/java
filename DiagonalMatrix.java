@@ -16,7 +16,7 @@ public class DiagonalMatrix
             }
             System.out.println("");
         }
-        DiagonalMatrix(Array);
+        DiagonalMatrixAll(Array);
     }
     public static void DiagonalMatrix(int[][] matrix)
     {
@@ -34,6 +34,38 @@ public class DiagonalMatrix
                             System.out.print("["+matrix[j][j-i]+"]");
                         else
                             System.out.print("[ ]");
+                    }
+                    System.out.println("");
+                }
+            }
+        }
+    }
+    public static void DiagonalMatrixAll(int[][] matrix)
+    {
+        if(matrix != null)
+        {
+            int rowLen = matrix.length;
+            if(matrix[0] != null){
+                int colLen = matrix[0].length;
+                for(int i=0; i<rowLen; i++){
+                    for(int j=0; j<colLen; j++){
+                        if(j==j+i){
+                            System.out.print("["+matrix[j][j+i]+"]");
+                        }
+                        else{
+                            if(i%2 == 1){
+                                if(j+i < colLen)
+                                    System.out.print("["+matrix[j][j+i]+"]");
+                                else
+                                    System.out.print("[ ]");
+                            }
+                            else{
+                                if(j-i >= 0)
+                                    System.out.print("["+matrix[j][j-i]+"]");
+                                else 
+                                    System.out.print("[ ]");
+                            }
+                        }
                     }
                     System.out.println("");
                 }
