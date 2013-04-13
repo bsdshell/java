@@ -67,7 +67,7 @@ public class DiagonalMatrix
                             }
                         }
                     }
-                    System.out.println("");
+                    System.out.println(" ");
                 }
             }
         }
