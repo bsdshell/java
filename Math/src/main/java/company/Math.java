@@ -317,6 +317,14 @@ public class Math {
         }
         return 0;
     }
+    public int[][] QR(int[][] matrix)
+    {
+        return null;
+    }
+    public int[][] LU(int[][] matrix)
+    {
+        return null;
+    }
     public boolean isInvertiable(long[][] matrix)
     { return true;}
     public List<List<Integer>> permutation(int[] Arr, int k)
