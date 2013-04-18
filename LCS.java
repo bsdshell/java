@@ -1,5 +1,13 @@
 public class LCS 
 {
+                /**
+                 * 0               if i ==0 || j == 0
+                 * 
+                 *                  LCS(A[i-1], B[j-1]) + 1  if A[i]==B[j]
+                 * LCS(A[i], B[j] 
+                 *                  Max(LCS(A[i-1], B[j]), LCS(A[i], B[j-1]) if A[i] != B[j]
+                 *
+                 */
 				public static void main(String[] args)
 				{
 								System.out.println("Hello World!");
