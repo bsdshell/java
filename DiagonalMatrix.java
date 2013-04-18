@@ -16,6 +16,9 @@ public class DiagonalMatrix
             }
             System.out.println("");
         }
+        System.out.println("");
+        DiagonalMatrix(Array);
+        System.out.println("");
         DiagonalMatrixAll(Array);
     }
     public static void DiagonalMatrix(int[][] matrix)
