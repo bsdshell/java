@@ -4,8 +4,8 @@ public class daysInMonth
     {
         System.out.println("determining the numbers of day in a month");
 
-        int month = 1; 
-        int year = 2000;
+        int month = 2; 
+        int year = 2100;
         for(int i=0; i < 12; i++)
         {
             month = i + 1;
