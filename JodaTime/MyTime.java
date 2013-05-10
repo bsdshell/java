@@ -21,6 +21,11 @@ class MyTime
 					System.out.println("month="+month);
 					System.out.println(dt.toString(pattern));
 
+                    /*
+                    DateTime mydt = new DateTime();
+					System.out.println("now()="+mydt.toString(pattern));
+                    */
+
 					DateMidnight start = new DateMidnight("2010-01-01");
 					DateMidnight end = new DateMidnight(new Date());
 
@@ -60,13 +65,15 @@ class MyTime
 					System.out.println("mydatetime=" + mydatetime);
 
 					//plus some hours, minutes, and second to the original time
-				  System.out.println("Plus 1 hours is " + mydatetime.plusHours(1));	
-				  System.out.println("Plus 10 minutes is " + mydatetime.plusMinutes(10));	
-				  System.out.println("Plus 59 second is " + mydatetime.plusSeconds(59));	
+                    System.out.println("Plus 1 hours is " + mydatetime.plusHours(1));	
+                    System.out.println("Plus 10 minutes is " + mydatetime.plusMinutes(10));	
+                    System.out.println("Plus 59 second is " + mydatetime.plusSeconds(59));	
 
 					//minus some hours, minutes, and seconds to the original DateTime
 					System.out.println("Minus 1 hours is "+mydatetime.minusHours(1));
 					System.out.println("Minus 10 minutes is "+mydatetime.minusMinutes(10));
 					System.out.println("Minus 59 second is "+mydatetime.minusSeconds(59));
+
+
   }
 }
