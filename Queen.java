@@ -25,7 +25,6 @@ public class Queen
             {
                 if(consistent(path, row, col))
                 {
-                    //System.out.println("row["+row+"]");
                     path[row] = col;
                     queen(board, row+1, path);
                 }
