@@ -45,14 +45,6 @@ class Binary{
             }
         } 
     }
-    public void inorder(Node root)
-    {
-        if(root != null){
-            inorder(root.left);
-            System.out.println("inorder["+root.data+"]");
-            inorder(root.right);
-        }
-    }
     public void preorder(Node root)
     {
         if(root != null){
@@ -78,7 +70,7 @@ public class SerializeBinary
         bin.insert(12);
         bin.insert(20);
         bin.preorder(bin.root);
-        System.out.println("------");
+        System.out.println("");
         try{
             FileWriter fstream = new FileWriter("out.txt");
             BufferedWriter out = new BufferedWriter(fstream);
@@ -139,7 +131,6 @@ public class SerializeBinary
     public static Node deserializeBinary(String[] Array, int[] A){
         Node root = null;
         if(Array != null && A[0] < Array.length){
-            
             System.out.println("k="+A[0]+" Node("+Array[A[0]]+")");
             System.out.println("Array["+Array[A[0]]+"]");
             if(!Array[A[0]].equals("#")){
