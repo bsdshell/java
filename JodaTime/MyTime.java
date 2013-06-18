@@ -5,6 +5,8 @@ import org.joda.time.DateTime;
 import org.joda.time.DateMidnight;
 import org.joda.time.Months;
 import org.joda.time.MutableDateTime;
+import org.joda.time.DateTimeUtils;
+import org.joda.time.DateTimeZone;
 
 import org.joda.time.Duration;
 import org.joda.time.Interval;
@@ -14,65 +16,79 @@ class MyTime
 {
 	public static void main(String args[])
 	{
-					String pattern = "E MM/dd/yyyy HH:mm:ss.SSS";
-					System.out.println("mytime");
-					DateTime dt = new DateTime();
-					int month = dt.getMonthOfYear();
-					System.out.println("month="+month);
-					System.out.println(dt.toString(pattern));
+        String pattern = "E MM/dd/yyyy HH:mm:ss.SSS";
+        DateTimeZone dateTimeZone = null;
 
-                    /*
-                    DateTime mydt = new DateTime();
-					System.out.println("now()="+mydt.toString(pattern));
-                    */
+        //set the system clock to specific date time
+        DateTimeUtils.setCurrentMillisFixed( 
+                new DateTime(2012, 6, 1, 9, 1, dateTimeZone).getMillis()
+                );
 
-					DateMidnight start = new DateMidnight("2010-01-01");
-					DateMidnight end = new DateMidnight(new Date());
+        DateTime dtnow = new DateTime();
+        System.out.println("now()="+dtnow.toString(pattern));
+        
+        MutableDateTime mdt = new MutableDateTime(DateTimeZone.UTC);
+        System.out.println("mdt="+mdt.toString(pattern));
 
-					int mon = Months.monthsBetween(start, end).getMonths();
+        
+        System.out.println("mytime");
+        DateTime dt = new DateTime();
+        int month = dt.getMonthOfYear();
+        System.out.println("month="+month);
+        System.out.println(dt.toString(pattern));
 
-					System.out.println("Months between" + start.toString("yyyy-MM-dd") + " and "
-													+ end.toString("yyyy-MM-dd") + " = " + mon + " month(s)");
+        /*
+        DateTime mydt = new DateTime();
+        System.out.println("now()="+mydt.toString(pattern));
+        */
 
-					MutableDateTime dateTime = new MutableDateTime();
-					System.out.println("dateTime="+dateTime);
+        DateMidnight start = new DateMidnight("2010-01-01");
+        DateMidnight end = new DateMidnight(new Date());
 
-					dateTime.addMonths(1);
-					dateTime.setDayOfMonth(1);
-					dateTime.setMillisOfDay(0);
-					System.out.println("First day of next month=" + dateTime);
+        int mon = Months.monthsBetween(start, end).getMonths();
 
-					DateTime startDate = new DateTime();
-					DateTime endDate = startDate.plus(Months.months(2));
+        System.out.println("Months between" + start.toString("yyyy-MM-dd") + " and "
+                                        + end.toString("yyyy-MM-dd") + " = " + mon + " month(s)");
 
-					//create an interval from a start to end instant.
+        MutableDateTime dateTime = new MutableDateTime();
+        System.out.println("dateTime="+dateTime);
 
-					Interval interval = new Interval(startDate, endDate);
-					System.out.println("Interval=" + interval);
-					System.out.println("Start   =" + interval.getStart());
-					System.out.println("End     =" + interval.getEnd());
+        dateTime.addMonths(1);
+        dateTime.setDayOfMonth(1);
+        dateTime.setMillisOfDay(0);
+        System.out.println("First day of next month=" + dateTime);
 
-					//Add one more month to the interval
-					interval = interval.withEnd(interval.getEnd().plusMonths(1));
-					System.out.println("Interval =" + interval);
+        DateTime startDate = new DateTime();
+        DateTime endDate = startDate.plus(Months.months(2));
 
-					//Gets teh duration of the time interval
+        //create an interval from a start to end instant.
 
-					Duration duration = interval.toDuration();
-					System.out.println("Duration =" + duration);
+        Interval interval = new Interval(startDate, endDate);
+        System.out.println("Interval=" + interval);
+        System.out.println("Start   =" + interval.getStart());
+        System.out.println("End     =" + interval.getEnd());
 
-					DateTime mydatetime = new DateTime();
-					System.out.println("mydatetime=" + mydatetime);
+        //Add one more month to the interval
+        interval = interval.withEnd(interval.getEnd().plusMonths(1));
+        System.out.println("Interval =" + interval);
 
-					//plus some hours, minutes, and second to the original time
-                    System.out.println("Plus 1 hours is " + mydatetime.plusHours(1));	
-                    System.out.println("Plus 10 minutes is " + mydatetime.plusMinutes(10));	
-                    System.out.println("Plus 59 second is " + mydatetime.plusSeconds(59));	
+        //Gets teh duration of the time interval
 
-					//minus some hours, minutes, and seconds to the original DateTime
-					System.out.println("Minus 1 hours is "+mydatetime.minusHours(1));
-					System.out.println("Minus 10 minutes is "+mydatetime.minusMinutes(10));
-					System.out.println("Minus 59 second is "+mydatetime.minusSeconds(59));
+        Duration duration = interval.toDuration();
+        System.out.println("Duration =" + duration);
+
+        DateTime mydatetime = new DateTime();
+        System.out.println("mydatetime=" + mydatetime);
+
+        //plus some hours, minutes, and second to the original time
+        System.out.println("Plus 1 hours is " + mydatetime.plusHours(1));	
+        System.out.println("Plus 10 minutes is " + mydatetime.plusMinutes(10));	
+        System.out.println("Plus 59 second is " + mydatetime.plusSeconds(59));	
+
+        //minus some hours, minutes, and seconds to the original DateTime
+        System.out.println("Minus 1 hours is "+mydatetime.minusHours(1));
+        System.out.println("Minus 10 minutes is "+mydatetime.minusMinutes(10));
+        System.out.println("Minus 59 second is "+mydatetime.minusSeconds(59));
 
 
   }
