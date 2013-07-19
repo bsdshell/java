@@ -166,6 +166,8 @@ class PrettyBinPrint
 		b1.Insert(130);
 		b1.Insert(16);
 		b1.Insert(10);
+		b1.Insert(20);
+		b1.Insert(18);
 		
 		
 		
@@ -178,7 +180,9 @@ class PrettyBinPrint
 
 		System.out.println(contain(r, 15));
 		System.out.println();
-        prettyPrint(r, "");
+        int indent=1;
+        prettyPrint(r, indent);
+		System.out.println();
 		//b.Inorder(r);
 
 		/*			
@@ -190,16 +194,26 @@ class PrettyBinPrint
 		System.out.println(isBST(b1.getRoot()));
 		*/
 	}
-    public static void prettyPrint(Node r, String indent)
+    public static void prettyPrint(Node r, int indent)
     {
         if( r != null)
         {
             System.out.print("["+r.data+"]");
-            System.out.print("[  ]");
-            prettyPrint(r.right, indent +="[  ]");
-            System.out.println();
-            System.out.print(indent);
-            prettyPrint(r.left, indent +="[  ]");
+            if(r.right != null)
+                System.out.print("[  ]");
+
+            prettyPrint(r.right, indent+1);
+
+            if(r.left != null)
+            {
+                System.out.println();
+                for(int i=0; i<indent; i++)
+                {
+                    System.out.print("[  ][  ]");
+                }
+            }
+
+            prettyPrint(r.left, indent+1);
         }
     }
 	public static boolean isBST(Node r)
