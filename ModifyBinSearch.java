@@ -3,10 +3,29 @@ public class ModifyBinSearch
     public static void main(String[] args)
     {
         System.out.println("Hello World!");
-        int[] array = {1, 4, 9, 20, 5};
+        int[] array = {1, 2, 10, 4};
         int left = 0; int right = array.length-1;
-        int max = max(array, left, right);
+        int max = max2(array, left, right);
         System.out.println("max="+max);
+    }
+    public static int max2(int[] array, int left, int right)
+    {
+        if(array != null)
+        {
+            int mid = (left + right)/2;
+            if(mid < right)
+            {
+                if(array[mid] < array[mid + 1])
+                {
+                    return max2(array, mid+1, right);
+                }
+                else
+                    return max2(array, left, mid);
+            }
+            else
+                return array[mid];
+        }
+        return -1000;
     }
     public static int max(int[] array, int left, int right)
     {
