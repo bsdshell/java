@@ -85,11 +85,38 @@ class ReverseSingleLinkedList
 		s.append(n3);
 		s.show();
 
-		s.Reverse(s.getHead());
+		//s.Reverse(s.getHead());
 
-		System.out.println ("Reverse");
-		s.show();
-
-
+		//System.out.println ("Reverse");
+		//s.show();
+		System.out.println ("Reverse 2");
+        Reverse(s.getHead());
+        show(head);
 	}
+    static Node head = null;
+    public static Node Reverse(Node curr)
+    {
+        if(curr != null)
+        {
+            Node node = Reverse(curr.next);
+            if(node != null)
+            {
+                node.next = curr;
+                curr.next = null;
+            }
+            else
+            {
+                head = curr;
+            }
+        }
+        return curr;
+    }
+    public static void show(Node curr)
+    {
+        while(curr != null)
+        {
+            System.out.println("["+curr.data+"]");
+            curr = curr.next;
+        }
+    }
 }

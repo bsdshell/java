@@ -1,4 +1,4 @@
-public class MergeSort2 
+public class MergeSort3 
 {
     public static void main(String[] args)
     {

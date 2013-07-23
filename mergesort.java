@@ -6,7 +6,8 @@ class mergesort
 {
 	public static void main(String args[])
 	{
-		int[] Arr = {0, 3, 7, 2, 100, 9, 6};
+		//int[] Arr = {0, 3, 7, 2, 100, 9, 6};
+		int[] Arr = {4};
 		int left=0;
 		int right=Arr.length-1;
 		int mid=(left+right)/2;
@@ -29,7 +30,7 @@ class mergesort
 	}
 	public static void merge(int[] Arr, int left, int mid, int right)
 	{
-		if(Arr != null && Arr.length > 0)
+		if(Arr != null && Arr.length > 1)
 		{
 			int len = right - left + 1;
 			int[] A = new int[len];
