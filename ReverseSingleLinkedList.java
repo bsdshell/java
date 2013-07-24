@@ -90,8 +90,8 @@ class ReverseSingleLinkedList
 		//System.out.println ("Reverse");
 		//s.show();
 		System.out.println ("Reverse 2");
-        Reverse(s.getHead());
-        show(head);
+        Node h = Reverse2(s.getHead());
+        show(h);
 	}
     static Node head = null;
     public static Node Reverse(Node curr)
@@ -110,6 +110,20 @@ class ReverseSingleLinkedList
             }
         }
         return curr;
+    }
+    
+    public static Node Reverse2(Node curr)
+    {
+        Node tmp = null;
+        if(curr.next == null)
+            return curr;
+        else
+        {
+            tmp = Reverse2(curr.next);
+            curr.next.next = curr;
+            curr.next = null;
+        }
+        return tmp;
     }
     public static void show(Node curr)
     {
