@@ -72,6 +72,10 @@ class BinToDLL
 		b1.Insert(16);
 		b1.Insert(10);
 		
+        Inorder(b1.getRoot());
+
+        System.out.println();
+
 		Node r = b1.getRoot();
 		Node t = BinToDLL(r);
 		while(t != null)
@@ -81,6 +85,15 @@ class BinToDLL
 		}
 		
 	}
+    public static void Inorder(Node r)
+    {
+        if(r != null)
+        {
+            Inorder(r.left);
+            System.out.print("["+r.data+"]");
+            Inorder(r.right);
+        }
+    }
 	public static Node BinToDLL(Node r)
 	{
 		Node h=null, t=null, cur=null;

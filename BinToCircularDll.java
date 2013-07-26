@@ -57,68 +57,67 @@ class BST
 class BinToCircularDll 
 {
 
-	public static Node prev = null;
 	public static void main(String args[])
 	{
 		BST b1 = new BST();
 
 
 		b1.Insert(15);
-        
 		b1.Insert(12);
-        /*
 		b1.Insert(14);
 		b1.Insert(17);
+
 		b1.Insert(19);
 		b1.Insert(130);
 		b1.Insert(16);
 		b1.Insert(10);
-        */
-		
+        
 		Node r = b1.getRoot();
 		//Node t = BinToDLL(r);
         Inorder(r);
         System.out.println("");
         BinToCircularDll(r);
         int k=0;
-        Node curr = head;
-        while(curr != head || k == 0)
+        if(head != null)
         {
-            if(k==0)
-                k++;
-            System.out.print(head.data + " ");
-            curr = curr.right;
+            Node curr = head;
+            Node right = head.right;
+            if(curr == right) //one node
+                System.out.print(curr.data + " ");
+            else
+            {
+                System.out.print(head.data + " ");
+                while(head != right)
+                {
+                    System.out.print(right.data + " ");
+                    right = right.right;
+                }
+            }
         }
 	}
     static Node head = null;
-    static Node tail = null;
-    public static Node BinToCircularDll(Node curr)
+    static Node prev = null;
+    public static void BinToCircularDll(Node curr)
     {
         if(curr != null)
         {
-            Node leftNode = BinToCircularDll(curr.left);
-            if(leftNode == null && head == null)
+            BinToCircularDll(curr.left);
+            if(prev == null)
                 head = curr;
             else
             {
-                leftNode.right = curr;
-                curr.left = leftNode;
+                prev.right = curr;
+                curr.left = prev;
             }
-            Node rightNode = BinToCircularDll(curr.right);
-            if(rightNode == null)
+            prev = curr;
+            Node right = curr.right;
+            if(head != null)
             {
-                tail = curr;
-                tail.right = head;
-                head.left = tail;
+                head.left = curr;
+                curr.right = head;
             }
-            else
-            {
-                rightNode.left = curr;
-                curr.right = rightNode;
-            }
-                 
+            BinToCircularDll(right);
         }
-        return curr;
     }
     public static void Inorder(Node r)
     {
