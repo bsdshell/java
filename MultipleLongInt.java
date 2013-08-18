@@ -5,9 +5,11 @@ class MultipleLongInt
 	public static void main(String args[])
 	{
 		System.out.println("cool");
-		int[] A1 = {9, 9, 9, 9, 9, 9, 9, 9, 9, 9,9};
-		int[] A2 = {9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,9};
-		int[][] S = Multiply(A1, A2);
+		int[] A = {9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9};
+		int[] B = {9,9,9,9,9};
+		int[] S = Multiply2(A, B);
+        for(int i=0; i<S.length; i++)
+            System.out.print("["+S[i]+"]");
 	}
 	public static int[][] Multiply(int[] A1, int[] A2)
 	{
@@ -17,7 +19,7 @@ class MultipleLongInt
 			int len1 = A1.length;
 			int len2 = A2.length;
 			S = new int[len2][len2+len1];
-			int[] total = new int[len1+len2+1];
+			int[] total = new int[len1+len2];
 			for(int i=0; i<len1; i++)
 				for(int j=0; j<len1+len2; j++)
 					S[i][j]=0;
@@ -83,4 +85,65 @@ class MultipleLongInt
 		}
 		return S;
 	}
+    public static void Reverse(int[] A)
+    {
+        if(A != null)
+        {
+            int len = A.length;
+            for(int i=0; i<len/2; i++)
+            {
+                int tmp = A[i];
+                A[i] = A[len-1-i];
+                A[len-1-i] = tmp;
+            }
+        }
+    }
+    public static int[] Multiply2(int[] A, int[] B)
+    {
+        int[][] C = null;
+        int[] total = null;
+        if( A != null && B != null)
+        {
+            int len1 = A.length;
+            int len2 = B.length;
+            C = new int[len1][len1+len2];
+
+            Reverse(A);
+            Reverse(B);
+            for(int i=0; i<A.length; i++)
+            {
+                int carry = 0;
+                int j = 0;
+                for(j=0; j<B.length; j++)
+                {
+                    C[i][j+i] = (B[j]*A[i] + carry)%10; 
+                    carry = (B[j]*A[i] + carry)/10;
+                }
+                C[i][j+i] = carry;
+            }
+            for(int i=0; i<C.length; i++)
+            {
+                for(int j=0; j<C[0].length; j++)
+                {
+                    System.out.print("["+C[i][j]+"]");
+                }
+                System.out.println();
+            }
+
+            total = new int[len1+len2];
+            int car = 0;
+            for(int i=0; i<C[0].length; i++)
+            {
+                int s = 0;
+                for(int j=0; j<C.length; j++)
+                {
+                    s += C[j][i];     
+                }
+                total[i] = (s + car)%10; 
+                car = (s + car)/10;
+            }
+            Reverse(total);
+        }
+        return total;
+    }
 }
