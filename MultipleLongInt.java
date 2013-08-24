@@ -5,8 +5,8 @@ class MultipleLongInt
 	public static void main(String args[])
 	{
 		System.out.println("cool");
-		int[] A = {9};
-		int[] B = {2};
+		int[] A = {9, 9, 9};
+		int[] B = {9, 9, 9};
 		int[] S = Multiply4(A, B);
         for(int i=0; i<S.length; i++)
             System.out.print("["+S[i]+"]");
@@ -202,7 +202,7 @@ class MultipleLongInt
             {
                 if(A.length == 1 && A[0] == 0 || B.length == 1 && B[0] == 0)
                 {
-                    total = new int[0];
+                    total = new int[1];
                     total[0] = 0;
                 }
                 else
@@ -216,10 +216,10 @@ class MultipleLongInt
                         int j=0;
                         for(j=0; j<lena; j++)
                         {
-                            c[lena - 1 - i][lena+lenb - 1- (i+j)] = (A[lena - 1 - j]*B[lenb - 1 - i] + carry)%10;
+                            c[lenb-1-i][lena+lenb - 1- j-i] = (A[lena - 1 - j]*B[lenb - 1 - i] + carry)%10;
                             carry = (A[lena - 1 - j]*B[lenb - 1 - i] + carry)/10;
                         }
-                        c[lena-1-i][lena+lenb-1-(i+j)] = carry;
+                        c[lenb-1-i][lena+lenb-1-j-i] = carry;
                     }
                     int numRow = c.length;
                     int numCol = c[0].length;
