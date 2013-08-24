@@ -5,9 +5,9 @@ class MultipleLongInt
 	public static void main(String args[])
 	{
 		System.out.println("cool");
-		int[] A = {9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9};
-		int[] B = {9,9,9,9,9};
-		int[] S = Multiply2(A, B);
+		int[] A = {9};
+		int[] B = {2};
+		int[] S = Multiply4(A, B);
         for(int i=0; i<S.length; i++)
             System.out.print("["+S[i]+"]");
 	}
@@ -143,6 +143,101 @@ class MultipleLongInt
                 car = (s + car)/10;
             }
             Reverse(total);
+        }
+        return total;
+    }
+    public static int[] Multiply3(int[] A, int[] B)
+    {
+        int[][] C = null;
+        int[] total = null;
+        if( A != null && B != null)
+        {
+           C = new int[A.length+B.length][B.length]; 
+           Reverse(A);
+           Reverse(B); 
+           //for(int i=0; i<A.length+B.length; i++)
+           {
+               for(int j=0; j<B.length; j++)
+               {
+                   int carry = 0;
+                   for(int k=0; k<A.length; k++)
+                   {
+                        C[k+j][j] = (A[k]*B[j]+carry)%10;
+                        carry = (A[k]*B[j]+carry)/10;
+                   }
+               }
+           }
+           total = new int[A.length+B.length];
+           int carry = 0;
+           for(int i=0; i<C.length; i++)
+           {
+               int s=0;
+               for(int j=0; j<C[0].length; j++)
+               {
+                  s += C[i][j];
+               }
+               total[i] = (s+carry)%10; 
+               carry = (s+carry)/10;
+           }
+
+           for(int i=0; i<C.length; i++)
+           {
+               for(int j=0; j<C[0].length; j++)
+               {
+                   System.out.print("["+C[i][j]+"]");
+               }
+               System.out.println();
+           }
+        }
+        Reverse(total);
+        return total;
+    }
+    public static int[] Multiply4(int[] A, int[] B)
+    {
+        int[][] c = null;
+        int[] total = null;
+        if( A != null && B != null)
+        {
+            if(A.length > 0 && B.length > 0)
+            {
+                if(A.length == 1 && A[0] == 0 || B.length == 1 && B[0] == 0)
+                {
+                    total = new int[0];
+                    total[0] = 0;
+                }
+                else
+                {
+                    int lena = A.length;
+                    int lenb = B.length;
+                    c = new int[lenb][lena+lenb];
+                    for(int i=0; i<lenb; i++)
+                    {
+                        int carry = 0;
+                        int j=0;
+                        for(j=0; j<lena; j++)
+                        {
+                            c[lena - 1 - i][lena+lenb - 1- (i+j)] = (A[lena - 1 - j]*B[lenb - 1 - i] + carry)%10;
+                            carry = (A[lena - 1 - j]*B[lenb - 1 - i] + carry)/10;
+                        }
+                        c[lena-1-i][lena+lenb-1-(i+j)] = carry;
+                    }
+                    int numRow = c.length;
+                    int numCol = c[0].length;
+                    total = new int[numCol];
+                    int carry = 0;
+                    for(int i=0; i<numCol; i++)
+                    {
+                        int s=0;
+                        int j=0;
+                        for(j=0; j<numRow; j++)
+                        {
+                            s += c[numRow-1-j][numCol-1-i];
+                        }
+                        total[numCol-1-i] = (s+carry)%10;
+                        carry = (s+carry)/10;
+                    }
+                }
+            }
         }
         return total;
     }
