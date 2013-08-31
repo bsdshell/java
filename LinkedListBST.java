@@ -158,6 +158,8 @@ public class LinkedListBST
         bst1.insert(30); 
         bst1.insert(12); 
         bst1.insert(1); 
+        bst1.insert(2); 
+        bst1.insert(0); 
         inorder(bst1.root);
 
         System.out.println("=========");
@@ -206,7 +208,7 @@ public class LinkedListBST
                     //System.out.print("{"+root.data+"}");
                     list.add(root.data);
                 }
-                if(list.size() > 1)
+                if(list.size() > 1 || (list.size() > 0 && curr.root == root))
                 {
                     System.out.println("");
                     List<Integer> tmpList = new ArrayList<Integer>(list);
