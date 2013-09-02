@@ -112,15 +112,13 @@ class LongestPalindrome
             int maxoffset = 0;
             for(int i=0; i<len; i++)
             {
-                int dist = 0;
                 for(int j=0; j<len; j++)
                 {
                     if(i-j >= 0 && i+j<len && newStr.charAt(i-j) == newStr.charAt(i+j))
                     {
-                        dist = j;
-                        if(dist > maxoffset)
+                        if(j > maxoffset)
                         {
-                            maxoffset = dist;
+                            maxoffset = j;
                             palindrome = newStr.substring(i-j, i+j+1);
                         }
                     }
@@ -133,7 +131,6 @@ class LongestPalindrome
                     tmpStr += palindrome.charAt(i) + ""; 
             }
             palindrome = tmpStr;
-            System.out.print("newStr="+newStr);
         }
         return palindrome;
     }
