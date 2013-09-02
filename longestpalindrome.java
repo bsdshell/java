@@ -1,7 +1,7 @@
 import java.io.*;
 import java.lang.String;
 import java.util.*;
-class longestpalindrom 
+class LongestPalindrome 
 {
 	public static void main(String args[])
 	{
@@ -17,6 +17,9 @@ class longestpalindrom
 		System.out.println("r=" + r);
 		r= longest("kkkabcbae");
 		System.out.println("r=" + r);
+        
+        String palindrome = longest2("a");
+		System.out.println("Palindrome="+palindrome);
 	}
 	public static int longest(String str)
 	{
@@ -94,4 +97,44 @@ class longestpalindrom
 		System.out.println("max pal=" + pal);
 		return max;
 	}
+    public static String longest2(String str)
+    {
+        String palindrome = "";
+        if(str != null)
+        {
+            String newStr = "#";
+            for(int i=0; i<str.length(); i++)
+            {
+                newStr += str.charAt(i) + "#";
+            }
+
+            int len = newStr.length();
+            int maxoffset = 0;
+            for(int i=0; i<len; i++)
+            {
+                int dist = 0;
+                for(int j=0; j<len; j++)
+                {
+                    if(i-j >= 0 && i+j<len && newStr.charAt(i-j) == newStr.charAt(i+j))
+                    {
+                        dist = j;
+                        if(dist > maxoffset)
+                        {
+                            maxoffset = dist;
+                            palindrome = newStr.substring(i-j, i+j+1);
+                        }
+                    }
+                }
+            }
+            String tmpStr = "";
+            for(int i=0; i<palindrome.length(); i++)
+            {
+                if(palindrome.charAt(i) != '#')
+                    tmpStr += palindrome.charAt(i) + ""; 
+            }
+            palindrome = tmpStr;
+            System.out.print("newStr="+newStr);
+        }
+        return palindrome;
+    }
 }
