@@ -97,6 +97,8 @@ class LongestPalindrome
 		System.out.println("max pal=" + pal);
 		return max;
 	}
+
+    //complexity O(N^2)
     public static String longest2(String str)
     {
         String palindrome = "";
@@ -133,5 +135,38 @@ class LongestPalindrome
             palindrome = tmpStr;
         }
         return palindrome;
+    }
+    //complexity O(n)
+    public static String logestPalindrome(String str)
+    {
+        if( str != null)
+        {
+            String newStr = "#";
+            for(int i=0; i<str.length(); i++)
+            {
+                newStr += str.charAt(i) + "#"; 
+            }
+            int len = newStr.length();
+            int[] p = new int[len];
+            int c=1;
+            int rightEdge = 0;
+            for(int i=1; i<len; i++)
+            {
+                int j = c-(i-c);
+                if(p[j] < rightEdge-c)
+                   p[i] = p[j];
+                else 
+                   p[i] = rightEdge-c ;
+                while(i-p[i] >= 0 && p[i-p[i]] == p[i+p[i]])
+                {
+                    p[i]++;
+                }
+                if(i+p[i] > rightEdge)
+                {
+                    rightEdge = i+p[i];
+                    c = i;
+                }
+            }
+        }
     }
 }

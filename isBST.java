@@ -62,15 +62,18 @@ class isBST
 		BST b1 = new BST();
 
 		b1.Insert(15);
+        /*
 		b1.Insert(12);
 		b1.Insert(12);
 		b1.Insert(17);
-		b1.Insert(19);
+		b1.Insert(199);
 		b1.Insert(130);
 		b1.Insert(16);
 		b1.Insert(10);
+        */
 		
 		System.out.println(isBST(b1.getRoot()));
+		System.out.println(isBST(b1.getRoot(), null));
 	}
 	public static Node prev = null;
 	public static boolean isBST(Node r)
@@ -90,4 +93,17 @@ class isBST
 		}
 		return true;
 	}
+    public static boolean isBST(Node root, Node previous)
+    {
+        if( root != null)
+        {
+            if(!isBST(root.left, previous))
+                return false;
+            if(previous != null && previous.data >= root.data)
+                return false;
+            if(!isBST(root.right, root))
+                return false;
+        }
+        return true;
+    }
 }
