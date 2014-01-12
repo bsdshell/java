@@ -63,7 +63,7 @@ class CircularLinkedList
                     {
                         if(curr.data < next.data)
                         {
-                           if(curr.data <= node.data && node.data <= next.data) 
+                           if(curr.data < node.data && node.data < next.data) 
                            {
                                 curr.next = node;
                                 node.next = next;
@@ -72,7 +72,7 @@ class CircularLinkedList
                         }
                         else
                         {
-                            if(node.data >= curr.data || node.data <= next.data)
+                            if(node.data > curr.data || node.data < next.data)
                             {
                                 curr.next = node;
                                 node.next = next;
@@ -94,7 +94,7 @@ public class InsertCircularLinkedList
         System.out.println("Insert node to sorted circular linked list!");
         CircularLinkedList cll = new CircularLinkedList();
         Node node1 = new Node(10);
-        Node node2 = new Node(11);
+        Node node2 = new Node(6);
         Node node3 = new Node(20);
         Node node4 = new Node(1);
         Node node5 = new Node(7);
