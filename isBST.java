@@ -61,24 +61,66 @@ class isBST
 	{
 		BST b1 = new BST();
 
-		b1.Insert(15);
+		b1.Insert(10);
+		//b1.Insert(5);
+		//b1.Insert(15);
+        
+        inorder(b1.getRoot());
         /*
-		b1.Insert(12);
-		b1.Insert(12);
 		b1.Insert(17);
 		b1.Insert(199);
-		b1.Insert(130);
 		b1.Insert(16);
 		b1.Insert(10);
         */
+
+        Node[] first = new Node[1];
+        Node[] second = new Node[1];
+        first[0] = null;
+        second[0] = null;
+        //swap(5, 15, b1.getRoot(), first, second);
+        
+        inorder(b1.getRoot());
 		
 		System.out.println(isBST(b1.getRoot()));
 		System.out.println(isBST(b1.getRoot(), null));
+		System.out.println(isBSTDef(b1.getRoot()));
 	}
+    public static void swap(int m, int n, Node root, Node[] first, Node[] second)
+    {
+        if(root != null)
+        {
+            swap(m, n, root.left, first, second);
+            if(root.data == m)
+            {
+                first[0] = root;
+            }
+            if(root.data == n)
+            {
+                second[0] = root;
+            }
+            if( first[0] != null && second[0] != null)
+            {
+                int tmp = first[0].data;
+                first[0].data = second[0].data;
+                second[0].data = tmp;
+            }
+            swap(m, n, root.right, first, second);
+        }
+    }
+
+    public static void inorder(Node node)
+    {
+        if(node != null)
+        {
+            inorder(node.left);
+		        System.out.println(node.data);
+            inorder(node.right);
+        }
+    }
+
 	public static Node prev = null;
 	public static boolean isBST(Node r)
 	{
-
 		if(r == null)
 			return true;
 		else
@@ -105,5 +147,44 @@ class isBST
                 return false;
         }
         return true;
+    }
+
+    //precondition node != null
+    public static int max(Node node)
+    {
+        if(node.right != null)
+            return max(node.right);
+        else 
+            return node.data;
+    }
+
+    //precondition node != null
+    public static int min(Node node)
+    {
+        if(node.left != null)
+            return min(node.left);
+        else 
+            return node.data;
+    }
+
+    //BST definition
+    // 1) left subtree is BST
+    // 2) right subtree is BST
+    // 3) max(left substree) < parent.data && min(right subtree) > parent.data
+    public static boolean isBSTDef(Node node)
+    {
+        if(node == null)
+            return true;
+        else
+        {
+            if(!isBSTDef(node.left))
+                return false;
+            if(!isBSTDef(node.right))
+                return false;
+            if( !((node.left == null || max(node.left) < node.data) &&
+                    (node.right == null || min(node.right) > node.data)))
+                return false;
+            return true;
+        }
     }
 }

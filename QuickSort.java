@@ -39,13 +39,15 @@ class QuickSort
 
 
 	}
-	public static void QuickSort(int[] Arr, int left, int right)
+
+    public static void QuickSort(int[] Arr, int left, int right)
 	{
-		int pivot = Partition(Arr, left, right);
-		if(left < pivot-1)
+        if(left < right)
+        {
+            int pivot = Partition(Arr, left, right);
 			QuickSort(Arr, left, pivot-1);
-		if(pivot + 1 < right)
 			QuickSort(Arr, pivot+1, right);
+        }
 	}
 	public static int Partition(int[] Arr, int left, int right)
 	{

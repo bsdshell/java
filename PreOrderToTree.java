@@ -133,10 +133,10 @@ class PreOrderToTree
 				while(i <= j)
 				{
 					while(i < len && rootNum > Arr[i]) 
-						leftList.add(new Integer(Arr[i++])); 
+						leftList.add(Arr[i++]); 
 
 					while(j > 0 && rootNum < Arr[j])
-						rightList.add(new Integer(Arr[j--]));
+						rightList.add(Arr[j--]);
 				}
 				
 				for(i=0; i<leftList.size(); i++)
@@ -145,7 +145,6 @@ class PreOrderToTree
 				System.out.println(); 
 				for(i=0; i<rightList.size(); i++)
 				{ System.out.println(rightList.get(i)); }
-
 			}
 		}
 		return rootNum;

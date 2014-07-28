@@ -22,7 +22,8 @@ class infixTopostfix
 		Stack<String> st = new Stack<String>();
 		ArrayList<String> list = tokenize(str);
 		if( str != null)
-		{ vet = new Vector<String>();
+		{ 
+            vet = new Vector<String>();
 			for(int i=0; i<list.size(); i++)
 			{
 				String s=list.get(i);
@@ -30,9 +31,11 @@ class infixTopostfix
 				if( s.equals("("))
 					st.push(s);
 				else if( s.equals(")"))
-				{ while(!st.empty() && !st.peek().equals("("))	
+				{ 
+                    while(!st.empty() && !st.peek().equals("("))	
 					{ //p += st.pop();  
-						vet.add(st.pop());			}
+						vet.add(st.pop());			
+                    }
 					if(!st.empty())
 					{
 						String str1 = st.pop();
