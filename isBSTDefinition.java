@@ -60,14 +60,19 @@ class isBST
 	public static void main(String args[])
 	{
 		BST b1 = new BST();
+
 		b1.Insert(10);
-		b1.Insert(5);
-		b1.Insert(15);
+		//b1.Insert(5);
+		//b1.Insert(15);
         
+        inorder(b1.getRoot());
+        /*
 		b1.Insert(17);
 		b1.Insert(199);
 		b1.Insert(16);
-        
+		b1.Insert(10);
+        */
+
         Node[] first = new Node[1];
         Node[] second = new Node[1];
         first[0] = null;
@@ -76,8 +81,6 @@ class isBST
         
         inorder(b1.getRoot());
 		
-		System.out.println(isBST(b1.getRoot()));
-		System.out.println(isBST(b1.getRoot(), null));
 		System.out.println(isBSTDef(b1.getRoot()));
 	}
     public static void swap(int m, int n, Node root, Node[] first, Node[] second)
@@ -89,7 +92,7 @@ class isBST
             {
                 first[0] = root;
             }
-            else if(root.data == n)
+            if(root.data == n)
             {
                 second[0] = root;
             }
@@ -98,52 +101,9 @@ class isBST
                 int tmp = first[0].data;
                 first[0].data = second[0].data;
                 second[0].data = tmp;
-                first[0] = null;
-                second[0] = null;
             }
             swap(m, n, root.right, first, second);
         }
-    }
-
-    public static void inorder(Node node)
-    {
-        if(node != null)
-        {
-            inorder(node.left);
-		        System.out.println(node.data);
-            inorder(node.right);
-        }
-    }
-
-	public static Node prev = null;
-	public static boolean isBST(Node r)
-	{
-		if(r == null)
-			return true;
-		else
-		{
-			if(!isBST(r.left))
-				return false;
-			if(prev != null && prev.data >= r.data)
-				return false;
-			prev = r;
-			if(!isBST(r.right))
-				return false;
-		}
-		return true;
-	}
-    public static boolean isBST(Node root, Node previous)
-    {
-        if( root != null)
-        {
-            if(!isBST(root.left, previous))
-                return false;
-            if(previous != null && previous.data >= root.data)
-                return false;
-            if(!isBST(root.right, root))
-                return false;
-        }
-        return true;
     }
 
     //precondition node != null
