@@ -143,8 +143,6 @@ class LeastCommonAncestor
 		b1.Insert(10);
 		b1.Insert(1);
 		b1.Insert(11);
-		
-		
 
 		Node r = b1.getRoot();
 		Node lca = LCABinTree(r, 12, 15);
@@ -224,23 +222,7 @@ class LeastCommonAncestor
 		}
 		return null;
 	}
-	public static boolean isBST(Node r)
-	{
-
-		if(r == null)
-			return true;
-		else
-		{
-			if(!isBST(r.left))
-				return false;
-			if(prev != null && prev.data >= r.data)
-				return false;
-			prev = r;
-			if(!isBST(r.right))
-				return false;
-		}
-		return true;
-	}
+	
 	public static boolean equalBinaryTree(Node r1, Node r2)
 	{
 		if(r1==null && r2==null)
@@ -257,14 +239,5 @@ class LeastCommonAncestor
 		else 
 			return false;
 		return true;
-	}
-	public static void Inorder(Node root)
-	{
-		if(root != null)
-		{
-			Inorder(root.left);
-			System.out.println("data=" + root.data);
-			Inorder(root.right);
-		}
 	}
 }
