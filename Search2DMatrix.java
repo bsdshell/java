@@ -8,9 +8,9 @@ class Search2DMatrix
 		int[][] Arr = new int[1][3];
 		gen2D(Arr);
 		int right=0;
-		int up=Arr.length-1;
+		int down=Arr.length-1;
 		int key=2;
-		boolean found = Search2DRecur(Arr, right, up, key);
+		boolean found = Search2DRecur(Arr, right, down, key);
 
 		if(found)
 			System.out.println("found key=" + key);
@@ -55,17 +55,17 @@ class Search2DMatrix
 			col = Arr[0].length;
 
 			int right = 0;
-			int up = row-1;
-			while(right < col && up >= 0 && !found)
+			int down = row-1;
+			while(right < col && down >= 0 && !found)
 			{
-				if(key > Arr[up][right])
+				if(key > Arr[down][right])
 						right++;
-				else if(key < Arr[up][right])
-							up--;
-				else if(key == Arr[up][right])
+				else if(key < Arr[down][right])
+                        down--;
+				else if(key == Arr[down][right])
 				{
 					found = true;
-					System.out.println("found Arr["+up+"]["+right+"]="+Arr[up][right]);
+					System.out.println("found Arr["+down+"]["+right+"]="+Arr[down][right]);
 				}
 			}
 			if(!found)
@@ -75,16 +75,16 @@ class Search2DMatrix
 	}
 
 	//right = 0;
-	//up = row-1; 
+	//down = row-1; 
 	
-	public static boolean Search2DRecur(int[][] Arr, int right, int up, int key)
+	public static boolean Search2DRecur(int[][] Arr, int right, int down, int key)
 	{
-		if(Arr != null && right < Arr[0].length && up >= 0)
+		if(Arr != null && right < Arr[0].length && down >= 0)
 		{
-			if(key > Arr[up][right])
-				return Search2DRecur(Arr, right+1, up, key);			
-			else if(key < Arr[up][right])
-				return Search2DRecur(Arr, right, up-1, key);			
+			if(key > Arr[down][right])
+				return Search2DRecur(Arr, right+1, down, key);			
+			else if(key < Arr[down][right])
+				return Search2DRecur(Arr, right, down-1, key);			
 			else 
 				return true;
 		}

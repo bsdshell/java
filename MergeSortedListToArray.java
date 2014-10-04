@@ -4,9 +4,10 @@ class MergeSortedListToArray
 {
 	public static void main(String args[])
 	{
-		int[] Arr1 = {1, 7, 10};
-		int[] Arr2 = {3};
-		int[] Arr = Merge(Arr1, Arr2);
+		int[] Arr1 = {1, 9, 12};
+		int[] Arr2 = {2, 15};
+		int[] Arr3 = {5, 7, 20};
+		int[] Arr = Merge(Merge(Arr1, Arr2), Arr3);
 		for(int i=0; i< Arr.length; i++)
 			System.out.println(Arr[i]);
 	}
@@ -23,14 +24,23 @@ class MergeSortedListToArray
 			while(i<len1 || j<len2)
 			{
 				if(i == len1)
-				{	A[c]=Arr2[j]; j++;}
+				{	
+                    A[c]=Arr2[j]; j++;
+                }
 				else if( j == len2)
-				{ A[c]=Arr1[i]; i++;}
+				{ 
+                    A[c]=Arr1[i]; i++;
+                }
 				else 
-				{ if(Arr1[i]<Arr2[j])
-					{	A[c] = Arr1[i]; i++;}
+				{ 
+                    if(Arr1[i]<Arr2[j])
+					{	
+                        A[c] = Arr1[i]; i++;
+                    }
 					else
-					{ A[c] = Arr2[j]; j++;}	
+					{ 
+                        A[c] = Arr2[j]; j++;
+                    }	
 				}
 				c++;
 			}

@@ -93,22 +93,20 @@ class InorderIteration
 		Stack<Node> st = new Stack<Node>();
 		Node cur = r;
 
-		if( cur != null)
-		{ 
-			while(!st.empty() || cur != null)
-			{
-				if(cur != null)
-				{
-					st.push(cur);
-					cur = cur.left;
-				}
-				else 
-				{ Node no = st.pop();
-					System.out.println("no.data=" + no.data);
-					cur = no.right;
-				}
-			}
-		}
+        while(!st.empty() || cur != null)
+        {
+            if(cur != null)
+            {
+                st.push(cur);
+                cur = cur.left;
+            }
+            else 
+            { 
+                Node no = st.pop();
+                System.out.println("no.data=" + no.data);
+                cur = no.right;
+            }
+        }
 	}
 	
 	public static void Inorder(Node root)
