@@ -15,7 +15,7 @@ class MyHeap
 		{
 			inx++;
 			Arr[inx] = n;
-			heapUp(inx);
+			heapify(inx);
 		}
 	}
 	public void remove()
@@ -28,7 +28,6 @@ class MyHeap
 			Arr[1] = Arr[inx];
 			inx--;
 			heapDown(1);
-			
 		}
 	}
 	public void heapDown(int index)
@@ -70,8 +69,7 @@ class MyHeap
 			}
 		}
 	}
-
-	public void heapUp(int index)
+	public void heapify(int index)
 	{
 		int parent = index/2;
 		if(parent >= 1)
@@ -81,7 +79,7 @@ class MyHeap
 				int tmp = Arr[index];
 				Arr[index] = Arr[parent];
 				Arr[parent] = tmp;
-				heapUp(parent);
+				heapify(parent);
 			}
 		}
 	}
@@ -92,9 +90,6 @@ class MyHeap
 			System.out.println("Arr[" + i + "]=" + Arr[i]);
 		}	
 	}
-
-
-
 }
 
 class heap 
@@ -108,8 +103,6 @@ class heap
 		h.remove();
 		System.out.println("cool");
 		h.show();
-
 		System.out.println("cool");
-
 	}
 }
