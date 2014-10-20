@@ -30,34 +30,34 @@ class BST
 		{ root = new Node(n); }
 		else
 		{ 
-			Node cur = root;
+			Node curr = root;
 			boolean end = false;
-			while(cur != null && !end)
+			while(curr != null && !end)
 			{
-				if(n < cur.data)
+				if(n < curr.data)
 				{ 
-					if(cur.left == null)
-					{ cur.left = new Node(n); end = true; }
+					if(curr.left == null)
+					{ curr.left = new Node(n); end = true; }
 					else 
-						cur = cur.left;
+						curr = curr.left;
 				}
 				else 
 				{
-					if(cur.right == null)
-					{ cur.right = new Node(n); end = true; }
+					if(curr.right == null)
+					{ curr.right = new Node(n); end = true; }
 					else
-						cur = cur.right;
+						curr = curr.right;
 				}
 			}
 		}
 	}
-	public void Inorder(Node cur)
+	public void Inorder(Node curr)
 	{
-		if(cur != null)
+		if(curr != null)
 		{
-			Inorder(cur.left);
-			System.out.print(cur.data + " ");
-			Inorder(cur.right);
+			Inorder(curr.left);
+			System.out.print(curr.data + " ");
+			Inorder(curr.right);
 		}
 	}
 	public Node getRoot()
@@ -70,10 +70,7 @@ class InorderIteration
 	public static void main(String args[])
 	{
 		BST b1 = new BST();
-
-
 		b1.Insert(15);
-		
 		b1.Insert(12);
 		b1.Insert(14);
 		b1.Insert(17);
@@ -82,33 +79,55 @@ class InorderIteration
 		b1.Insert(16);
 		b1.Insert(10);
 		
-		
-		InorderIteration(b1.getRoot());
+		PostorderIteration(b1.getRoot());
 		System.out.println();
-		Inorder(b1.getRoot());
+		Postorder(b1.getRoot());
+        //Inorder(b1.getRoot());
 	}
 	//in order traversal using iteration
-	public static void InorderIteration(Node r)
+	public static void InorderIteration(Node curr)
 	{
 		Stack<Node> st = new Stack<Node>();
-		Node cur = r;
-
-        while(!st.empty() || cur != null)
+        while(curr != null || !st.isEmpty())
         {
-            if(cur != null)
+            if(curr != null)
             {
-                st.push(cur);
-                cur = cur.left;
+                st.push(curr);
+                curr = curr.left;
             }
             else 
             { 
                 Node no = st.pop();
                 System.out.println("no.data=" + no.data);
-                cur = no.right;
+                curr = no.right;
             }
         }
 	}
 	
+    public static void PostorderIteration(Node curr)
+    {
+        /*
+        Stack<Node> st = new Stack<Node>();
+        Node prev = null;
+        while(curr != null || !st.isEmpty())
+        {
+            if(curr != null)
+            {
+                st.push(curr);
+                prev = curr.left;
+                curr = curr.left;
+            }
+            else
+            {
+                curr = st.pop();
+                if(prev == curr.right)
+                    System.out.println("curr.data=" + curr.data);
+                prev = curr.right;
+                curr = curr.right;
+            }
+        }
+        */
+    }
 	public static void Inorder(Node root)
 	{
 		if(root != null)
@@ -116,6 +135,15 @@ class InorderIteration
 			Inorder(root.left);
 			System.out.println("data=" + root.data);
 			Inorder(root.right);
+		}
+	}
+    public static void Postorder(Node myroot)
+	{
+		if(myroot != null)
+		{
+			System.out.println("post=" + myroot.data);
+			Postorder(myroot.left);
+			Postorder(myroot.right);
 		}
 	}
 }
