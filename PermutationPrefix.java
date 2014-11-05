@@ -27,4 +27,8 @@ public class PermutationPrefix
         }
         return ret;
     }
+    public static void permute2(String s)
+    {
+        
+    }
 }
