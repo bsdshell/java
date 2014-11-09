@@ -44,8 +44,9 @@ class ConvertNumberToEnglish
     }
     public void convert(int num)
     {
+        System.out.print("{"+num+"}=");
         if(num == 0)
-            System.out.println(map.get(num));
+            System.out.print(map.get(num));
         else if(num > 0)
         {
             int[][] array = table(num);
@@ -84,11 +85,10 @@ class ConvertNumberToEnglish
     {
         if(row != null)
         {
-            int sum = row[1]*10 + row[0];
             if(row[2] > 0)
-            {
                 System.out.print("["+map.get(row[2])+"]["+map.get(100)+"]");
-            }
+
+            int sum = row[1]*10 + row[0];
             if(sum > 0)
             {
                 String sumStr = map.get(sum);
@@ -128,5 +128,8 @@ public class NumberToWord
         System.out.println();
         con.convert(123346789);
         System.out.println();
+        con.convert(987654321);
+        System.out.println();
+
     }
 }
