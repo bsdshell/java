@@ -15,18 +15,31 @@ class Node<T>
 
 class LRU
 {
-    Node head;
-    Node tail;
-    int max_size;
+    Node least;
+    Node most;
+    int maxSize;
     int count;
-    Map<String, Node> map = new HashMap<String, Node>();
+    Map<String, Node<String>> map = new HashMap<String, Node<String>>();
     public LRU(int size)
     {
-        head = tail = null;
-        max_size = size;
+        least = most = null;
+        maxSize = size;
         count = 0;
     }
     
+    Node get(String key)
+    {
+        Node<String> node = map.get(key);
+        if( node != null)
+        {
+            if(node != most)
+            {
+                remove(node.key);    
+                append(key, node.data);
+            }
+        }
+        return node;
+    }
     void insert(String key, String data)
     {
         if(!map.containsKey(key))
@@ -37,114 +50,81 @@ class LRU
         {
             Node node = map.get(key);
             remove(key);
-            append(key, node.data);
+            append(key, data);
         }
     }
     void remove(String key)
     {
-        Node node = map.get(key);
-        if(head == null)
-            return;
-        else
-        {
-            if(node != null)
-            {
-                if(node == head)
-                {
-                    removeHead(key);
-                }
-                else if(node == tail)
-                {
-                    removeTail(key);
-                }
-                else
-                {
-                    removeMiddle(key);
-                }
-            }
-        }
-    }
-    void removeHead()
-    {
-        if(head != null)
-        {
-            Node next = head.next;
-            head.next = null;
-            next.prev = null;
-            head = next;
-            count--;
-        }
-    }
-    void removeTail(String key)
-    {
-    }
-    void removeMiddle(String key)
-    {
         Node curr = map.get(key);
-        if(curr != null && head != tail)
+        if( curr != null)
         {
             Node prev = curr.prev;
             Node next = curr.next;
-            prev.next = next;
-            next.prev = prev;
-            curr.next = null;
-            curr.prev = null;
+            if(prev == null && next == null)
+            {
+                least = most = null;
+                curr.next = curr.prev = null; 
+            }
+            else if(prev != null && next == null)
+            {
+                most = prev;
+                prev.next = null;
+                curr.next = curr.prev = null; 
+            }
+            else if(prev == null && next != null)
+            {
+                least = next;
+                next.prev = null;
+                curr.next = curr.prev = null; 
+            }
+            else
+            {
+                prev.next = next;
+                next.prev = prev;
+                curr.next = curr.prev = null; 
+            }
+            map.remove(key);
             count--;
-        }
+        } 
     }
     void append(String key, String data)
     {
-        Node node = new Node<String>(key, data);
-        if(head == null)
+        if(least == null)
         {
-            head = tail = node; 
+            least = most = new Node<String>(key, data);
             count++;
         }
         else
         {
-            if(count >= max_size)
+            if(count < maxSize)
             {
-                removeHead();
-            }
-            else
-            {
-                tail.next = node;
-                node.prev = tail;
-                tail = node;
+                Node n = new Node<String>(key, data);
+                most.next = n; 
+                n.prev = most;
+                most = n;
                 count++;
             }
-        }
-    }
-    void deleteFront()
-    {
-        if(head != null)
-        {
-            Node next = head.next;
-            if(next == null) //One node
-            {
-                head = tail = null;
-            }
             else
             {
-                head.next = null;
-                next.prev = null;
-                map.put(head.key, null);
-                head = next;
+                Node next = least.next;
+                least.next = null;
+                if(next != null)
+                    next.prev = null;
+                else
+                    least = most = null;
+                least = next;
+                count--;
+                append(key, data);
             }
-            count--;
         }
     }
-    
-    void moveToTail(String key)
+    void print()
     {
-        if(head != null)
+        Node curr = least;
+        while(curr != null)
         {
-           if(head.key == key) 
-           {
-               Node node = map.get(key);
-               removeHead();
-               append(key, node);
-           }
+            System.out.println("curr="+curr.data);
+            curr = curr.next;
         }
     }
 }
@@ -155,7 +135,15 @@ public class LRUCache
     {
         //System.out.println("hashcode:" + c.hashCode());
         System.out.println("Hello World!");
-        LRU  lru = new LRU(10);
+        LRU  lru = new LRU(4);
         Node<String> node = new Node<String>("key", "data");
+        lru.insert("key", "mydata");
+        lru.insert("key1", "mydata1");
+        lru.insert("key2", "mydata2");
+        lru.insert("key3", "mydata3");
+        lru.insert("key4", "mydata4");
+        lru.insert("key5", "mydata5");
+        lru.get("key3");
+        lru.print();
     }
 }

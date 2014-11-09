@@ -3,7 +3,7 @@ public class PermutationPrefix
     public static void main(String[] args)
     {
         System.out.println("Hello World!");
-        permute("", "1234");
+        permute("", "12345");
     }
     public static void permute(String prefix, String s)
     {

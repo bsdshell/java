@@ -7,7 +7,7 @@ class PermRecursive
 		// Print the content on the console
 		//System.out.println ("cool");
 		int inx=0;
-		char[] charArr={'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
+		char[] charArr={'a', 'b', 'c'};
 		//char[] charArr={};
 		Permu(charArr, inx);
 		//String s = removeChar("abcde", 2);
