@@ -115,10 +115,9 @@ public class NumberToWord
 {
     public static void main(String[] args)
     {
-        System.out.println("Convert Number to English spoken words");
+        System.out.println("Convert Number to English Words");
         ConvertNumberToEnglish con = new ConvertNumberToEnglish();
         con.InitMap();
-        //int[][] array = con.table(1234567);
         con.convert(0);
         System.out.println();
         con.convert(123);
