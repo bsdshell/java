@@ -1,11 +1,13 @@
 import java.io.*;
 import java.lang.String;
+import java.util.*;
+
 class spiral 
 {
 	public static void main(String args[])
 	{
-		final int nCol=6; 
-		final int nRow=5;
+		final int nCol=4; 
+		final int nRow=3;
 		int[][] Arr = new int[nRow][nCol];
         Integer[][] A = new Integer[nRow][nCol];
 
@@ -31,13 +33,13 @@ class spiral
 
         int k=0;
         printSpiralRecursion(Arr, nRow, nCol, k);
-        System.out.print("\n");
+        System.out.print("\nprint Snake\n");
 
         int width = nCol;
         int height = nRow;
         int col = 0;
         int row = 0;
-        printSpiralNew(A, width, height, col, row);
+        printSpiralSnake(Arr, width, height);
 	}
 	public static void printSpiral2(int[][] Arr, int nRow, int nCol)
 	{
@@ -165,6 +167,50 @@ class spiral
                 }
                 System.out.print("\n");
                     printSpiralRecursion(array, nRow, nCol, k+1);
+            }
+        }
+    }
+    public static void printSpiralSnake(int[][] array, int width, int height)
+    {
+        Set<Integer> hashSet = new HashSet<Integer>();
+        if(array != null)
+        {
+            int c=0, r=0;
+            int turn = 0;
+            int count = 0;
+            boolean stopprint = true;
+            while(count < width*height)
+            {
+                if(stopprint)
+                {
+                    System.out.print("["+c+","+r+"]");
+                    hashSet.add(c*width+r);
+                    count++;
+                }
+
+                if(turn % 4 == 0 && r+1 < width && !hashSet.contains(c*width+ r + 1))      
+                {
+                    r++; stopprint = true;
+                }
+                else if(turn % 4 == 1 && c+1 < height && !hashSet.contains((c+1)*width+ r))      
+                {
+                    c++; stopprint = true;
+                }
+                else if(turn % 4 == 2 && r > 0 && !hashSet.contains(c*width+ r - 1))      
+                {
+                    r--; stopprint = true;
+                }
+                else if(turn % 4 == 3 && c > 0 && !hashSet.contains((c-1)*width+ r))      
+                {
+                    c--; stopprint = true;
+                }
+                else 
+                {
+                    stopprint = false;
+                    System.out.println();
+                    turn++;
+                }
+                
             }
         }
     }

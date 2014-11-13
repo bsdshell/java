@@ -65,10 +65,12 @@ public class SerializeBinaryLevelOrder
         levelOrder(bt.root);
         System.out.println("Hello World!");
         map = levelOrder(bt.root);
+
         BinaryTree newbt = new BinaryTree();
         int key = 0;
         newbt.root = buildBinaryTree(map, key);
-        preorder(newbt.root);
+        //preorder(newbt.root);
+        inorder(newbt.root);
     }
     public static void preorder(Node root){
         if(root != null){
@@ -77,6 +79,14 @@ public class SerializeBinaryLevelOrder
             preorder(root.right);
         } 
     }
+    public static void inorder(Node root){
+        if(root != null){
+            inorder(root.left);
+            System.out.print("["+root.data+"]");
+            inorder(root.right);
+        } 
+    }
+
     public static Node buildBinaryTree(Map<Integer, Integer> map, int key){
         Node root = null;
         if(map.size() > 0 && map.containsKey(key)){

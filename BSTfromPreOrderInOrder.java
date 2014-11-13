@@ -2,6 +2,8 @@ import java.io.*;
 import java.lang.String;
 import java.util.*;
 
+// preorder to inorder
+// convert preorder to inorder
 class Node
 {
 	public Node left;

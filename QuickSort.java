@@ -1,5 +1,7 @@
 import java.io.*;
 import java.util.*;
+
+//quick sort algorithm
 class QuickSort 
 {
 	public static void main(String args[])

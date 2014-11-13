@@ -30,14 +30,14 @@ class ConvertNumberToEnglish
 
         map.put(20, "twenty");
         map.put(30, "thirty");
-        map.put(40, "fourty");
+        map.put(40, “forty”);
         map.put(50, "fifty");
         map.put(60, "sixty");
         map.put(70, "seventy");
         map.put(80, "eighty");
         map.put(90, "ninety");
 
-        map.put(100, "thundred");
+        map.put(100, “thundered”);
         map.put(1000, "thousand");
         map.put(1000000, "million");
         map.put(1000000000, "billion");

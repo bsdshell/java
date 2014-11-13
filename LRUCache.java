@@ -8,6 +8,7 @@ class Node<T>
     T data;
     public Node(String key, T data)
     {
+        next = prev = null;
         this.key = key;
         this.data = data;
     }
@@ -68,7 +69,7 @@ class LRU
             else if(prev != null && next == null)
             {
                 most = prev;
-                prev.next = null;
+                most.next = null;
                 curr.next = curr.prev = null; 
             }
             else if(prev == null && next != null)
@@ -91,18 +92,21 @@ class LRU
     {
         if(least == null)
         {
-            least = most = new Node<String>(key, data);
+            Node<String> node = new Node<String>(key, data);
+            least = most = node; 
+            map.put(key, node); 
             count++;
         }
         else
         {
             if(count < maxSize)
             {
-                Node n = new Node<String>(key, data);
-                most.next = n; 
-                n.prev = most;
-                most = n;
+                Node<String> node = new Node<String>(key, data);
+                most.next = node; 
+                node.prev = most;
+                most = node;
                 count++;
+                map.put(key, node); 
             }
             else
             {
@@ -123,7 +127,7 @@ class LRU
         Node curr = least;
         while(curr != null)
         {
-            System.out.println("curr="+curr.data);
+            System.out.println("<"+curr.key+","+curr.data+">");
             curr = curr.next;
         }
     }
@@ -133,17 +137,17 @@ public class LRUCache
 {
     public static void main(String[] args)
     {
-        //System.out.println("hashcode:" + c.hashCode());
-        System.out.println("Hello World!");
+        System.out.println("Least Recent Used Cache");
         LRU  lru = new LRU(4);
-        Node<String> node = new Node<String>("key", "data");
+        
         lru.insert("key", "mydata");
         lru.insert("key1", "mydata1");
         lru.insert("key2", "mydata2");
         lru.insert("key3", "mydata3");
         lru.insert("key4", "mydata4");
         lru.insert("key5", "mydata5");
-        lru.get("key3");
+        lru.get("key2");
+        lru.insert("key3", "mydatakey3");
         lru.print();
     }
 }
