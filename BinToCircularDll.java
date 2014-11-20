@@ -95,6 +95,7 @@ class BinToCircularDll
             }
         }
 	}
+
     static Node head = null;
     static Node prev = null;
     public static void BinToCircularDll(Node curr)
@@ -119,6 +120,8 @@ class BinToCircularDll
             BinToCircularDll(right);
         }
     }
+
+
     public static void Inorder(Node r)
     {
         if(r != null)

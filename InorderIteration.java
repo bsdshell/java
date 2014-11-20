@@ -72,16 +72,26 @@ class InorderIteration
 		BST b1 = new BST();
 		b1.Insert(15);
 		b1.Insert(12);
+        /*
 		b1.Insert(14);
 		b1.Insert(17);
 		b1.Insert(19);
 		b1.Insert(130);
 		b1.Insert(16);
 		b1.Insert(10);
+        */
 		
 		PostorderIteration(b1.getRoot());
 		System.out.println();
 		Postorder(b1.getRoot());
+        Node node = ConvertBSTToCircileDoubleLinkedList(b1.getRoot());
+        int count = 0;
+        while(node != null && count < 20)
+        {
+            System.out.println("<"+node.data+">");
+            node = node.right;
+            count++;
+        }
         //Inorder(b1.getRoot());
 	}
 	//in order traversal using iteration
@@ -104,6 +114,44 @@ class InorderIteration
         }
 	}
 	
+    //Convert bst binary search tree to circular double linked list
+    public static Node ConvertBSTToCircileDoubleLinkedList(Node curr)
+    {
+        Stack<Node> st = new Stack<Node>();
+        Node currNode = null;
+        Node first = null;
+        Node prev = null;
+        while(curr != null || !st.isEmpty())
+        {
+            if(curr != null)
+            {
+                st.push(curr);
+                curr = curr.left;
+            }
+            else
+            {
+                prev = currNode; 
+                currNode = curr = st.pop();
+                if(prev != null)
+                {
+                    prev.right = currNode;
+                    currNode.left = prev;
+                }
+                else
+                {
+                    first = currNode; 
+                }
+                //System.out.println(currNode.data);
+                curr = curr.right;
+            }
+        }
+        if(first != null)
+        {
+            first.left = currNode;
+            currNode.right = first;
+        }
+        return first;
+    }
     public static void PostorderIteration(Node curr)
     {
         /*

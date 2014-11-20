@@ -69,7 +69,6 @@ class BST
 class BinToDLLRecur 
 {
 
-	public static Node prev = null;
 	public static void main(String args[])
 	{
 		BST b1 = new BST();
@@ -86,8 +85,13 @@ class BinToDLLRecur
 		Node r = BinToDLL(b1.getRoot());
 		boolean bool = isCircularList(r);
 		System.out.println("bool=" + bool);
-		//Inorder(r);
-		
+        Node first = r;
+        Node left = r.left;
+        while( first != left)
+        {
+		    System.out.println("left=" + left.data);
+            left = left.left;
+        }
 
 	}
 	public static boolean isCircularList(Node r)
@@ -116,26 +120,27 @@ class BinToDLLRecur
 		}
 		return ret;
 	}
-	static Node pre=null;
+	static Node prev=null;
 	static Node head=null;
-	static Node tail=null;
 	public static Node BinToDLL(Node r)
 	{
 		if(r != null)
 		{
 			BinToDLL(r.left);
 			
-			r.left = pre;
-			if(pre != null)
-			{ pre.right= r;}
+			if(prev != null)
+			{ 
+                prev.right= r;
+            }
 			else
 				head = r;
-			
+			r.left = prev;
+            prev = r;
 			Node right = r.right;
-			head.left = r;
+
+            if(head != null)
+                head.left = r;
 			r.right = head;
-			tail = r;
-			pre = r;
 
 			BinToDLL(right);
 		}
