@@ -115,7 +115,9 @@ class ReverseSingleLinkedList
     public static Node Reverse2(Node curr)
     {
         Node tmp = null;
-        if(curr.next == null)
+        if(curr == null)
+            return null;
+        else if(curr.next == null)
             return curr;
         else
         {

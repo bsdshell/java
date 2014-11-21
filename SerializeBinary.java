@@ -64,7 +64,7 @@ public class SerializeBinary
         Binary bin = new Binary();
         bin.insert(10);
         bin.insert(11);
-        bin.insert(13);
+        //bin.insert(13);
         /*
         bin.insert(15);
         bin.insert(1);
@@ -101,8 +101,11 @@ public class SerializeBinary
                 System.out.println("aron["+list.get(0)+"]->["+list.get(1)+" "+list.get(2)+"]");
             }
             int depth = 0;
-            newbin.root = deserializeBinary2(listList, depth);
-            newbin.preorder(newbin.root);
+
+            Node root = deserializeBinary2(listList, depth);
+            preorder(root);
+            //newbin.root = deserializeBinary2(listList, depth);
+            //newbin.preorder(newbin.root);
         }
         catch(Exception e){
         }
@@ -200,6 +203,7 @@ public class SerializeBinary
             String line = null;
             while((line = in.readLine()) != null)
             {
+                line = line.trim();
                 String[] array = line.split(" ");
                 if(array != null && array.length == 3)
                 {
@@ -238,6 +242,7 @@ public class SerializeBinary
     {
         Node curr = null;
         System.out.println("size=" + listList.size());
+        System.out.println("depth=[" + depth+"]");
         if(depth < listList.size())
         {
             curr = new Node(Integer.parseInt(listList.get(depth).get(0)));
@@ -245,11 +250,15 @@ public class SerializeBinary
             {
                 curr.left = deserializeBinary2(listList, depth+1); 
             }
+            else 
+                curr.left = null;
 
             if(listList.get(depth).get(2) != "#")
             {
                 curr.right = deserializeBinary2(listList, depth+1); 
             }
+            else
+                curr.right = null;
         }
         return curr;
     }
@@ -271,5 +280,14 @@ public class SerializeBinary
             System.out.println("root is null");
         }
         return root;
+    }
+    public static void preorder(Node root)
+    {
+        if(root != null)
+        {
+            System.out.println("preorder-["+root.data+"]");
+            preorder(root.left);
+            preorder(root.right);
+        }
     }
 }

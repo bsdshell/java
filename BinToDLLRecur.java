@@ -120,6 +120,8 @@ class BinToDLLRecur
 		}
 		return ret;
 	}
+    
+    //convert bst to double
 	static Node prev=null;
 	static Node head=null;
 	public static Node BinToDLL(Node r)
