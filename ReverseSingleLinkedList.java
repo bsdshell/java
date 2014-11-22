@@ -82,7 +82,7 @@ class ReverseSingleLinkedList
 
 		s.append(n1);
 		s.append(n2);
-		s.append(n3);
+		//s.append(n3);
 		s.show();
 
 		//s.Reverse(s.getHead());
@@ -90,8 +90,10 @@ class ReverseSingleLinkedList
 		//System.out.println ("Reverse");
 		//s.show();
 		System.out.println ("Reverse 2");
-        Node h = Reverse2(s.getHead());
-        show(h);
+        //Node h = Reverse2(s.getHead());
+        //show(h);
+        Node newH = ReverseClone(s.getHead());
+        show(newH);
 	}
     static Node head = null;
     public static Node Reverse(Node curr)
@@ -126,6 +128,38 @@ class ReverseSingleLinkedList
             curr.next = null;
         }
         return tmp;
+    }
+    public static Node ReverseIteration(Node head)
+    {
+        Node curr = head;
+        Node prev = null;
+        while(curr != null)
+        {
+            curr.next = prev;
+            prev = curr;
+            curr = curr.next;
+        }
+        return curr; //return head
+    }
+    public static Node ReverseClone(Node head)
+    {
+        Node curr = head;    
+        Node prev = null;
+        Node newCurr = null;
+        Node newPrev = null;
+        while(curr != null)
+        {
+            curr.next = prev;
+
+            newCurr = new Node(curr.data);
+            newCurr.next = newPrev;
+
+            prev = curr;
+            curr = curr.next;
+            newPrev = newCurr;
+            newCurr = newCurr.next;
+        }
+        return newPrev;
     }
     public static void show(Node curr)
     {

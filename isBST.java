@@ -72,11 +72,14 @@ class isBST
         Node[] second = new Node[1];
         first[0] = null;
         second[0] = null;
-        swap(5, 15, b1.getRoot(), first, second);
+        //swap(5, 15, b1.getRoot(), first, second);
         
         inorder(b1.getRoot());
 		
-		System.out.println(isBST(b1.getRoot()));
+        Node[] prev = new Node[1];
+        prev[0] = null;
+		////System.out.println(isBST(b1.getRoot()));
+		System.out.println(isBST2(b1.getRoot(), prev));
 		System.out.println(isBST(b1.getRoot(), null));
 		System.out.println(isBSTDef(b1.getRoot()));
 	}
@@ -132,6 +135,7 @@ class isBST
 		}
 		return true;
 	}
+    
     public static boolean isBST(Node root, Node previous)
     {
         if( root != null)
@@ -145,7 +149,23 @@ class isBST
         }
         return true;
     }
+    //prev[0] = null
+    public static boolean isBST2(Node root, Node[] prev)
+    {
+        if( root != null)
+        {
+            if(!isBST2(root.left, prev))
+                return false;
 
+            if(prev[0] != null && prev[0].data > root.data)
+                return false;
+
+            prev[0] = root;
+            if(!isBST2(root.right, prev))
+                return false;
+        }
+        return true;
+    }
     //precondition node != null
     public static int max(Node node)
     {
