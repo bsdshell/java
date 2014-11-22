@@ -1,5 +1,6 @@
 import java.io.*;
 import java.lang.String;
+import java.util.*;
 
 class Node 
 {
@@ -46,22 +47,46 @@ class SLL
 	{
 		if(no != null && head != null)
 		{
-			Node cur = head;	
-			Node prev = null;
-			while(cur != no)
+            Node curr = head;	
+            Node prev = null;
+			while(curr != null && curr.data != no.data)
 			{
-				prev = cur;
-				cur = cur.next;
+				prev = curr;
+				curr = curr.next;
 			}
-			if(prev != null && no.next != null)
-			{ prev.next = no.next; no.next = null; }
-			else if(prev == null && no.next != null)
-			{ head = no.next; no.next = null; }
-			else if(prev != null && no.next == null)
-			{ prev.next = null; }
-			else 
-			{ no = null; head = null;}
+            if(curr != null)//The node is in the list
+            {
+                //prev
+                //curr
+                Node next = curr.next;
+                if(prev == null && next == null)
+                {
+                    System.out.print("curr.data=1["+curr.data+"]");
+                    head = curr = null;
+                }
+                else if(prev != null && next == null)
+                {
+                    System.out.print("curr.data=2["+curr.data+"]");
+                    prev.next = null;
+                    curr = null;
+                }
+                else if(prev == null && next != null)
+                {
+                    System.out.print("curr.data=3["+curr.data+"]");
+                    head = next;
+                    curr.next = null;
+                    curr = null;
+                }
+                else //if(prev != null && next != null)
+                {
+                    System.out.print("curr.data=4["+curr.data+"]");
+                    prev.next = next;
+                    curr.next = null;
+                    curr = null;
+                }
+            }
 		}	
+        System.out.println();
 	}
 	public void show()
 	{
@@ -82,18 +107,31 @@ class ReverseSingleLinkedList
 
 		s.append(n1);
 		s.append(n2);
-		//s.append(n3);
+		s.append(n3);
 		s.show();
 
 		//s.Reverse(s.getHead());
 
 		//System.out.println ("Reverse");
 		//s.show();
-		System.out.println ("Reverse 2");
         //Node h = Reverse2(s.getHead());
         //show(h);
-        Node newH = ReverseClone(s.getHead());
+        
+        Node newH = ReverseIterationClone(s.getHead());
+        s.Remove(n1);
+        s.Remove(n2);
+        //s.Remove(n3);
+		//System.out.println ("Clone");
+        System.out.println ("Clone and Reverse the list");
         show(newH);
+        System.out.println ("Original List");
+        show(s.getHead());
+        
+        /*
+        System.out.println ("Stack Clone");
+        Node head1 = ReverseCloneStack(s.getHead());
+        show(head1);
+        */
 	}
     static Node head = null;
     public static Node Reverse(Node curr)
@@ -129,17 +167,66 @@ class ReverseSingleLinkedList
         }
         return tmp;
     }
-    public static Node ReverseIteration(Node head)
+    //Modified the original list
+    public static Node ReverseOriginalList(Node head)
+    {
+        Node prev = null;
+        Node curr = head;
+        while(curr != null)
+        {
+            Node tmpNext = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = tmpNext;
+        }
+        return prev;
+    }
+    //Clone the original list and reverse it
+    public static Node ReverseIterationClone(Node head)
     {
         Node curr = head;
         Node prev = null;
+        Node newCurr = null;
+        Node newPrev = null;
         while(curr != null)
         {
-            curr.next = prev;
-            prev = curr;
+            newCurr = new Node(curr.data);
+
+            Node newNext = newCurr.next;
+            newCurr.next = newPrev;
+            
+            newPrev = newCurr;
+            newCurr = newNext; 
             curr = curr.next;
         }
-        return curr; //return head
+        return newPrev; //return head
+    }
+    public static Node ReverseCloneStack(Node mycurr)
+    {
+        Stack<Node> st = new Stack<Node>();
+        Node curr = mycurr;
+        while(curr != null)
+        {
+            System.out.print("-["+curr.data+"]");
+            st.push(curr);
+            curr = curr.next;
+        }
+        System.out.println();
+
+        Node head = null;
+        Node newPrev = null;
+        Node newCurr = null;
+        while(!st.isEmpty())
+        {
+            newCurr = new Node(st.pop().data);
+            if(newPrev != null) 
+                newPrev.next = newCurr;
+            else
+                head= newCurr;
+            newPrev = newCurr;
+        }
+        return head;
+        
     }
     public static Node ReverseClone(Node head)
     {
@@ -149,9 +236,9 @@ class ReverseSingleLinkedList
         Node newPrev = null;
         while(curr != null)
         {
-            curr.next = prev;
-
             newCurr = new Node(curr.data);
+
+            curr.next = prev;
             newCurr.next = newPrev;
 
             prev = curr;
