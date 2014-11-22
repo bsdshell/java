@@ -1,3 +1,4 @@
+import java.util.*;
 public class countComponent 
 {
 	public static void main(String[] args)
@@ -49,6 +50,44 @@ public class countComponent
         int num=0;
         count = DFSCount(H, col, row);
         System.out.println("count=2="+count);
+
+        int[][] G = {   {0, 1, 1, 1},
+                        {1, 1, 0, 1},
+                        {0, 1, 0, 1},
+                        {0, 1, 0, 0}
+                    };
+
+        int m=4;
+        int n=4;
+        count = NoDFSCount(G, m, n);
+        System.out.println("No DFS count=2="+count);
+
+        int[][] K = {   {0, 1},
+                        {1, 1},
+                    };
+
+        m=2;
+        n=2;
+        count = NoDFSCount(K, m, n);
+        System.out.println("No DFS count=1="+count);
+
+        int[][]     K1 = {   {0, 0},
+                             {0, 0},
+                         };
+
+        m=2;
+        n=2;
+        count = NoDFSCount(K1, m, n);
+        System.out.println("No DFS count=1="+count);
+
+        int[][]     K2 = {   {0}
+                        };
+
+        m=1;
+        n=1;
+        count = NoDFSCount(K2, m, n);
+        System.out.println("No DFS count=1="+count);
+
 
 
 	}
@@ -114,4 +153,54 @@ public class countComponent
         }
         return s;
 	}
+    //new way algorithm to coun the number of connect components in an 2D grid
+    static int NoDFSCount(int[][] A, int m, int n)
+    {
+        int count=0;
+        if( A != null)
+        {
+            Set<Integer> map = new HashSet<Integer>();
+            for(int col=0; col<m; col++)
+            {
+                for(int row=0; row<n; row++)
+                {
+                    if(A[col][row] == 0)
+                    {
+                        int num = col*m+row;
+                        int up = (col-1)*m+row;
+                        int left = col*m+(row-1);
+
+                        System.out.println("size="+map.size());
+                        if(map.size() == 0)
+                        {
+                            map.add(num);
+                            count++;
+                        }
+                        else
+                        {
+                            if(col-1 >= 0 && row-1 >= 0)
+                            {
+                                if(!map.contains(up) && !map.contains(left))
+                                {
+                                    count++;
+                                }
+                            }
+                            else if(col-1 >=0)
+                            {
+                                if(!map.contains(up))
+                                    count++;
+                            }
+                            else if(row-1 >=0)
+                            {
+                                if(!map.contains(left))
+                                    count++;
+                            }
+                            map.add(num);
+                        }
+                    }
+                }
+            }
+        }
+        return count;
+    }
 }
