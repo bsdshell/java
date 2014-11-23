@@ -110,6 +110,28 @@ class PostorderIteration
 		}
 	}
 
+    public static void preorder2(Node r)
+    {
+		Stack<Node> st = new Stack<Node>();
+        Node curr = r;
+        if( curr != null)
+        {
+            while(curr != null || !st.empty())
+            {
+                if(curr != null)
+                {
+					System.out.println("["+curr.data+"]");
+                    st.push(curr);
+                    curr = curr.left;
+                }
+                else
+                {
+                    Node node = st.pop();
+                    curr = node.right;
+                }
+            }
+        }
+    }
 	public static void PostorderIteration(Node r)
 	{
 		Stack<Node> st = new Stack<Node>();
@@ -118,7 +140,8 @@ class PostorderIteration
 		while(!st.empty() || cur != null) 
 		{
 			if( cur != null)
-			{ st.push(cur);
+			{ 
+                st.push(cur);
 				cur = cur.left;
 			}
 			else
