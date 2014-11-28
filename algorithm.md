@@ -31,7 +31,7 @@ This algorithm is relative easier to understand
 The algorithm is similar to (1), but strings with repeated characters are removed with HashSet
 
 0. Image two dimension array  
-	*. First, go down the rows vertically    
+	*. First, go down the rows vertically	
 	*. Second, return to the previous row once the last row is reached. 
 1. Permute all characters with Depth First Search
 2. Remove all strings with duplicated characters with LinkedHashSet(keep insection order)
@@ -157,6 +157,7 @@ map.put("1000000000000", "trillion")
 ##### Reverse a single linked list
 
 ##### Reverse the circular list
+##### Binary Search in 2d array
 
 ##### Clone a single linked list
 ##### Clone and reverse a single linked list
@@ -168,5 +169,31 @@ map.put("1000000000000", "trillion")
 ##### Shuffle a n elements array with n random 
 ##### Given a sequence of words, print all anagrams
 ##### Inorder Preorder Postorder with iteration
+##### Excel Sheet row problem
+		1. Given 
+
+##### PostOrder Traversal in iteration
+ 		1. Use two stacks
+ 		2. Use one stack(e.g Stack<List<Node>> list(parent, left, right))
+ 		
+##### PostOrder or Depth First Search in iteration 
+		1. Use one Stack, one list, and hashmap
+		
+##### Given a string "123" and putchar, write a function to print out unsign long decimal (e.g putlong())
+		
+		putlong(String s)
+		{
+		
+		}
+		
+##### Find reverse pair of string in two arrays
+		A1 = "6 2 8 9 7 1"
+		A2 = "1 2 7 9 6"
+		2 & 1
+ 		2 & 6
+ 		7 & 9
+ 		
+ 		
+ 		
 
 

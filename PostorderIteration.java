@@ -73,25 +73,28 @@ class PostorderIteration
 		BST b1 = new BST();
 
 
-		b1.Insert(15);
-		
-		b1.Insert(12);
 		b1.Insert(14);
+		b1.Insert(15);
+		b1.Insert(12);
 		b1.Insert(17);
 		b1.Insert(19);
+        
 		b1.Insert(130);
 		b1.Insert(16);
 		b1.Insert(10);
-		
-		
+        
+        PostOrder(b1.getRoot());
+        System.out.println();
+        Node cloneRoot = CloneTree(b1.getRoot());
 		PostorderIteration(b1.getRoot());
+        System.out.println();
+		PostorderDFS(cloneRoot);
 	}
 	//in order traversal using iteration
 	public static void InorderIteration(Node r)
 	{
 		Stack<Node> st = new Stack<Node>();
 		Node cur = r;
-
 		if( cur != null)
 		{ 
 			while(!st.empty() || cur != null)
@@ -102,7 +105,8 @@ class PostorderIteration
 					cur = cur.left;
 				}
 				else 
-				{ Node no = st.pop();
+				{ 
+                    Node no = st.pop();
 					System.out.println("no.data=" + no.data);
 					cur = no.right;
 				}
@@ -131,10 +135,25 @@ class PostorderIteration
                 }
             }
         }
+        curr = r;
     }
+
+    public static void PostOrder(Node r)
+    {
+        if( r != null)
+        {
+            PostOrder(r.left);
+            PostOrder(r.right);
+            System.out.println("normal[" + r.data + "]");
+        }
+    }
+
+    //postorder with iteration 
+    //postorder with loop
 	public static void PostorderIteration(Node r)
 	{
 		Stack<Node> st = new Stack<Node>();
+        Node tmp = r;
 		Node cur = r;
 		
 		while(!st.empty() || cur != null) 
@@ -160,6 +179,89 @@ class PostorderIteration
 			}
 		}
 	}
+
+    //clone a binary tree
+    public static Node CloneTree(Node root)
+    {
+        if(root != null)
+        {
+            Node left = CloneTree(root.left);
+            Node right = CloneTree(root.right);
+            Node parent = new Node(root.data); 
+            parent.left = left;
+            parent.right = right;
+            return parent;
+        }
+        return null;
+    }
+    public static void PostorderSimple(Node root)
+    {
+        if(root != null)
+        {
+            Stack<List<Node>> st = new Stack<List<Node>>();
+            
+            while(root != null || !st.empty())
+            {
+                if(root != null)
+                {
+                    List<Node> list = new List<Node>();
+                    list.add(0, root);
+                    if(root.left != null)
+                        list.add(1, root.left);
+                    if(root.right != null)
+                        list.add(2, root.right);
+
+                    root = root.left;
+                }
+            }
+        }
+    }
+    public static void PostorderDFS(Node r)
+    {
+        if( r != null)
+        {
+            Stack<Node> st= new Stack<Node>();    
+            Map<Node, List<Node>> map = new HashMap<Node, List<Node>>();
+            st.push(r);
+            while(!st.empty())
+            {
+                Node top = st.peek();
+                if((top.left == null && top.right == null) || top.visited)
+                {
+                    Node node = st.pop();
+                    System.out.println("Iteration["+node.data+"]");    
+                }
+                else if((top.left != null || top.right != null) && !top.visited) 
+                {
+                    List<Node> list = new LinkedList<Node>();
+                    if(!map.containsKey(top))
+                    {
+                        if(top.left != null)
+                            list.add(top.left);
+                        if(top.right != null)
+                            list.add(top.right); 
+                        map.put(top, list);
+                    }
+                    else
+                    {
+                        list = map.get(top);
+                    }
+                    if(list.size() > 0)
+                    {
+                        Node node = list.get(0);
+                        st.push(node);
+                        list.remove(0);
+                        if(list.size() == 0)
+                        {
+                            top.visited = true;
+                            map.remove(top);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 	public static void PreorderIteration(Node r)
 	{
 		Stack<Node> st = new Stack<Node>();
