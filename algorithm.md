@@ -176,14 +176,90 @@ map.put("1000000000000", "trillion")
  		1. Use two stacks
  		2. Use one stack(e.g Stack<List<Node>> list(parent, left, right))
  		
+ 		Two Stacks Algorithm
+ 		
+ 		PostOrderIteration(Node root)
+ 		{
+ 			if(root != null)
+ 			{
+ 				Stack<Node> st1 = new Stack<Node>();
+ 				Stack<Node> st2 = new Stack<Node>();
+ 				st1.push(root)
+ 				whiel(!st1.empty())
+ 				{
+ 					Node node = st1.pop()
+ 					st2.push(node)
+ 					if(node.left != null)
+ 						st1.push(node.left)
+ 					if(node.right != null)
+ 						st1.push(node.right)
+ 					
+ 				}
+ 				while(!st2.empty())
+ 				{
+ 					print(st2.pop().data)
+ 				}
+ 			}
+ 		}
+ 		
 ##### PostOrder or Depth First Search in iteration 
 		1. Use one Stack, one list, and hashmap
 		
-##### Given a string "123" and putchar, write a function to print out unsign long decimal (e.g putlong())
-		
-		putlong(String s)
+##### Given a string "123" and putchar, write a function to print out unsigned long decimal
+		e.g. "123" -> 123
+		int printLong(String s)
 		{
+			unsigned s=0;
+			for(int i=s.length()-1; i >= 0 i--)
+			{	//check '0' <= s.charAt(i) <= '9'
+				int n = s.charAt(i) - '0';
+				s += n*Math.pow(10, i);
+			}
+			return s;
+		}
 		
+##### Given unsigned integer, write a function to print out the decimal(use preorder traversal)
+		e.g 123 -> 1, 2, 3
+		printDeciaml(unsigned num)
+		{
+			putchar('0'+num%10)
+			if(num >= 10)
+			{
+				printDeciaml(num/10)
+			}
+		}
+		
+##### Given unsigned integer, write a function to print out the decimal in reverse order (use postorder traversal)
+		e.g 123 -> 3, 2, 1
+		printReverseDeciaml(unsigned num)
+		{
+			if(num >= 10)
+			{
+				printReverseDeciaml(num/10)
+			}
+			putchar('0'+num%10)
+		}
+
+##### Given a list, print all the node in order(use preorder traversal)
+		e.g [1]->[2]->[3] output:[1] [2] [3]
+		printNode(Node curr)
+		{
+			if(curr != null)
+			{
+				print(curr.data)
+				printNode(curr.next)
+			}
+		}
+
+##### Given a list, print all the node in reverse order (use postorder traversal)
+		e.g [1]->[2]->[3] output: [3] [2] [1]
+		printNode(Node curr)
+		{
+			if(curr != null)
+			{
+				printNode(curr.next)
+				print(curr.data)
+			}
 		}
 		
 ##### Find reverse pair of string in two arrays

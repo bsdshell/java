@@ -88,7 +88,9 @@ class PostorderIteration
         Node cloneRoot = CloneTree(b1.getRoot());
 		PostorderIteration(b1.getRoot());
         System.out.println();
-		PostorderDFS(cloneRoot);
+
+		//PostorderDFS(cloneRoot);
+		PostorderTwoStacks(cloneRoot);
 	}
 	//in order traversal using iteration
 	public static void InorderIteration(Node r)
@@ -204,7 +206,7 @@ class PostorderIteration
             {
                 if(root != null)
                 {
-                    List<Node> list = new List<Node>();
+                    List<Node> list = new LinkedList<Node>();
                     list.add(0, root);
                     if(root.left != null)
                         list.add(1, root.left);
@@ -213,6 +215,29 @@ class PostorderIteration
 
                     root = root.left;
                 }
+            }
+        }
+    }
+    public static void PostorderTwoStacks(Node curr)
+    {
+        Stack<Node> st1 = new Stack<Node>();
+        Stack<Node> st2 = new Stack<Node>();
+        if(curr != null)
+        {
+            st1.push(curr);
+            while(!st1.empty())
+            {
+                Node node = st1.pop();
+                st2.push(node);
+                if(node.left != null)
+                    st1.push(node.left);
+                if(node.right != null)
+                    st1.push(node.right);
+            }
+            while(!st2.empty())
+            {
+                Node node = st2.pop();
+                System.out.println("Two Stacks Iteration["+node.data+"]");    
             }
         }
     }
