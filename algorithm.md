@@ -143,6 +143,8 @@ map.put("1000000000000", "trillion")
 
 ##### Given a binary tree, determine whether the tree is a sumtree or not
 
+##### Given a binary tree, determine whether the tree is balance or not
+
 
 ##### Delete a node from double linked list
 
