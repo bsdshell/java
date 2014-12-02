@@ -171,6 +171,68 @@ map.put("1000000000000", "trillion")
 ##### Shuffle a n elements array with n random 
 ##### Given a sequence of words, print all anagrams
 ##### Inorder Preorder Postorder with iteration
+
+	void PreorderIteration(Node curr)
+	{
+		Stack<Node> stack = new Stack<Node>();
+		while(curr != null || !stack.empty())
+		{
+			if(curr != null)
+			{
+				System.out.print(curr.data);
+				stack.push(curr);
+				curr = curr.left;
+			}
+			else
+			{
+				Node node = stack.pop();
+				curr = node.right;
+			}
+		}
+	}
+
+	void InorderIteration(Node curr)
+	{
+		Stack<Node> stack = new Stack<Node>();
+		while(curr != null || !stack.empty())
+		{
+			if(curr != null)
+			{
+				stack.push(curr);
+				curr = curr.left;
+			}
+			else
+			{
+				Node node = stack.pop();
+				System.out.print(node.data)
+				curr = node.right;
+			}
+		}
+	}
+	
+	void PostorderIteration(Node curr)
+	{
+		Stack<Node> stack1 = new Stack<Node>();
+		Stack<Node> stack2 = new Stack<Node>();
+		if(curr != null)
+		{
+			stack1.push(curr);
+			while(!stack1.empty())
+			{
+				Node node = stack1.pop()
+				stack2.push(node);
+				if(node.left != null)
+					stack1.push(node.left);
+				if(node.right != null)
+					stack2.push(node.right);
+			}
+			
+			while(!stack2.empty())
+			{	//print out all the node in post order
+				System.out.print(stack2.pop().data);
+			}
+		}
+	}
 ##### Excel Sheet row problem
 		1. Given 
 
@@ -271,7 +333,7 @@ map.put("1000000000000", "trillion")
  		2 & 6
  		7 & 9
  		
- 		
+
  		
 
 
