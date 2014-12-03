@@ -155,6 +155,10 @@ map.put("1000000000000", "trillion")
 
 ##### Insert an integer to circular list
 
+##### Move all the spaces to Front of given string
+	e.g string = " my cat is black"
+	    output = "    mycatisblack"
+
 ##### Reverse a single linked list
 
 ##### Reverse the circular list
