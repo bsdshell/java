@@ -169,7 +169,34 @@ map.put("1000000000000", "trillion")
 ##### Clone a binary tree
 ##### Find the least common ancestor from two given nodes
 ##### Shuffle a n elements array with n random 
+##### Print all the primes from 2 to n
+	printPrime(int n)
+	{
+		boolean prime[n] = new boolean[n];
+		prime[n] = true;
+		for(int i=3; i<=n; i++)
+			for(int j=2; j<i && prime[i]; j++)
+			{
+				if(prime[i] && i%j==0)
+					prime[i] = false;
+			}
+		}
+		//print all the primes
+		for(int i=2; i<=n; i++)
+		{
+			if(prime[i])
+				System.out.print(prime[i])
+		}
+	}
 ##### Given a sequence of words, print all anagrams
+	str = "abc"
+	a = 2
+	b = 3
+	c = 5
+	
+	abc = 2*3*5
+	acb = 2*3*5
+	
 ##### Inorder Preorder Postorder with iteration
 
 	void PreorderIteration(Node curr)
