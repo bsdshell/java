@@ -173,8 +173,12 @@ map.put("1000000000000", "trillion")
 ##### Clone and reverse a double linked list
 ##### Clone a list with random node
 ##### Clone a binary tree
+
 ##### Find the least common ancestor from two given nodes
+
 ##### Shuffle a n elements array with n random 
+
+
 ##### Print all the primes from 2 to n
 	printPrime(int n)
 	{
@@ -195,13 +199,17 @@ map.put("1000000000000", "trillion")
 		}
 	}
 ##### Given a sequence of words, print all anagrams
+	Assign each character a prime number
 	str = "abc"
 	a = 2
 	b = 3
 	c = 5
 	
-	abc = 2*3*5
-	acb = 2*3*5
+	abc = 2*3*5 = 30
+	acb = 2*5*3 = 30
+	
+	Use hashmap to check all the duplicated anagrams
+	
 	
 ##### Inorder Preorder Postorder with iteration
 
