@@ -159,6 +159,8 @@ map.put("1000000000000", "trillion")
 	e.g string = " my cat is black"
 	    output = "    mycatisblack"
 
+##### Check whether given integer is power of 2
+
 ##### Reverse a single linked list
 
 ##### Reverse the circular list
