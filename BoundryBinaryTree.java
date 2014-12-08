@@ -85,6 +85,8 @@ class BoundryBinaryTree
 		b1.Insert(76);
 		b1.Insert(60);
 		b1.Insert(99);
+		b1.Insert(59);
+		b1.Insert(58);
 
 		
         

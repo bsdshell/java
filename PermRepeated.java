@@ -4,134 +4,47 @@ public class PermRepeated
     public static void main(String[] args)
     {
         System.out.println("Print all permuation character with repeating character!");
-        String s = "abc";
+        String s = "1234";
         char[] array = new char[s.length()];
         int depth = 0;
         Set<Character> map = new LinkedHashSet<Character>();
         //permRepeated(s, array, depth);
         //perm(s, array, depth, map);
 
-        int count=26+26*26 + 26*26*26+1;
-        //ExcelSheetRowNumber(count);
-        ExcelSheetRowNumber2(s, count);
-
-        System.out.println();
-        count=26+26*26 + 26*26*26;
-        //ExcelSheetRowNumber(count);
-        ExcelSheetRowNumber2(s, count);
-
-        System.out.println();
-        count=25;
-        ExcelSheetRowNumber2(s, count);
-        System.out.println();
-
-        count=26;
-        ExcelSheetRowNumber2(s, count);
-        System.out.println();
+        int k=2;
+        for(int i=1; i<=s.length(); i++)
+            permRepeatedChooseK(s, array, depth, i);
     }
 
-
-    //Second algorithm to print Excel Sheet Row 
-    //
-    // Assume the length(s) = k
-    // s = a0 + (a1*26^1 + a2*26^2 + ... + a(k-1)*26^k-1) + (26^1 + 26^2 + 2^3 + ... + 26^k-1)
-    // s = a0 + (a1+1)*26^1 + (a2+1)^2 + ... + (a(k-1) + 1)*26^k-1
-    // a0 = s/26
-    // a1 = s-1/26
-    // s2 = s-1/26^2
-    // s3 = s-1/26^3
-    // s(k-1) = s-1/26^k-1
-    public static void ExcelSheetRowNumber2(String s, int count)
+    public static void ExcelSheetRowNumber(String s)
     {
-        int k = (int)(Math.log(25*count+26)/Math.log(26));
-        System.out.print("["+count+"]["+k+"]");
-
-        //S = 26^k-26/25
-        //25S = 26^k - 26
-
-        if(Math.pow(26, k) - 26 < 25*count)
-        {
-            k=k+1;
-        }
-
-        int index = 0;
-        char[] array = new char[k];
-
-        array[index] = (char)('a' + count % 26);
-        count = count/26;
-        index++;
-        while(count-1 >= 26)
-        {
-            array[index] = (char)('a' + (count-1)%26);
-            count = count/26;
-            index++;
-        }
-        if(count - 1 >= 0)
-        {
-            array[index] = (char)('a'+count-1);
-            index++;
-        }
-        for(int i=0; i<index; i++)
-        {
-            System.out.print("["+array[i]+"]");
-        }
-    }
-
-    //Excel sheet row number
-    public static void ExcelSheetRowNumber(int count)
-    {
-        int k = (int)Math.floor(Math.log(25*count+26)/Math.log(26));
-        System.out.print("myk=["+k+"]");
-
-        //S = 26^k-26/25
-        //25S = 26^k - 26
-
-        if(Math.pow(26, k) - 26 == 25*count)
-        {
-            
-        }
-        else if(Math.pow(26, k) - 26 > 25*count)
-        {
-            k=k-1;    
-        }
-        else if(Math.pow(26, k) - 26 < 25*count)
-        {
-            k=k+1;
-        }
-
-        System.out.print("2myk=["+k+"]");
-        int len = (int)Math.floor(Math.log(count)/Math.log(26))+1;
-        char[] array = new char[k];
+        char[] array = new char[s.length()];
         int depth = 0;
-        for(int i=1; i<=26; i++)
-            permRepeatedChooseK(array, depth, i, count);
+        for(int i=1; i<=s.length(); i++)
+            permRepeatedChooseK(s, array, depth, i);
     }
+
 
     //Given string character array and integer k,
     //print all permutation with repeatation string length k 
-    static int numCount = 0;
-    public static void permRepeatedChooseK(char[] array, int depth, int k, int count)
+    public static void permRepeatedChooseK(String s, char[] array, int depth, int k)
     {
         if(depth == k)
         {
-            if(count == numCount)
+            for(int i=0; i<depth; i++)
             {
-                for(int i=0; i<depth; i++)
-                {
-                    System.out.print("["+array[i]+"]");
-                }
-                System.out.println();
+                System.out.print("["+array[i]+"]");
             }
-            numCount++;
+            System.out.println();
         }
         else 
         {
-            if(array != null)
+            if(array != null && s != null)
             {
-                for(int i=0; i<26; i++)
+                for(int i=0; i<s.length(); i++)
                 {
-                    array[depth] = (char)('a'+i);
-                    permRepeatedChooseK(array, depth+1, k, count);
+                    array[depth] = s.charAt(i);
+                    permRepeatedChooseK(s, array, depth+1, k);
                 }
             }
         }

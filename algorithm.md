@@ -143,7 +143,6 @@ map.put("1000000000000", "trillion")
 
 ##### Given a binary tree, determine whether the tree is a sumtree or not
 
-##### Given a binary tree, determine whether the tree is height balanced
 
 ##### Delete a node from double linked list
 
@@ -155,15 +154,25 @@ map.put("1000000000000", "trillion")
 
 ##### Insert an integer to circular list
 
-##### Move all the spaces to Front of given string
-	e.g string = " my cat is black"
-	    output = "    mycatisblack"
-
-##### Check whether given integer is power of 2
-
 ##### Reverse a single linked list
 
 ##### Reverse the circular list
+
+##### Find the longest increasing subsequence integers
+		sub(i) = max(sub(i)) + 1 if [i] > [i-1] 
+		sub(i) = max(sub(i)) if [i] < [i-1]			  
+		
+##### Print out all the square number up to n without using multiplication, division and module 
+		SquareNumber(int n)
+		{
+			int prevSquare = 0
+			int prev = 0
+			for(i=1; i<n; i++)
+			{
+				prevSquare = prevSquare + prev + curr
+				prev = curr
+			}
+		}
 ##### Binary Search in 2d array
 		Revise the original algorithm
 
@@ -173,107 +182,10 @@ map.put("1000000000000", "trillion")
 ##### Clone and reverse a double linked list
 ##### Clone a list with random node
 ##### Clone a binary tree
-
 ##### Find the least common ancestor from two given nodes
-
 ##### Shuffle a n elements array with n random 
-
-
-##### Print all the primes from 2 to n
-	printPrime(int n)
-	{
-		boolean prime[n] = new boolean[n];
-		prime[n] = true;
-		for(int i=3; i<=n; i++)
-			for(int j=2; j<i && prime[i]; j++)
-			{
-				if(prime[i] && i%j==0)
-					prime[i] = false;
-			}
-		}
-		//print all the primes
-		for(int i=2; i<=n; i++)
-		{
-			if(prime[i])
-				System.out.print(prime[i])
-		}
-	}
 ##### Given a sequence of words, print all anagrams
-	Assign each character a prime number
-	str = "abc"
-	a = 2
-	b = 3
-	c = 5
-	
-	abc = 2*3*5 = 30
-	acb = 2*5*3 = 30
-	
-	Use hashmap to check all the duplicated anagrams
-	
-	
 ##### Inorder Preorder Postorder with iteration
-
-	void PreorderIteration(Node curr)
-	{
-		Stack<Node> stack = new Stack<Node>();
-		while(curr != null || !stack.empty())
-		{
-			if(curr != null)
-			{
-				System.out.print(curr.data);
-				stack.push(curr);
-				curr = curr.left;
-			}
-			else
-			{
-				Node node = stack.pop();
-				curr = node.right;
-			}
-		}
-	}
-
-	void InorderIteration(Node curr)
-	{
-		Stack<Node> stack = new Stack<Node>();
-		while(curr != null || !stack.empty())
-		{
-			if(curr != null)
-			{
-				stack.push(curr);
-				curr = curr.left;
-			}
-			else
-			{
-				Node node = stack.pop();
-				System.out.print(node.data)
-				curr = node.right;
-			}
-		}
-	}
-	
-	void PostorderIteration(Node curr)
-	{
-		Stack<Node> stack1 = new Stack<Node>();
-		Stack<Node> stack2 = new Stack<Node>();
-		if(curr != null)
-		{
-			stack1.push(curr);
-			while(!stack1.empty())
-			{
-				Node node = stack1.pop()
-				stack2.push(node);
-				if(node.left != null)
-					stack1.push(node.left);
-				if(node.right != null)
-					stack2.push(node.right);
-			}
-			
-			while(!stack2.empty())
-			{	//print out all the node in post order
-				System.out.print(stack2.pop().data);
-			}
-		}
-	}
 ##### Excel Sheet row problem
 		1. Given 
 
@@ -374,7 +286,7 @@ map.put("1000000000000", "trillion")
  		2 & 6
  		7 & 9
  		
-
+ 		
  		
 
 
