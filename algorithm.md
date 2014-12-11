@@ -155,7 +155,7 @@ map.put("1000000000000", "trillion")
 				bubbleUp(lastIndex);
 			}
 		}
-		public void bubbleUp(int index)
+		public void bubbleUp(int lastIndex)
 		{
 			if(lastIndex > 1)
 			{
