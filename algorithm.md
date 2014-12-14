@@ -97,6 +97,37 @@ map.put("1000000000000", "trillion")
 600
 42
 
+##### Given two integers, find the least common ancesor of binary tree
+		Node LCA(Node curr, int n1, int n2)
+		{
+			if(curr != null)
+			{
+				if(curr.data == n1 || curr.data == n2)
+				{
+					return curr;
+				}
+				else
+				{
+					Node ln = LCA(curr.left)
+					Node rn = LCA(curr.right)
+					
+					if(ln != null && rn != null)
+					{
+						return curr;
+					}
+					else if(ln != null)
+					{
+						return ln;
+					}
+					else if(rn != null)
+					{
+						return rn;
+					}
+				}
+			}
+			return null;
+		}
+
 ##### Build a binary tree from preorder
 * Given preorder nodes, and build a binary tree from the preorder nodes
 
@@ -109,6 +140,39 @@ map.put("1000000000000", "trillion")
 ##### Find the number of connected components in a two dimension array
 
 ##### Print a binary tree in level order
+		void printLevelOrer(Node curr)
+		{
+			if(curr != null)
+			{
+				Queue<Node> q1 = new LinkedList<Node>()
+				Queue<Node> q2 = new LinkedList<Node>()
+				
+				q1.enqueue(curr);
+				while(!q1.empty() || !q2.empty())
+				{
+					while(!q1.empty())
+					{
+						Node node = q1.dequeue()
+						print(node.data)
+						
+						if(node.left != null)
+							q2.enqueue(node.left)
+						if(node.right != null)
+							q2.enqueue(node.right)
+					}
+					while(!q2.empty())
+					{
+						Node node = q2.dequeue()
+						print(node.data)
+						if(node.left != null)
+							q1.enqueue(node.left)
+						if(node.right != null)
+							q1.enqueue(node.right)
+					}
+				}
+				
+			}
+		}
 
 ##### Serialize binary tree and deserialize binary tree
 * There are three(two) algorithms to serialize and deserialize a binary tree
