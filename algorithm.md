@@ -187,6 +187,91 @@ map.put("1000000000000", "trillion")
 ##### Serialize/Deserialize N-ary			
 	
 ##### Build a heap with array
+	class MaxHeap
+	{
+		int[] array;
+		private int lastIndex;
+		public maxHeap(int maxSiz)
+		{
+			lastIndex = 0;
+			array = new int[maxSize];
+		}
+		public int removeRoot()
+		{
+			int max = 0;
+			if(lastIndex > 0)
+			{
+				max = array[1];
+				array[1] = array[lastIndex];
+				lastIndex--;
+				if(lastIndex > 0)
+				{
+					heapify();
+				}
+			}
+		}
+		public void insert(int n)
+		{
+			if(lastIndex < maxSize-1)
+			{
+				lastIndex++;
+				array[lastIndex] = n;
+				bubbleUp(lastIndex);
+			}
+		}
+		public void bubbleUp(int lastIndex)
+		{
+			if(lastIndex > 1)
+			{
+				int parent = lastIndex/2;
+				if(array[parent] < array[lastIndex])
+				{
+					swap(array, parent, lastIndex)
+					bubbleUp(parent);
+				}
+			}
+		}
+		public void heapify()
+		{
+			if(lastIndex > 0)
+			{
+				int rootParent = 1;
+				bubbleDown(rootParent);
+			}
+		}
+		public void bubbleDown(int parentIndex)
+		{
+			int leftChild = 2*parentIndex;
+			int rightChild = 2*parentIndex+1;
+			if(rightChild <= lastIndex)
+			{	
+				if(array[leftChild] < array[rightChild])
+				{
+					if(array[parentIndex] < array[rightChild])
+					{
+						swap(array, parentIndex, rightChild)
+						bubbleDown(rightChild)
+					}
+				}
+				else
+				{
+					if(array[parentIndex] < array[leftChild])
+					{
+						swap(array, parent, leftChild)
+						bubbleDown(leftChild)
+					}
+				}
+			}
+			else if(leftChild <= lastIndex)
+			{
+				if(array[parentIndex] < array[leftChild])
+				{
+					swap(array, parentIndex, leftChild)
+					bubbleDown(leftChild)
+				}
+			}
+		}
+	}
 	
 ##### Inorder traveral with iteration
 * Print out all the nodes in order traveral without using recursion
