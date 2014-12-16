@@ -1,6 +1,10 @@
 import java.io.*;
 import java.lang.String;
+import java.util.*;
 
+
+
+//single linked list
 class Node 
 {
 	Node next;
@@ -101,17 +105,93 @@ class SingleLinkedList
 		Node n1 = new Node(1);
 		Node n2 = new Node(2);
 		Node n3 = new Node(3);
+		Node n4 = new Node(4);
+		Node n5 = new Node(5);
 
 		s.append(n1);
 		s.append(n2);
 		s.append(n3);
+		s.append(n4);
+		s.append(n5);
 		s.show();
 
-		s.Reverse1(s.getHead());
+        Node node = mergeHalf(s.getHead());
+        show(node);
+		//s.Reverse1(s.getHead());
 
-		s.show();
+		//s.show();
 
 
 		System.out.println ("====");
 	}
+    // 1 2 3 4 5
+    // 1 3 5
+    // 2 4
+    // 1 2
+    // 3 4 5
+    // 1->3
+    // 2->4
+    // 5->null
+    // 1->3->2->4->5->null
+    //
+    // 1->3
+    // 2->4
+    // 1->3->2->4
+    public static Node mergeHalf(Node head)
+    {
+        Node curr = head;
+        Queue<Node> q0 = new LinkedList<Node>();
+        Queue<Node> q1 = new LinkedList<Node>();
+        int count = 0;
+        while(curr != null)
+        {
+            System.out.println("curr[" + curr.data+"]"); 
+            q1.add(new Node(curr.data));
+            curr = curr.next;
+        }
+
+        int halfsize = q1.size()/2;
+        int size = q1.size();
+        System.out.println("q1size[" + q1.size()+"]"); 
+        System.out.println("q1size/2[" + halfsize +"]"); 
+        for(int i=0; i<= size/2; i++)
+        {
+            Node node = q1.remove();
+            System.out.println("node[" + node.data+"] i=[" + i+"]"); 
+            q0.add(new Node(node.data));
+        } 
+        
+        System.out.println("q0.size[" + q0.size()+"]"); 
+        Node prevPair = null;
+        Node currPair = null;
+        Node newHead = null;
+        while(q0.peek() != null)
+        {
+            Node n0 = q0.remove();
+            Node n1 = null;
+            if(q1.peek() != null)
+            {
+                n1 = q1.remove();
+                System.out.println("q1[" + n1.data+"]"); 
+            }
+
+            n0.next = n1;
+            currPair = n0;
+
+            if(prevPair!= null)
+                prevPair.next.next = currPair;
+            else
+                newHead = currPair;
+            prevPair = currPair;
+        }
+        return newHead;
+    }
+    public static void show(Node curr)
+    {
+        while(curr != null)
+	 	{ 
+            System.out.println("[" + curr.data+"]"); 
+            curr=curr.next;
+        }
+    }
 }

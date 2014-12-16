@@ -89,7 +89,7 @@ public class SerializeBinaryLevelOrder
 
     public static Node buildBinaryTree(Map<Integer, Integer> map, int key){
         Node root = null;
-        if(map.size() > 0 && map.containsKey(key)){
+        if(map.containsKey(key)){
             root = new Node((Integer)map.get(key));
             map.remove(key);
             root.left   = buildBinaryTree(map, 2*key+1);
@@ -97,6 +97,23 @@ public class SerializeBinaryLevelOrder
         }
         return root;
     }
+
+    public static levelOrderRecursion(Queue<Node> q, Map<Integer, Integer> map, int k)
+    {
+        Queue<Node> tmpQueue = new LinkedList<Node>();
+        while(q.peek() != null)
+        {
+            Node node = q.remove();    
+            map.put(k, node.data);
+            if(node.left != null)
+                tmpQueue.add(node.left);
+            if(node.right != null)
+                tmpQueue.add(node.right);
+        }
+        if(tmpQueue.peek() != null)
+            levelOrderRecursion(tmpQueue, map, k);
+    }
+
     public static Map<Integer, Integer> levelOrder(Node root){
         Queue<Node> queue1 = new LinkedList<Node>();
         Queue<Node> queue2 = new LinkedList<Node>();
