@@ -131,6 +131,41 @@ map.put("1000000000000", "trillion")
 ##### Build a binary tree from preorder
 * Given preorder nodes, and build a binary tree from the preorder nodes
 
+##### Given an input expression that can contain positive integers, parenthesis or square brackets, return if the input is balanced, An expression is considered balanced if it has the following form: ( expression ) OR [ expression ] and if expression is also balanced
+
+		//Use stack to check the whether the expression is balanced
+		boolean isBalanced(String expression)
+		{
+			boolean ret = true;
+			Stack<Character> stack = new Stack<Character>()
+			for(i=0 i< expression.length() && ret i++)
+			{	char ch = expression.charAt(i)
+				
+				if( ch == '[' || ch == '(')
+				{
+					stack.push(ch)
+				}
+				else if( ch == ']' || ch == ')')
+				{
+					ch left = stack.pop()
+					if( (left == '[' && ch == ']') || (left == '(' && ch == ')') )
+					{
+						ret = false
+					}
+				} 
+				else if(!('0' <= ch <= '9'))
+				{
+					ret = false
+				}
+			}
+			
+			//stack has to be empty
+			if(!stack.empty())
+				ret = false 
+				
+			return ret
+		}
+
 ##### Find a maximum path in a binary tree
 
 ##### Mirror a binary tree
@@ -187,91 +222,6 @@ map.put("1000000000000", "trillion")
 ##### Serialize/Deserialize N-ary			
 	
 ##### Build a heap with array
-	class MaxHeap
-	{
-		int[] array;
-		private int lastIndex;
-		public maxHeap(int maxSiz)
-		{
-			lastIndex = 0;
-			array = new int[maxSize];
-		}
-		public int removeRoot()
-		{
-			int max = 0;
-			if(lastIndex > 0)
-			{
-				max = array[1];
-				array[1] = array[lastIndex];
-				lastIndex--;
-				if(lastIndex > 0)
-				{
-					heapify();
-				}
-			}
-		}
-		public void insert(int n)
-		{
-			if(lastIndex < maxSize-1)
-			{
-				lastIndex++;
-				array[lastIndex] = n;
-				bubbleUp(lastIndex);
-			}
-		}
-		public void bubbleUp(int lastIndex)
-		{
-			if(lastIndex > 1)
-			{
-				int parent = lastIndex/2;
-				if(array[parent] < array[lastIndex])
-				{
-					swap(array, parent, lastIndex)
-					bubbleUp(parent);
-				}
-			}
-		}
-		public void heapify()
-		{
-			if(lastIndex > 0)
-			{
-				int rootParent = 1;
-				bubbleDown(rootParent);
-			}
-		}
-		public void bubbleDown(int parentIndex)
-		{
-			int leftChild = 2*parentIndex;
-			int rightChild = 2*parentIndex+1;
-			if(rightChild <= lastIndex)
-			{	
-				if(array[leftChild] < array[rightChild])
-				{
-					if(array[parentIndex] < array[rightChild])
-					{
-						swap(array, parentIndex, rightChild)
-						bubbleDown(rightChild)
-					}
-				}
-				else
-				{
-					if(array[parentIndex] < array[leftChild])
-					{
-						swap(array, parent, leftChild)
-						bubbleDown(leftChild)
-					}
-				}
-			}
-			else if(leftChild <= lastIndex)
-			{
-				if(array[parentIndex] < array[leftChild])
-				{
-					swap(array, parentIndex, leftChild)
-					bubbleDown(leftChild)
-				}
-			}
-		}
-	}
 	
 ##### Inorder traveral with iteration
 * Print out all the nodes in order traveral without using recursion
@@ -312,6 +262,11 @@ map.put("1000000000000", "trillion")
 		sub(i) = max(sub(i)) if [i] < [i-1]			  
 		
 ##### Print out all the square number up to n without using multiplication, division and module 
+
+		// 1 + 3 + 5 + 2k+1 = n*n
+		//  (x-1)^2 = x^2 +1 - 2x
+		//=> x^2 = (x-1)^2 + 2x - 1
+		//=> x^2 = (x-1)^2 + (x - 1) + x
 		SquareNumber(int n)
 		{
 			int prevSquare = 0
