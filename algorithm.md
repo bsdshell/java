@@ -391,6 +391,14 @@ map.put("1000000000000", "trillion")
  		7 & 9
  		
  		
+##### Regular Expression
+	* 	zero or more
+	+ 	one or more
+	?	zero or one
+	*?	zero or more non greedy
+	+? 	one or more non greedy
+	??	zero or one non greedy
+	
  		
 
 
