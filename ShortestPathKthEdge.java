@@ -7,40 +7,64 @@ public class ShortestPathKthEdge
         int[][] graph= { {0, 10, 3, 2},
                          {INT, 0, INT, 7},
                          {INT, INT, 0, 6},
-                         {INT, INT, INT, 0}
-                        };
-        int k = 3;
-        int edge = 0;
-        int numVertex = 4;
-        //int min = minPath(graph, numVertex, k, edge);
-        //System.out.println("finalmin=["+min+"]");
-        int numEdge = 2;
+                         {INT, INT, INT, 0}};
         int u = 0;
-        int v = 3;
+        int v = 1;                
+        int k = 1;
+        int numVertex = 4;
+        int min = minPath(graph, numVertex, k, u, v);
+        System.out.println("u=["+u+"]");
+        System.out.println("v=["+v+"]");
+        System.out.println("k=["+k+"]");
+        System.out.println("finalmin=["+min+"]");
+        int numEdge = 2;
+        
+        /*
+        traveralGraph(graph, numVertex, edge);
         int min2 = minPathDP(graph, numVertex, numEdge, u, v);  
         System.out.println("min2=["+min2+"]");
+        */
     }
 
     //Use Depth First Search to find the shortest path from vertex u to v with k edges
-    public static int minPath(int[][] array, int numEdge, int k, int edge)
+    public static int minPath(int[][] graph, int numVertex, int k, int u, int v)
     {
-        if(k <= 0 || edge+1 >= numEdge)
+        if(k <= 0 && u == v)
             return 0;
+        else if( k <= 0)
+            return INT;
+        else if( k == 1 && graph[u][v] != INT)
+            return graph[u][v];
 
-        int min = 1000;
-        for(int i=edge; i<numEdge; i++)
+        int min = INT;
+        for(int i=0; i<numVertex; i++)
         {
-            if(i != edge && array[edge][i] != INT)
+            if(graph[u][i] != INT && u != i && v != i)
             {
-                System.out.println("up["+edge+"]["+i+"]");
-                int subm = minPath(array, numEdge, k-1, i);
-                min = Math.min(min, subm + array[edge][i]);
-                System.out.println("min=["+min+"] subm["+subm+"]   ["+edge+"]["+i+"]");
+                System.out.println("inorder["+u+"]["+i+"]=["+graph[u][i]+"]");
+                System.out.println("k=["+k+"]");
+                int subm = minPath(graph, numVertex, k-1, i, v);
+                if(subm != INT)
+                {
+                    min = Math.min(min, subm + graph[u][i]);
+                    System.out.println("min=["+min+"] subm["+subm+"]   ["+u+"]["+i+"]");
+                }
             }
         }
         return min;
     }
     
+    public static void traveralGraph(int[][] graph, int numVertex, int depth)
+    {
+        for(int i=0; i<numVertex; i++)
+        {
+            if( i !=depth && graph[depth][i] != INT)
+            {
+                System.out.println(depth+"->"+i+"["+graph[depth][i]+"]");
+                traveralGraph(graph, numVertex, i);  
+            }
+        }
+    }
 
     //Use dynamic programming to find the shortest path from vertex u to v with numEdge
     //edge

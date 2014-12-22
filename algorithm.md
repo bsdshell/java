@@ -232,6 +232,36 @@ map.put("1000000000000", "trillion")
 * The Algorithm is similar to LRU/Least Recent Used Cache
 
 ##### Print all the node k distance from a given node
+		class Node
+		{
+			Node left = null
+			Node right = null
+			Node parent = null
+			boolean visited = false
+			int data
+			public Node(data)
+			{this.data = data}
+		}
+		void FindKthDistance(Node curr, int k, int[] arr, int depth)
+		{
+			if(curr != null && !curr.visited)
+			{
+				curr.visited = true;
+				arr[depth] = curr;
+				if( k==0)
+				{
+					for(i=0 i<=depth; i++)
+						arr[i]
+				}
+				else
+				{	
+					FindKthDistance(curr.left, k-1, depth++)
+					FindKthDistance(curr.right, k-1, depth++)
+					FindKthDistance(curr.parent, k-1, depth++)
+				}
+				
+			}
+		}
 
 ##### Print all the continuous/connected components from a 2D grid
 		1. Use Depth First Search to find all connected squares
