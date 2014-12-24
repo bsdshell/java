@@ -21,7 +21,8 @@ public class MazeFindPath
 
         int[] path = new int[50];
         int level = 0;
-        findAllPath(maze, row, col, path, level);
+        //findAllPath(maze, row, col, path, level);
+        findPath(maze, row, col);
     }
     public static boolean findPath(int[][] maze, int row, int col)
     {
@@ -35,23 +36,19 @@ public class MazeFindPath
                if(maze[row][col] == 0)
                {
                     maze[row][col] = 2;
-                    if(findPath(maze, row, col+1) == true){ 
+                    if(findPath(maze, row, col+1))
+                    { 
                        System.out.println("["+row+"]["+col+"]");
                        return true;
                     }
-                    if(findPath(maze, row+1, col) == true){
+                    if(findPath(maze, row+1, col))
+                    {
                        System.out.println("["+row+"]["+col+"]");
                        return true;
                     }
-                    return false;
-               }else{
-                   return false;
                }
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
     public static void findAllPath(int[][] maze, int row, int col, int[] path, int level)
     {

@@ -223,10 +223,6 @@ map.put("1000000000000", "trillion")
 	
 ##### Build a heap with array
 	
-##### Inorder traveral with iteration
-* Print out all the nodes in order traveral without using recursion
-
-
 ##### Print out the first occurrence character from a stream
 * Data Structure: HashMap and LinkedList	
 * The Algorithm is similar to LRU/Least Recent Used Cache

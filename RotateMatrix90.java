@@ -6,44 +6,17 @@ class RotateMatrix90
 	public static void main(String args[])
 	{
 		System.out.println("n2=");
-		Random ran = new Random();
-		int nRow = 4;
-		int nCol = 4;
-		int[][] A = new int[nRow][nCol];
-		for(int i=0; i<nRow; i++)
-		{
-			for(int j=0; j<nCol; j++)
-			{
-				A[i][j] = ran.nextInt(10);
-				System.out.print("["+A[i][j]+"]");
-			}
-			System.out.println();
-		}
-		rotateMatrix90(A);
-
+        test1();
 		System.out.println();
-		for(int i=0; i<nRow; i++)
-		{
-			for(int j=0; j<nCol; j++)
-			{
-				System.out.print("["+A[i][j]+"]");
-			}
-			System.out.println();
-		}
-
-		rotatecounterclockwise90(A);
-		System.out.println();
-		for(int i=0; i<nRow; i++)
-		{
-			for(int j=0; j<nCol; j++)
-			{
-				System.out.print("["+A[i][j]+"]");
-			}
-			System.out.println();
-		}
+        test2();
+        System.out.println();
+        test3();
+        System.out.println();
+        test4();
 	}
-	//rotate right 90
-	public static int[][] rotateMatrix90(int[][] A)
+
+	//rotate matrix clockwise 90
+	public static int[][] rotateMatrixClockwise90(int[][] A)
 	{
 		if(A != null)
 		{
@@ -61,7 +34,8 @@ class RotateMatrix90
 		}
 		return A;
 	}
-	//rotate left 90
+
+	//rotate matrix counterclockwise 90
 	public static int[][] rotatecounterclockwise90(int[][] A)
 	{
 		if( A != null)
@@ -82,4 +56,155 @@ class RotateMatrix90
 		}
 		return A;
 	}
+
+    //Rotate matrix counterclosewise 90 recursively 
+    public static void rotatecounterclockwise90Recursion(int[][] arr, int depth)
+    {
+        if(arr != null)
+        {
+            int len = arr.length;
+            for(int i=depth; i<len-1-depth; i++)
+            {
+                int tmp = arr[depth][i];
+                arr[depth][i] = arr[len-1-i][depth];
+                arr[len-1-i][depth] = arr[len-1-depth][len-1-i];
+                arr[len-1-depth][len-1-i] = arr[i][len-1-depth];
+                arr[i][len-1-depth] = tmp;
+            }
+            if(len - 2*depth > 1)
+                rotatecounterclockwise90Recursion(arr, depth+1);
+        }
+    }
+
+    //Rotate matrix clockwise 90 recursively 
+    public static void rotateClockWise90Recursion(int[][] arr, int depth)
+    {
+        if(arr != null)
+        {
+            int len = arr.length;
+            for(int i=depth; i<len-1-depth; i++)
+            {
+                int tmp = arr[depth][len-1-i];
+                arr[depth][len-1-i] = arr[len-1-i][len-1-depth];
+                arr[len-1-i][len-1-depth] = arr[len-1-depth][i];
+                arr[len-1-depth][i] = arr[i][depth];
+                arr[i][depth] = tmp;
+            }
+            if(len - 2*depth > 1)
+                rotateClockWise90Recursion(arr, depth+1);
+        }
+    }
+
+    public static void test1()
+    {
+        Random ran = new Random();
+		int nRow = 4;
+		int nCol = 4;
+		int[][] A = new int[nRow][nCol];
+		for(int i=0; i<nRow; i++)
+		{
+			for(int j=0; j<nCol; j++)
+			{
+				A[i][j] = ran.nextInt(10);
+				System.out.print("["+A[i][j]+"]");
+			}
+			System.out.println();
+		}
+
+        int depth = 0;
+		rotatecounterclockwise90Recursion(A, depth);
+		System.out.println();
+		for(int i=0; i<nRow; i++)
+		{
+			for(int j=0; j<nCol; j++)
+			{
+				System.out.print("["+A[i][j]+"]");
+			}
+			System.out.println();
+		}
+    }
+
+    public static void test2()
+    {
+        Random ran = new Random();
+		int nRow = 4;
+		int nCol = 4;
+		int[][] A = new int[nRow][nCol];
+		for(int i=0; i<nRow; i++)
+		{
+			for(int j=0; j<nCol; j++)
+			{
+				A[i][j] = ran.nextInt(10);
+				System.out.print("["+A[i][j]+"]");
+			}
+			System.out.println();
+		}
+
+        int depth = 0;
+		rotateClockWise90Recursion(A, depth);
+		System.out.println();
+		for(int i=0; i<nRow; i++)
+		{
+			for(int j=0; j<nCol; j++)
+			{
+				System.out.print("["+A[i][j]+"]");
+			}
+			System.out.println();
+		}
+    }
+    public static void test3()
+    {
+        Random ran = new Random();
+		int nRow = 4;
+		int nCol = 4;
+		int[][] A = new int[nRow][nCol];
+		for(int i=0; i<nRow; i++)
+		{
+			for(int j=0; j<nCol; j++)
+			{
+				A[i][j] = ran.nextInt(10);
+				System.out.print("["+A[i][j]+"]");
+			}
+			System.out.println();
+		}
+
+		rotatecounterclockwise90(A);
+		System.out.println();
+		for(int i=0; i<nRow; i++)
+		{
+			for(int j=0; j<nCol; j++)
+			{
+				System.out.print("["+A[i][j]+"]");
+			}
+			System.out.println();
+		}
+
+    }
+    public static void test4()
+    {
+        Random ran = new Random();
+		int nRow = 4;
+		int nCol = 4;
+		int[][] A = new int[nRow][nCol];
+		for(int i=0; i<nRow; i++)
+		{
+			for(int j=0; j<nCol; j++)
+			{
+				A[i][j] = ran.nextInt(10);
+				System.out.print("["+A[i][j]+"]");
+			}
+			System.out.println();
+		}
+
+		rotateMatrixClockwise90(A);
+		System.out.println();
+		for(int i=0; i<nRow; i++)
+		{
+			for(int j=0; j<nCol; j++)
+			{
+				System.out.print("["+A[i][j]+"]");
+			}
+			System.out.println();
+		}
+    }
 }
