@@ -283,6 +283,17 @@ map.put("1000000000000", "trillion")
 
 ##### Reverse the circular list
 
+##### Given two integers, determine the sum of two integers are overflowed
+		isOverFlowed(int x, int y)
+		{
+			return x + y < x
+		}
+##### Given an integer, determine whether the integer is square number or not
+		isSquareNum(int num)
+		{
+			return !(num - 1 & num);
+		}
+
 ##### Find the longest increasing subsequence integers
 		sub(i) = max(sub(i)) + 1 if [i] > [i-1] 
 		sub(i) = max(sub(i)) if [i] < [i-1]			  

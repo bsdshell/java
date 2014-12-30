@@ -3,27 +3,35 @@ public class LongestIncreasingSubsequence
     public static void main(String[] args)
     {
         System.out.println("Hello World!");
-        int[] array = {20, 30, 40, 4, 0, 9, 10, 12};
-        fun(array);
+        int[] array = {20,1, 30, 6, 40, 4, 0, 9, 10, 12};
+        m = LISDP(array);
+        System.out.println("m2=["+m+"]");
     }
-    public static void fun(int[] array)
+
+    //Dynamic programming algorithm solves Longest Increasing Subsequence
+    //with complexity O(n^2)
+    public static int LISDP(int[] array)
     {
-        int m = 0;
-        for(int j=0; j<array.length; j++)
+        int len = array.length;
+        int[] maxlist = new int[len];
+        for(int i=0; i<len; i++)
+            maxlist[i] = 1;
+
+        for(int i=1; i<len; i++)
         {
-            int len = 1;
-            int end = j;
-            for(int i=j+1; i<array.length; i++)
+            for(int j=0; j<=i-1; j++)
             {
-                if(array[end] < array[i])
-                {
-                    end = i;
-                    len++;
-                }
-            }
-            if(m < len)
-                m = len;
+                if(array[j] < array[i] && maxlist[i] < 1 + maxlist[j])            
+                    maxlist[i] = 1 + maxlist[j];
+            }            
+        } 
+        
+        int m = Integer.MIN_VALUE;
+        for(int i=0; i<len; i++)
+        {
+            if(maxlist[i] > m)
+                m = maxlist[i];
         }
-        System.out.println("m=["+m+"]");
+        return m;
     }
 }
