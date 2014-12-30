@@ -4,8 +4,8 @@ public class LongestIncreasingSubsequence
     {
         System.out.println("Hello World!");
         int[] array = {20,1, 30, 6, 40, 4, 0, 9, 10, 12};
-        m = LISDP(array);
-        System.out.println("m2=["+m+"]");
+        int m = LISDP(array);
+        System.out.println("max LIS=["+m+"]");
     }
 
     //Dynamic programming algorithm solves Longest Increasing Subsequence
@@ -19,7 +19,7 @@ public class LongestIncreasingSubsequence
 
         for(int i=1; i<len; i++)
         {
-            for(int j=0; j<=i-1; j++)
+            for(int j=0; j< i; j++)
             {
                 if(array[j] < array[i] && maxlist[i] < 1 + maxlist[j])            
                     maxlist[i] = 1 + maxlist[j];
