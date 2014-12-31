@@ -10,6 +10,7 @@ class QuickSort
         Test2();
         Test3();
         Test4();
+        Test5();
 	}
     public static void Test1()
     {
@@ -44,7 +45,9 @@ class QuickSort
     public static void Test4()
     {
         System.out.println("test case4:");
-		int[] Arr3 = {100, 1, 3, 9, 6, 5, 7};
+		int[] Arr3 = {100, 1, 7, 6};
+		//int[] Arr3 = {100, 1, 3, 9, 6, 5, 7};
+		//int[] Arr3 = {9, 1, 2, 4};
 		int left = 0;
 		int right = Arr3.length-1;
 		QuickSort(Arr3, left, right);
@@ -52,6 +55,16 @@ class QuickSort
 			System.out.println("Arr3[" + i + "]=" + Arr3[i]);
     }
 
+    public static void Test5()
+    {
+        System.out.println("test case5:");
+		int[] Arr3 = {1, 7, 5};
+		int left = 0;
+		int right = Arr3.length-1;
+		QuickSort(Arr3, left, right);
+		for(int i=0; i<Arr3.length; i++)
+			System.out.println("Arr3[" + i + "]=" + Arr3[i]);
+    }
     public static void QuickSort(int[] Arr, int left, int right)
     {
         if(left < right)
@@ -62,8 +75,33 @@ class QuickSort
         }
     }
 
+    public static void swap(int[] arr, int left, int right)
+    {
+        int tmp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = tmp;
+    }
+    public static int Partition(int[] arr, int left, int right)
+    {
+        int prev = left;
+        if(arr != null)
+        {
+            int pivot = arr[right];
+            prev = left;
+            for(int i=left; i<=right; i++)
+            {
+                if(arr[i] < pivot)
+                {
+                    swap(arr, i, prev);
+                    prev++;    
+                }
+            }
+            swap(arr, prev, right);
+        }
+        return prev;
+    }
     //partition
-	public static int Partition(int[] Arr, int left, int right)
+	public static int Partition2(int[] Arr, int left, int right)
 	{
 		int ret = 0;
 		if(Arr != null)

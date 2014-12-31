@@ -11,7 +11,7 @@ public class KthMedian
     }
     //Find the kth median element in a unsorted array
 
-    //Return index for the median element
+    //Return index for the kth smaller element
     //Otherwise return -1 if k is invalid  
     public static int modifiedQuickSort(int[] array, int lo, int hi, int k)
     {
@@ -50,9 +50,8 @@ public class KthMedian
         int big = lo;
         if(array != null)
         {
-            int len = hi - lo + 1;
             int pivot = array[hi];
-            for(int i=lo; i<len; i++)
+            for(int i=lo; i<=hi; i++)
             {
                 if(array[i] < pivot)
                 {
