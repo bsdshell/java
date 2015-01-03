@@ -283,6 +283,9 @@ map.put("1000000000000", "trillion")
 
 ##### Reverse the circular list
 
+##### Given to polynomal p1[2, 0, 3, 4], p2[0, 4, 3, 5, 7] Multiply two polynomals p = p1*p2
+		Using convolution C(k) = Sum(A(k)*B(m+n-k)) where k = 1 to m+n
+
 ##### Given two integers, determine the sum of two integers are overflowed
 		isOverFlowed(int x, int y)
 		{
@@ -295,8 +298,7 @@ map.put("1000000000000", "trillion")
 		}
 
 ##### Find the longest increasing subsequence integers
-		sub(i) = max(sub(i)) + 1 if [i] > [i-1] 
-		sub(i) = max(sub(i)) if [i] < [i-1]			  
+		sub(i) = 1 + max(sub(i)), where if [j] < [i] 
 		
 ##### Print out all the square number up to n without using multiplication, division and module 
 

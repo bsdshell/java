@@ -69,10 +69,31 @@ public class MultiplyPolynomial
         multiply(poly1, poly2);
         System.out.println("================");
         add(poly1, poly2);
+        System.out.println("================");
+        TestPolyArray();
+    }
+    public static void TestPolyArray()
+    {
+        int[] p1 = {1, 2, 3};
+        int[] p2 = {2, 0, 4, 5};
+        int[] p = MultiplePolyArray(p1, p2);
+
+        for(int i=0; i<p1.length; i++)
+            System.out.print("p1["+p1[i]+"]");
+        System.out.println();
+
+        for(int i=0; i<p2.length; i++)
+            System.out.print("p2["+p2[i]+"]");
+        System.out.println();
+
+        for(int i=0; i<p.length; i++)
+            System.out.print("["+p[i]+"]");
+
+        System.out.println();
     }
     public static SLinkedList add(SLinkedList poly1, SLinkedList poly2)
     {
-        Map map = new HashMap<Integer, Integer>();
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
         SLinkedList poly = new SLinkedList();
         if(poly1 != null && poly2 != null && poly1.head != null && poly2.head != null)
         {
@@ -118,7 +139,7 @@ public class MultiplyPolynomial
     }
     public static SLinkedList multiply(SLinkedList poly1, SLinkedList poly2)
     {
-        Map map = new HashMap<Integer, Integer>();
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
         SLinkedList poly = new SLinkedList();
         if(poly1 != null && poly2 != null && poly1.head != null && poly2.head != null)
         {
@@ -153,5 +174,38 @@ public class MultiplyPolynomial
         }
         poly.show();
         return poly;
+    }
+
+    public static int[] MultiplePolyArray(int[] p1, int[] p2)
+    {
+        if(p1 != null && p2 != null)
+        {
+            int len1 = p1.length;
+            int len2 = p2.length;
+            if(len1 > 0 && len2 > 0)
+            {
+                int[][] p = new int[len1][len1+len2];
+                for(int i=0; i<len1; i++)
+                {
+                   for(int j=0; j<len2; j++)
+                   {
+                       p[i][j+i] = p1[i]*p2[j];
+                   } 
+                }
+
+                for(int j=0; j<len1+len2; j++)
+                {
+                    int s=0;
+                    for(int i=0; i<len1; i++)
+                    {
+                        s += p[i][j];
+                        if(i == len1-1)
+                            p[i][j] = s;
+                    }
+                }
+                return p[len1-1];
+            }
+        }
+        return null;
     }
 }
