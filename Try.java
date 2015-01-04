@@ -14,6 +14,9 @@ public class Try
         System.out.println();
         depth=0;
         permutation2(arr, depth);
+        System.out.println("==============================");
+        int len1 = arr.length;
+        LSITree(arr, len1); 
     }
     public static void permutationTree(String s, int depth, Set<Character> map)
     {
@@ -61,5 +64,18 @@ public class Try
         int tmp = arr[i];
         arr[i] = arr[j];
         arr[j] = tmp;
+    }
+    public static void LSITree(int[] arr, int len)
+    {
+        if(len == 1)
+            System.out.println("["+arr[len-1]+"]");
+        else 
+        {
+            for(int i=1; i<len; i++)
+            {
+                LSITree(arr, len-1); 
+                System.out.println("["+arr[i]+"]");
+            }
+        }
     }
 }

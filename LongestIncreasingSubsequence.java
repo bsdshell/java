@@ -4,8 +4,8 @@ public class LongestIncreasingSubsequence
     {
         System.out.println("Hello World!");
         //int[] array = {20, 1, 30, 6, 40, 4, 0, 9, 10, 12};
-        //int[] array = {1, 0, 7, 2, 6};
-        int[] array = {0, 1, 2, 3, 4, 5};
+        int[] array = {1, 0, 7, 2, 6};
+        //int[] array = {0, 1, 2, 3, 4, 5};
         int m = LISDP(array);
         int len = array.length;
         for(int i=0; i<array.length; i++)
@@ -20,6 +20,8 @@ public class LongestIncreasingSubsequence
         System.out.println("max LIS=["+m+"]");
         System.out.println("max LISRecursion=["+recm+"]");
         System.out.println("max LISRecursion2=["+recm2+"]");
+        System.out.println("==========================");
+        LISTree(array, len2);
     }
 
 
@@ -45,6 +47,21 @@ public class LongestIncreasingSubsequence
         }
     }
 
+    public static void LISTree(int[] array, int len)
+    {
+        if(len == 1)
+        {
+            //System.out.println("["+array[len-1]+"]");
+        }
+        else
+        {
+            for(int i=1; i<len; i++)
+            {
+                LISTree(array, i);
+                System.out.println("["+array[i-1]+"]->["+array[len-1]+"]");
+            }
+        }
+    }
     public static int LISRecursion2(int[] array, int len)
     {
         int max = 1;
