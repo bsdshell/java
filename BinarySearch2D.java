@@ -5,6 +5,7 @@ public class BinarySearch2D
     public static void main(String[] args)
     {
         Test1();
+        Test2();
     }
 
     public static void printArray(int[][] array, int height, int width)
@@ -27,6 +28,24 @@ public class BinarySearch2D
                          {13, 108, 302, 1002},
                          {104,301, 305, 1003}};
         int key = 201;
+        int rlo = 0;
+        int rhi = array[0].length-1;
+        int clo = 0;
+        int chi = array.length-1;
+        printArray(array, chi, rhi);
+
+        boolean ret2 = BinSearch2D(array, clo, rlo, chi, rhi, key);
+        System.out.println("ret2="+ret2);
+
+        boolean ret3 = binSearchMN(array, clo, rlo, chi, rhi, key);
+        System.out.println("ret3="+ret3);
+    }
+
+    public static void Test2()
+    {
+        System.out.println("Binary search in two dimension");
+        int[][] array = {{203}};
+        int key = 203;
         int rlo = 0;
         int rhi = array[0].length-1;
         int clo = 0;
@@ -72,6 +91,7 @@ public class BinarySearch2D
     public static boolean BinSearch2D(int[][] array, int collo, int rowlo, 
                                                      int colhi, int rowhi, int key)
     {
+        boolean ret = false;
         if(array != null)
         {
             int colm = (collo + colhi)/2;
@@ -88,7 +108,7 @@ public class BinarySearch2D
                                                   colm-1,rowhi, key);
                     b3 = BinSearch2D(array, colm, rowlo,
                                                   colhi, rowm-1, key);
-                    return b1 || b2 || b3;
+                    ret = b1 || b2 || b3;
                 }
                 else if(key > array[colm][rowm])
                 {
@@ -99,12 +119,12 @@ public class BinarySearch2D
                                                   colm,  rowhi, key);
                     b3 = BinSearch2D(array, colm+1, rowlo,
                                                   colhi,  rowm, key);
-                    return b1 || b2 || b3;
+                    ret = b1 || b2 || b3;
                 }
                 else
-                    return true;
+                    ret = true;
             }
         }
-        return false;
+        return ret;
     } 
 }
