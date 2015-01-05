@@ -100,24 +100,21 @@ public class BinarySearch2D
             {
                 if(key < array[colm][rowm])
                 {
-                    boolean b1 = false, b2 = false, b3 = false;
-                    b1 = BinSearch2D(array, collo, rowlo,
+                    boolean b1 = BinSearch2D(array, collo, rowlo,
                                                   colm-1, rowm-1, key);
-
-                    b2 = BinSearch2D(array, collo, rowm,
+                    boolean b2 = BinSearch2D(array, collo, rowm,
                                                   colm-1,rowhi, key);
-                    b3 = BinSearch2D(array, colm, rowlo,
+                    boolean b3 = BinSearch2D(array, colm, rowlo,
                                                   colhi, rowm-1, key);
                     ret = b1 || b2 || b3;
                 }
                 else if(key > array[colm][rowm])
                 {
-                    boolean b1 = false, b2 = false, b3 = false;
-                    b1 = BinSearch2D(array, colm+1, rowm+1,
+                    boolean b1 = BinSearch2D(array, colm+1, rowm+1,
                                                   colhi,  rowhi, key);
-                    b2 = BinSearch2D(array, collo, rowm+1,
+                    boolean b2 = BinSearch2D(array, collo, rowm+1,
                                                   colm,  rowhi, key);
-                    b3 = BinSearch2D(array, colm+1, rowlo,
+                    boolean b3 = BinSearch2D(array, colm+1, rowlo,
                                                   colhi,  rowm, key);
                     ret = b1 || b2 || b3;
                 }
