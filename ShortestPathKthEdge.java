@@ -17,10 +17,10 @@ public class ShortestPathKthEdge
         System.out.println("v=["+v+"]");
         System.out.println("k=["+k+"]");
         System.out.println("finalmin=["+min+"]");
-        int numEdge = 2;
+        int numEdge = 0;
         
+        GraphTraveral(graph, numVertex, numEdge);
         /*
-        traveralGraph(graph, numVertex, edge);
         int min2 = minPathDP(graph, numVertex, numEdge, u, v);  
         System.out.println("min2=["+min2+"]");
         */
@@ -54,14 +54,16 @@ public class ShortestPathKthEdge
         return min;
     }
     
-    public static void traveralGraph(int[][] graph, int numVertex, int depth)
+    //Traveral from node(depth) to other nodes
+    public static void GraphTraveral(int[][] w, int numVertex, int depth)
     {
         for(int i=0; i<numVertex; i++)
         {
-            if( i !=depth && graph[depth][i] != INT)
+            if( i !=depth && w[depth][i] != INT)
             {
-                System.out.println(depth+"->"+i+"["+graph[depth][i]+"]");
-                traveralGraph(graph, numVertex, i);  
+                GraphTraveral(w, numVertex, i);  
+                //System.out.println(depth+"->"+i+"["+w[depth][i]+"]");
+                System.out.println(i+"->"+depth+"["+w[depth][i]+"]");
             }
         }
     }
