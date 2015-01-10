@@ -4,7 +4,7 @@ public class PermRepeated
     public static void main(String[] args)
     {
         System.out.println("Print all permuation character with repeating character!");
-        String s = "1234";
+        String s = "ABC";
         char[] array = new char[s.length()];
         int depth = 0;
         Set<Character> map = new LinkedHashSet<Character>();
