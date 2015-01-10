@@ -44,6 +44,34 @@ class ConvertWordToNumber
         map.put("million", 1000000);
         map.put("billion", 1000000000);
     }
+
+    public int Convert2(String englishWord)
+    {
+        String[] array = englishWord.split(" ");
+        int sum = 0;
+        int total = 0;
+        for(int i=0; i<array.length; i++)
+        {
+            int base = map.get(array[i]);
+            if(base == 1000 || base == 1000000 
+                    || base == 1000000000)
+            {
+                sum *= base;
+                total += sum;
+                sum = 0;
+            }
+            else
+            {
+                if(base == 100)
+                    sum *= base;
+                else
+                    sum += base;
+            }
+        }
+        total += sum;
+        return total;
+    }
+
     public int Convert(String englishWord)
     {
         String[] array = englishWord.split(" ");    
@@ -82,37 +110,44 @@ public class WordToNumber
         System.out.println("Convert English spoken number to numerical number");
         ConvertWordToNumber num = new ConvertWordToNumber();
         String words = "nine million five thousand two hundred twelve";
-        int n =  num.Convert(words);
+        int n =  num.Convert2(words);
         System.out.println();
         System.out.println(words);
         System.out.println("["+n+"]");
 
         words = "one";
-        n =  num.Convert(words);
+        n =  num.Convert2(words);
         System.out.println("["+n+"]");
 
         System.out.println();
         words = "one thousand";
         System.out.println(words);
-        n =  num.Convert(words);
+        n =  num.Convert2(words);
         System.out.println("["+n+"]");
 
         System.out.println();
         words = "two hundred twelve ";
         System.out.println(words);
-        n =  num.Convert(words);
+        n =  num.Convert2(words);
         System.out.println("["+n+"]");
 
         System.out.println();
         words = "seven million twelve thousand four hundred twenty nine";
         System.out.println(words);
-        n =  num.Convert(words);
+        n =  num.Convert2(words);
         System.out.println("["+n+"]");
+
+        System.out.println();
+        words = "seven million twenty one thousand four hundred twenty nine";
+        System.out.println(words);
+        n =  num.Convert2(words);
+        System.out.println("["+n+"]");
+
 
         System.out.println();
         words = "zero";
         System.out.println(words);
-        n =  num.Convert(words);
+        n =  num.Convert2(words);
         System.out.println("["+n+"]");
 
 
