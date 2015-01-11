@@ -109,6 +109,7 @@ class SingleLinkedList
 }
 
 
+//simple sort linked list algorithm
 public class SortLinkedList
 {
     public static void main(String[] args)
