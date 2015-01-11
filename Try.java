@@ -59,6 +59,10 @@ public class Try
             System.out.println();
         }
     }
+    public static void test3()
+    {
+        
+    }
     public static Map<String, Node> buildMap(List<String> list)
     {
         Map<String, Node> map = new HashMap<String, Node>();
