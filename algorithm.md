@@ -299,6 +299,12 @@ map.put("1000000000000", "trillion")
 
 ##### Find a maximum path in a binary tree
 
+##### Print all the numbers from 1 to N in lexicographic order
+
+##### Merge two sorted linked list
+
+##### Sort a linked list
+
 ##### Mirror a binary tree
 
 ##### Find the longest path in a binary tree
