@@ -213,10 +213,6 @@ public class FixSortedLinkedList
         Stack<Integer> stack = new Stack<Integer>();
         Node curr = head;
 
-        //null or one node
-        //if(curr == null || (curr != null && curr.next == null))
-        //    return;
-
         Node minNode = new Node(Integer.MIN_VALUE);
         minNode.next = curr;
         curr = head = minNode;
