@@ -1,5 +1,7 @@
 import java.util.*;
 
+
+//single linked list
 class Node 
 {
 	Node next;
@@ -78,6 +80,17 @@ class SLL
 	}
 	public Node getHead()
 	{ return head;}
+
+    public Node getTail()
+	{ 
+        Node curr = head;
+        while(curr != null && curr.next != null)
+        {
+            curr = curr.next;
+        }
+        return curr;
+    }
+
 	public void Remove(Node no)
 	{
 		if(no != null && head != null)
@@ -106,7 +119,6 @@ class SLL
 	 	{ System.out.println("cur.data=" + cur.data); cur=cur.next;}
 	}
 }
-
 
 public class FixSortedLinkedList 
 {
