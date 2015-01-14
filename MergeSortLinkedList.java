@@ -138,6 +138,41 @@ public class MergeSortLinkedList
             curr = curr.next;
         }
     }
+    public static Node getTail(Node head)
+    {
+        Node curr = head;
+        while(curr != null && curr.next)
+            curr = curr.next;
+        return curr;
+    }
+    public static Node mergeSortLinkedList(Node lo)
+    {
+        Node curr = head;    
+        if(curr != null)
+        {
+            Node m = median(head);
+            Node hi = getTail(m);
+            mergeSortLinkedList(head);
+            mergeSortLinkedList(m);
+        }
+    }
+    public static Node median(Node head)
+    {
+        Node curr = head;
+        Node mcurr = curr;
+        if(curr != null)
+        {
+            while(curr.next != null)
+            {
+                curr = curr.next.next;
+                if(curr == null)
+                    break;
+                mcurr = mcurr.next;
+            }
+        }
+        return mcurr;
+    }
+
     public static Node mergeLinkedList(Node s1, Node s2)
     {
         Node curr1 = s1;
