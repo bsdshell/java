@@ -105,29 +105,104 @@ class SLL
 		while(cur != null)
 	 	{ System.out.println("cur.data=" + cur.data); cur=cur.next;}
 	}
+    public Node getTail()
+    {
+        Node curr = head;
+        while(curr != null && curr.next != null)
+        {
+            curr = curr.next;
+        }
+        return curr;
+    } 
 }
 
-//merge two sorted linkedlist
+//Merge sort on single linkedlist
 public class MergeSortLinkedList 
 {
     public static void main(String[] args)
     {
-        System.out.println("Hello World!");
-        SLL s1 = new SLL();
-        SLL s2 = new SLL();
-        s1.append(1);
-        s1.append(4);
-        s1.append(7);
+        System.out.println("Merge Sort linkedlist");
+        test1();
+        test2();
+        test3();
+        test4();
 
-        s2.append(2);
-        s2.append(6);
-        s2.append(8);
+    }
 
-        //Node head = mergeLinkedList(s1.getHead(), s2.getHead());
-        //Node head = mergeLinkedList(s1.getHead(), null);
-        Node head = mergeLinkedList(null, s2.getHead());
-        show(head);
+    public static void test1()
+    {
+        System.out.println("Test1()");
+        SLL s3 = new SLL();
 
+        s3.append(2);
+        s3.append(1);
+
+        show(s3.getHead());
+        System.out.println("=======================");
+        Node hi = s3.getHead();
+        Node lo = s3.getTail();
+        hi = mergeSortLinkedList(hi, lo);
+        show(hi);
+        System.out.println("end Test1()=======================");
+
+    }
+
+    public static void test2()
+    {
+        System.out.println("Test2()");
+        SLL s3 = new SLL();
+
+        s3.append(1);
+        s3.append(2);
+        s3.append(3);
+
+        show(s3.getHead());
+
+        System.out.println("=======================");
+        Node hi = s3.getHead();
+        Node lo = s3.getTail();
+        hi = mergeSortLinkedList(hi, lo);
+        show(hi);
+        System.out.println("end Test2()=======================");
+    }
+
+
+    public static void test3()
+    {
+        System.out.println("Test3()");
+        SLL s3 = new SLL();
+
+        s3.append(6);
+
+        show(s3.getHead());
+
+        System.out.println("=======================");
+        Node hi = s3.getHead();
+        Node lo = s3.getTail();
+        hi = mergeSortLinkedList(hi, lo);
+        show(hi);
+        System.out.println("end Test3()=======================");
+    }
+
+    public static void test4()
+    {
+        System.out.println("Test4()");
+        SLL s3 = new SLL();
+
+        s3.append(6);
+        s3.append(5);
+        s3.append(3);
+        s3.append(100);
+        s3.append(1);
+
+        show(s3.getHead());
+
+        System.out.println("=======================");
+        Node hi = s3.getHead();
+        Node lo = s3.getTail();
+        hi = mergeSortLinkedList(hi, lo);
+        show(hi);
+        System.out.println("end Test4()=======================");
     }
     public static void show(Node head)
     {
@@ -141,21 +216,27 @@ public class MergeSortLinkedList
     public static Node getTail(Node head)
     {
         Node curr = head;
-        while(curr != null && curr.next)
+        while(curr != null && curr.next != null)
             curr = curr.next;
         return curr;
     }
-    public static Node mergeSortLinkedList(Node lo)
+
+    public static Node mergeSortLinkedList(Node lo, Node hi)
     {
-        Node curr = head;    
-        if(curr != null)
+        if(lo != null && lo != hi)
         {
-            Node m = median(head);
-            Node hi = getTail(m);
-            mergeSortLinkedList(head);
-            mergeSortLinkedList(m);
+            Node m = median(lo);
+            Node m1 = m.next;
+            m.next = null;
+
+            Node left = mergeSortLinkedList(lo, m);
+            Node right = mergeSortLinkedList(m1, hi);
+            return mergeLinkedList(left, right);
         }
+        else
+            return lo;
     }
+
     public static Node median(Node head)
     {
         Node curr = head;
@@ -179,46 +260,13 @@ public class MergeSortLinkedList
         Node curr2 = s2;
         Node curr = null;
         Node head = curr;
-        while(curr1 != null || curr2 != null)
+        if(curr1 == curr2)
+            head = s1;
+        else
         {
-            if(curr1 == null)
+            while(curr1 != null || curr2 != null)
             {
-                if(curr == null)
-                    head = curr = new Node(curr2.data);
-                else
-                {
-                    curr.next = new Node(curr2.data);
-                    curr = curr.next;
-                }
-                curr2 = curr2.next;
-            }
-            else if(curr2 == null)
-            {
-                if(curr == null)
-                {
-                    head = curr = new Node(curr1.data);
-                }
-                else
-                {
-                    curr.next = new Node(curr1.data);
-                    curr = curr.next;
-                }
-                curr1 = curr1.next;
-            }
-            else 
-            {
-                if(curr1.data < curr2.data)
-                {
-                    if(curr == null)
-                        head = curr = new Node(curr1.data);
-                    else
-                    {
-                       curr.next = new Node(curr1.data); 
-                       curr = curr.next;
-                    }
-                    curr1 = curr1.next;
-                }
-                else
+                if(curr1 == null)
                 {
                     if(curr == null)
                         head = curr = new Node(curr2.data);
@@ -228,6 +276,44 @@ public class MergeSortLinkedList
                         curr = curr.next;
                     }
                     curr2 = curr2.next;
+                }
+                else if(curr2 == null)
+                {
+                    if(curr == null)
+                    {
+                        head = curr = new Node(curr1.data);
+                    }
+                    else
+                    {
+                        curr.next = new Node(curr1.data);
+                        curr = curr.next;
+                    }
+                    curr1 = curr1.next;
+                }
+                else 
+                {
+                    if(curr1.data < curr2.data)
+                    {
+                        if(curr == null)
+                            head = curr = new Node(curr1.data);
+                        else
+                        {
+                           curr.next = new Node(curr1.data); 
+                           curr = curr.next;
+                        }
+                        curr1 = curr1.next;
+                    }
+                    else
+                    {
+                        if(curr == null)
+                            head = curr = new Node(curr2.data);
+                        else
+                        {
+                            curr.next = new Node(curr2.data);
+                            curr = curr.next;
+                        }
+                        curr2 = curr2.next;
+                    }
                 }
             }
         }
