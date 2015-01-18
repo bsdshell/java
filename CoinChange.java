@@ -19,7 +19,7 @@ public class CoinChange
     //coins[k] is in the each change
     //coins[k] is not in the each change 
     //count(coins, k, s) = count(coins, k-1, s) + count(coins, k, s-coins[k]) 
-    public static int count(int[] coin, int s, int k)
+    public static int count_debug(int[] coin, int s, int k)
     {
         if( s < 0)
         {
@@ -43,6 +43,28 @@ public class CoinChange
         else 
         {
             System.out.println();
+            return 0;
+        }
+    }
+
+    public static int count(int[] coin, int s, int k)
+    {
+        if( s < 0)
+        {
+            return 0;
+        }
+        else if( s == 0 ) 
+        {
+            return 1;
+        }
+        else if( s > 0 && k > 0)
+        {
+            int left = count(coin, s, k-1);
+            int right= count(coin, s-coin[k-1], k);
+            return left + right;
+        }
+        else 
+        {
             return 0;
         }
     }
@@ -119,14 +141,21 @@ public class CoinChange
         if(s < 0)
             return 100;
         if(s == 0) 
+        {
+            System.out.print("["+s+"]\n");
             return 0;
+        }
         else if( s > 0 && k <= 0) 
             return 100;
         else
         {
             int min=100;
             for(int i=0; i<k; i++)
+            {
+                if(s - coin[i] > 0)
+                    System.out.print("["+s+"]->");
                 min = Math.min(min, minCount(coin, s-coin[i], k)+1);
+            }
             return min;
         }
 
@@ -220,11 +249,11 @@ public class CoinChange
     public static void test6()
     {
         System.out.println("test6()");
-        int[] recoin = {2, 3, 4};
+        int[] recoin = {2, 3, 4, 5, 6};
         int k = recoin.length;
         int[] arr = new int[recoin.length+10];
         int d = 0;
-        int s = 10;
+        int s = 15;
         int sum = 0;
         permuCount(recoin, arr, d, s, k, sum);
         System.out.println();
@@ -233,9 +262,10 @@ public class CoinChange
     public static void test7()
     {
         System.out.println("test6()");
-        int[] recoin = {2, 3, 4};
+        int[] recoin = {2, 3, 4, 5, 6};
         int k = recoin.length;
-        int s = 10;
+        int s = 15;
+        String count = " ";
         int min = minCount(recoin, s, k);
         System.out.println("min="+min);
         System.out.println();
