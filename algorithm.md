@@ -49,6 +49,104 @@ The algorithm is similar to (1), but strings with repeated characters are remove
 * Given an Integer 1240, output: one thousand two thundred forty 
 * Use 2D array to store the integer in base 1000
 
+Map<Integer,String> map = new HashMap<Integer,String>()
+map.put(0, "zero")  
+map.put(1, "one")  
+map.put(2, "two")  
+map.put(3, "three")  
+map.put(4, "four")  
+map.put(5, "five")  
+map.put(6, "six")  
+map.put(7, "seven")  
+map.put(8, "eight")  
+map.put(9, "nine")  
+map.put(10, "ten")  
+map.put(11, "eleven")  
+map.put(12, "twelve")  
+map.put(13, "thirteen")  
+map.put(14, "fourteen")  
+map.put(15, "fifteen")  
+map.put(16, "sixteen")  
+map.put(17, "seventeen")  
+map.put(18, "eighteen")  
+map.put(19, "nineteen")  
+map.put(20, "twenty")  
+map.put(30, "thirty")  
+map.put(40, "forty")  
+map.put(50, "fifty")  
+map.put(60, "sixty")  
+map.put(70, "seventy")  
+map.put(80, "eighty")  
+map.put(90, "ninety")  
+map.put(100, "hundred")  
+map.put(1000, "thousand")  
+map.put(1000000, "million")  
+map.put(1000000000, "billion")  
+map.put(1000000000000, "brillion")  
+
+String hundred(int[] arr)
+{
+		if(arr[0] > 0)
+		{
+			first = map.get(arr[0]*1)					}
+		if(arr[1] > 0)
+		{
+			second = map.get(arr[1]*10)
+		}
+		if(arr[2] > 0)
+		{
+			if(arr[2] == 1)
+				third = map.get(arr[2]*100) + "hundred"
+			else 
+				third = map.get(arr[2]*100) + "hundreds"
+		}
+		s = third + second + first + s
+}
+
+f(int n)
+{
+	h = Math.ceiling(log(1000, n)) + 1
+	if(n == 0)
+	{
+	}
+	else
+	{ 
+		col = 0
+		while(n > 0)
+		{
+			r = n % 1000
+			n = n / 1000
+			
+			row = 0
+			while(r > 0)
+			{
+				rr = r % 100
+				r = r / 100
+				arr[col][row] = rr
+				row++ 
+			}
+			col++
+		}
+	}
+	
+	s = ""
+	for(i=0; i<h i++)
+	{
+		p = pow(1000, i)
+		if(i == 0)
+		{
+			s = hundred(arr[i]) + s
+		}
+		else 
+		{
+			base = map.get(p)
+			s = hundred(arr[i]) + base + s
+		}
+	}
+}
+
+
+
 map.put("0", "zero")  
 map.put("1", "one")  
 map.put("2", "two")  
@@ -89,6 +187,39 @@ map.put("1000000000000", "trillion")
 2000
 400
 11
+
+	Convert(String str)
+	{
+		if(str != null)
+		{
+			List<String> list = str.split(" ")
+			s = 0
+			for(int i=0; i<list.size() i++)
+			{
+				b1000 = 1
+				b100 = 1
+				if(list[i] == "thousand" || list[i] == "million" || list[i] == "billion")
+				{
+					b1000 = map.get(list[i])
+					b100 = 1
+				}
+				else
+				{
+					if(list[i] == "hundred")
+					{
+						b100 = map.get(list[i])
+					}
+					else
+					{
+						n = map.get(arr[i])
+						s += n*b100*b1000
+					}
+				}
+			}
+			
+		}
+	}
+
 
 2. e.g. five millons eleven thundreds thousand six thundreds and forty six(5110646)
 
@@ -167,6 +298,12 @@ map.put("1000000000000", "trillion")
 		}
 
 ##### Find a maximum path in a binary tree
+
+##### Print all the numbers from 1 to N in lexicographic order
+
+##### Merge two sorted linked list
+
+##### Sort a linked list
 
 ##### Mirror a binary tree
 

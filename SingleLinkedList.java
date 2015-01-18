@@ -18,6 +18,21 @@ class SLL
 	Node head;
 	public SLL()
 	{ head = null;}
+	public void append(int n)
+    {
+        Node cur = head;
+		if(head == null)
+			head = new Node(n);
+		else
+		{
+			while(cur.next != null)
+			{ 
+                cur = cur.next; 
+            }
+			cur.next = new Node(n);
+		}
+
+    }
 	public void append(Node no)
 	{
 		Node cur = head;
@@ -68,6 +83,17 @@ class SLL
 	}
 	public Node getHead()
 	{ return head;}
+
+    public Node getTail()
+	{ 
+        Node curr = head;
+        while(curr != null && curr.next != null)
+        {
+            curr = curr.next;
+        }
+        return curr;
+    }
+
 	public void Remove(Node no)
 	{
 		if(no != null && head != null)

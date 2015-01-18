@@ -5,7 +5,8 @@ public class LongestIncreasingSubsequence
         System.out.println("Hello World!");
         //int[] array = {20, 1, 30, 6, 40, 4, 0, 9, 10, 12};
         int[] array = {1, 0, 7, 2, 6};
-        //int[] array = {0, 1, 2, 3, 4, 5};
+        //int[] array = {1, 2};
+        //int[] array = {2, 6, 1, 4, 5};
         int m = LISDP(array);
         int len = array.length;
         for(int i=0; i<array.length; i++)

@@ -119,24 +119,4 @@ public class SudokuSolver
         int k=0;
         s.solver(k);
     }
-    boolean check(int key)
-    {
-        Map<Integer, Integer> map = new HashMap<Integer, Integer>(9);
-        for(int i=1; i<=9; i++)
-            map.put(i, 0);
-        if(!map.containsKey(key)) 
-            return false;
-        else 
-        {
-            int value = map.get(key);
-            if(value == 0)
-                map.put(key, 1);
-            else
-            {
-                map.put(key, 0);
-                return false;
-            }
-        }
-        return true;
-    }
 }
