@@ -42,6 +42,10 @@ public class Try
         test4();
         test5();
         test6();
+    
+        System.out.println("Integer.MAX_VALUE["+Integer.MAX_VALUE+"]");
+        System.out.println("Integer.MIN_VALUE["+Integer.MIN_VALUE+"]");
+
     }
     public static void show(Node curr)
     {

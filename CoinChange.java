@@ -135,7 +135,7 @@ public class CoinChange
         }
     }
     
-    public static int minCount(int[] coin, int s, int k)
+    public static int minCount_debug(int[] coin, int s, int k)
     {
         if(s < 0)
             return 100;
@@ -153,11 +153,34 @@ public class CoinChange
             {
                 if(s - coin[i] > 0)
                     System.out.print("["+s+"]->");
-                min = Math.min(min, minCount(coin, s-coin[i], k)+1);
+                min = Math.min(min, minCount_debug(coin, s-coin[i], k)+1);
             }
             return min;
         }
 
+    }
+
+    //Given coin{2, 3, 4} and s = 6
+    //Find the minimum number of coins sums up to s 
+    public static int minCount(int[] coin, int s, int k)
+    {
+        if(s < 0)
+            return 100;
+        if(s == 0) 
+        {
+            return 0;
+        }
+        else if( s > 0 && k <= 0) 
+            return 100;
+        else
+        {
+            int min = 100;
+            for(int i=0; i<k; i++)
+            {
+                min = Math.min(min, minCount(coin, s-coin[i], k)+1);
+            }
+            return min;
+        }
     }
 
     public static void printTable(int[][] arr)
