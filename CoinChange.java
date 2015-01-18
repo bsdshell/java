@@ -47,16 +47,17 @@ public class CoinChange
         }
     }
 
+    //Given coins[k] = {2, 3, 4} and change s = 9 
+    //Count the number of way for coin change 
+    //coins[k] is in the each change
+    //coins[k] is not in the each change 
+    //count(coins, k, s) = count(coins, k-1, s) + count(coins, k, s-coins[k]) 
     public static int count(int[] coin, int s, int k)
     {
         if( s < 0)
-        {
             return 0;
-        }
         else if( s == 0 ) 
-        {
             return 1;
-        }
         else if( s > 0 && k > 0)
         {
             int left = count(coin, s, k-1);
@@ -64,9 +65,7 @@ public class CoinChange
             return left + right;
         }
         else 
-        {
             return 0;
-        }
     }
 
     //Coin change algorithm using dynamic programming
