@@ -10,7 +10,7 @@ public class CoinChange
         //test4();
         //test5();
         test6();
-        test7();
+        //test7();
     }
 
     
@@ -78,7 +78,7 @@ public class CoinChange
 
         System.out.println();
 
-        printTable(table);
+        Aron.printTable(table);
 
         for(int ss=1; ss<s+1; ss++)
         {
@@ -110,19 +110,12 @@ public class CoinChange
         return table[s][k-1];
     }
 
-    //Print out all the coins which sums to s
-    public static void permuCount(int[] coin, int[] arr, int d, int s, int k, int sum)
+    //Print out all the coins which adds up to s
+    public static void permuCount(int[] coin, int[] arr, int d, int s, int sum)
     {
-        for(int i=0; i<k; i++)
+        for(int i=0; i<coin.length; i++)
         {
-            if(sum + coin[i] < s)
-            {
-                sum += coin[i];
-                arr[d] = coin[i];
-                permuCount(coin, arr, d+1, s, k, sum);
-                sum -= coin[i];
-            }
-            else if(sum + coin[i] == s)
+            if(sum + coin[i] == s)
             {
                 sum += coin[i];
                 arr[d] = coin[i];
@@ -131,6 +124,13 @@ public class CoinChange
                     System.out.print("["+arr[j]+"]");
                 }
                 System.out.println();
+            }
+            else if(sum + coin[i] < s)
+            {
+                arr[d] = coin[i];
+                sum += coin[i];
+                permuCount(coin, arr, d+1, s, sum);
+                sum -= coin[i];
             }
         }
     }
@@ -272,12 +272,11 @@ public class CoinChange
     {
         System.out.println("test6()");
         int[] recoin = {2, 3, 4, 5, 6};
-        int k = recoin.length;
         int[] arr = new int[recoin.length+10];
         int d = 0;
         int s = 15;
         int sum = 0;
-        permuCount(recoin, arr, d, s, k, sum);
+        permuCount(recoin, arr, d, s, sum);
         System.out.println();
     }
 
