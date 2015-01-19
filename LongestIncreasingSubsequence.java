@@ -27,6 +27,31 @@ public class LongestIncreasingSubsequence
 
 
     //L[i] = 1 + Max(L[i-1]) where j < i && arr[j] < arr[i]
+    public static int LISRecursion_debug(int[] array, int len)
+    {
+        if(len == 1)
+            return 1;
+        else
+        {
+            int max = 1;
+            for(int i=1; i < len; i++)
+            {
+                int m = LISRecursion_debug(array, i);
+                System.out.print("array["+(i-1)+"]="+array[i-1]+" array["+(len-1)+"]="+array[len-1]+"\n");
+                if(array[i-1] < array[len-1])
+                    max = Math.max(max, m+1);
+                //System.out.println("max=["+max+"]");
+            }
+            System.out.println();
+            return max;
+        }
+    }
+
+
+    //Find the longest increasing subsequence integers
+    //{2, 4, 1, 5} => 2->4->5
+    //{2, 4, 1, 2, 3} => 1->2->3
+    //L[i] = 1 + Max(L[i-1]) where j < i && arr[j] < arr[i]
     public static int LISRecursion(int[] array, int len)
     {
         if(len == 1)
@@ -37,11 +62,8 @@ public class LongestIncreasingSubsequence
             for(int i=1; i < len; i++)
             {
                 int m = LISRecursion(array, i);
-                System.out.print("array["+(i-1)+"]="+array[i-1]+" array["+(len-1)+"]="+array[len-1]+"\n");
                 if(array[i-1] < array[len-1])
                     max = Math.max(max, m+1);
-
-                //System.out.println("max=["+max+"]");
             }
             System.out.println();
             return max;
