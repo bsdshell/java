@@ -1,12 +1,15 @@
 public final class Aron 
 {
+
+    //Need to fix the Node issue
+    /*
     public static void inorder(Node curr)
     {
 		if(curr != null)
 		{
-			Inorder(curr.left);
+			inorder(curr.left);
 			System.out.print(curr.data + " ");
-			Inorder(curr.right);
+			inorder(curr.right);
 		}
     }
 
@@ -15,8 +18,8 @@ public final class Aron
         if(curr != null)
 		{
 			System.out.print(curr.data + " ");
-			Inorder(curr.left);
-			Inorder(curr.right);
+			inorder(curr.left);
+			inorder(curr.right);
 		}
     }
 
@@ -24,11 +27,12 @@ public final class Aron
     {
          if(curr != null)
 		{
-			Inorder(curr.left);
-			Inorder(curr.right);
+			inorder(curr.left);
+			inorder(curr.right);
 			System.out.print(curr.data + " ");
 		}
     }
+    */
 
     public static void printArray2D(int[][] arr)
     {
