@@ -20,60 +20,60 @@ class SLL
 	{ head = null;}
 	public void append(int n)
     {
-        Node cur = head;
+        Node curr = head;
 		if(head == null)
 			head = new Node(n);
 		else
 		{
-			while(cur.next != null)
+			while(curr.next != null)
 			{ 
-                cur = cur.next; 
+                curr = curr.next; 
             }
-			cur.next = new Node(n);
+			curr.next = new Node(n);
 		}
 
     }
 	public void append(Node no)
 	{
-		Node cur = head;
+		Node curr = head;
 		if(head == null)
 			head = no;
 		else
 		{
-			while(cur.next != null)
-			{ cur = cur.next; }
-			cur.next = no;
+			while(curr.next != null)
+			{ curr = curr.next; }
+			curr.next = no;
 		}
 	}
 
 	//recursive 
 	static Node next=null;
-	public void Reverse(Node cur)
+	public void Reverse(Node curr)
 	{
-		if(cur != null)
+		if(curr != null)
 		{
-			Reverse(cur.next);
+			Reverse(curr.next);
 			if(next != null)
-				next.next = cur;	
+				next.next = curr;	
 			else 
-				head = cur;
-			next = cur;
-			cur.next = null;
+				head = curr;
+			next = curr;
+			curr.next = null;
 		}
 	}
 	//iteration
-	public void Reverse1(Node cur)
+	public void Reverse1(Node curr)
 	{
 		if(head != null)
 		{
 			Node prev = null;
-			Node next = cur.next;
+			Node next = curr.next;
 
-			while(cur != null)
+			while(curr != null)
 			{
-				cur.next = prev;
-				prev = cur;
-				cur = next;
+				curr.next = prev;
+				prev = curr;
+				curr = next;
 				if(next != null)
 					next = next.next;
 			}
@@ -98,12 +98,12 @@ class SLL
 	{
 		if(no != null && head != null)
 		{
-			Node cur = head;	
+			Node curr = head;	
 			Node prev = null;
-			while(cur != no)
+			while(curr != no)
 			{
-				prev = cur;
-				cur = cur.next;
+				prev = curr;
+				curr = curr.next;
 			}
 			if(prev != null && no.next != null)
 			{ prev.next = no.next; no.next = null; }
@@ -117,9 +117,9 @@ class SLL
 	}
 	public void show()
 	{
-		Node cur=head;
-		while(cur != null)
-	 	{ System.out.println("cur.data=" + cur.data); cur=cur.next;}
+		Node curr=head;
+		while(curr != null)
+	 	{ System.out.println("curr.data=" + curr.data); curr=curr.next;}
 	}
 }
 
