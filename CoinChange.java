@@ -1,3 +1,10 @@
+class Node
+{
+	public Node left;
+	public Node right;
+	public int data;
+}
+
 public class CoinChange 
 {
     public static void main(String[] args)
@@ -9,8 +16,9 @@ public class CoinChange
         //test3();
         //test4();
         //test5();
-        test6();
-        //test7();
+        //test6();
+        test8();
+        test8_new();
     }
 
     
@@ -44,6 +52,35 @@ public class CoinChange
         {
             System.out.println();
             return 0;
+        }
+    }
+
+    public static int height(Node node)
+    {
+        if(node != null)
+        {
+            int l = 0, r = 0;
+            if(node.left != null)
+                l = height(node.left) + 1;
+            if(node.right != null)
+                r = height(node.right) + 1;
+            return Math.max(l, r);
+        }
+        return 0;
+    }
+    public static int miniCointWithPerm(int[] coin, int s)
+    {
+        if(s == 0)
+            return 0;
+        else
+        {
+            int min = 100;
+            for(int i=0; i<coin.length; i++)
+            {
+                if(s - coin[i] >= 0)
+                    min = Math.min(min, miniCointWithPerm(coin, s-coin[i]) + 1);
+            }
+            return min;
         }
     }
 
@@ -288,6 +325,32 @@ public class CoinChange
         int s = 15;
         String count = " ";
         int min = minCount(recoin, s, k);
+        System.out.println("min="+min);
+        System.out.println();
+    }
+
+    public static void test8()
+    {
+        System.out.println("test8()");
+        int[] recoin = {2, 3, 4, 5, 6};
+        int[] dycoin= {2, 3, 4, 5, 6};
+        int k = recoin.length;
+        int s = 15;
+        int c = count(recoin, s, k);
+        int dc = countdy(dycoin, s, k);
+        System.out.println();
+        System.out.println("recursion count=["+c+"]");
+        System.out.println("dynamic   count=["+dc+"]");
+    }
+
+    public static void test8_new()
+    {
+        System.out.println("test8_new()");
+        int[] recoin = {2, 3, 4, 5, 6};
+        int k = recoin.length;
+        int s = 15;
+        String count = " ";
+        int min = miniCointWithPerm(recoin, s);
         System.out.println("min="+min);
         System.out.println();
     }
