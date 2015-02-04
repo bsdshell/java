@@ -68,7 +68,6 @@ public final class Aron
             System.out.println();
         }
     }
-
     public static void printTable(int[][] arr)
     {
         if(arr != null)
@@ -83,5 +82,20 @@ public final class Aron
             }
         }
         System.out.println();
+    }
+
+    public static void reverse(int[] arr)
+    {
+        if( arr != null)
+        {
+            int len = arr.length;
+            int tmp = 0;
+            for(int i=0; i<len/2; i++)
+            {
+                tmp = arr[i];
+                arr[i] = arr[len-1-i];
+                arr[len-1-i] = tmp;
+            }
+        }
     }
 }

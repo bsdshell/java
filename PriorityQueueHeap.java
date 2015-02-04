@@ -13,17 +13,12 @@ class Contact implements Comparable<Contact>
     }
 
     //Minimum heap
-    /*
     public int compareTo(Contact c)
     {
         return this.age - c.age;
-    }
-    */
 
-    //Maximum heap
-    public int compareTo(Contact c)
-    {
-        return -(this.age - c.age);
+        //Maximum heap
+        //return -(this.age - c.age);
     }
 
     public String toString()
