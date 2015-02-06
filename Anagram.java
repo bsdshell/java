@@ -83,9 +83,7 @@ public class Anagram
             {
                 char ch = word.charAt(i);
                 if(map.containsKey(ch))
-                {
                      product = product.multiply(map.get(ch));
-                }
             }
             if(wordMap.containsKey(product))
             {

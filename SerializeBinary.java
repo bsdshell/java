@@ -109,6 +109,7 @@ public class SerializeBinary
         }
         catch(Exception e){
         }
+        test1();
     }
 
     //Use Level order to write node to file
@@ -289,5 +290,104 @@ public class SerializeBinary
             preorder(root.left);
             preorder(root.right);
         }
+    }
+
+    public static void test1()
+    {
+        BST b1 = new BST();
+
+		b1.Insert(15);
+		b1.Insert(12);
+		b1.Insert(14);
+		b1.Insert(17);
+		b1.Insert(19);
+		b1.Insert(130);
+		b1.Insert(16);
+		b1.Insert(10);
+        
+        Aron.inorder(b1.getRoot());
+
+        try{
+            FileWriter fstream = new FileWriter("out.txt");
+            BufferedWriter out = new BufferedWriter(fstream);
+            int k=1;
+            writeNodeToFile(b1.getRoot(), out, k);
+            out.close();
+
+            BufferedReader in = new BufferedReader(new FileReader("out.txt"));	
+            Map<Integer, Integer> map = buildMapFromFile(in);
+
+            k = 1;
+            Node root = buildTree(map, k);
+            System.out.println("[preorder]");
+            Aron.preorder(root);
+            
+            System.out.println();
+            System.out.println("[inorder]");
+            Aron.inorder(root);
+            
+            System.out.println();
+            System.out.println("[postorder]");
+            Aron.postorder(root);
+            
+
+        }
+        catch(Exception e){
+            System.err.println("Error" + e.getMessage());
+        }
+    }
+
+    //Write nodes to file with inorder traversal
+    public static void writeNodeToFile(Node root, BufferedWriter out, int k)
+    {
+        if(root != null)
+        {
+            String s = k + ":" + root.data + "\n";
+            try{
+                out.write(s);
+                writeNodeToFile(root.left, out, 2*k);
+                writeNodeToFile(root.right, out, 2*k + 1);
+            }
+            catch(Exception e){
+                System.err.println("Error" + e.getMessage());
+            }
+        }    
+    }
+    //Initialize k = 1
+    public static Node buildTree(Map<Integer,Integer> map, int k)
+    {
+        if(map.containsKey(k))
+        {
+            Integer data = map.get(k);
+            Node root = new Node(data);
+            root.left = buildTree(map, 2*k);
+            root.right = buildTree(map, 2*k+1);
+            return root;
+        }    
+        return null;
+    }
+
+    public static Map<Integer,Integer> buildMapFromFile(BufferedReader in)
+    {
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        try
+        {
+            String line = null;
+            while((line = in.readLine()) != null)
+            {
+                line = line.trim();
+                String[] array = line.split(":");
+                if(array.length == 2)
+                {
+                    map.put(Integer.parseInt(array[0]), Integer.parseInt(array[1]));
+                }
+                else 
+                    System.err.println("Error: invalid file format");
+            }
+        }
+        catch(Exception e){
+            System.err.println("Error" + e.getMessage());
+        }
+        return map; 
     }
 }
