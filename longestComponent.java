@@ -34,14 +34,14 @@ public class longestComponent
         System.out.println("longest="+count);
         
          int[][] F = {
-            {1, 1},
+            {1, 0},
             {1, 1}
         };
         count = longest(F);
         System.out.println("longest="+count);
 
         int[][] H = {   {0, 1, 1, 1},
-                        {0, 1, 1, 1},
+                        {0, 1, 0, 1},
                         {1, 0, 0, 1},
                         {0, 1, 1, 0}
                     };
