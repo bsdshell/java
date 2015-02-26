@@ -2,7 +2,7 @@ public final class Aron
 {
 
     //Need to fix the Node issue
-    /*
+    
     public static void inorder(Node curr)
     {
 		if(curr != null)
@@ -32,7 +32,7 @@ public final class Aron
 			System.out.print(curr.data + " ");
 		}
     }
-    */
+    
 
     public static void printArray2D(int[][] arr)
     {

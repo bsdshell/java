@@ -1,6 +1,8 @@
 import java.io.*;
 import java.lang.String;
 import java.util.*;
+
+//read file 
 class readFile 
 {
 	public static void main(String args[])
@@ -16,9 +18,9 @@ class readFile
 			}
 			in.close();
 		}
-		catch(Exception e)
+		catch(IOException io)
 		{
-			System.err.println("Error" + e.getMessage());
+            io.printStackTrace();
 		}
 	}
 }

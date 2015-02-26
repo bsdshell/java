@@ -1,3 +1,28 @@
+#### Here is a task:
+“3 brothers have to transfer 9 boxes from one place to another.
+These boxes weigh 1, 2, 4, 5, 6, 8, 9, 11, 14 kilos.
+Every brother takes 3 boxes.
+So, how to make a program that would count the most optimal way to take boxes?
+The difference between one brother’s carrying boxes weight and other’s has to be as small as it can be.”
+Can you just give me an idea or write a code with any programming language you want ( php or pascal if possible? ).
+
+
+#### Find minimum number of players that the total followers equal to K -- Amazon
+
+There are N(0 to N-1) players each having at Max 'M' (0 to M-1) number of followers. You have to select minimum number of players so that the total followers must be equal to a given number 'K'. 
+I/P would be like, 
+first line contain N, M, K followed by N lines containing string of 0 or 1 s.t. for i'th line if j'th char is 1 it means j'th person follows player 'i' 
+For. eg.
+
+
+3 6 5
+111100
+000100
+000010
+
+ans=2 ( select 0th and 2nd )
+
+#### Permutation
 * Given an array of integer/char, print all the permutation of integer/char
 * E.g. Given "abc"
 * permutation: abc, acb, bac, bca, cab, cba
@@ -296,6 +321,10 @@ map.put("1000000000000", "trillion")
 				
 			return ret
 		}
+
+##### External sort a large dataset
+
+##### Knight Tour Problem
 
 ##### Find a maximum path in a binary tree
 

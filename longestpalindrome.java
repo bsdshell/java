@@ -5,99 +5,11 @@ class LongestPalindrome
 {
 	public static void main(String args[])
 	{
-		int r = longest("a");
-		System.out.println("r=" + r);
-		r = longest("aa");
-		System.out.println("r=" + r);
-		r = longest("ab");
-		System.out.println("r=" + r);
-		r = longest("aaa");
-		System.out.println("r=" + r);
-		r = longest("aba");
-		System.out.println("r=" + r);
-		r= longest("kkkabcbae");
-		System.out.println("r=" + r);
-        
         String palindrome = longest2("a");
 		System.out.println("Palindrome="+palindrome);
+        test1();
 	}
-	public static int longest(String str)
-	{
-		int ret = 0;	
-		String pal="";
-		int max=1;
-		if(str != null)
-		{
-			int len = str.length();
-		
-			if(len == 1)
-			{
-				ret = 1; 
-				pal = str;
-			}
-			else if(len == 2)
-			{
-				if(str.charAt(0) == str.charAt(1)) 
-				{
-					ret = 2;
-					pal = str;
-				}
-				else
-				{
-					ret = 1;
-					pal = str.charAt(0) + "";
-				}
-			}
-			else if(len > 2)
-			{
-				for(int i=1; i<len - 1; i++)
-				{
-					int c=0;
-					for(int k=0; k<len/2; k++)
-					{
-						if(i-k >= 0 && i+1+k < len && str.charAt(i-k) == str.charAt(i+1+k))
-						{
-							c = 2*k+2;
-							if(c > max)
-							{
-								max = c;
-							  pal = str.substring(i-k, i+1+k+1);
-							}
-							System.out.println("1c=" + c);
-							System.out.println("pal=" + pal);
-						}
-						else if(i-1-k >= 0 && i+k < len && str.charAt(i-1-k) == str.charAt(i+k))
-						{
-							c=2*k+2;
-							if(c > max)
-							{
-								max = c;
-							  pal = str.substring(i-1-k, i+k+1);
-							}
-							System.out.println("2c=" + c);
-							System.out.println("pal=" + pal);
-						}
-						else if(i-1-k >=0 && i+1+k < len && str.charAt(i-1-k) == str.charAt(i+1+k))
-						{
-							c=2*k+3;
-							if(c > max)
-							{
-								max = c;
-							  pal = str.substring(i-1-k, i+1+k+1);
-							}
-							System.out.println("3c=" + c);
-							System.out.println("k=" + k);
-							System.out.println("i=" + i);
-							System.out.println("pal=" + pal);
-						}
-					}
-				}
-			}
-		}	
-		System.out.println("max pal=" + pal);
-		return max;
-	}
-
+	
     //complexity O(N^2)
     public static String longest2(String str)
     {
@@ -114,14 +26,14 @@ class LongestPalindrome
             int maxoffset = 0;
             for(int i=0; i<len; i++)
             {
-                for(int j=0; j<len; j++)
+                for(int offset=0; offset<len; offset++)
                 {
-                    if(i-j >= 0 && i+j<len && newStr.charAt(i-j) == newStr.charAt(i+j))
+                    if(i-offset >= 0 && i+offset<len && newStr.charAt(i-offset) == newStr.charAt(i+offset))
                     {
-                        if(j > maxoffset)
+                        if(offset > maxoffset)
                         {
-                            maxoffset = j;
-                            palindrome = newStr.substring(i-j, i+j+1);
+                            maxoffset = offset;
+                            palindrome = newStr.substring(i-offset, i+offset+1);
                         }
                     }
                 }
@@ -137,7 +49,7 @@ class LongestPalindrome
         return palindrome;
     }
     //complexity O(n)
-    public static String logestPalindrome(String str)
+    public static void logestPalindrome(String str)
     {
         if( str != null)
         {
@@ -167,6 +79,58 @@ class LongestPalindrome
                     c = i;
                 }
             }
+        }
+    }
+
+    public static void test1()
+    {
+        String s = "abccb";
+        int d = 0;
+        int offset = 0;
+        String[] maxArr = new String[1];
+        longestPalindromeRecursion(s, d, offset, maxArr);
+        System.out.println("s="+s);
+        System.out.println(maxArr[0]);
+    }
+
+    public static void longestPalindromeRecursion(String s, int d, int offset, String[] maxArr)
+    {
+        if(offset < s.length())
+        {
+            substring(s, d, offset, maxArr);
+            longestPalindromeRecursion(s, d, offset+1, maxArr);
+        }
+    }
+    public static void substring(String s, int d, int offset, String[] maxArr)
+    {
+        if(offset + d + 1 <= s.length())
+        {
+            String str = s.substring(offset, offset + d+1);
+            if(isPalindrome(str, d))
+            {
+                if(maxArr[0] != null) 
+                {
+                    if(str.length() > maxArr[0].length())
+                        maxArr[0] = str;
+                }
+                else
+                    maxArr[0] = str;
+                    
+            }
+            substring(s, d+1, offset, maxArr);
+        }
+    }
+    public static boolean isPalindrome(String s, int i)
+    {
+        if(s.length() <= 1)
+            return true;
+        else if(s.charAt(i) != s.charAt(s.length()-1-i))
+            return false;
+        else
+        {
+            if(i+1 <s.length() && s.length() > 2)
+                return isPalindrome(s.substring(i+1, s.length()-2), i+1);
+            return true;
         }
     }
 }

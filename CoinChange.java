@@ -183,6 +183,23 @@ public class CoinChange
         }
     }
 
+    public static int minCountdy(int[] coin, int s, int k)
+    {
+        int[] minArray = new int[s+1];
+        int d = s;
+        for(int h=0; h < coin.length; h++)
+        {
+            for(int i=0; i <= s; i++)
+            {
+                if(d - coin[i] >= 0)
+                {
+                    minArray[d-coin[i]] = Math.min(minArray[d-coin[i]], minArray[d] + 1]);    
+                    d += coin[i];
+                }
+            }
+        }
+    }
+
     public static void printTable(int[][] arr)
     {
         if(arr != null)
