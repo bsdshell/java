@@ -14,6 +14,8 @@ public class PermRepeated
         int k=2;
         for(int i=1; i<=s.length(); i++)
             permRepeatedChooseK(s, array, depth, i);
+
+        test1();
     }
 
     public static void ExcelSheetRowNumber(String s)
@@ -72,6 +74,27 @@ public class PermRepeated
             }
         }
     }
+    public static void permRepeatingChar(Character[] array, int depth, Set<String> set)
+    {
+        if(depth == array.length)
+        {
+            String s="";
+            for(Character ch:array)
+                s += ch.toString();
+
+            if(!set.contains(s))
+                set.add(s);
+        }
+        else
+        {
+            for(int i=depth; i<array.length; i++)
+            {
+                Aron.swap(array, i, depth);
+                permRepeatingChar(array, depth+1, set);
+                Aron.swap(array, i, depth);
+            }
+        }
+    }
     public static void perm(String s, char[] array, int depth, Set<Character> map)
     {
         if(s != null)
@@ -96,5 +119,14 @@ public class PermRepeated
                 } 
             }
         }
+    }
+    public static void test1()
+    {
+        Character[] array = {'a', 'b', 'b'};
+        int depth = 0;
+        Set<String> set = new LinkedHashSet<String>();
+        permRepeatingChar(array, depth, set);
+        for(String item: set)
+            System.out.println(item);
     }
 }

@@ -116,7 +116,7 @@ class PostorderIteration
 		}
 	}
 
-    public static void preorder2(Node r)
+    public static void preorderIteration(Node r)
     {
 		Stack<Node> st = new Stack<Node>();
         Node curr = r;
@@ -140,13 +140,14 @@ class PostorderIteration
         curr = r;
     }
 
+    //postorder recursion
     public static void PostOrder(Node r)
     {
         if( r != null)
         {
             PostOrder(r.left);
             PostOrder(r.right);
-            System.out.println("normal[" + r.data + "]");
+            System.out.println("[" + r.data + "]");
         }
     }
 
@@ -182,6 +183,30 @@ class PostorderIteration
 		}
 	}
 
+    //Postorder with two stacks
+    public static void PostorderTwoStacks(Node curr)
+    {
+        Stack<Node> st1 = new Stack<Node>();
+        Stack<Node> st2 = new Stack<Node>();
+        if(curr != null)
+        {
+            st1.push(curr);
+            while(!st1.empty())
+            {
+                Node node = st1.pop();
+                st2.push(node);
+                if(node.left != null)
+                    st1.push(node.left);
+                if(node.right != null)
+                    st1.push(node.right);
+            }
+            while(!st2.empty())
+            {
+                Node node = st2.pop();
+                System.out.println("Two Stacks Iteration["+node.data+"]");    
+            }
+        }
+    }
     //clone a binary tree
     public static Node CloneTree(Node root)
     {
@@ -218,29 +243,7 @@ class PostorderIteration
             }
         }
     }
-    public static void PostorderTwoStacks(Node curr)
-    {
-        Stack<Node> st1 = new Stack<Node>();
-        Stack<Node> st2 = new Stack<Node>();
-        if(curr != null)
-        {
-            st1.push(curr);
-            while(!st1.empty())
-            {
-                Node node = st1.pop();
-                st2.push(node);
-                if(node.left != null)
-                    st1.push(node.left);
-                if(node.right != null)
-                    st1.push(node.right);
-            }
-            while(!st2.empty())
-            {
-                Node node = st2.pop();
-                System.out.println("Two Stacks Iteration["+node.data+"]");    
-            }
-        }
-    }
+    
     public static void PostorderDFS(Node r)
     {
         if( r != null)
