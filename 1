@@ -102,11 +102,11 @@ public class SuffixTree
             else
             {
                 Character key = new Character(s.charAt(depth));
-                Node child= root.map.get(key);
-                if(child == null)
-                    child = new Node();
-                root.map.put(key, child);
-                insert(child, s, depth+1);
+                Node subTree = root.map.get(key);
+                if(subTree == null)
+                    subTree = new Node();
+                root.map.put(key, subTree);
+                insert(subTree, s, depth+1);
             }
         }
     }

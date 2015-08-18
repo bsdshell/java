@@ -20,22 +20,12 @@ public final class Aron
         if(curr != null)
 		{
 			System.out.print(curr.data + " ");
-			inorder(curr.left);
-			inorder(curr.right);
+			preorder(curr.left);
+			preorder(curr.right);
 		}
     }
 
-    public static void postorder(Node curr)
-    {
-         if(curr != null)
-		{
-			inorder(curr.left);
-			inorder(curr.right);
-			System.out.print(curr.data + " ");
-		}
-    }
     
-
     public static <T> void swap(T[] arr, int i, int j)
     {
         T tmp = arr[i];
@@ -111,25 +101,7 @@ public final class Aron
         }
     }
 
-    public static void preorder(Node curr)
-    {
-        if(curr != null)
-        {
-            System.out.print("["+curr.data+"]");
-            preorder(curr.left);
-            preorder(curr.right);
-        }
-    }
-
-    public static void inorder(Node curr)
-    {
-        if(curr != null)
-        {
-            inorder(curr.left);
-            System.out.print("["+curr.data+"]");
-            inorder(curr.right);
-        }
-    }
+    
     public static void writeFile(String fullFile)
     {
     }
