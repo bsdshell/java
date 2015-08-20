@@ -2,23 +2,23 @@ import java.io.*;
 import java.lang.String;
 import java.util.*;
 
-class spiral 
+class MySpiral
 {
-	public static void main(String args[])
-	{
-		final int nCol=4; 
-		final int nRow=3;
-		int[][] Arr = new int[nRow][nCol];
-        Integer[][] A = new Integer[nRow][nCol];
+    final int height=3; 
+    final int width=4;
+    int[][] Arr = new int[height][width];
+    Integer[][] A = new Integer[height][width];
 
-		int c=0;
-		for(int i=0; i<nRow; i++)
-			for(int j=0; j<nCol; j++)
+    public MySpiral() 
+    { 
+        int c=0;
+		for(int i=0; i<height; i++)
+			for(int j=0; j<width; j++)
 				A[i][j] = Arr[i][j] = c++;
 
-		for(int i=0; i<nRow; i++)
+		for(int i=0; i<height; i++)
 		{
-			for(int j=0; j<nCol; j++)
+			for(int j=0; j<width; j++)
 			{
 				if(Arr[i][j]/10 == 0)
 					System.out.print("["+Arr[i][j]+" ] ");
@@ -27,26 +27,10 @@ class spiral
 			}
 			System.out.print("\n");
 		}
-		//printSpiral2(Arr, nRow, nCol);
-        System.out.print("\n");
-		//printSpiral3(Arr, nRow, nCol);
-
-        int k=0;
-        printSpiralRecursion(Arr, nRow, nCol, k);
-        System.out.print("\nprint Snake\n");
-
-        int width = nCol;
-        int height = nRow;
-        int col = 0;
-        int row = 0;
-        printSpiralSnake(Arr, width, height);
-        //System.out.print("\n new spiral algorithm \n");
-        //printSpiralNew(Arr, width, height);
-	}
-	public static void printSpiral2(int[][] Arr, int nRow, int nCol)
+    }
+    public void printSpiral2(int[][] Arr, int nRow, int nCol)
 	{
 		int min = nCol>nRow?nRow:nCol;
-
 		if(nRow == 1)
 		{
 			for(int i=0; i<nCol; i++)
@@ -77,60 +61,8 @@ class spiral
 		}
 
 	}
-    
-    public static void printSpiral3(int[][] array, int nRow, int nCol)
-    {
-        if(array != null)
-        {
-            if(nRow > nCol)
-            {
-                for(int i=0; i<(nCol%2==1?nCol/2+1:nCol/2); i++)
-                {
-                    for(int j=i; j<nCol-1-i; j++)
-                    {
-                        //System.out.print("{"+i+"}{"+j+"}");
-                        if(array[i][j] != -1)
-                        {
-                            System.out.print("["+array[i][j]+"]");
-                            array[i][j] = -1;
-                        }
-                    } 
-					System.out.print("\n");
-                    for(int j=i; j<nRow-1-i; j++)
-                    {
-                        //System.out.print("{"+i+"}{"+j+"}");
-                        if(array[j][nCol-1-i] != -1)
-                        {
-                            System.out.print("["+array[j][nCol-1-i]+"]");
-                            array[j][nCol-1-i] = -1;
-                        }
-                    } 
-					System.out.print("\n");
-                    for(int j=i; j<nCol-1-i; j++)
-                    {
-                        //System.out.print("{"+i+"}{"+j+"}");
-                        if(array[nRow-1-i][nCol-1-j] != -1)
-                        {
-                            System.out.print("["+array[nRow-1-i][nCol-1-j]+"]");
-                            array[nRow-1-i][nCol-1-j] = -1;
-                        }
-                    }
-					System.out.print("\n");
-                    for(int j=i; j<nRow-1-i; j++)
-                    {
-                        //System.out.print("{"+i+"}{"+j+"}");
-                        if(array[nRow-1-j][i] != -1)
-                        {
-                            System.out.print("["+array[nRow-1-j][i]+"]");
-                            array[nRow-1-j][i] = -1;
-                        }
-                    }
-					System.out.print("\n");
-                }
-            }
-        }    
-    }
-    public static void printSpiralRecursion(int[][] array, int nRow, int nCol, int k)
+
+    public void printSpiralRecursion(int[][] array, int nRow, int nCol, int k)
     {
         if(nRow-2*k > 0 && nCol-2*k > 0)
         {
@@ -172,39 +104,43 @@ class spiral
             }
         }
     }
-    /*
-    public static void printSpiralNew(int[][] array, int w, int h)
-    {
-        int c = 0;    
-        int turn = -1;
-        while(c < w*h)
-        {
-            if(c % w == 0 || c % h == 0)
-            {
-                turn ++;
-            }
 
-            if(turn % 4 == 0)
+    // assume width > height
+    public void printSpiral4(int[][] array, int height, int width)
+    {
+        if(array != null)
+        {
+            for(int i=0; i <= width/2; i++)
             {
-                System.out.print(array[c/w][c%w] + " ");
+                if(width >= height && height - 2*i == 1)
+                {
+                    for(int w=i; w < width-i; w++)        
+                        System.out.println(array[i][w]); 
+                }
+                else if(width < height && width - 2*i == 1)
+                {
+                    for(int h=i; h < height-i; h++)
+                        System.out.println(array[h][i]); 
+                }
+                else 
+                {
+                    for(int w=i; w < width-1-i; w++)        
+                        System.out.println(array[i][w]); 
+
+                    for(int h=i; h < height-1-i; h++)        
+                        System.out.println(array[h][width - 1 - i]); 
+
+                    for(int w=i; w < width-1-i; w++)        
+                        System.out.println(array[height - 1 - i][width - 1 - w]); 
+
+                    for(int h=i; h < height-1-i; h++)        
+                        System.out.println(array[height - 1 - h][i]); 
+                }
             }
-            else if(turn % 4 == 1)
-            {
-                System.out.print(array[c%h][w-1-c/h] + " ");
-            }
-            else if(turn % 4 == 2) 
-            {
-                System.out.print(array[c/w][w-1-c%w] + " ");
-            }
-            else if(turn % 4 == 3)
-            {
-                System.out.print(array[h-1-c%h][c/h] + " ");
-            }
-            c++;
         }
     }
-    */
-    public static void printSpiralSnake(int[][] array, int width, int height)
+
+    public void printSpiralSnake(int[][] array, int width, int height)
     {
         Set<Integer> hashSet = new HashSet<Integer>();
         if(array != null)
@@ -221,8 +157,7 @@ class spiral
                     hashSet.add(c*width+r);
                     count++;
                 }
-
-                     if(turn % 4 == 0 && r+1 < width && !hashSet.contains(c*width + r + 1))      
+                if(turn % 4 == 0 && r+1 < width && !hashSet.contains(c*width + r + 1))      
                 {
                     r++; print = true;
                 }
@@ -244,8 +179,35 @@ class spiral
                     System.out.println();
                     turn++;
                 }
-                
             }
         }
+    }
+    public void test1()
+    {
+        System.out.println("test1 printSpiral4()"); 
+		printSpiral4(Arr, height, width);
+    } 
+    public void test2()
+    {
+        System.out.println("test2 printSpiralSnake()"); 
+        printSpiralSnake(Arr, width, height);
+    } 
+    public void test3()
+    {
+        System.out.println("test3 printSpiralRecursion()"); 
+        int k=0;
+        printSpiralRecursion(Arr, height, width, k);
+    } 
+}
+
+
+class spiral 
+{
+	public static void main(String args[])
+	{
+        MySpiral spiral = new MySpiral();
+        spiral.test1();
+        spiral.test2();
+        spiral.test3();
     }
 }

@@ -16,7 +16,7 @@ public class Rotatenumber2
         int[] arr = {4, 3, 2, 1};
         int lo = 0;
         int hi = arr.length - 1;
-        int index = findMaxIndex2(arr, lo, hi);
+        int index = findMaxIndex(arr, lo, hi);
         if(index >= 0)
             System.out.println("arr["+index+"]="+arr[index]);
         else
@@ -32,7 +32,7 @@ public class Rotatenumber2
         int[] arr = {1, 2};
         int lo = 0;
         int hi = arr.length - 1;
-        int index = findMaxIndex2(arr, lo, hi);
+        int index = findMaxIndex(arr, lo, hi);
         if(index >= 0)
             System.out.println("arr["+index+"]="+arr[index]);
         else
@@ -44,7 +44,7 @@ public class Rotatenumber2
         int[] arr = {3};
         int lo = 0;
         int hi = arr.length - 1;
-        int index = findMaxIndex2(arr, lo, hi);
+        int index = findMaxIndex(arr, lo, hi);
         if(index >= 0)
             System.out.println("arr["+index+"]="+arr[index]);
         else
@@ -56,7 +56,7 @@ public class Rotatenumber2
         int[] arr = {3, 4, 5, 1, 2};
         int lo = 0;
         int hi = arr.length - 1;
-        int index = findMaxIndex2(arr, lo, hi);
+        int index = findMaxIndex(arr, lo, hi);
         if(index >= 0)
             System.out.println("arr["+index+"]="+arr[index]);
         else
@@ -82,16 +82,16 @@ public class Rotatenumber2
         int[] arr = {2, 1};
         int lo = 0;
         int hi = arr.length - 1;
-        int index = findMaxIndex2(arr, lo, hi);
+        int index = findMaxIndex(arr, lo, hi);
         if(index >= 0)
             System.out.println("arr["+index+"]="+arr[index]);
         else
             System.out.println("error");
     }
 
-
     // assume there is not duplicated number in the array
-    public static int findMaxIndex2(int[] arr, int lo, int hi)
+    // find the index of maximum value in the rotated sorted array
+    public static int findMaxIndex(int[] arr, int lo, int hi)
     {
         if(arr != null)
         {
@@ -101,37 +101,15 @@ public class Rotatenumber2
             {
                 int mid = (lo + hi)/2;
                 if(arr[lo] < arr[mid])
-                    return findMaxIndex2(arr, mid, hi);
+                    return findMaxIndex(arr, mid, hi);
                 else
-                    return findMaxIndex2(arr, lo, mid);
+                    return findMaxIndex(arr, lo, mid);
             }
         }
         return -1;
     }
 
-    public static int findMaxIndex(int[] arr, int lo, int hi)
-    {
-        if( arr != null)
-        {
-            if(arr[lo] < arr[hi])
-                return hi;
-            else 
-            {
-                if(lo == hi)
-                    return hi;
-                else if(lo < hi)    
-                {
-                    int mid = (lo + hi)/2;    
-                    if(arr[lo] > arr[mid])
-                        return findMaxIndex(arr, mid, hi);
-                    else if(arr[lo] < arr[mid])
-                        return findMaxIndex(arr, lo, mid);
-                }
-            }
-        }
-        return -1;
-    }
-    
+    // negative all values in the array
     public static int[] negative(int[] arr)
     {
         int[] tmpArr = new int[arr.length];
@@ -143,7 +121,9 @@ public class Rotatenumber2
         }
         return tmpArr;
     }
-        public static int findMinIndex(int[] arr, int lo, int hi)
+
+    // find the mininum index from a rotated sorted array
+    public static int findMinIndex(int[] arr, int lo, int hi)
     {
         return findMaxIndex(arr, lo, hi);    
     }
