@@ -4,7 +4,7 @@ import java.util.*;
 
 class MySpiral
 {
-    final int height=3; 
+    final int height=4; 
     final int width=4;
     int[][] Arr = new int[height][width];
     Integer[][] A = new Integer[height][width];
@@ -110,7 +110,7 @@ class MySpiral
     {
         if(array != null)
         {
-            for(int i=0; i <= width/2; i++)
+            for(int i=0; i < (width%2==1?width/2+1:width/2); i++)
             {
                 if(width >= height && height - 2*i == 1)
                 {
