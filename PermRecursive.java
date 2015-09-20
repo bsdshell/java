@@ -9,9 +9,17 @@ class PermRecursive
 		int inx=0;
 		char[] charArr={'a', 'b', 'c'};
 		//char[] charArr={};
-		Permu(charArr, inx);
+		//Permu(charArr, inx);
 		//String s = removeChar("abcde", 2);
 		//System.out.println ("s=" + s);
+        
+        int[][] array = { {1, 2, 3},
+                          {4, 5, 6},
+                          {7, 8, 9}
+        }; 
+        
+        int col = 0;
+        printUpperTriangle(array, col);
 	}
 
 	public static void Permu(char[] charArr, int inx)
@@ -38,5 +46,12 @@ class PermRecursive
 				}
 		}
 	}
-
+    public static void printUpperTriangle(int[][] array, int col)
+    {
+        for(int row=col; row<array.length; row++)        
+        {
+            printUpperTriangle(array, col+1);
+            System.out.println("[" + col + "][" + row+ "]=" + array[col][row]); 
+        }
+    }
 }

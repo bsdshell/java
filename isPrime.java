@@ -3,6 +3,7 @@ public class isPrime
     public static void main(String[] args)
     {
         test1();
+        test2();
     }
     public static void test1()
     {
@@ -16,6 +17,20 @@ public class isPrime
         System.out.println("is Prime="+n + " [" + prime(2, 11)+"]");
     }
 
+    public static void test2()
+    {
+        System.out.println("test2()"); 
+        System.out.println("p = 2 [" + isPrimeLoop(2) + "]"); 
+        System.out.println("p = 11[" + isPrimeLoop(11) + "]"); 
+        System.out.println("p = 20[" + isPrimeLoop(20) + "]"); 
+        System.out.println("p = 30[" + isPrimeLoop(30) + "]"); 
+        System.out.println("p = 121[" + isPrimeLoop(121) + "]"); 
+        System.out.println("p = 122[" + isPrimeLoop(122) + "]"); 
+        System.out.println("p = 123[" + isPrimeLoop(123) + "]"); 
+        System.out.println("p = 124[" + isPrimeLoop(124) + "]"); 
+        System.out.println("p = 127[" + isPrimeLoop(127) + "]"); 
+    } 
+    
     public static boolean prime(int d, int n)
     {
         if(n == 2)
@@ -26,5 +41,16 @@ public class isPrime
             return prime(d+1, n);
         else 
             return true;
+    }
+    public static boolean isPrimeLoop(int n)
+    {
+        if( n == 2)
+            return true;
+        for(int d=2; d*d <= n; d++)
+        {
+            if(n % d == 0)
+                return false;
+        }
+        return true;
     }
 }
