@@ -22,6 +22,7 @@ class PermRecursive
         printUpperTriangle(array, col);
 	}
 
+    //[ file=PermuteJava.html title=" Generate permutation for n characters"
 	public static void Permu(char[] charArr, int inx)
 	{
 		if( charArr != null)
@@ -46,6 +47,7 @@ class PermRecursive
 				}
 		}
 	}
+    //]
     public static void printUpperTriangle(int[][] array, int col)
     {
         for(int row=col; row<array.length; row++)        

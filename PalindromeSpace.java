@@ -16,6 +16,16 @@ public class PalindromeSpace
         boolean ret9 = isPalindrome("a b ba");
         System.out.println("[null]["+ret0+"] []["+ret1+"] [ ]["+ret2+"] [ a]["+ret3+"] [a ]["+ret4+"] [ab]["+ret5+"] [aa]["+ret6+"] [a a]["+ret7+"] [a b]["+ret8+"] [a b ba]["+ret9+"]");
     }
+    public static boolean isPalindrome2(String str) 
+    {
+        if( str != null)
+        {
+            int len = str.length();
+            int i=0;
+            for(i=0; i<len && str.charAt(i) != str(len-1-i); i++);
+            return i == len;
+        }
+    }
     public static boolean isPalindrome(String str)
     {
         boolean ret = true;
