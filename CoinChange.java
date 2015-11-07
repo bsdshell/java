@@ -9,19 +9,77 @@ public class CoinChange
 {
     public static void main(String[] args)
     {
-        System.out.println("Hello World!");
-        
-        //test1();
-        //test2();
-        //test3();
-        //test4();
-        //test5();
-        //test6();
+        /*
+        test1();
+        test2();
+        test3();
+        test4();
+        test5();
         test8();
         test8_new();
+        test10();
+        test11();
+        test12();
+        */
+        //test13();
+        //test14();
+        /*
+        test20();
+        test7();
+        test9();
+        test20();
+        test21();
+        test22();
+        */
+        test23();
     }
 
     
+    //[file=dynamic.html   title="" 
+    public static int[][] miniCoinDynamic(int[] coin, int sum)
+    {
+        int len = coin.length;
+        int[][] array = init(len, sum+1);
+
+        for(int i=0; i<len; i++)
+        {
+            for(int s = 0; s <=sum; s++)
+            {
+                if( s - coin[i] >= 0)
+                {
+                        int min = Integer.MAX_VALUE;
+                        for(int k=0; k <=i; k++) 
+                            min = Math.min(min, array[k][s-coin[i]]);
+                        array[i][s] = min == Integer.MAX_VALUE ? min: min + 1; 
+                }
+            }
+        }
+
+        // find the mini value on the most right column
+        int min = Integer.MAX_VALUE;
+        for(int k=0; k <len; k++) 
+            min = Math.min(min, array[k][sum]);
+        array[len-1][sum] = min; 
+
+        return array;
+    }
+    public static int[][] init(int width, int height)
+    {
+        int[][] array = new int[width][height];
+        for(int i=0; i<height; i++)
+        {
+            for(int j=0; j<width+1; j++)
+            {
+                if(j == 0)
+                    array[i][j] = 0;
+                else 
+                    array[i][j] = Integer.MAX_VALUE;
+            }
+        }
+        return array;
+    }
+    //] 
+
     //Given coins[k] = {2, 3, 4} and change s = 9 
     //Count the number of way for coin change 
     //coins[k] is in the each change
@@ -194,48 +252,72 @@ public class CoinChange
             }
             return min;
         }
-
     }
 
+    //[file=CoinChangeRecursive.html   title="" 
     //Given coin{2, 3, 4} and s = 6
     //Find the minimum number of coins sums up to s 
     public static int minCount(int[] coin, int s, int k)
     {
-        if(s < 0)
-            return 100;
+        int min = Integer.MAX_VALUE;
         if(s == 0) 
+            min = 0; 
+        else if(s > 0)
         {
-            return 0;
-        }
-        else if( s > 0 && k <= 0) 
-            return 100;
-        else
-        {
-            int min = 100;
+            // min(s) = min(s-coin[k]) + 1
             for(int i=0; i<k; i++)
             {
-                min = Math.min(min, minCount(coin, s-coin[i], k)+1);
+                int childMin = minCount(coin, s-coin[i], k);
+                if(childMin != Integer.MAX_VALUE) 
+                    min = Math.min(min, childMin + 1);
             }
-            return min;
         }
+        return min;
     }
-
-    public static int minCountdy(int[] coin, int s, int k)
+    //] 
+    
+    public static int minCount_Graph(int[] coin, int s, int k, int[] arr)
     {
-        int[] minArray = new int[s+1];
-        int d = s;
-        for(int h=0; h < coin.length; h++)
+        int min = Integer.MAX_VALUE;
+        if(s == 0) 
         {
-            for(int i=0; i <= s; i++)
+            min = 0; 
+        }
+        else if(s > 0)
+        {
+            // min(s) = min(s-coin[k]) + 1
+            int parent = arr[0];
+            for(int i=0; i<k; i++)
             {
-                if(d - coin[i] >= 0)
+                String parentLabel = parent + "[label="+ s +"];";
+                System.out.println(parentLabel);
+                
+                arr[0] += 1 + i;
+                int child = arr[0] ;
+
+                
+                String childLabel = "";
+                if( s - coin[i] == 0)
+                    childLabel = child + "[label="+ (s-coin[i]) +", style=filled, fillcolor=green]";
+                else if(s - coin[i] < 0)
+                    childLabel = child + "[label="+ (s-coin[i]) +", style=filled, fillcolor=red]";
+                else 
+                    childLabel = child + "[label="+ (s-coin[i]) +"];";
+
+                System.out.println(childLabel);
+                
+                System.out.println(parent + "->" + child + "[label="+ coin[i] +"];");
+
+                int childMin = minCount_Graph(coin, s-coin[i], k, arr);
+                if(childMin != Integer.MAX_VALUE) 
                 {
-                    minArray[d-coin[i]] = Math.min(minArray[d-coin[i]], minArray[d] + 1]);    
-                    d += coin[i];
+                    min = Math.min(min, childMin + 1);
                 }
             }
         }
+        return min;
     }
+
 
     public static void printTable(int[][] arr)
     {
@@ -322,29 +404,8 @@ public class CoinChange
         System.out.println("dynamic   count=["+dc+"]");
     }
 
-    public static void test6()
-    {
-        System.out.println("test6()");
-        int[] recoin = {2, 3, 4, 5, 6};
-        int[] arr = new int[recoin.length+10];
-        int d = 0;
-        int s = 15;
-        int sum = 0;
-        permuCount(recoin, arr, d, s, sum);
-        System.out.println();
-    }
-
-    public static void test7()
-    {
-        System.out.println("test6()");
-        int[] recoin = {2, 3, 4, 5, 6};
-        int k = recoin.length;
-        int s = 15;
-        String count = " ";
-        int min = minCount(recoin, s, k);
-        System.out.println("min="+min);
-        System.out.println();
-    }
+    
+    
 
     public static void test8()
     {
@@ -369,6 +430,149 @@ public class CoinChange
         String count = " ";
         int min = miniCointWithPerm(recoin, s);
         System.out.println("min="+min);
+        System.out.println();
+    }
+    
+    public static void test10()
+    {
+        System.out.println("test10()");
+        int[] coin = {1, 2};
+        int s = 3;
+        int[][] table = miniCoinDynamic(coin, s);
+        System.out.println();
+        Aron.printTable(table);
+    }
+    public static void test11()
+    {
+        System.out.println("test11()");
+        int[] coin = {1, 2, 4};
+        int s = 5;
+        int[][] table = miniCoinDynamic(coin, s);
+        System.out.println();
+        Aron.printTable(table);
+    }
+    public static void test12()
+    {
+        System.out.println("test12()");
+        int[] coin = {1, 2, 3, 16};
+        int s = 17;
+        int[][] table = miniCoinDynamic(coin, s);
+        System.out.println();
+        Aron.printTable(table);
+    }
+
+    public static void test6()
+    {
+        System.out.println("test6()");
+        int[] recoin = {2, 3, 4, 5, 6};
+        int[] arr = new int[recoin.length+10];
+        int d = 0;
+        int s = 15;
+        int sum = 0;
+        permuCount(recoin, arr, d, s, sum);
+        System.out.println();
+    }
+
+    public static void test13()
+    {
+        System.out.println("test13()");
+        RandomNumber ran = new RandomNumber();
+        final int Num = 1000;
+        int[] coin = new int[Num];
+        for(int i=1; i<Num; i++)
+            coin[i] = i;  
+
+        int s = 1050;
+        int[][] table = miniCoinDynamic(coin, s);
+        System.out.println();
+       // Aron.printTable(table);
+    }
+    public static void test14()
+    {
+        System.out.println("test14()");
+        final int Num = 20;
+        int[] coin = new int[Num];
+
+        for(int i=0; i<Num; i++)
+            coin[i] = 1+i;  
+
+        int s = 31;
+        String count = " ";
+        int min = minCount(coin, s, Num);
+        System.out.println("min="+min);
+        System.out.println();
+    }
+    
+
+    public static void test7()
+    {
+        System.out.println("test7()");
+        int[] coin = {2, 3, 15, 18};
+        int k = coin.length;
+        int s = 19;
+        int min = minCount(coin, s, k);
+        System.out.println("min="+min);
+        System.out.println();
+    }
+    public static void test9()
+    {
+        System.out.println("test9()");
+        final int Num = 1000;
+        int[] coin = new int[Num];
+
+        for(int i=0; i<Num; i++)
+            coin[i] = 1+i;  
+
+        int s = 1500;
+        int[][] table = miniCoinDynamic(coin, s);
+        int row = table.length;
+        int col = table[0].length;
+        System.out.println("min=" + table[row-1][col-1]);
+    }
+
+    public static void test20()
+    {
+        System.out.println("test20()");
+        int[] coin = {2, 3, 15, 18};
+        int k = coin.length;
+        int s = 20;
+        int min = minCount(coin, s, k);
+        System.out.println("min="+min);
+        System.out.println();
+    }
+
+    public static void test21()
+    {
+        System.out.println("test21()");
+        int[] coin = {2};
+        int k = coin.length;
+        int s = 2;
+        int min = minCount(coin, s, k);
+        System.out.println("min="+min);
+        System.out.println();
+    }
+
+    public static void test22()
+    {
+        System.out.println("test22()");
+        int[] coin = {2, 3, 4, 5};
+        int k = coin.length;
+        int s = 10;
+        int min = minCount(coin, s, k);
+        System.out.println("min="+min);
+        System.out.println();
+    }
+    public static void test23()
+    {
+        int[] coin = {1, 2};
+        int k = coin.length;
+        int s = 7;
+        int[] arr = new int[1];
+        arr[0] = 100;
+        System.out.println("digraph G {\n");
+        int min = minCount_Graph(coin, s, k, arr);
+        System.out.println("}\n");
+
         System.out.println();
     }
 }

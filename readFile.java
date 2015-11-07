@@ -12,7 +12,7 @@ class readFile
 		  BufferedReader in = new BufferedReader(new FileReader("in.txt"));	
 			
 			String str;
-			while( (str = in.readLine()) != null)
+			while((str = in.readLine()) != null)
 			{
 				System.out.println(str);
 			}
