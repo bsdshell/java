@@ -1,4 +1,4 @@
-public class Hello
+public class ManhattanProblem 
 {
     public static void main(String[] args)
     {
@@ -26,54 +26,153 @@ public class Hello
         test5();
         test6();
         test7();
+        test8();
+        test9();
+        test10();
+        test11();
     }
-    public static boolean manhattan(int[][] arr, int w, int h, int k, int num){
-        const int isVisited = -1000; 
+
+    public static void test8()
+    {
+        System.out.println("test8");
+        int[][] arr = { 
+            {1,3,3},
+            {0,3,9},
+            {0,3,1}
+        };
+
+        int height = arr.length;
+        int width = arr[0].length;
+
+        int k = 3;
+        boolean ret = false; 
+        for(int h=0; h<height && !ret; h++){ 
+            for(int w=0; w<width && !ret; w++){
+                ret = manhattan(arr, h, w, k, arr[h][w]); 
+                System.out.println("ret =" + ret);
+            }
+        }
+        System.out.println("--ret =" + ret);
+    }
+
+    public static void test11()
+    {
+        System.out.println("test11");
+        int[][] arr = { 
+            {0,3,1},
+            {0,1,4},
+            {7,1,1}
+        };
+
+        int height = arr.length;
+        int width = arr[0].length;
+
+        int k = 4;
+        boolean ret = false; 
+        for(int h=0; h<height && !ret; h++){ 
+            for(int w=0; w<width && !ret; w++){
+                int num = arr[h][w];
+                ret = manhattan(arr, w, h, k, num); 
+                System.out.println("ret =" + ret);
+            }
+        }
+        System.out.println("--ret =" + ret);
+    }
+
+    public static void test10()
+    {
+        System.out.println("test10");
+        int[][] arr = { 
+            {1,3,6},
+            {0,4,4},
+            {7,9,1}
+        };
+
+        int height = arr.length;
+        int width = arr[0].length;
+
+        int k = 4;
+        boolean ret = false; 
+        for(int h=0; h<height && !ret; h++){ 
+            for(int w=0; w<width && !ret; w++){
+                int num = arr[h][w];
+                ret = manhattan(arr, w, h, k, num); 
+                System.out.println("ret =" + ret);
+            }
+        }
+        System.out.println("--ret =" + ret);
+    }
+
+    public static void test9()
+    {
+        System.out.println("test9");
+        int[][] arr = { 
+            {1,3,6},
+            {0,4,4},
+            {7,9,1}
+        };
+
+        int height = arr.length;
+        int width = arr[0].length;
+
+        int k = 1;
+        boolean ret = false; 
+        for(int h=0; h<height && !ret; h++){ 
+            for(int w=0; w<width && !ret; w++){
+                int num = arr[h][w];
+                ret = manhattan(arr, w, h, k, num); 
+                System.out.println("ret =" + ret);
+            }
+        }
+        System.out.println("--ret =" + ret);
+    } 
+
+    public static boolean manhattan(int[][] arr, int h, int w, int k, int num){
+        final int isVisited = -1000; 
+        boolean ret0 = false;
         boolean ret1 = false;
         boolean ret2 = false;
         boolean ret3 = false;
         boolean ret4 = false;
-        if(arr[w][h] != isVisited){
-            arr[w][h] =  isVisited;
-            if( k == 0){
-                return num == arr[w][h]
-            }else{
-                if(w + 1 < width){
-                     int tmp = arr[w][h];
-                     arr[w][h] = isVisited;
-                     ret1 = manhattan(arr, w+1, h, k-1))
-                     if(ret1)
-                         return true;
-                     arr[w][h] = tmp;
-                 }
+        int height = arr.length;
+        int width = arr[0].length;
 
-                if(w - 1 >= 0){
-                     int tmp = arr[w][h];
-                     arr[w][h] = isVisited;
-                     ret2 = manhattan(arr, w-1, h, k-1);
-                     if(ret2)
-                         return true;
-                     arr[w][h] = tmp;
-                 }
+        if( k == 0){
+            ret0 = num == arr[h][w];
+        }else if(arr[h][w] != isVisited){
+            int tmp = arr[h][w];
+            arr[h][w] =  isVisited;
+            if(w + 1 < width){
+                 arr[h][w] = isVisited;
+                 ret1 = manhattan(arr, h, w+1,k-1, num);
+                 arr[h][w] = tmp;
+                 if(ret1)
+                     return ret1;
+             }
 
-                if(h - 1 >= 0){
-                     int tmp = arr[w][h];
-                     ret3 = manhattan(arr, w, h-1, k-1);
-                     if(ret3)
-                         return ret3;
-                     arr[w][h] = tmp;
-                 }
+            if(w - 1 >= 0){
+                 arr[h][w] = isVisited;
+                 ret2 = manhattan(arr,  h, w-1,k-1, num);
+                 arr[h][w] = tmp;
+                 if(ret2)
+                     return ret2;
+             }
 
-                 if(h + 1 < height){
-                     int tmp = arr[w][h];
-                     ret4 = manhattan(arr, w, h+1, k-1);
-                     if(ret4)
-                         return ret4;
-                     arr[w][h] = tmp;
-                 }
-            }
+            if(h - 1 >= 0){
+                 ret3 = manhattan(arr,  h-1, w, k-1, num);
+                 arr[h][w] = tmp;
+                 if(ret3)
+                     return ret3;
+             }
+
+             if(h + 1 < height){
+                 ret4 = manhattan(arr, h+1, w, k-1, num);
+                 arr[h][w] = tmp;
+                 if(ret4)
+                     return ret4;
+             }
         }
-        return ret1 || ret2 || ret3 || ret4;
+        return ret0 || ret1 || ret2 || ret3 || ret4;
     }
 
     public static void test7()

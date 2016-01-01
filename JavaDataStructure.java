@@ -1,6 +1,13 @@
+import java.lang.Integer;
+import java.lang.String;
 import java.util.*;
+import java.util.ArrayList;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.stream.Stream;
 
 public class JavaDataStructure 
 {
@@ -88,24 +95,59 @@ public class JavaDataStructure
             }
         }
 
+        if(mapList.containsKey("key")){
+            System.out.println("contains key");
+        }
+
+        List<String> list = mapList.get("key");
+        int size = mapList.size();
+        if(mapList.containsValue("1")){
+            System.out.println("contains value");
+        }
+
+        List<String> mylist =  mapList.values();
+        for(String str:mylist){
+            System.out.println("str=" + str);
+        }
+
+
         // HashSet
         Set<Integer> set = new HashSet<Integer>(Arrays.asList(1, 2));
         Integer item = 1;
         if(set.contains(item))
-            System.out.println("set contains element:" + 1); 
+            System.out.println("set contains element:" + 1);
+
+
+        for(Integer n : set){
+            System.out.println("n=:" + n);
+        }
 
         set.remove(item);
         int size = set.size();
         System.out.println("size =" + set.size()); 
 
+        // iterate set
         for(Integer elem: set){
             System.out.println("for elem:=" + elem); 
         }
+
+        // set to array
+        Integer[] array = (Integer[]) set.toArray(new Integer[set.size()]);
+        for(Integer n: array){
+            System.out.println("n=:" + n);
+        }
+
         Iterator<Integer> iterator = set.iterator();
         while(iterator.hasNext()){
             System.out.println("Iterator elem:=" + iterator.next()); 
         }
 
+        List<String> list1 = new ArrayList<String>();
+        List<String> list2 = new LinkedList<String>();
+        List<String> list3 = new Stack<String>();
+        List<String> list4 = new Vector<String>();
+        Queue<String> queue = new ArrayList<String>();
+        Queue<String> queue2 = new PriorityQueue<String>();
         //]
     }
 }

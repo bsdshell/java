@@ -20,7 +20,63 @@ public class ExcelRowNumber
         ExcelSheetRowNumberDirect(1);
         System.out.println("================");
         test2();
+        test3();
+        test4();
+        test5();
+        test6();
+        test7();
     }
+    public static void test5()
+    {
+        System.out.println("test5");
+        String prefix = "";
+        int nBits = 1;
+        int count = 0;
+        int height = 1;
+        nBitsBinaryString("", nBits, count, height);
+    } 
+    public static void test6()
+    {
+        System.out.println("test6");
+        String prefix = "";
+        int nBits = 2;
+        int count = 0;
+        int height = 2;
+        nBitsBinaryString("", nBits, count, height);
+    } 
+    public static void test7()
+    {
+        System.out.println("test7");
+        String prefix = "";
+        int nBits = 3;
+        int count = 0;
+        int height = 4;
+        nBitsBinaryString("", nBits, count, height);
+    } 
+
+    public static void nBitsBinaryString(String prefix, int nBits, int count, int height){
+        if(count == nBits && height == 0)
+            System.out.println(prefix);
+        else if(height > 0) 
+        {
+           nBitsBinaryString(prefix + "0", nBits, count, height-1); 
+           nBitsBinaryString(prefix + "1", nBits, count+1, height-1); 
+        }
+    }
+    /*
+    public static void permrepeating(String str, String permStr, int k, int h){
+        int len = array.length;
+        if(permStr.length() == k){
+            System.out.println(permStr);
+        }
+        else{
+            for(int i=0; i<len; i++){
+                String s = str.charAt(i) + "";     
+                permrepeating(str, permStr + s, k, h+1);
+            }
+        }
+    }
+    */
     public static void test1()
     {
     }
@@ -28,7 +84,77 @@ public class ExcelRowNumber
     {
         ExcelSheetRowNumberDirect(1000000);
     }
+    public static void test3() {
+        int n = ExcelSheetStringToInteger("A");
+        System.out.println("A=" + n);
 
+        n = ExcelSheetStringToInteger("Z");
+        System.out.println("Z=" + n);
+
+
+        n = ExcelSheetStringToInteger("AA");
+        System.out.println("AA=" + n);
+        n = ExcelSheetStringToInteger("AB");
+        System.out.println("AB=" + n);
+    }
+
+    public static void test4() {
+        String str = ExcelSheetIntergeToString(1);
+        System.out.println("1=" + str);
+
+        str = ExcelSheetIntergeToString(2);
+        System.out.println("2=" + str);
+
+        str = ExcelSheetIntergeToString(26);
+        System.out.println("26=" + str);
+
+        str = ExcelSheetIntergeToString(28);
+        System.out.println("28=" + str);
+    }
+
+    // 1 -> 0 -> 'A'
+    // 2 -> 1 -> 'B'
+    // 3 -> 2 -> 'C'
+    // 26->25 -> 'Z'
+    // 27->26 -> 'AA'
+    
+    public static String ExcelSheetIntergeToString(int n){
+        String ret = "";
+        char[] array = new char[26];
+        for(int i=0; i<26; i++)
+            array[i] = (char)((int)'A' + i);
+
+        if( n-1 == 0)
+            ret = array[n-1] + "";
+        else{
+            while(n > 0){
+                int rem = (n-1) % 26;
+                n = (n-1) / 26;
+                ret = (char)array[rem] + "" + ret;
+            }
+        }
+        return ret;
+    }
+    // 'A' -> 0 -> 1
+    // 'B' -> 1 -> 2
+    // 'C' -> 2
+    // 'Z' -> 25
+    // 'AA'-> 26 ->27
+    // (a % m) = x 
+    // 1 % m = y
+    // (a + 1) % m  = x + y
+    //  
+    public static int ExcelSheetStringToInteger(String str){
+        int sum = 0;
+        if(str != null){
+            int len = str.length();
+            for(int i=0; i<len; i++){
+                int n = str.charAt(len-1-i) - 'A' + 1;
+                sum += (int)Math.pow(26, i)*n;
+            }
+        }
+        return sum;
+    }
 
     //Calculate the excel sheet row number directly
     //   s = 26^1 + 26^2 + 26^3 + ... + 26^k

@@ -51,6 +51,11 @@ class BST
 			}
 		}
 	}
+    public void OneQueue(Node curr){
+        if(curr != null){
+            Queue<Node> q = new LinkedList<Node>();       
+        }
+    }
 	public void Inorder(Node cur)
 	{
 		if(cur != null)
@@ -188,6 +193,8 @@ class BinarySearchTree
 		System.out.println(equalBinaryTree(b.getRoot(), b1.getRoot()));
 		System.out.println(isBST(b1.getRoot()));
 		*/
+        test1();
+        test2();
 	}
 	public static boolean isBST(Node r)
 	{
@@ -275,4 +282,53 @@ class BinarySearchTree
 		}
 		return false;
 	}
+    // 10 5 1_ _ 6_ _ 14 11 _
+    // 10 _ _
+    // 10 5_ _ 12_ _
+    // int[] k = new int[1];
+	public static Node generateBinaryTree(Node r, String[] list, int[] k) {
+        if(k[0] < list.length && list[k[0]] != "_"){
+            if(r == null)
+                r = new Node(Integer.parseInt(list[k[0]]));
+            k[0]++;
+            r.left = generateBinaryTree(r.left, list, k);
+            k[0]++;
+            r.right = generateBinaryTree(r.right, list, k);
+            return r;
+        }
+        return null;
+    }
+    
+    public static void test2()
+    {
+        System.out.println("test2"); 
+        String[] list = {
+            "10",
+            "8",
+            "_",
+            "_",
+            "12",
+            "_",
+            "19"
+        };
+        Node r = null;
+        int[] k= new int[1];
+        k[0] = 0;
+        Node root = generateBinaryTree(r, list, k);
+        Inorder(root);
+    } 
+    public static void test1()
+    {
+        System.out.println("test1"); 
+        String[] list = {
+            "10",
+            "_",
+            "_"
+        };
+        Node r = null;
+        int[] k= new int[1];
+        k[0] = 0;
+        Node root = generateBinaryTree(r, list, k);
+        Inorder(root);
+    } 
 }
