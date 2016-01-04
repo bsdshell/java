@@ -1,137 +1,8 @@
 import java.io.*;
 import java.lang.String;
 import java.util.*;
+import Lib.*;
 
-class Node
-{
-	public Node left;
-	public Node right;
-	public int data;
-	public Node(int n)
-	{ data = n; left = null; right = null; }
-	public Node getLeft()
-	{ return left; }
-	public Node getRight()
-	{ return right; }
-	public void setLeft(Node l)
-	{ left = l;}
-	public void setRight(Node r)
-	{ right = r;}
-}
-
-class BST
-{
-	Node root;
-	public BST()
-	{ root = null;};
-	public void Insert(int n)
-	{
-		if(root == null)
-		{ root = new Node(n); }
-		else
-		{ 
-			Node cur = root;
-			boolean end = false;
-			while(cur != null && !end)
-			{
-				if(n < cur.data)
-				{ 
-					if(cur.left == null)
-					{ cur.left = new Node(n); end = true; }
-					else 
-						cur = cur.left;
-				}
-				else 
-				{
-					if(cur.right == null)
-					{ cur.right = new Node(n); end = true; }
-					else
-						cur = cur.right;
-				}
-			}
-		}
-	}
-    public void OneQueue(Node curr){
-        if(curr != null){
-            Queue<Node> q = new LinkedList<Node>();       
-        }
-    }
-	public void Inorder(Node cur)
-	{
-		if(cur != null)
-		{
-			Inorder(cur.left);
-			System.out.print(cur.data + " ");
-			Inorder(cur.right);
-		}
-	}
-	public boolean Find(int n)
-	{
-		Node cur = root;
-		boolean ret = false;
-		if(cur != null)
-		{
-			if(n < cur.data)
-				cur = cur.left;
-			else if(n > cur.data)
-				cur = cur.right;
-			else
-				ret = true;
-		}
-		return ret;
-	}
-	public boolean findSum(Node r, int n)
-	{
-		boolean ret = false;
-		if(r == null)
-		{ 
-			if(n == 0)
-				ret = true;
-		}
-		else if(r != null)
-		{
-			boolean bl = findSum(r.left, n - r.data);
-			boolean br = findSum(r.right, n - r.data);
-			ret = (bl || br);
-		}
-		return ret;
-	}
-	
-
-	public void LevelOrder()
-	{
-		Node cur = root;
-		Queue<Node> Q1 = new LinkedList<Node>();
-		Queue<Node> Q2 = new LinkedList<Node>();
-		Q1.offer(cur);
-		while(Q1.peek() != null || Q2.peek() != null)
-		{
-			while(Q1.peek() != null)
-			{
-				Node top = Q1.poll();
-				System.out.print(top.data + " ");
-				if(top.left != null)
-					Q2.offer(top.left);
-				if(top.right != null)
-					Q2.offer(top.right);
-			}
-			System.out.println();
-			while(Q2.peek() != null)
-			{
-				Node top = Q2.poll();
-				
-				System.out.print(top.data + " ");
-				if(top.left != null)
-					Q1.offer(top.left);
-				if(top.right != null)
-					Q1.offer(top.right);
-			}
-			System.out.println();
-		}
-	}
-	public Node getRoot()
-	{ return root;}
-}
 class BinarySearchTree 
 {
 
@@ -139,28 +10,6 @@ class BinarySearchTree
 	public static void main(String args[])
 	{
 		BST b1 = new BST();
-
-		/*
-		Random ran = new Random();
-		int Num=10;
-		int[] Arr = new int[10];
-		for(int i=0; i<Num; i++)
-			Arr[i] = 0;
-		for(int i=0; i<Num; i++)
-		{
-			int r = ran.nextInt(Num);
-			if(Arr[r] == 0)
-			{
-				System.out.print("[" + r + "]");
-				b.Insert(r);
-				Arr[r] = 1;
-			}
-			else
-				i--;
-		}
-		*/
-
-		
 
 		b1.Insert(15);
 		b1.Insert(12);
@@ -172,33 +21,34 @@ class BinarySearchTree
 		b1.Insert(16);
 		b1.Insert(10);
 		
-		
-		
-
 		int[] Arr = new int[100];
 		int len=0;
 		Node r = b1.getRoot();
-		//printAllPath(r, Arr, len); 
 
 		b1.LevelOrder();
 
 		System.out.println(contain(r, 15));
-		//b.Inorder(r);
 
-		/*			
-		System.out.println();
-		b.LevelOrder();
-		System.out.println();
-
-		System.out.println(equalBinaryTree(b.getRoot(), b1.getRoot()));
-		System.out.println(isBST(b1.getRoot()));
-		*/
         test1();
         test2();
+        test3();
+        test4();
+        test5();
 	}
+
+    public static void kdistance(Node r, int k){
+        if(r != null){
+            if(k == 0)
+                System.out.println(r.data);
+            else{
+                kdistance(r.left, k-1);
+                kdistance(r.right, k-1);
+            }
+        }
+    }
+
 	public static boolean isBST(Node r)
 	{
-
 		if(r == null)
 			return true;
 		else
@@ -298,7 +148,40 @@ class BinarySearchTree
         }
         return null;
     }
-    
+
+    public static void test5()
+    {
+        System.out.println("test5"); 
+        BST b1 = new BST();
+        int k = 2;
+		b1.Insert(15);
+		b1.Insert(5);
+		b1.Insert(20);
+		b1.Insert(30);
+		Node r = b1.getRoot();
+        kdistance(r, k);
+    } 
+    public static void test4()
+    {
+        System.out.println("test4"); 
+        BST b1 = new BST();
+        int k = 1;
+		b1.Insert(15);
+		b1.Insert(5);
+		b1.Insert(20);
+		Node r = b1.getRoot();
+        kdistance(r, k);
+    } 
+    public static void test3()
+    {
+        System.out.println("test3"); 
+        BST b1 = new BST();
+        int k = 0;
+		b1.Insert(15);
+		Node r = b1.getRoot();
+        kdistance(r, k);
+    } 
+
     public static void test2()
     {
         System.out.println("test2"); 

@@ -126,9 +126,9 @@ public class ManhattanProblem
         }
         System.out.println("--ret =" + ret);
     } 
-
+    //[file=manhattan.html title=""
     public static boolean manhattan(int[][] arr, int h, int w, int k, int num){
-        final int isVisited = -1000; 
+        final int visited = -1000; 
         boolean ret0 = false;
         boolean ret1 = false;
         boolean ret2 = false;
@@ -139,11 +139,11 @@ public class ManhattanProblem
 
         if( k == 0){
             ret0 = num == arr[h][w];
-        }else if(arr[h][w] != isVisited){
+        }else if(arr[h][w] != visited){
             int tmp = arr[h][w];
-            arr[h][w] =  isVisited;
+            arr[h][w] =  visited;
             if(w + 1 < width){
-                 arr[h][w] = isVisited;
+                 arr[h][w] = visited;
                  ret1 = manhattan(arr, h, w+1,k-1, num);
                  arr[h][w] = tmp;
                  if(ret1)
@@ -151,7 +151,7 @@ public class ManhattanProblem
              }
 
             if(w - 1 >= 0){
-                 arr[h][w] = isVisited;
+                 arr[h][w] = visited;
                  ret2 = manhattan(arr,  h, w-1,k-1, num);
                  arr[h][w] = tmp;
                  if(ret2)
@@ -174,6 +174,7 @@ public class ManhattanProblem
         }
         return ret0 || ret1 || ret2 || ret3 || ret4;
     }
+    //]
 
     public static void test7()
     {
@@ -219,7 +220,6 @@ public class ManhattanProblem
         Aron.printArray(arr1);  
 
     } 
-    //[file=mergesort1.html title=""
     public static void mergeSort(int[] arr, int lo, int hi){
         if(lo < hi){
             int mid = (lo + hi)/2;
@@ -260,7 +260,6 @@ public class ManhattanProblem
             }
         }
     }
-    //]
     public static void testParition()
     {
         System.out.println("testParition"); 

@@ -1,3 +1,5 @@
+import Lib.*; 
+
 public class Hello
 {
     public static void main(String[] args)
@@ -27,53 +29,16 @@ public class Hello
         test6();
         test7();
     }
-    public static boolean manhattan(int[][] arr, int w, int h, int k, int num){
-        const int isVisited = -1000; 
-        boolean ret1 = false;
-        boolean ret2 = false;
-        boolean ret3 = false;
-        boolean ret4 = false;
-        if(arr[w][h] != isVisited){
-            arr[w][h] =  isVisited;
-            if( k == 0){
-                return num == arr[w][h]
-            }else{
-                if(w + 1 < width){
-                     int tmp = arr[w][h];
-                     arr[w][h] = isVisited;
-                     ret1 = manhattan(arr, w+1, h, k-1))
-                     if(ret1)
-                         return true;
-                     arr[w][h] = tmp;
-                 }
 
-                if(w - 1 >= 0){
-                     int tmp = arr[w][h];
-                     arr[w][h] = isVisited;
-                     ret2 = manhattan(arr, w-1, h, k-1);
-                     if(ret2)
-                         return true;
-                     arr[w][h] = tmp;
-                 }
-
-                if(h - 1 >= 0){
-                     int tmp = arr[w][h];
-                     ret3 = manhattan(arr, w, h-1, k-1);
-                     if(ret3)
-                         return ret3;
-                     arr[w][h] = tmp;
-                 }
-
-                 if(h + 1 < height){
-                     int tmp = arr[w][h];
-                     ret4 = manhattan(arr, w, h+1, k-1);
-                     if(ret4)
-                         return ret4;
-                     arr[w][h] = tmp;
-                 }
+    public static void kdistance(Node r, int k){
+        if(r != null){
+            if(k == 0)
+                System.out.println(r.data);
+            else{
+                kdistance(r.left, k-1);
+                kdistance(r.right, k-1);
             }
         }
-        return ret1 || ret2 || ret3 || ret4;
     }
 
     public static void test7()

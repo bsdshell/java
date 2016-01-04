@@ -1,9 +1,4 @@
-class Node
-{
-	public Node left;
-	public Node right;
-	public int data;
-}
+
 
 public class CoinChange 
 {
@@ -23,15 +18,15 @@ public class CoinChange
         */
         //test13();
         //test14();
-        /*
+        
         test20();
         test7();
         test9();
         test20();
         test21();
         test22();
-        */
-        test23();
+        
+        //test23();
     }
 
     
@@ -39,7 +34,7 @@ public class CoinChange
     public static int[][] miniCoinDynamic(int[] coin, int sum)
     {
         int len = coin.length;
-        int[][] array = init(len, sum+1);
+        int[][] array = init(len, sum);
 
         for(int i=0; i<len; i++)
         {
@@ -47,32 +42,33 @@ public class CoinChange
             {
                 if( s - coin[i] >= 0)
                 {
-                        int min = Integer.MAX_VALUE;
-                        for(int k=0; k <=i; k++) 
-                            min = Math.min(min, array[k][s-coin[i]]);
-                        array[i][s] = min == Integer.MAX_VALUE ? min: min + 1; 
+                    int min = Integer.MAX_VALUE;
+                    for(int k=0; k <=i; k++)
+                        min = Math.min(min, array[k][s-coin[i]]);
+                    array[i][s] = min == Integer.MAX_VALUE ? min: min + 1;
                 }
             }
         }
 
         // find the mini value on the most right column
         int min = Integer.MAX_VALUE;
-        for(int k=0; k <len; k++) 
+        for(int k=0; k <len; k++)
             min = Math.min(min, array[k][sum]);
-        array[len-1][sum] = min; 
+        array[len-1][sum] = min;
 
         return array;
     }
-    public static int[][] init(int width, int height)
+
+    public static int[][] init(int height, int width)
     {
-        int[][] array = new int[width][height];
+        int[][] array = new int[height][width+1];
         for(int i=0; i<height; i++)
         {
             for(int j=0; j<width+1; j++)
             {
                 if(j == 0)
                     array[i][j] = 0;
-                else 
+                else
                     array[i][j] = Integer.MAX_VALUE;
             }
         }
@@ -113,19 +109,6 @@ public class CoinChange
         }
     }
 
-    public static int height(Node node)
-    {
-        if(node != null)
-        {
-            int l = 0, r = 0;
-            if(node.left != null)
-                l = height(node.left) + 1;
-            if(node.right != null)
-                r = height(node.right) + 1;
-            return Math.max(l, r);
-        }
-        return 0;
-    }
     public static int miniCointWithPerm(int[] coin, int s)
     {
         if(s == 0)
@@ -433,6 +416,22 @@ public class CoinChange
         System.out.println();
     }
     
+    public static void test9()
+    {
+        System.out.println("test9()");
+        final int Num = 10;
+        int[] coin = new int[Num];
+
+        for(int i=0; i<Num; i++)
+            coin[i] = 3+i;  
+
+        int s = 150;
+        int[][] table = miniCoinDynamic(coin, s);
+        int row = table.length;
+        int col = table[0].length;
+        System.out.println("min=" + table[row-1][col-1]);
+    }
+
     public static void test10()
     {
         System.out.println("test10()");
@@ -514,22 +513,8 @@ public class CoinChange
         System.out.println("min="+min);
         System.out.println();
     }
-    public static void test9()
-    {
-        System.out.println("test9()");
-        final int Num = 1000;
-        int[] coin = new int[Num];
 
-        for(int i=0; i<Num; i++)
-            coin[i] = 1+i;  
-
-        int s = 1500;
-        int[][] table = miniCoinDynamic(coin, s);
-        int row = table.length;
-        int col = table[0].length;
-        System.out.println("min=" + table[row-1][col-1]);
-    }
-
+    
     public static void test20()
     {
         System.out.println("test20()");
