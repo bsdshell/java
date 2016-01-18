@@ -2,43 +2,72 @@ public class KthMedian
 {
     public static void main(String[] args)
     {
-        System.out.println("Hello World!");
+       test1(); 
+       test2(); 
+       test3(); 
+       test4(); 
+    }
+    public static void test1()
+    {
+        System.out.println("test1");
         int[] array = {1, 4, 2, 5, 6};
         int lo = 0, hi = array.length-1;
         int k=5;
         int median = modifiedQuickSort(array, lo, hi, k);
         System.out.println("median=["+median+"]");
-    }
-    //Find the kth median element in a unsorted array
+        System.out.println(array[median] == 6);
+    } 
+    public static void test2()
+    {
+        System.out.println("test2");
+        int[] array = {1, 4};
+        int lo = 0, hi = array.length-1;
+        int k=1;
+        int median = modifiedQuickSort(array, lo, hi, k);
+        System.out.println("median=["+median+"]");
+        System.out.println(array[median] == 1);
+    } 
+    public static void test3()
+    {
+        System.out.println("test3");
+        int[] array = {1};
+        int lo = 0, hi = array.length-1;
+        int k=1;
+        int median = modifiedQuickSort(array, lo, hi, k);
+        System.out.println("median=["+median+"]");
+        System.out.println(array[median] == 1);
+    } 
+    public static void test4()
+    {
+        System.out.println("test4");
+        int[] array = {2, 0, 1};
+        int lo = 0, hi = array.length-1;
+        int k=2;
+        int median = modifiedQuickSort(array, lo, hi, k);
+        System.out.println("median=["+median+"]");
+        System.out.println(array[median] == 1);
+    } 
 
+    //Find the kth median element in a unsorted array
     //Return index for the kth smaller element
-    //Otherwise return -1 if k is invalid  
+    //Otherwise return -1
     public static int modifiedQuickSort(int[] array, int lo, int hi, int k)
     {
-        //invalid kth
-        if(k > (hi-lo + 1))
-            return -1;
-
-        if(lo == hi)
+        if(k <= hi - lo + 1) 
         {
-            //only one element
-            //base case for recursion
-            if((hi-lo+1) == k)
+            if(hi == lo && k == 1)
                 return lo;
-            else 
-                return -1;
-        }
-        else if(lo < hi)
-        {
-            int pindex = partition(array, lo, hi);
-            int leftLen = pindex - lo;
-            int rightLen = hi - pindex;
-            if(k < leftLen + 1) 
-                return modifiedQuickSort(array, lo, pindex-1, k);
-            else if(k > leftLen + 1)
-                return modifiedQuickSort(array, pindex+1, hi, k - (leftLen+1));
-            else 
-                return pindex;
+            else{
+                int pindex = partition(array, lo, hi);
+                int leftLen = pindex - lo;
+                int rightLen = hi - pindex;
+                if(pindex + 1 > k) 
+                    return modifiedQuickSort(array, lo, pindex-1, k);
+                else if(pindex + 1 < k)
+                    return modifiedQuickSort(array, pindex+1, hi, k - (leftLen+1));
+                else 
+                    return pindex;
+            }
         }
         return -1;
     }
@@ -47,7 +76,7 @@ public class KthMedian
     //partition an array to two parts: left_array < pivot < right_array
     public static int partition(int[] array, int lo, int hi)
     {
-        int big = lo;
+        int top = lo;
         if(array != null)
         {
             int pivot = array[hi];
@@ -55,13 +84,13 @@ public class KthMedian
             {
                 if(array[i] < pivot)
                 {
-                    swap(array, i, big);
-                    big++;
+                    swap(array, i, top);
+                    top++;
                 }
             }
-            swap(array, big, hi); 
+            swap(array, top, hi); 
         }
-        return big;
+        return top;
     } 
     public static void swap(int[] array, int i, int j)
     {

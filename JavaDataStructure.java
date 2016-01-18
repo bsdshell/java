@@ -16,7 +16,7 @@ public class JavaDataStructure
         System.out.println("Java Data Structure");
 
         //[file=data-structure.html title=""
-        int[] array = {1, 2, 3}; 
+        int[] array     = {1, 2, 3};
         int[][]  array2 = {{1, 2, 3},
                            {4, 5, 6}};
         // ArrayList

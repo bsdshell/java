@@ -1,4 +1,4 @@
-import Lib.*; 
+import Lib.*;
 
 public class Hello
 {
@@ -28,9 +28,58 @@ public class Hello
         test5();
         test6();
         test7();
+        test8();
+        test9();
+    }
+
+    public static void test8()
+    {
+        System.out.println("test8"); 
+        String str = "abcde";
+        int k=0;
+        int p=0;
+        Integer num = new Integer(0);
+        dump(str, k, p, num);
+    } 
+    public static void test9()
+    {
+		BST b1 = new BST();
+		b1.Insert(15);
+		b1.Insert(12);
+        Node prev = null;
+        boolean isbst = isBST(b1.root, prev);
+        System.out.println("isbst=" + isbst);
+
+    } 
+    public static void dump(String str, int k, int p, Integer num){
+        if(k < str.length()){
+            dump(str, k+1, p, num);
+        }
+        else if(k == str.length()){
+            num = new Integer(3); 
+            p = 10;
+        }
+        if(k < str.length())
+            System.out.println("charAt [" + k + "]=" + str.charAt(k));
+        System.out.println("p=" + p + "  num=" + num);
+    }
+
+    public static boolean isBST(Node root, Node prev)
+    {
+        if( root != null)
+        {
+            if(!isBST(root.left, prev))
+                return false;
+            if(prev != null && prev.data >= root.data)
+                return false;
+            if(!isBST(root.right, root))
+                return false;
+        }
+        return true;
     }
 
     public static void kdistance(Node r, int k){
+        
         if(r != null){
             if(k == 0)
                 System.out.println(r.data);

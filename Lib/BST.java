@@ -1,8 +1,9 @@
 package Lib;
+import java.util.*;
 
-class BST
+public class BST
 {
-	Node root;
+	public Node root;
 	public BST()
 	{ root = null;};
 	public void Insert(int n)

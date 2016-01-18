@@ -105,22 +105,59 @@ class MySpiral
         }
     }
 
+    
+//    public void printSpiral4(int[][] array, int height, int width)
+//    {
+//        if(array != null)
+//        {
+//            for(int i=0; i < (width%2==1?width/2+1:width/2); i++)
+//            {
+//                if(width >= height && height - 2*i == 1)
+//                {
+//                    for(int w=i; w < width-i; w++)        
+//                        System.out.println(array[i][w]); 
+//                }
+//                else if(width < height && width - 2*i == 1)
+//                {
+//                    for(int h=i; h < height-i; h++)
+//                        System.out.println(array[h][i]); 
+//                }
+//                else 
+//                {
+//                    for(int w=i; w < width-1-i; w++)        
+//                        System.out.println(array[i][w]); 
+//
+//                    for(int h=i; h < height-1-i; h++)        
+//                        System.out.println(array[h][width - 1 - i]); 
+//
+//                    for(int w=i; w < width-1-i; w++)        
+//                        System.out.println(array[height - 1 - i][width - 1 - w]); 
+//
+//                    for(int h=i; h < height-1-i; h++)        
+//                        System.out.println(array[height - 1 - h][i]); 
+//                }
+//            }
+//        }
+//    }
+
     // assume width > height
     public void printSpiral4(int[][] array, int height, int width)
     {
         if(array != null)
         {
-            for(int i=0; i < (width%2==1?width/2+1:width/2); i++)
+            for(int i=0; i < (height > width? height: width); i++)
             {
                 if(width >= height && height - 2*i == 1)
                 {
                     for(int w=i; w < width-i; w++)        
                         System.out.println(array[i][w]); 
+                    return;
                 }
                 else if(width < height && width - 2*i == 1)
                 {
                     for(int h=i; h < height-i; h++)
                         System.out.println(array[h][i]); 
+                    return;
                 }
                 else 
                 {
@@ -198,10 +235,12 @@ class MySpiral
         int k=0;
         printSpiralRecursion(Arr, height, width, k);
     } 
+
+    
 }
 
 
-class spiral 
+class Spiral 
 {
 	public static void main(String args[])
 	{
@@ -209,5 +248,129 @@ class spiral
         spiral.test1();
         spiral.test2();
         spiral.test3();
+
+        test1();
+        test2();
+        test3();
+        test4();
+        test5();
+        test6();
+        test7();
+
     }
+    public static void test1()
+    {
+         System.out.println("test1");
+        int[][] array = {
+                        {1,2,3}
+                        };
+        int k=0;
+        spiralArray(array, k);
+    } 
+    public static void test2()
+    {
+         System.out.println("test1");
+        int[][] array = {
+                        {1,2,3},
+                        {4,5,6}
+                        };
+        int k=0;
+        spiralArray(array, k);
+    } 
+
+    public static void test3()
+    {
+         System.out.println("test3");
+        int[][] array = {
+                        {1,2,3},
+                        {4,5,6},
+                        {7,8,9},
+                        {10,11,12}
+                        };
+        int k=0;
+        spiralArray(array, k);
+    } 
+
+    public static void test4()
+    {
+         System.out.println("test4");
+        int[][] array = {
+                        {1}
+                        };
+        int k=0;
+        spiralArray(array, k);
+    } 
+    public static void test5()
+    {
+         System.out.println("test5");
+        int[][] array = {
+                        {1,2,3},
+                        {4,5,6},
+                        {7,8,9},
+                        {10,11,12},
+                        {13,14,15}
+                        };
+        int k=0;
+        spiralArray(array, k);
+    } 
+    public static void test6()
+    {
+         System.out.println("test6");
+        int[][] array = {
+                        {1,2,3,4},
+                        {5,6,7,8}
+                        };
+        Aron.printArray2D(array);
+         System.out.println("-----------------");
+        int k=0;
+        spiralArray(array, k);
+    } 
+    public static void test7()
+    {
+         System.out.println("test7");
+        int[][] array = {
+                        {1,2},
+                        {5,6}
+                        };
+        Aron.printArray2D(array);
+         System.out.println("-----------------");
+        int k=0;
+        spiralArray(array, k);
+    } 
+
+    public static void spiralArray(int[][] array, int k){
+        if(array != null){
+            int hlen= array.length;
+            int wlen= array[0].length;
+            
+            // both size are even
+            if(k < hlen/2 && k < wlen/2){
+
+                // one or two side are odd
+                if(hlen - 2*k == 1){
+                    for(int i=k; i<wlen-k; i++){
+                        System.out.println(array[k][i]);
+                    }
+                }else if(wlen -2*k ==1){
+                    for(int i=k; i<hlen-k; i++){
+                        System.out.println(array[i][k]);
+                    }
+                }else{
+                    for(int w=k; w<wlen-1-k; w++){
+                        System.out.println(array[k][w]);
+                    }
+                    for(int h=k; h<hlen-1-k; h++){
+                        System.out.println(array[h][wlen-1-k]);
+                    }
+                    for(int w=k; w<wlen-1-k; w++){
+                        System.out.println(array[hlen-1-k][wlen-1-w]);
+                    }
+                    for(int h=k; h<hlen-1-k; h++){
+                        System.out.println(array[hlen-1-h][k]);
+                    }
+                    spiralArray(array, k+1);
+                }
+            }
+        }
+      }
 }

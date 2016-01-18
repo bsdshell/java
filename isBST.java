@@ -121,9 +121,7 @@ class isBST
 	public static Node prev = null;
 	public static boolean isBST(Node r)
 	{
-		if(r == null)
-			return true;
-		else
+		if(r != null)
 		{
 			if(!isBST(r.left))
 				return false;
