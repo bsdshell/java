@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.*;
-public class ManhattanProblem 
+public class Solution 
 {
     public static void main(String[] args)
     {
@@ -17,7 +17,8 @@ public class ManhattanProblem
             System.out.println();
         }
 
-        test1();
+        //test1();
+        readFileManhattan();
 
 //        test8();
 //        test9();
@@ -29,8 +30,8 @@ public class ManhattanProblem
         if(array2d != null){
             int len = array2d.length;
             for(int k=0; k<len/2; k++){
-                int[] tmp = new int[len-2*k];
-                for(int i=k; i<len-1-k; i++){
+                int[] tmp = new int[len];
+                for(int i=k; i<len-k; i++){
                     tmp[i] = array2d[k][i];
                 }
 
@@ -46,8 +47,8 @@ public class ManhattanProblem
                     array2d[i+1][len-1-k] = array2d[i][len-1-k];
                 }
 
-                for(int i=len-1-k-1; i>=0; i--){
-                    array2d[k][i+1] = array[k][i];
+                for(int i=len-1-k-1; i>=k; i--){
+                    array2d[k][i+1] = tmp[i];
                 }
             }
         }
@@ -55,23 +56,90 @@ public class ManhattanProblem
     public static void test1()
     {
         int[][] array2d = readFile();
-        int len = array2d.length;
-        for(int k=0; k<len; k++){
-            for(int j=0; j<len; j++){
-                System.out.print("[" + array2d[k][j] + "] ");
-            }
+        if( array2d != null){
+            int len = array2d.length;
+            for(int k=0; k<len; k++){
+                for(int j=0; j<len; j++){
+                    System.out.print("[" + array2d[k][j] + "] ");
+                }
+                System.out.println();
+            } 
             System.out.println();
-        } 
-        System.out.println();
 
-        rotateArray(array2d);
-        for(int k=0; k<len; k++){
-            for(int j=0; j<len; j++){
-                System.out.print("[" + array2d[k][j] + "] ");
+            rotateArray(array2d);
+            for(int k=0; k<len; k++){
+                for(int j=0; j<len; j++){
+                    System.out.print("[" + array2d[k][j] + "] ");
+                }
+                System.out.println();
+            } 
+        }
+    } 
+
+    public static int[][] readFileManhattan(){
+        int[][] array2d = null;
+        int height = 0;
+        int width = 0;
+        int k = 0;
+        try {
+            BufferedReader bufferReader = new BufferedReader(new InputStreamReader(System.in));
+            int countLine = 1;
+
+            String line = null;
+            int h = 0;
+            while((line = bufferReader.readLine()) != null){
+                String[] array = line.split("\\s+");
+                if(countLine == 1){
+                    if(array.length > 0){
+                        height = Integer.parseInt(array[0]);
+                    }
+                } else if(countLine > 1 && countLine <= height + 1){
+
+                    if(countLine == 2){
+                        width = array.length;
+                        array2d  = new int[height][width];
+                    }
+                    for(int i=0; i<width; i++){
+                        array2d[h][i] = Integer.parseInt(array[i]);        
+                    }
+                    h++;
+                }
+                else if(countLine == height+2) {
+                    k = Integer.parseInt(array[0]);
+                }
+                countLine++;
+            } 
+        }
+        catch (Exception e) {
+        }
+
+        for(int j=0; j<height; j++){
+            for(int i=0; i<width; i++){
+                System.out.print("[" + array2d[j][i] + "] ");
             }
             System.out.println();
         } 
-    } 
+
+        System.out.print("k=[" + k + "] ");
+        System.out.print("height=[" + height + "] ");
+        System.out.print("width=[" + width + "] ");
+
+        boolean ret = false; 
+        for(int h=0; h<height && !ret; h++){ 
+            for(int w=0; w<width && !ret; w++){
+                int num = array2d[h][w];
+                ret = manhattan(array2d, h, w, k, num); 
+                System.out.println("ret =" + ret);
+            }
+        }
+        if(ret)
+            System.out.println("YES");
+        else
+            System.out.println("NO");
+
+        return array2d;
+    }
+
 
     public static int[][] readFile(){
         int[][] array2d = null;
@@ -82,7 +150,7 @@ public class ManhattanProblem
             String line = null;
             int row = 0;
             while((line = bufferReader.readLine()) != null){
-                String[] array = line.split(" ");
+                String[] array = line.split("\\s+");
                 if(count == 0){
                     if(array.length > 0){
                         numRow = Integer.parseInt(array[0]);
@@ -104,6 +172,9 @@ public class ManhattanProblem
             }
         } catch (Exception e) {
         }
+
+            
+
         return array2d;
     }
 
@@ -202,7 +273,7 @@ public class ManhattanProblem
         }
         System.out.println("--ret =" + ret);
     } 
-    //[file=manhattan.html title=""
+
     public static boolean manhattan(int[][] arr, int h, int w, int k, int num){
         final int visited = -1000; 
         boolean ret0 = false;
