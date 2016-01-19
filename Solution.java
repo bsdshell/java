@@ -18,7 +18,7 @@ public class Solution
         }
 
         //test1();
-        readFileManhattan();
+        manhattanSolution();
 
 //        test8();
 //        test9();
@@ -76,7 +76,7 @@ public class Solution
         }
     } 
 
-    public static void readFileManhattan(){
+    public static void manhattanSolution(){
         int[][] array2d = null;
         int height = 0;
         int width = 0;
@@ -125,7 +125,7 @@ public class Solution
             for(int h=0; h<height && !ret; h++){ 
                 for(int w=0; w<width && !ret; w++){
                     int num = array2d[h][w];
-                    ret = manhattan(array2d, h, w, k, num); 
+                    ret = manhattanDist(array2d, h, w, k, num); 
                 }
             }
             if(ret)
@@ -187,7 +187,7 @@ public class Solution
         boolean ret = false; 
         for(int h=0; h<height && !ret; h++){ 
             for(int w=0; w<width && !ret; w++){
-                ret = manhattan(arr, h, w, k, arr[h][w]); 
+                ret = manhattanDist(arr, h, w, k, arr[h][w]); 
                 System.out.println("ret =" + ret);
             }
         }
@@ -211,7 +211,7 @@ public class Solution
         for(int h=0; h<height && !ret; h++){ 
             for(int w=0; w<width && !ret; w++){
                 int num = arr[h][w];
-                ret = manhattan(arr, w, h, k, num); 
+                ret = manhattanDist(arr, w, h, k, num); 
                 System.out.println("ret =" + ret);
             }
         }
@@ -235,7 +235,7 @@ public class Solution
         for(int h=0; h<height && !ret; h++){ 
             for(int w=0; w<width && !ret; w++){
                 int num = arr[h][w];
-                ret = manhattan(arr, w, h, k, num); 
+                ret = manhattanDist(arr, w, h, k, num); 
                 System.out.println("ret =" + ret);
             }
         }
@@ -259,14 +259,14 @@ public class Solution
         for(int h=0; h<height && !ret; h++){ 
             for(int w=0; w<width && !ret; w++){
                 int num = arr[h][w];
-                ret = manhattan(arr, w, h, k, num); 
+                ret = manhattanDist(arr, w, h, k, num); 
                 System.out.println("ret =" + ret);
             }
         }
         System.out.println("--ret =" + ret);
     } 
 
-    public static boolean manhattan(int[][] arr, int h, int w, int k, int num){
+    public static boolean manhattanDist(int[][] arr, int h, int w, int k, int num){
         final int visited = -1000; 
         boolean ret0 = false;
         boolean ret1 = false;
@@ -283,7 +283,7 @@ public class Solution
             arr[h][w] =  visited;
             if(w + 1 < width){
                  arr[h][w] = visited;
-                 ret1 = manhattan(arr, h, w+1,k-1, num);
+                 ret1 = manhattanDist(arr, h, w+1,k-1, num);
                  arr[h][w] = tmp;
                  if(ret1)
                      return ret1;
@@ -291,21 +291,21 @@ public class Solution
 
             if(w - 1 >= 0){
                  arr[h][w] = visited;
-                 ret2 = manhattan(arr,  h, w-1,k-1, num);
+                 ret2 = manhattanDist(arr,  h, w-1,k-1, num);
                  arr[h][w] = tmp;
                  if(ret2)
                      return ret2;
              }
 
             if(h - 1 >= 0){
-                 ret3 = manhattan(arr,  h-1, w, k-1, num);
+                 ret3 = manhattanDist(arr,  h-1, w, k-1, num);
                  arr[h][w] = tmp;
                  if(ret3)
                      return ret3;
              }
 
              if(h + 1 < height){
-                 ret4 = manhattan(arr, h+1, w, k-1, num);
+                 ret4 = manhattanDist(arr, h+1, w, k-1, num);
                  arr[h][w] = tmp;
                  if(ret4)
                      return ret4;
