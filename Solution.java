@@ -76,7 +76,7 @@ public class Solution
         }
     } 
 
-    public static int[][] readFileManhattan(){
+    public static void readFileManhattan(){
         int[][] array2d = null;
         int height = 0;
         int width = 0;
@@ -113,31 +113,26 @@ public class Solution
         catch (Exception e) {
         }
 
-        for(int j=0; j<height; j++){
-            for(int i=0; i<width; i++){
-                System.out.print("[" + array2d[j][i] + "] ");
-            }
-            System.out.println();
-        } 
+        if(array2d != null){
+            for(int j=0; j<height; j++){
+                for(int i=0; i<width; i++){
+                    System.out.print("[" + array2d[j][i] + "] ");
+                }
+                System.out.println();
+            } 
 
-        System.out.print("k=[" + k + "] ");
-        System.out.print("height=[" + height + "] ");
-        System.out.print("width=[" + width + "] ");
-
-        boolean ret = false; 
-        for(int h=0; h<height && !ret; h++){ 
-            for(int w=0; w<width && !ret; w++){
-                int num = array2d[h][w];
-                ret = manhattan(array2d, h, w, k, num); 
-                System.out.println("ret =" + ret);
+            boolean ret = false; 
+            for(int h=0; h<height && !ret; h++){ 
+                for(int w=0; w<width && !ret; w++){
+                    int num = array2d[h][w];
+                    ret = manhattan(array2d, h, w, k, num); 
+                }
             }
+            if(ret)
+                System.out.println("YES");
+            else
+                System.out.println("NO");
         }
-        if(ret)
-            System.out.println("YES");
-        else
-            System.out.println("NO");
-
-        return array2d;
     }
 
 
@@ -172,9 +167,6 @@ public class Solution
             }
         } catch (Exception e) {
         }
-
-            
-
         return array2d;
     }
 
