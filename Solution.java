@@ -4,19 +4,6 @@ public class Solution
 {
     public static void main(String[] args)
     {
-        System.out.println("Hello World!");
-        int[][] array2d = new int[3][2];
-
-        System.out.println("array2.length="+array2d.length);
-        System.out.println("array2[0].length="+array2d[0].length);
-
-        for(int i=0; i<3; i++)
-        {
-            for(int j=0; j<2; j++)
-                System.out.print("["+array2d[i][j]+"]");
-            System.out.println();
-        }
-
         //test1();
         manhattanSolution();
 
@@ -114,13 +101,8 @@ public class Solution
         }
 
         if(array2d != null){
-            for(int j=0; j<height; j++){
-                for(int i=0; i<width; i++){
-                    System.out.print("[" + array2d[j][i] + "] ");
-                }
-                System.out.println();
-            } 
 
+            System.out.println("k=" + k);
             boolean ret = false; 
             for(int h=0; h<height && !ret; h++){ 
                 for(int w=0; w<width && !ret; w++){
@@ -128,10 +110,12 @@ public class Solution
                     ret = manhattanDist(array2d, h, w, k, num); 
                 }
             }
-            if(ret)
+            if(ret){
                 System.out.println("YES");
-            else
+            }
+            else{
                 System.out.println("NO");
+            }
         }
     }
 
@@ -183,7 +167,7 @@ public class Solution
         int height = arr.length;
         int width = arr[0].length;
 
-        int k = 3;
+        int k = 5;
         boolean ret = false; 
         for(int h=0; h<height && !ret; h++){ 
             for(int w=0; w<width && !ret; w++){
@@ -267,6 +251,7 @@ public class Solution
     } 
 
     public static boolean manhattanDist(int[][] arr, int h, int w, int k, int num){
+        //final int visited = Integer.MAX_VALUE; 
         final int visited = -1000; 
         boolean ret0 = false;
         boolean ret1 = false;
@@ -277,7 +262,8 @@ public class Solution
         int width = arr[0].length;
 
         if( k == 0){
-            ret0 = num == arr[h][w];
+            if(num == arr[h][w])
+                ret0 = true; 
         }else if(arr[h][w] != visited){
             int tmp = arr[h][w];
             arr[h][w] =  visited;

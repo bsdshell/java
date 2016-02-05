@@ -5,11 +5,17 @@ class LongestPalindrome
 {
 	public static void main(String args[])
 	{
-        String palindrome = longest2("a");
-		System.out.println("Palindrome="+palindrome);
-        test1();
+        longest("abc");
 	}
-	
+    public static void longest(String str){
+        int len = str.length();
+        int newStr = "";
+        for(int i=0; i<len-1; i++){
+            newstr += str.charAt(i);
+        }
+        System.out.println(newStr);
+    }
+
     //complexity O(N^2)
     public static String longest2(String str)
     {
@@ -79,19 +85,30 @@ class LongestPalindrome
                     c = i;
                 }
             }
+            System.out.println("p="+p);
         }
     }
 
     public static void test1()
     {
-        String s = "abccb";
+        String s = "abbcc";
         int d = 0;
         int offset = 0;
         String[] maxArr = new String[1];
         longestPalindromeRecursion(s, d, offset, maxArr);
         System.out.println("s="+s);
-        System.out.println(maxArr[0]);
+        System.out.println("pal=" + maxArr[0]);
     }
+
+    public static void test2()
+    {
+        String s = "abccb";
+        int d = 0;
+        int offset = 0;
+        logestPalindrome(s);
+        System.out.println("s="+s);
+    }
+
 
     public static void longestPalindromeRecursion(String s, int d, int offset, String[] maxArr)
     {
