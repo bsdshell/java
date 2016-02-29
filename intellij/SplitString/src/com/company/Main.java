@@ -9,6 +9,7 @@ public class Main {
         // write your code here
     }
 
+    // searchkey: split string, split string separated by white spaces
     public static List<String> splitString(String str) {
         List<String> list = new ArrayList<String>();
         String tmpStr = "";
