@@ -27,7 +27,17 @@ public class AllUniqueSubPalindrome
         b = isPalindrome("aabbccee");
         System.out.println("aabbccee=" + b);
         System.out.println("================================================");
+
         List<String> list = allSubString("abcdefg");
+        for(String str:list){
+            System.out.println(str);
+        }
+        System.out.println("================================================");
+        List<String> list1 = mySubstring("helloworld", "world");
+        for(String str:list1){
+            System.out.println(str);
+        }
+
     } 
     public static boolean isPalindrome(String str) {
         boolean ret = true; 
@@ -42,6 +52,16 @@ public class AllUniqueSubPalindrome
         return ret;
     }
 
+    public static List<String> mySubstring(String str1, String str2) {
+        List<String> list = new ArrayList<String>();
+        int len1 = str1.length();
+        int len2 = str2.length();
+        for(int i=0; i<len1 - len2 + 1; i++){
+            String str = str1.substring(i, i+len2);
+            list.add(str);
+        }
+        return list;
+    }
     public static List<String> allSubString(String str) {
         List<String> list = new ArrayList<String>(); 
         int len = str.length();
