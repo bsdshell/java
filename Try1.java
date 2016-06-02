@@ -1,127 +1,91 @@
-import Lib.*;
+import java.io.*;
+import java.lang.String;
+import java.util.*;
 
-public class Try1 
-{
-    public static void main(String[] args)
-    {
-        test1();
-        test2();
-        test3();
+
+public class Try1 {
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+        //test1();
         test4();
-        test5();
-        test6();
-        test7();
     }
-    public static void test1()
-    {
-         System.out.println("test1");
-        int[][] array = {
-                        {1,2,3}
-                        };
-        int k=0;
-        spiral(array, k);
-    } 
-    public static void test2()
-    {
-         System.out.println("test1");
-        int[][] array = {
-                        {1,2,3},
-                        {4,5,6}
-                        };
-        int k=0;
-        spiral(array, k);
-    } 
 
-    public static void test3()
-    {
-         System.out.println("test3");
-        int[][] array = {
-                        {1,2,3},
-                        {4,5,6},
-                        {7,8,9},
-                        {10,11,12}
-                        };
-        int k=0;
-        spiral(array, k);
-    } 
+    public static void test1(){
+        List<Integer> list = geneNPrime(10); 
+        Aron.printList(list);
+    }
 
-    public static void test4()
-    {
-         System.out.println("test4");
-        int[][] array = {
-                        {1}
-                        };
-        int k=0;
-        spiral(array, k);
-    } 
-    public static void test5()
-    {
-         System.out.println("test5");
-        int[][] array = {
-                        {1,2,3},
-                        {4,5,6},
-                        {7,8,9},
-                        {10,11,12},
-                        {13,14,15}
-                        };
-        int k=0;
-        spiral(array, k);
-    } 
-    public static void test6()
-    {
-         System.out.println("test6");
-        int[][] array = {
-                        {1,2,3,4},
-                        {5,6,7,8}
-                        };
-        Aron.printArray2D(array);
-         System.out.println("-----------------");
-        int k=0;
-        spiral(array, k);
-    } 
-    public static void test7()
-    {
-         System.out.println("test7");
-        int[][] array = {
-                        {1,2},
-                        {5,6}
-                        };
-        Aron.printArray2D(array);
-         System.out.println("-----------------");
-        int k=0;
-        spiral(array, k);
-    } 
-    // init: k = 0
-    public static void spiral(int[][] array, int k){
-        if(array != null){
-            int hlen= array.length;
-            int wlen= array[0].length;
-            
-            if(k < hlen/2 && k < wlen/2){
-                if(hlen - 2*k == 1){
-                    for(int i=k; i<wlen-k; i++){
-                        System.out.println(array[k][i]);
-                    }
-                }else if(wlen -2*k ==1){
-                    for(int i=k; i<hlen-k; i++){
-                        System.out.println(array[i][k]);
-                    }
-                }else{
-                    for(int w=k; w<wlen-1-k; w++){
-                        System.out.println(array[k][w]);
-                    }
-                    for(int h=k; h<hlen-1-k; h++){
-                        System.out.println(array[h][wlen-1-k]);
-                    }
-                    for(int w=k; w<wlen-1-k; w++){
-                        System.out.println(array[hlen-1-k][wlen-1-w]);
-                    }
-                    for(int h=k; h<hlen-1-k; h++){
-                        System.out.println(array[hlen-1-h][k]);
-                    }
-                    spiral(array, k+1);
-                }
-            }
+    public static void test2(){
+        List<Integer> list = allPrimes(10); 
+        Aron.printList(list);
+    }
+
+    public static void test3(){
+        List<Integer> list = allPrimes(1); 
+        Aron.printList(list);
+    }
+
+    public static void test4(){
+        for(int i=0; i<10; i++){
+            boolean isS = squareNumber(i); 
+            System.out.println("isS[" + i + "]=" + isS);
         }
-  }
+    }
+
+
+    public static boolean squareNumber(int n){
+        int sq = Math.sqrt(n);
+        List<Integer> list = Aron.geneNPrime(n);
+
+        for(int i=0; i<list.size(); i++){
+            Integer p = list.get(i); 
+
+            int count = 0;
+            while(n > 1 && (n % p == 0)) {
+                n = n/p;
+                count++;
+            }
+            if(count > 0 && count % 2 != 0)
+                return false;
+        }
+        return true;
+    }
+
+    public static List<Integer> allPrimes(int num){
+        List<Integer> list = new ArrayList<Integer>();
+        list.add(2);
+
+        for(int n=3; n<=num; n++){
+            boolean isPrime = true;
+            for(int j=0; j<list.size() && isPrime; j++){
+                if(list.get(j) < n && n % list.get(j) == 0)
+                   isPrime = false; 
+            }
+            if(isPrime)
+                list.add(n);
+        }
+        return list;
+    }
+    public static List<Integer> geneNPrime(int numPrime){
+        List<Integer> list = new ArrayList<Integer>();
+        if(numPrime == 0)
+            return list;
+
+        list.add(2);
+        int num = 3;
+        int count = 1;
+        while(count < numPrime ){
+            boolean isPrime = true;
+            for(int i=0; i<list.size() && isPrime; i++){
+                if(num % list.get(i) == 0)
+                    isPrime = false;
+            }    
+            if(isPrime){
+                list.add(num);
+                count++;
+            }
+            num++;
+        }
+        return list;
+    }
 }

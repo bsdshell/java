@@ -11,8 +11,7 @@ import java.util.*;
 //{0,0,0,7,0,2,0,0,0},
 //{0,0,0,0,0,8,0,0,6}
 
-class Sudoku 
-{
+class Sudoku {
     final int gridSize = 9;
     int[][] array;
     int[][] board = {
@@ -57,18 +56,14 @@ class Sudoku
             */
 
     int numEmpty;
-    public Sudoku()
-    {
+    public Sudoku() {
         array = new int[gridSize*gridSize][2];
         numEmpty = findEmptyNumber();
     }
-    public void printBoard()
-    {
+    public void printBoard() {
         System.out.println();
-        for(int c=0; c<gridSize; c++)
-        {
-            for(int r=0; r<gridSize; r++)
-            {
+        for(int c=0; c<gridSize; c++) {
+            for(int r=0; r<gridSize; r++) {
                 System.out.print("["+board[c][r]+"]");
             }
             System.out.println();
@@ -76,20 +71,15 @@ class Sudoku
         System.out.println();
     }
 
-    public void solver(int k)
-    {
-        if(k == numEmpty)
-        {
-            //printBoard();
+    public void solver(int k) {
+        if(k == numEmpty) {
+            printBoard();
         }
-        else
-        {
+        else {
             int c = array[k][0];
             int r = array[k][1];
-            for(int i=1; i<=gridSize; i++)
-            {
-                if(checkColRow(c, r, i) && checkSquare(c, r, i))
-                {
+            for(int i=1; i<=gridSize; i++) {
+                if(checkColRow(c, r, i) && checkSquare(c, r, i)) {
                     board[c][r] = i;
                     solver(k+1);
                     board[c][r] = 0;
@@ -98,10 +88,8 @@ class Sudoku
         }
     }
 
-    public void solver_Graph(int k, int[] arr)
-    {
-        if(k == numEmpty)
-        {
+    public void solver_Graph(int k, int[] arr) {
+        if(k == numEmpty) {
             //printBoard();
             int hc = arr[0]/4;
             int hr = arr[0]%4;
@@ -109,24 +97,21 @@ class Sudoku
             String childLabel = childStr + "[style=filled, fillcolor=green];";
             System.out.println(childLabel);
         }
-        else
-        {
+        else {
             int c = array[k][0];
             int r = array[k][1];
             int ec = arr[0]/4;
             int er = arr[0]%4;
             String parentStr = "\"[" + ec + "," + er + "]\"";
             int parent = arr[0];
-            for(int i=1; i<=gridSize; i++)
-            {
+            for(int i=1; i<=gridSize; i++) {
                 arr[0] += 1;
                 int child = arr[0];
                 int hc = arr[0]/4;
                 int hr = arr[0]%4;
                 String childStr = "\"[" + hc + "," + hr + "]\"";
                 System.out.println(parentStr +"->"+ childStr); 
-                if(checkColRow(c, r, i) && checkSquare(c, r, i))
-                {
+                if(checkColRow(c, r, i) && checkSquare(c, r, i)) {
                     board[c][r] = i;
                     solver_Graph(k+1, arr);
                     board[c][r] = 0;
@@ -136,14 +121,11 @@ class Sudoku
     }
 
 
-    public int findEmptyNumber()
-    {
+    public int findEmptyNumber() {
         int count = 0;
-        for(int c=0; c<gridSize; c++)
-        {
+        for(int c=0; c<gridSize; c++) {
             for(int r=0; r<gridSize; r++)
-                if(board[c][r] == 0)
-                {
+                if(board[c][r] == 0) {
                     array[count][0]=c;
                     array[count][1]=r;
                     count++;
@@ -152,25 +134,20 @@ class Sudoku
         return count;
     }
 
-    public boolean checkColRow(int c, int r, int num)
-    {
-        for(int i=0; i<gridSize; i++)
-        {
+    public boolean checkColRow(int c, int r, int num) {
+        for(int i=0; i<gridSize; i++) {
             if(board[c][i] == num || board[i][r] == num)
                 return false;    
         }
         return true;
     }
     
-    public boolean checkSquare(int col, int row, int num)
-    {
+    public boolean checkSquare(int col, int row, int num) {
         int blockSize = (int)Math.sqrt(gridSize);
         int qcol = col/blockSize;
         int qrow = row/blockSize;
-        for(int c = 0; c<blockSize; c++)
-        {
-            for(int r = 0; r<blockSize; r++)
-            {
+        for(int c = 0; c<blockSize; c++) {
+            for(int r = 0; r<blockSize; r++) {
                 if(board[qcol*blockSize+c][qrow*blockSize+r] == num)
                     return false;
             }
@@ -179,11 +156,8 @@ class Sudoku
     }
 }
 
-public class SudokuSolver 
-{
-    public static void main(String[] args)
-    {
-        //System.out.println("Hello World!");
+public class SudokuSolver {
+    public static void main(String[] args) {
         Sudoku s = new Sudoku();
         StopWatch sw = new StopWatch();
         sw.start();
@@ -197,6 +171,5 @@ public class SudokuSolver
 
         System.out.println("time=" + sw.getElapsedTimeSecs());
         System.out.println("}\n");
-
     }
 }

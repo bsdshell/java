@@ -135,28 +135,6 @@ class PrettyBinPrint
 	{
 		BST b1 = new BST();
 
-		/*
-		Random ran = new Random();
-		int Num=10;
-		int[] Arr = new int[10];
-		for(int i=0; i<Num; i++)
-			Arr[i] = 0;
-		for(int i=0; i<Num; i++)
-		{
-			int r = ran.nextInt(Num);
-			if(Arr[r] == 0)
-			{
-				System.out.print("[" + r + "]");
-				b.Insert(r);
-				Arr[r] = 1;
-			}
-			else
-				i--;
-		}
-		*/
-
-		
-
 		b1.Insert(15);
 		b1.Insert(12);
 		
@@ -168,9 +146,6 @@ class PrettyBinPrint
 		b1.Insert(10);
 		b1.Insert(20);
 		b1.Insert(18);
-		
-		
-		
 
 		int[] Arr = new int[100];
 		int len=0;
@@ -183,16 +158,11 @@ class PrettyBinPrint
         int indent=1;
         prettyPrint(r, indent);
 		System.out.println();
-		//b.Inorder(r);
 
-		/*			
-		System.out.println();
-		b.LevelOrder();
-		System.out.println();
-
-		System.out.println(equalBinaryTree(b.getRoot(), b1.getRoot()));
-		System.out.println(isBST(b1.getRoot()));
-		*/
+		System.out.println("digraph G{");
+        int level = 0;
+        Inorder(r, level);
+		System.out.println("}");
 	}
     public static void prettyPrint(Node r, int indent)
     {
@@ -280,13 +250,19 @@ class PrettyBinPrint
 			return false;
 		return true;
 	}
-	public static void Inorder(Node root)
-	{
-		if(root != null)
-		{
-			Inorder(root.left);
-			System.out.println("data=" + root.data);
-			Inorder(root.right);
+	public static void Inorder(Node root, int level) {
+		if(root != null) {
+			//System.out.println("" + root.data + "[label=" + root.data +"];");
+			System.out.println(root.data);
+            if(root.left != null){
+			    System.out.print("" + root.data + "->");
+            }
+			Inorder(root.left, level+1);
+
+            if(root.right != null){
+			    System.out.print("" + root.data + "->");
+            }
+			Inorder(root.right, level+1);
 		}
 	}
 	public static boolean contain(Node r, int value)

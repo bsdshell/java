@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="zsurface">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../PackageTutorial/classes/com/zsurface" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

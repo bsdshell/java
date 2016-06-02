@@ -97,30 +97,30 @@ class BST
 	public void LevelOrder()
 	{
 		Node cur = root;
-		Queue<Node> Q1 = new LinkedList<Node>();
-		Queue<Node> Q2 = new LinkedList<Node>();
-		Q1.offer(cur);
-		while(Q1.peek() != null || Q2.peek() != null)
+		Queue<Node> q1 = new LinkedList<Node>();
+		Queue<Node> q2 = new LinkedList<Node>();
+		q1.offer(cur);
+		while(q1.peek() != null || q2.peek() != null)
 		{
-			while(Q1.peek() != null)
+			while(q1.peek() != null)
 			{
-				Node top = Q1.poll();
+				Node top = q1.poll();
 				System.out.print(top.data + " ");
 				if(top.left != null)
-					Q2.offer(top.left);
+					q2.offer(top.left);
 				if(top.right != null)
-					Q2.offer(top.right);
+					q2.offer(top.right);
 			}
 			System.out.println();
-			while(Q2.peek() != null)
+			while(q2.peek() != null)
 			{
-				Node top = Q2.poll();
+				Node top = q2.poll();
 				
 				System.out.print(top.data + " ");
 				if(top.left != null)
-					Q1.offer(top.left);
+					q1.offer(top.left);
 				if(top.right != null)
-					Q1.offer(top.right);
+					q1.offer(top.right);
 			}
 			System.out.println();
 		}

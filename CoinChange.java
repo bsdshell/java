@@ -1,4 +1,5 @@
-
+import java.util.HashMap;
+import java.util.Map;
 
 public class CoinChange 
 {
@@ -17,15 +18,19 @@ public class CoinChange
         test12();
         */
         //test13();
-        //test14();
         
+        /*
         test20();
         test7();
         test9();
         test20();
         test21();
         test22();
+        */
+
+        //test2();
         
+        test14();
         //test23();
     }
 
@@ -81,20 +86,16 @@ public class CoinChange
     //coins[k] is in the each change
     //coins[k] is not in the each change 
     //count(coins, k, s) = count(coins, k-1, s) + count(coins, k, s-coins[k]) 
-    public static int count_debug(int[] coin, int s, int k)
-    {
-        if( s < 0)
-        {
+    public static int count_debug(int[] coin, int s, int k) {
+        if( s < 0) {
             System.out.print("<"+s+","+k+">\n");
             return 0;
         }
-        else if( s == 0 ) 
-        {
+        else if( s == 0 ) {
             System.out.print("<"+s+","+k+">\n");
             return 1;
         }
-        else if( s > 0 && k > 0)
-        {
+        else if( s > 0 && k > 0) {
             System.out.print("<"+s+","+k+">->");
             int left = count(coin, s, k-1);
 
@@ -102,8 +103,7 @@ public class CoinChange
             int right= count(coin, s-coin[k-1], k);
             return left + right;
         }
-        else 
-        {
+        else {
             System.out.println();
             return 0;
         }
@@ -125,21 +125,19 @@ public class CoinChange
         }
     }
 
-    //Given coins[k] = {2, 3, 4} and change s = 9 
-    //Count the number of way for coin change 
-    //coins[k] is in the each change
-    //coins[k] is not in the each change 
-    //count(coins, k, s) = count(coins, k-1, s) + count(coins, k, s-coins[k]) 
-    public static int count(int[] coin, int s, int k)
-    {
+    // Given coins[k] = {2, 3, 4} and change s = 9 
+    // Count the number of way for coin change 
+    // coins[k] is in the each change
+    // coins[k] is not in the each change 
+    // count(coins, k, s) = count(coins, k-1, s) + count(coins, k, s-coins[k]) 
+    public static int count(int[] coin, int s, int k) {
         if( s < 0)
             return 0;
         else if( s == 0 ) 
             return 1;
-        else if( s > 0 && k > 0)
-        {
-            int left = count(coin, s, k-1);
+        else if( s > 0 && k > 0) {
             int right= count(coin, s-coin[k-1], k);
+            int left = count(coin, s, k-1); 
             return left + right;
         }
         else 
@@ -240,16 +238,13 @@ public class CoinChange
     //[file=CoinChangeRecursive.html   title="" 
     //Given coin{2, 3, 4} and s = 6
     //Find the minimum number of coins sums up to s 
-    public static int minCount(int[] coin, int s, int k)
-    {
+    public static int minCount(int[] coin, int s, int k) {
         int min = Integer.MAX_VALUE;
         if(s == 0) 
             min = 0; 
-        else if(s > 0)
-        {
+        else if(s > 0) {
             // min(s) = min(s-coin[k]) + 1
-            for(int i=0; i<k; i++)
-            {
+            for(int i=0; i<k; i++) {
                 int childMin = minCount(coin, s-coin[i], k);
                 if(childMin != Integer.MAX_VALUE) 
                     min = Math.min(min, childMin + 1);
@@ -259,6 +254,30 @@ public class CoinChange
     }
     //] 
     
+    //[file=CoinChangeWithHashMap.html   title="" 
+    //Given coin{2, 3, 4} and s = 6
+    //Find the minimum number of coins sums up to s 
+    public static int minCountWithDynamic(int[] coin, int s, int k, Map<Integer, Integer> map) {
+        int min = Integer.MAX_VALUE;
+        if(s == 0) 
+            min = 0; 
+        else if(s > 0) {
+            for(int i=0; i<k; i++) {
+                Integer value = map.get(s-coin[i]);
+                if(value == null){
+                    int childMin = minCountWithDynamic(coin, s-coin[i], k, map);
+                    if(childMin != Integer.MAX_VALUE) 
+                        min = Math.min(min, childMin + 1);
+                }else{
+                    min = Math.min(min, value);    
+                }
+                map.put(s-coin[i], min);
+            }
+        }
+        return min;
+    }
+    //] 
+
     public static int minCount_Graph(int[] coin, int s, int k, int[] arr)
     {
         int min = Integer.MAX_VALUE;
@@ -334,14 +353,14 @@ public class CoinChange
     public static void test2()
     {
         System.out.println("test1()");
-        int[] recoin = {1};
+        int[] recoin = {1, 2};
         int[] dycoin = {1};
         int k = recoin.length;
-        int s = 1;
+        int s = 3;
         int c = count(recoin, s, k);
-        int dc = countdy(dycoin, s, k);
+        //int dc = countdy(dycoin, s, k);
         System.out.println("recursion count=["+c+"]");
-        System.out.println("dynamic   count=["+dc+"]");
+        //System.out.println("dynamic   count=["+dc+"]");
 
     }
 
@@ -489,15 +508,19 @@ public class CoinChange
     public static void test14()
     {
         System.out.println("test14()");
-        final int Num = 20;
+        final int Num = 14;
         int[] coin = new int[Num];
 
         for(int i=0; i<Num; i++)
-            coin[i] = 1+i;  
+            coin[i] = 2+i;  
 
-        int s = 31;
+        int s = 45;
         String count = " ";
-        int min = minCount(coin, s, Num);
+        //int min = minCount(coin, s, Num);
+
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        int min = minCountWithDynamic(coin, s, Num, map);
+
         System.out.println("min="+min);
         System.out.println();
     }
@@ -551,7 +574,7 @@ public class CoinChange
     {
         int[] coin = {1, 2};
         int k = coin.length;
-        int s = 7;
+        int s = 3;
         int[] arr = new int[1];
         arr[0] = 100;
         System.out.println("digraph G {\n");
