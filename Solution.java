@@ -226,8 +226,7 @@ public class Solution
         System.out.println("--ret =" + ret);
     }
 
-    public static void test9()
-    {
+    public static void test9() {
         System.out.println("test9");
         int[][] arr = { 
             {1,3,6},

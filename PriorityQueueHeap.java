@@ -1,5 +1,7 @@
 import java.util.*;
 
+// priority heap compareto compareTo heapify heap
+//[ file=priorityheap.html title=""
 class Contact implements Comparable<Contact> {
     String name;
     String addr;
@@ -31,12 +33,14 @@ public class PriorityQueueHeap {
         PriorityQueue<Contact> miniHeap = new PriorityQueue<Contact>();
         miniHeap.add(new Contact("David", "U.S", 3));
         miniHeap.add(new Contact("John", "U.S", 4));
-        miniHeap.add(new Contact("Johnny", "U.S", 4));
+        miniHeap.add(new Contact("Johnny", "U.S", 2));
         miniHeap.add(new Contact("Nathan", "U.S", 1));
-        miniHeap.add(new Contact("Micheal", "U.S", 6));
 
-        while(!miniHeap.isEmpty()) {
+        int k = 3;
+        while(k > 0) {
             System.out.println(miniHeap.remove().toString());
+            k--;
         }
     }
 }
+//]

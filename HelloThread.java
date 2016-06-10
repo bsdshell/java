@@ -2,6 +2,7 @@ import java.io.*;
 import java.lang.String;
 import java.util.*;
 
+//[file=nonsynthread.html title=""
 public class HelloThread implements Runnable{
     public int num;
     public HelloThread(int num){
@@ -9,6 +10,7 @@ public class HelloThread implements Runnable{
     }
     public void run(){
         for(int i=0; i<10; i++){
+            this.num += 1;
             System.out.println("num=[" + num + "]");
         }
     }
@@ -21,3 +23,4 @@ public class HelloThread implements Runnable{
         }
     }
 }
+//]

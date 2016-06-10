@@ -2,8 +2,7 @@ import java.io.*;
 import java.lang.String;
 import java.util.*;
 
-class Node
-{
+class Node {
 	public Node left;
 	public Node right;
 	public int data;
@@ -24,8 +23,7 @@ class BST
 	Node root;
 	public BST()
 	{ root = null;};
-	public void Insert(int n)
-	{
+	public void insert(int n) {
 		if(root == null)
 		{ root = new Node(n); }
 		else
@@ -60,13 +58,13 @@ class isBST
 	public static void main(String args[])
 	{
 		BST b1 = new BST();
-		b1.Insert(10);
-		b1.Insert(5);
-		b1.Insert(15);
+		b1.insert(10);
+		b1.insert(5);
+		b1.insert(15);
         
-		b1.Insert(17);
-		b1.Insert(199);
-		b1.Insert(16);
+		b1.insert(17);
+		b1.insert(199);
+		b1.insert(16);
         
         Node[] first = new Node[1];
         Node[] second = new Node[1];

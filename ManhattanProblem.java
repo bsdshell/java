@@ -1,9 +1,7 @@
 import java.io.*;
 import java.util.*;
-public class ManhattanProblem 
-{
-    public static void main(String[] args)
-    {
+public class ManhattanProblem {
+    public static void main(String[] args) {
         System.out.println("Hello World!");
         int[][] array2d = new int[3][2];
 
@@ -22,6 +20,9 @@ public class ManhattanProblem
         test10();
         test11();
     }
+    public static boolean man(int[][] arr, int c, int r, ){
+    }
+    
     public static int[][] readFile(){
         int[][] array2d = null;
         try {
@@ -56,9 +57,7 @@ public class ManhattanProblem
         return array2d;
     }
 
-
-    public static void test8()
-    {
+    public static void test8() {
         System.out.println("test8");
         int[][] arr = { 
             {1,3,3},
@@ -80,8 +79,7 @@ public class ManhattanProblem
         System.out.println("--ret =" + ret);
     }
 
-    public static void test11()
-    {
+    public static void test11() {
         System.out.println("test11");
         int[][] arr = { 
             {0,3,1},
@@ -104,8 +102,7 @@ public class ManhattanProblem
         System.out.println("--ret =" + ret);
     }
 
-    public static void test10()
-    {
+    public static void test10() {
         System.out.println("test10");
         int[][] arr = { 
             {1,3,6},
@@ -128,8 +125,7 @@ public class ManhattanProblem
         System.out.println("--ret =" + ret);
     }
 
-    public static void test9()
-    {
+    public static void test9() {
         System.out.println("test9");
         int[][] arr = { 
             {1,3,6},
