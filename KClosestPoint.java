@@ -2,6 +2,7 @@ import java.util.*;
 
 // priority heap compareto compareTo heapify heap
 //[ file=kclosest.html title=""
+// Compile: javac KClosestPoint.java and java KClosestPoint
 // Runtime: (n*logk)
 class Point{
     double x;
