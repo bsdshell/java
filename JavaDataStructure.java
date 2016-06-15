@@ -24,7 +24,7 @@ public class JavaDataStructure
         alist.add("dog");
         alist.add("cat");
 
-        // ArrayList 2D
+        // list of list, ArrayList 2D
         ArrayList<ArrayList<String>> list2d = new ArrayList<ArrayList<String>>();
         list2d.add(alist);
 
@@ -81,7 +81,7 @@ public class JavaDataStructure
         if(map.containsKey(key))
             System.out.println("map contains key=" + key); 
 
-        // List as Value in HashMap
+        // java, init list, java initialize list, List as Value in HashMap
         Map<String, List<String>> mapList = new HashMap<String, List<String>>();
         mapList.put("1", Arrays.asList("dog", "cat", "cow"));
         mapList.put("2", Arrays.asList("C++", "Java", "Haskell"));
@@ -111,7 +111,7 @@ public class JavaDataStructure
         }
 
 
-        // HashSet
+        // iterate set, for set, for hashset, loop set,   HashSet
         Set<Integer> set = new HashSet<Integer>(Arrays.asList(1, 2));
         Integer item = 1;
         if(set.contains(item))
