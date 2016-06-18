@@ -1,6 +1,44 @@
 import java.util.*;
 import java.math.BigInteger;
 
+
+final class Sortkey{
+    //[ file=sortkeyanagram.html title=""
+    //================================================================================ 
+    // java anagram 
+    // Use sort technic to solve anagrams problem 
+    // Use sorted str as key
+    // {dog, god}
+    // dgo->{dog, god}
+    // -------------------------------------------------------------------------------- 
+    static String sortStr(String s) {
+        char[] clist = s.toCharArray();
+        Arrays.sort(clist);
+        return String.valueOf(clist);
+    }
+    static List<String> anagrams(List<String> list, String input) {
+        Map<String, List<String>> map = new HashMap<String, List<String>>();
+
+        if(list != null && input != null) {
+
+            for(String str : list) {
+                String key = sortStr(str);
+                List<String> l = map.get(key);
+                if(l != null) {
+                    l.add(str);
+                    map.put(key, l);
+                } else {
+                    List<String> ll = new ArrayList<String>();
+                    ll.add(str);
+                    map.put(key, ll);
+                }
+            }
+        }
+        return map.get(sortStr(input));
+    }
+    //]
+}
+
 final class Better {
     public  static List<Integer> genePrima(int count) {
         List<Integer> list = new LinkedList<Integer>();
@@ -36,7 +74,7 @@ final class Better {
         }
         return map;
     }
-    public  static Map<BigInteger, List<String>> findAnagram(List<String> list) {
+    public  static Map<BigInteger, List<String>> anagram(List<String> list) {
         Map<Character, BigInteger> map = generate();
         Map<BigInteger, List<String>> wordMap = new HashMap<BigInteger, List<String>>();
         for(String word:list) {
@@ -144,7 +182,7 @@ public class Anagram {
                 add("badcredit");
             }
         };
-        Map<BigInteger, List<String>> wordMap = Better.findAnagram(list);
+        Map<BigInteger, List<String>> wordMap = Better.anagram(list);
         for(BigInteger big: wordMap.keySet()) {
             List<String> wordlist = wordMap.get(big);
             System.out.println(big);
