@@ -4,7 +4,6 @@ import java.util.*;
 
 public class Try99 {
     public static void main(String[] args) {
-        permutation("", "");
         System.out.println("---------------------------------\n"); 
         permutation("", "a");
         System.out.println("---------------------------------\n"); 
