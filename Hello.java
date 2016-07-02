@@ -8,9 +8,15 @@ import classfile.*;
 
 public class Hello {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-        List<String> list = new ArrayList<String>(); 
-        list.add("dog");
-        Aron.printList(list);
+        System.out.println("---------------------------------\n"); 
+        Integer[][] arr = new Integer[10][10];
+        Aron.printArray2D(arr);
+        test0();
+    }
+    static void test0(){
+        System.out.println("---------------------------------\n");
+        SLL s = new SLL();
+        s.append(3);
+        System.out.println("---------------------------------\n");
     }
 }
