@@ -39,6 +39,15 @@ public class Hello {
         test9();
         test00();
         test10();
+        test11();
+        test12();
+        test13();
+        test14();
+        test15();
+        test16();
+        test17();
+        test18();
+        test19();
     }
     static void test00() {
         Aron.beg();
@@ -215,6 +224,155 @@ public class Hello {
         System.out.println("" + str + "[" + isBalance(str) + "]");
         Aron.end();
     }
+    
+    static void test11(){
+        Aron.beg();
+        SingleLinkedList ssl = new SingleLinkedList();
+        ssl.append(4);
+        ssl.append(7);
+        ssl.append(9);
+        Aron.printSLL(ssl.head);
+        SNode h = insertNodeToSortedList(ssl.head, 3);
+        Aron.printSLL(h);
+        Aron.end();
+    }
+
+    static void test12(){
+        Aron.beg();
+        SingleLinkedList ssl = new SingleLinkedList();
+        ssl.append(4);
+        ssl.append(7);
+        ssl.append(9);
+        Aron.printSLL(ssl.head);
+        SNode h = insertNodeToSortedList(ssl.head, 3);
+        h = insertNodeToSortedList(ssl.head, 5);
+        Aron.printSLL(h);
+        Aron.end();
+    }
+
+    static void test13(){
+        Aron.beg();
+        SingleLinkedList ssl = new SingleLinkedList();
+        ssl.append(4);
+        ssl.append(7);
+        ssl.append(9);
+        Aron.printSLL(ssl.head);
+        SNode newHead = insertNodeToSortedList(ssl.head, 15);
+        Aron.printSLL(newHead);
+        Aron.end();
+    }
+
+    static void test14(){
+        Aron.beg();
+        SingleLinkedList s1 = new SingleLinkedList();
+        s1.append(4);
+        s1.append(7);
+        s1.append(9);
+
+        Aron.printSLL(s1.head);
+        System.out.println("---------------------------------\n"); 
+        SingleLinkedList s2 = new SingleLinkedList();
+        s2.append(1);
+        s2.append(6);
+        s2.append(11);
+        
+        Aron.printSLL(s2.head);
+        System.out.println("---------------------------------\n"); 
+
+        SNode head = mergeSortedList(s1.head, s2.head);
+        Aron.printSLL(head);
+        Aron.end();
+    }
+
+    static void test15(){
+        Aron.beg();
+        SingleLinkedList s1 = new SingleLinkedList();
+        s1.append(4);
+
+        Aron.printSLL(s1.head);
+        System.out.println("---------------------------------\n"); 
+        SingleLinkedList s2 = new SingleLinkedList();
+        s2.append(1);
+        
+        Aron.printSLL(s2.head);
+        System.out.println("---------------------------------\n"); 
+
+        SNode head = mergeSortedList(s1.head, s2.head);
+        Aron.printSLL(head);
+        Aron.end();
+    }
+
+    static void test16(){
+        Aron.beg();
+        SingleLinkedList s1 = new SingleLinkedList();
+
+        Aron.printSLL(s1.head);
+        System.out.println("---------------------------------\n"); 
+        SingleLinkedList s2 = new SingleLinkedList();
+        s2.append(1);
+        
+        Aron.printSLL(s2.head);
+        System.out.println("---------------------------------\n"); 
+
+        SNode head = mergeSortedList(s1.head, s2.head);
+        Aron.printSLL(head);
+        Aron.end();
+    }
+
+    static void test17(){
+        Aron.beg();
+        SingleLinkedList s1 = new SingleLinkedList();
+        s1.append(1);
+
+        Aron.printSLL(s1.head);
+        System.out.println("---------------------------------\n"); 
+        SingleLinkedList s2 = new SingleLinkedList();
+        
+        Aron.printSLL(s2.head);
+        System.out.println("---------------------------------\n"); 
+
+        SNode head = mergeSortedList(s1.head, s2.head);
+        Aron.printSLL(head);
+        Aron.end();
+    }
+
+    static void test18(){
+        Aron.beg();
+        SingleLinkedList s1 = new SingleLinkedList();
+        s1.append(1);
+        s1.append(4);
+        s1.append(9);
+
+        Aron.printSLL(s1.head);
+        System.out.println("---------------------------------\n"); 
+        SingleLinkedList s2 = new SingleLinkedList();
+        
+        Aron.printSLL(s2.head);
+        System.out.println("---------------------------------\n"); 
+
+        SNode head = mergeSortedList(s1.head, s2.head);
+        Aron.printSLL(head);
+        Aron.end();
+    }
+    static void test19(){
+        Aron.beg();
+        SingleLinkedList s1 = new SingleLinkedList();
+        s1.append(1);
+        s1.append(4);
+        s1.append(9);
+
+        Aron.printSLL(s1.head);
+        System.out.println("---------------------------------\n"); 
+        SingleLinkedList s2 = new SingleLinkedList();
+        s2.append(4);
+        
+        Aron.printSLL(s2.head);
+        System.out.println("---------------------------------\n"); 
+
+        SNode head = mergeSortedList(s1.head, s2.head);
+        Aron.printSLL(head);
+        Aron.end();
+    }
 
     //[ file=nextnext.html title=""
     public static SNode reverseIte(SNode curr) {
@@ -294,50 +452,113 @@ public class Hello {
         return newHead;
     }
 
-    static boolean isBal(String str, int index){
-        if(str != null && index < str.length()){
-            if(!isBal(str, index + 1))
-                return false;
+//    static boolean isBal(String str, int index){
+//        if(str != null && index < str.length()){
+//            if(!isBal(str, index + 1))
+//                return false;
+//
+//            if(str.charAt(index) == '(' || str.charAt(index) == '[')
+//                return isBal(str, index + 1);
+//            else
+//                return false;
+//
+//            else if(str.charAt(index) == ')'){
+//               if(index - 1 >= 0 && str.charAt(index - 1) == '(') 
+//                   return isBal(str, index + 1);
+//               else
+//                   return false;
+//            }else if(str.charAt(index) == ']'){
+//               if(index - 1 >= 0 && str.charAt(index - 1) == '[') 
+//                   return isBal(str, index + 1);
+//               else
+//                   return false;
+//            }
+//        }
+//        return true;
+//    }
 
-            if(str.charAt(index) == '(' || str.charAt(index) == '[')
-                return isBal(str, index + 1);
-            else
-                return false;
+    static SNode mergeSortedList(SNode head1, SNode head2){
+        if(head1 == null)
+            return head2;
+        if(head2 == null)
+            return head1;
+        SNode curr1 = head1;
+        SNode curr2 = head2;
+        SNode curr = null; 
+        SNode head = null;
 
-            else if(str.charAt(index) == ')'){
-               if(index - 1 >= 0 && str.charAt(index - 1) == '(') 
-                   return isBal(str, index + 1);
-               else
-                   return false;
-            }else if(str.charAt(index) == ']'){
-               if(index - 1 >= 0 && str.charAt(index - 1) == '[') 
-                   return isBal(str, index + 1);
-               else
-                   return false;
-            }
-        }
-        return true;
-    }
+        while(curr1 != null || curr2 != null){
+            if(curr1 == null){
+                if(curr != null)
+                    curr.next = new SNode(curr2.data);
+                else
+                    head = curr = new SNode(curr2.data);
 
-    static int divide(Integer[] arr){
-        int big = -1;
-        if(arr != null){
-            big = 0;
-            int len = arr.length;
-            if(len > 1){
-                int pivot = arr[len-1];
-                big = 0;
-                for(int i=0; i<len; i++){
-                    if(arr[i] <= pivot){
-                        swap(arr, i, big)
-                        if(i != len-1)
-                            big++;
+                curr2 = curr2.next;
+
+            }else if(curr2 == null){
+                if(curr != null)
+                    curr.next = new SNode(curr1.data);
+                else
+                    head = curr = new SNode(curr1.data);
+
+                curr1 = curr1.next;
+            }else{
+                if(curr1.data < curr2.data){
+                    if(curr == null){
+                        head = curr = new SNode(curr1.data);
+                    }else{
+                        curr.next = new SNode(curr1.data);
                     }
+
+                    curr1 = curr1.next;
+                }else{
+                    if(curr == null)
+                        head = curr = new SNode(curr2.data);
+                    else{
+                        curr.next = new SNode(curr2.data);
+                    }
+
+                    curr2 = curr2.next;
                 }
             }
+
+            if(curr.next != null)
+                curr = curr.next;
         }
-        return big;
+        return head;
     }
+
+    static SNode insertNodeToSortedList(SNode head, int num){
+       SNode curr = head; 
+       SNode prev = null;
+
+       while(curr != null){
+           if(curr.data < num){
+               prev = curr;
+               if(curr.next == null){
+                   prev.next = new SNode(num);
+                   return head;
+               }
+           }else{
+               if(prev != null){
+                   prev.next = new SNode(num);
+                   prev.next.next = curr;
+                   return head;
+               }else{
+                   // first node
+                   SNode node = new SNode(num);
+                   node.next = curr;
+                   head = node;
+                   return head;
+               }
+           }
+           curr = curr.next;
+       }
+       return head;
+
+    }
+
     static boolean isBalance(String str) {
         Stack<String> stack = new Stack<String>();
         if(str != null) {
