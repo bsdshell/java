@@ -319,6 +319,25 @@ public class Hello {
         return true;
     }
 
+    static int divide(Integer[] arr){
+        int big = -1;
+        if(arr != null){
+            big = 0;
+            int len = arr.length;
+            if(len > 1){
+                int pivot = arr[len-1];
+                big = 0;
+                for(int i=0; i<len; i++){
+                    if(arr[i] <= pivot){
+                        swap(arr, i, big)
+                        if(i != len-1)
+                            big++;
+                    }
+                }
+            }
+        }
+        return big;
+    }
     static boolean isBalance(String str) {
         Stack<String> stack = new Stack<String>();
         if(str != null) {
