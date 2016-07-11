@@ -99,6 +99,14 @@ public class JavaDataStructure
             System.out.println("contains key");
         }
 
+        // hashtable
+        Map<String, String> table = new Hashtable<String, String>();
+        table.put("key", "value");
+        table.put("nonull", "nonull");
+        for(Map.Entry<String, String> entry : table.entrySet()){
+            System.out.println("[" + entry.getKey() + " " + entry.getValue() + "]");
+        }
+
         List<String> list = mapList.get("key");
         int size = mapList.size();
         if(mapList.containsValue("1")){
