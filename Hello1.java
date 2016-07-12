@@ -5,8 +5,48 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.*;
 import java.lang.Math;
+import java.io.*;
 
 import classfile.*;
+
+class MyNode{
+    public int data;
+    List<MyNode> list;
+    public MyNode(int data){
+        this.data = data;
+        list = new ArrayList<MyNode>();
+    }
+}
+
+class MyTree{
+    public MyNode root;
+    public MyTree(){
+    }
+    public void create(){
+        root = new MyNode(1);
+        root.list.add(new MyNode(2));
+        root.list.add(new MyNode(3));
+
+        MyNode branch = new MyNode(10);
+        branch.list.add(new MyNode(11));
+        branch.list.add(new MyNode(12));
+        root.list.add(branch);
+    }
+    public void print(MyNode node){
+        //Aron.beg();
+        if(node != null){
+            for(MyNode n : node.list){
+                System.out.println("root[" + node.data + "]");
+                print(n);
+                System.out.println("[" + n.data + "]");
+            }
+        }
+//        if(node == root){
+//            System.out.println("[" + node.data + "]");
+//        }
+        //Aron.end();
+    }
+}
 
 public class Hello1{
     public static void main(String[] args){
@@ -22,6 +62,9 @@ public class Hello1{
         test9();
         test10();
         test11();
+        test12();
+        test13();
+        test14();
     }
     public static int height(Node root){
         return root == null ? -1 : Math.max(height(root.left), height(root.right)) + 1;
@@ -257,5 +300,97 @@ public class Hello1{
             System.out.println("s[" + second + "]");
         }
         return max;
+    }
+
+    static void test12(){
+        Aron.beg();
+        
+        int[][] arr2d = {
+            {0, 0, 1, 1},
+            {1, 0, 1, 1},
+            {0, 0, 0, 1},
+            {0, 0, 1, 0},
+            {0, 1, 1, 0},
+        }; 
+
+//[0][0]=0[0][1]=0[0][2]=5[0][3]=0
+//[1][0]=1[1][1]=0[1][2]=0[1][3]=0
+//[2][0]=0[2][1]=0[2][2]=0[2][3]=0
+//[3][0]=0[3][1]=0[3][2]=3[3][3]=0
+//[4][0]=0[4][1]=0[4][2]=0[4][3]=0
+
+
+        int h = 0;
+        int w = 0;
+        int height = arr2d.length;
+        if(height > 0){
+            int width = arr2d[0].length;
+
+            System.out.println("h[" + height + "]");
+            System.out.println("w[" + width + "]");
+            for(int i=0; i< height; i++){
+                for(int j=0; j< width; j++){
+                    int count = maxCount(arr2d, i, j, height, width);
+                    System.out.print("[" + i + "][" + j + "]=" + count);
+                }
+                System.out.println("");
+            } 
+            
+        }
+        
+        Aron.end();
+    }
+
+    static int maxCount(int[][] arr2d, int h, int w, int height, int width){
+        if(arr2d != null){
+            if(arr2d[h][w] == 1){
+                arr2d[h][w] = 2;
+                int n1 = 0;
+                int n2 = 0;
+                int n3 = 0;
+                int n4 = 0;
+                if(h + 1 < height)
+                    n1 = maxCount(arr2d, h + 1, w, height, width);
+                if(h - 1 >= 0)
+                    n2 = maxCount(arr2d, h - 1, w, height, width);
+                if(w + 1 < width)
+                    n3 = maxCount(arr2d, h, w + 1, height, width);
+                if(w - 1 >= 0)
+                    n4 = maxCount(arr2d, h, w - 1, height, width);
+
+                return n1 + n2 + n3 + n4 + 1;
+            }
+        }
+        return 0;
+    }
+    
+    static void test13(){
+        Aron.beg();
+        MyTree t = new MyTree();
+        t.create();
+        t.print(t.root);
+
+        Aron.end();
+    }
+    static void test14(){
+        Aron.beg();
+        String file = "file.txt";
+        try(BufferedReader br = new BufferedReader(new FileReader(file))){
+            for(String line; (line = br.readLine()) != null;){
+                System.out.println("[" + line + "]");
+            }
+        }catch(IOException e){
+            System.out.println("[" + e.getMessage() + "]");
+        }
+
+        String file1 = "file1.txt";
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(file1))){
+            bw.write("dog\n");
+            bw.write("God");
+        }catch(IOException e){
+            System.out.println("[" + e.getMessage() + "]");
+        }
+
+        Aron.end();
     }
 }
