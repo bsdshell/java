@@ -17,6 +17,20 @@ class Account{
             }
         }
     }
+    public synchronized void addNode(){
+//    public void addNode(){
+        SingleLinkedList sll = new SingleLinkedList();
+        for(int i=0; i<5; i++){
+            sll.append(i);
+
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } 
+        Aron.printSLL(sll.head);
+    }
 }
 
 class SimpleThread implements Runnable{
@@ -25,7 +39,8 @@ class SimpleThread implements Runnable{
         this.acc = acc;
     }
     public void run(){
-        acc.deposit(1);
+        //acc.deposit(1);
+        acc.addNode();
     }
 }
 
@@ -46,7 +61,6 @@ public class Main {
     public static void main(String[] args) {
         //test0();
         test1();
-
     }
 
     static void test0(){
@@ -57,21 +71,11 @@ public class Main {
         }
     }
     static void test1(){
-        Aron.beg();
-        TestJoin t1 = new TestJoin();
-        TestJoin t2 = new TestJoin();
-        TestJoin t3 = new TestJoin();
-
-        t1.start();
-        try{
-            t1.join(1500);
-        }catch(Exception e){
+        Account acc = new Account();
+        for (int i = 0; i < 4; i++) {
+            Thread t = new Thread(new SimpleThread(acc));
+            t.start();
         }
-
-        t2.start();
-        t3.start();
-
-        Aron.end();
     }
 }
 //]
