@@ -11,7 +11,7 @@ import classfile.*;
 
 class MyNode{
     public int data;
-    List<MyNode> list;
+    public List<MyNode> list;
     public MyNode(int data){
         this.data = data;
         list = new ArrayList<MyNode>();
@@ -20,8 +20,10 @@ class MyNode{
 
 class MyTree{
     public MyNode root;
+
     public MyTree(){
     }
+
     public void create(){
         root = new MyNode(1);
         root.list.add(new MyNode(2));
@@ -31,19 +33,37 @@ class MyTree{
         branch.list.add(new MyNode(11));
         branch.list.add(new MyNode(12));
         root.list.add(branch);
+
+        MyNode branch1 = new MyNode(20);
+        branch1.list.add(new MyNode(21));
+        branch1.list.add(new MyNode(22));
+        root.list.add(branch1);
     }
-    public void print(MyNode node){
+    public void printTree(MyNode node, int level, BufferedWriter bw){
         //Aron.beg();
-        if(node != null){
-            for(MyNode n : node.list){
-                System.out.println("root[" + node.data + "]");
-                print(n);
-                System.out.println("[" + n.data + "]");
+
+        try{
+            if(node != null){
+                String format;
+
+                if(level == 0)
+                    format = "%1$1s";
+                else
+                    format = "%1$" + (level*10) + "s";
+
+                //System.out.println(String.format(format, "[" + node.data));
+                System.out.print(" [ " + node.data + " ");
+                bw.write(" [ " + node.data + " ");
+                for(MyNode n : node.list){
+                    printTree(n, level+1, bw);
+                }
+                System.out.print(" ] " + " ");
+                bw.write(" ] " + " ");
+                //System.out.println(String.format(format, "]"));
             }
+        }catch(IOException e){
         }
-//        if(node == root){
-//            System.out.println("[" + node.data + "]");
-//        }
+
         //Aron.end();
     }
 }
@@ -65,9 +85,29 @@ public class Hello1{
         test12();
         test13();
         test14();
+        test15();
+        test16();
+        test17();
+        test18();
     }
     public static int height(Node root){
         return root == null ? -1 : Math.max(height(root.left), height(root.right)) + 1;
+    }
+
+    public static void printTree(MyNode node, int level){
+        if(node != null){
+            String format;
+            if(level == 0)
+                format = "%1$1s";
+            else
+                format = "%1$" + (level*10) + "s";
+
+            System.out.println(String.format(format, "[" + node.data));
+            for(MyNode n : node.list){
+                printTree(n, level+1);
+            }
+            System.out.println(String.format(format, "]"));
+        }
     }
 
     public static void test0(){
@@ -255,6 +295,26 @@ public class Hello1{
         System.out.println("[" + maxList(arr)+ "]");
         Aron.end();
     }
+
+    static void buildMap(Node r, int key, Map<Integer, Integer> map){
+        if(r != null){
+            System.out.println("[" + r.data + "][" + key + "]");
+            map.put(key, r.data);
+            buildMap(r.left, 2*key + 1, map);
+            buildMap(r.right, 2*key + 2, map);
+        }
+    }
+    // index = 0
+    static Node buildTree(Map<Integer, Integer> map, int index){
+        Integer n = map.get(index);
+        if(n != null){
+            Node root = new Node(n);
+            root.left = buildTree(map, 2*index+1);
+            root.right = buildTree(map, 2*index+2);
+            return root;
+        }
+        return null;
+    }
     static void getAllPaths(Node n, Map<Node, Node> map, int num, List<Node> list){
         if(n.data == num){
             for(Node node : list){
@@ -366,12 +426,81 @@ public class Hello1{
     
     static void test13(){
         Aron.beg();
-        MyTree t = new MyTree();
-        t.create();
-        t.print(t.root);
+
+        try{
+            BufferedWriter bw = new BufferedWriter(new FileWriter("file3.txt"));
+            int level = 0; 
+            MyTree t = new MyTree();
+            t.create();
+            t.printTree(t.root, level, bw);
+
+            bw.close();
+
+            BufferedReader br = new BufferedReader(new FileReader("file3.txt"));
+            String line;
+            while((line = br.readLine()) != null){
+                //System.out.println("inside[" + line + "]");
+                break;
+            }
+            System.out.println("\n---------------------------------"); 
+
+            String[] arr = line.split("\\s+");
+
+            List<String> list = new ArrayList<String>(); 
+            for(String s : arr){
+                System.out.print("<<" + s + ">>"); 
+                if(s.trim().length() > 0)
+                    list.add(s);
+            }
+
+            br.close();
+            level = 0;
+            MyNode r = null;
+            System.out.println("\n buildTree2---------------------------------"); 
+            MyNode root = buildTree2(r, list.iterator());
+
+//            System.out.println("\n---------------------------------"); 
+//            for(String s : arr){
+//                System.out.print("(" + s + ")"); 
+//            }
+            printTree(root, level);
+            System.out.println("\n---------------------------------"); 
+
+        }catch(IOException e){
+            System.out.println("[" + e.getMessage() + "]");
+        }
 
         Aron.end();
     }
+
+    static MyNode buildTree2(MyNode root, Iterator<String> ite){
+        if(ite.hasNext()){
+            String token = ite.next();
+
+            if(token.equals("[")){
+                if(root == null)
+                    return buildTree2(root, ite);
+                else{
+                    root.list.add(buildTree2(root, ite));
+                    return root;
+                }
+            }else if(token.equals("]")){
+            }
+            else{
+                MyNode nn = new MyNode(Integer.parseInt(token));
+                if(root != null){
+                    root.list.add(nn);
+                    return buildTree2(root, ite);
+                }else{
+                    root = new MyNode(Integer.parseInt(token));
+                    root.list.add(buildTree2(root, ite)); 
+                }
+            }
+            return root;
+        }
+        return null;
+    }
+
     static void test14(){
         Aron.beg();
         String file = "file.txt";
@@ -391,6 +520,59 @@ public class Hello1{
             System.out.println("[" + e.getMessage() + "]");
         }
 
+        Aron.end();
+    }
+    static void test15(){
+        Aron.beg();
+        
+        BST bt = new BST();
+        bt.insert(10);
+        bt.insert(5);
+        bt.insert(15);
+        bt.insert(12);
+        bt.insert(20); 
+        int n = 0;
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        buildMap(bt.root, n, map);
+        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+            System.out.println("[" + entry.getKey() + " " + entry.getValue() +"]");
+        }
+        int index = 0;
+        Node root = buildTree(map, index);
+        Aron.inorder(root);
+                 
+        Aron.end();
+    }
+    
+    static void test16(){
+        Aron.beg();
+
+        System.out.println(String.format("[%1$-1s]" , "123"));
+//        System.out.println(String.format("[%1$05d]" , "123"));
+
+        Aron.end();
+    }
+
+    static void test17(){
+        Aron.beg();
+        String str = "[1 [2][3][10[11][12]][20[21][22]]]";
+        String[] arr = str.split("\\d+");
+        for(String s : arr){
+            System.out.println("{" + s + "}");
+        }
+        Aron.end();
+    }
+    static void test18(){
+        Aron.beg();
+        List<Integer> list = new ArrayList<Integer>(); 
+        list.add(1);
+        list.add(2);
+        list.add(3);
+
+        Iterator<Integer> ite = list.iterator();
+        while(ite.hasNext()){
+            System.out.println("[" + ite.next() + "]"); 
+        }
         Aron.end();
     }
 }

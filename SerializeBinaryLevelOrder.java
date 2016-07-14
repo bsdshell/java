@@ -11,6 +11,11 @@ import classfile.*;
 public class SerializeBinaryLevelOrder {
     public static void main(String[] args) {
         test0();        
+        test1();        
+        test2();        
+        test3();        
+        test4();        
+        test5();        
     }
     static void test0(){
         Aron.beg();
@@ -33,6 +38,96 @@ public class SerializeBinaryLevelOrder {
         Aron.inorder(newbt.root);
 
         Aron.end();
+    }
+    static void test1(){
+        Aron.beg();
+
+        BST bt = new BST();
+        bt.insert(10);
+        bt.insert(5);
+        bt.insert(15);
+        bt.insert(12);
+        bt.insert(20);
+
+        Aron.inorder(bt.root);
+        levelOrder2(bt.root);
+
+        Aron.end();
+    }
+
+    static void test2(){
+        Aron.beg();
+        //System.out.println(String.format("[%-20s]=[%s]" , "label", "content" ));
+        System.out.println(String.format("[%-20s]=[%s]" , 9, "content" ));
+        for(int i=0; i<5; i++){
+            System.out.println(String.format("[%1$05d]" , i));
+        } 
+        Aron.end();
+    } 
+    
+    static void test3(){
+        Aron.beg();
+        padding();
+        Aron.end();
+    }
+
+    static void test4(){
+        Aron.beg();
+
+        for(int i=0; i< 5; i++){
+            String str = "%1$-" + (i + 1) + "s";
+            String value = String.format(str, i);
+            System.out.println("["+ value + "]");
+        } 
+        Aron.end();
+    }
+    static void test5(){
+        Aron.beg();
+
+        BST bt = new BST();
+        bt.insert(10);
+        bt.insert(5);
+        bt.insert(15);
+        bt.insert(12);
+        bt.insert(20);
+
+        int level = level(bt.root);
+        System.out.println("level[" + level + "]");
+        for(int i=1; i<=level; i++){
+            prettyPrint(bt.root, i);
+            System.out.println();
+        } 
+        Aron.end();
+    }
+    static int level(Node root){
+        if(root != null){
+            return Math.max(level(root.left), level(root.right)) + 1;
+        }
+        return 0;
+    }
+
+    static void prettyPrint(Node r, int level){
+        if(r != null){
+                //String format = "%1$-" + level + "s";
+                String format = "%1$" + (level + 10) + "s";
+                String str = "[" + r.data + "]";
+                System.out.print(String.format(format, str));
+
+            prettyPrint(r.left, level - 1);
+            prettyPrint(r.right, level - 1);
+        }
+    }
+
+    static void padding(){
+        String[] left  = {"Technology", "Technic", "Technologies", "Technisian"};
+        String[] right = {"Continuous", "Continua", "Continuously", "Continuation"};
+        for(int i=0; i< left.length; i++){
+            String str = "%1$-" + (i + 4) + "s";
+            //System.out.println("str[" + str + "]");
+            //String value = String.format("%1$-15s %2$15s", left[i], right[i]);
+            String value = String.format(str + " %2$15s", left[i], right[i]);
+            System.out.println("[" + value + "]");
+        } 
     }
 
     public static Node buildBinaryTree(Map<Integer, Integer> map, int key) {
@@ -60,11 +155,41 @@ public class SerializeBinaryLevelOrder {
             levelOrderRecursion(tmpQueue, map, k);
     }
 
+    
+    public static void levelOrder2(Node curr) {
+        if(curr != null){
+            Queue<Node> q1 = new LinkedList<Node>();
+            Queue<Node> q2 = new LinkedList<Node>();
+            q1.add(curr);
+            while(!q1.isEmpty() || !q2.isEmpty()){
+
+                while(!q1.isEmpty()){
+                    Node node = q1.remove();
+                    System.out.println("[" + node.data + "]");
+                    if(node.left != null)
+                        q2.add(node.left);
+                    if(node.right != null)
+                        q2.add(node.right);
+                }
+
+                while(!q2.isEmpty()){
+                    Node node = q2.remove();
+                    System.out.println("[" + node.data + "]");
+
+                    if(node.left != null)
+                        q1.add(node.left);
+                    if(node.right != null)
+                        q2.add(node.right);
+                }
+            }
+        }
+    }
     public static Map<Integer, Integer> levelOrder(Node root) {
         Queue<Node> queue1 = new LinkedList<Node>();
         Queue<Node> queue2 = new LinkedList<Node>();
         Queue<Integer> numq1 = new LinkedList<Integer>();
         Queue<Integer> numq2 = new LinkedList<Integer>();
+        Map<Integer, Integer> orderedMap = new LinkedHashMap<Integer, Integer>();
 
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
 
@@ -81,6 +206,8 @@ public class SerializeBinaryLevelOrder {
                 Node no = queue1.remove();
                 parentIndex = numq1.remove();
                 map.put(parentIndex, no.data);
+                orderedMap.put(parentIndex, no.data);
+
                 System.out.print("["+no.data+"]");
                 System.out.print(" parentIndex="+parentIndex);
                 if(no.left != null) {
@@ -97,6 +224,8 @@ public class SerializeBinaryLevelOrder {
                 Node no = queue2.remove();
                 parentIndex = numq2.remove();
                 map.put(parentIndex, no.data);
+                orderedMap.put(parentIndex, no.data);
+
                 System.out.print("["+no.data+"]");
                 System.out.print(" parentIndex="+parentIndex);
                 if(no.left != null) {

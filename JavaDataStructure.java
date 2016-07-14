@@ -107,14 +107,13 @@ public class JavaDataStructure
             System.out.println("[" + entry.getKey() + " " + entry.getValue() + "]");
         }
 
-        List<String> list = mapList.get("key");
+        List<String> mylist = mapList.get("dog");
         int size = mapList.size();
         if(mapList.containsValue("1")){
             System.out.println("contains value");
         }
 
-        List<String> mylist =  mapList.values();
-        for(String str:mylist){
+        for(String str : mylist){
             System.out.println("str=" + str);
         }
 
@@ -131,8 +130,8 @@ public class JavaDataStructure
         }
 
         set.remove(item);
-        int size = set.size();
-        System.out.println("size =" + set.size()); 
+        int size1 = set.size();
+        System.out.println("size1 =" + set.size()); 
 
         // iterate set
         for(Integer elem: set){
@@ -140,22 +139,29 @@ public class JavaDataStructure
         }
 
         // set to array
-        Integer[] array = (Integer[]) set.toArray(new Integer[set.size()]);
-        for(Integer n: array){
+        Integer[] array1 = (Integer[]) set.toArray(new Integer[set.size()]);
+        for(Integer n: array1){
             System.out.println("n=:" + n);
         }
 
-        Iterator<Integer> iterator = set.iterator();
-        while(iterator.hasNext()){
-            System.out.println("Iterator elem:=" + iterator.next()); 
+        // list to iterator
+        List<Integer> list = new ArrayList<Integer>(); 
+        list.add(1);
+        list.add(2);
+        Iterator<Integer> ite = list.iterator();
+        while(ite.hasNext()){
+            System.out.println("[" + ite.next() + "]"); 
         }
 
         List<String> list1 = new ArrayList<String>();
         List<String> list2 = new LinkedList<String>();
         List<String> list3 = new Stack<String>();
         List<String> list4 = new Vector<String>();
-        Queue<String> queue = new ArrayList<String>();
+        Queue<String> queue1 = new LinkedList<String>();
         Queue<String> queue2 = new PriorityQueue<String>();
+        Map<String, String> mymap = new HashMap<String, String>();
+        Map<String, String> mymap1 = new Hashtable<String, String>();
+        Map<String, String> mymap2 = new LinkedHashMap<String, String>();
         //]
     }
 }

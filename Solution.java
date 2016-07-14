@@ -1,301 +1,592 @@
-import java.io.*;
 import java.util.*;
-public class Solution 
-{
-    public static void main(String[] args)
-    {
-        //test1();
-        manhattanSolution();
+import java.io.*;
+import java.lang.String;
+import java.util.ArrayList;
+import java.util.List;
 
-//        test8();
-//        test9();
-//        test10();
-//        test11();
+import classfile.*;
+
+class Interval implements Comparable<Interval> {
+    public int begin;
+    public int end;
+    public Interval(int begin, int end) {
+        this.begin = begin;
+        this.end = end;
+    }
+    public int compareTo(Interval inter) {
+        if(this.begin > inter.begin)
+            return 1;
+        else if(this.begin == inter.begin)
+            return 0;
+        else
+            return -1;
+    }
+    public String toString() {
+        return "[" + begin + " " + end + "]";
+    }
+}
+
+public class Hello {
+    public static void main(String[] args) {
+        test0();
+        test2();
+        test3();
+        test4();
+        test5();
+        test6();
+        test7();
+        test8();
+        test9();
+        test00();
+        test10();
+        test11();
+        test12();
+        test13();
+        test14();
+        test15();
+        test16();
+        test17();
+        test18();
+        test19();
+    }
+    static void test00() {
+        Aron.beg();
+        PriorityQueue<Interval> queue = new PriorityQueue<Interval>();
+        Stack<Interval> stack = new Stack<Interval>();
+        int[] arr1 = {4, 1, 2, 6, 9};
+        int[] arr2 = {5, 1, 4, 9, 10};
+
+        for(int i=0; i<arr1.length; i++) {
+            queue.add(new Interval(arr1[i], arr2[i]));
+        }
+        if(queue.size() > 0) {
+            stack.push(queue.remove());
+        }
+        while(!queue.isEmpty()) {
+            Interval top = stack.peek();
+            Interval inter = queue.remove();
+            if(top.end < inter.begin)
+                stack.push(inter);
+            else {
+                stack.peek().end = Math.max(stack.peek().end, inter.end);
+            }
+        }
+        while(!stack.empty()) {
+            System.out.println("[" + stack.peek().begin + " " + stack.peek().end + "]");
+            stack.pop();
+        }
+
+        Aron.end();
     }
 
-    public static void rotateArray(int[][] array2d){
-        if(array2d != null){
-            int len = array2d.length;
-            for(int k=0; k<len/2; k++){
-                int[] tmp = new int[len];
-                for(int i=k; i<len-k; i++){
-                    tmp[i] = array2d[k][i];
-                }
-
-                for(int i=k+1; i<len-k; i++){
-                    array2d[i-1][k] = array2d[i][k];
-                }
-
-                for(int i=k+1; i<len-k; i++){
-                    array2d[len-1-k][i-1] = array2d[len-1-k][i];
-                }
-
-                for(int i=len-1-k-1; i>=0; i--){
-                    array2d[i+1][len-1-k] = array2d[i][len-1-k];
-                }
-
-                for(int i=len-1-k-1; i>=k; i--){
-                    array2d[k][i+1] = tmp[i];
-                }
-            }
-        }
-    }
-    public static void test1()
-    {
-        int[][] array2d = readFile();
-        if( array2d != null){
-            int len = array2d.length;
-            for(int k=0; k<len; k++){
-                for(int j=0; j<len; j++){
-                    System.out.print("[" + array2d[k][j] + "] ");
-                }
-                System.out.println();
-            } 
-            System.out.println();
-
-            rotateArray(array2d);
-            for(int k=0; k<len; k++){
-                for(int j=0; j<len; j++){
-                    System.out.print("[" + array2d[k][j] + "] ");
-                }
-                System.out.println();
-            } 
-        }
-    } 
-
-    public static void manhattanSolution(){
-        int[][] array2d = null;
-        int height = 0;
-        int width = 0;
-        int k = 0;
-        try {
-            BufferedReader bufferReader = new BufferedReader(new InputStreamReader(System.in));
-            int countLine = 1;
-
-            String line = null;
-            int h = 0;
-            while((line = bufferReader.readLine()) != null){
-                String[] array = line.split("\\s+");
-                if(countLine == 1){
-                    if(array.length > 0){
-                        height = Integer.parseInt(array[0]);
-                    }
-                } else if(countLine > 1 && countLine <= height + 1){
-
-                    if(countLine == 2){
-                        width = array.length;
-                        array2d  = new int[height][width];
-                    }
-                    for(int i=0; i<width; i++){
-                        array2d[h][i] = Integer.parseInt(array[i]);        
-                    }
-                    h++;
-                }
-                else if(countLine == height+2) {
-                    k = Integer.parseInt(array[0]);
-                }
-                countLine++;
-            } 
-        }
-        catch (Exception e) {
-        }
-
-        if(array2d != null){
-
-            System.out.println("k=" + k);
-            boolean ret = false; 
-            for(int h=0; h<height && !ret; h++){ 
-                for(int w=0; w<width && !ret; w++){
-                    int num = array2d[h][w];
-                    ret = manhattanDist(array2d, h, w, k, num); 
-                }
-            }
-            if(ret){
-                System.out.println("YES");
-            }
-            else{
-                System.out.println("NO");
-            }
-        }
+    static void test0() {
+        System.out.println("\n--------------------------------------------------------------------------------");
+        Aron.name();
+        SingleLinkedList sll = new SingleLinkedList();
+        sll.append(5);
+        sll.append(4);
+        sll.append(2);
+        Aron.printSLL(sll.head);
+        SNode newHead = cloneLinkedList(sll.head);
+        Aron.printSLL(newHead);
+        System.out.println("\n--------------------------------------------------------------------------------");
     }
 
+    static void test2() {
+        System.out.println("\n--------------------------------------------------------------------------------");
+        Aron.name();
+        SingleLinkedList sll = new SingleLinkedList();
+        sll.append(1);
+        sll.append(2);
+        sll.append(3);
+        Aron.printSLL(sll.head);
+        SNode newHead = reversePair(sll.head);
+        Aron.printSLL(newHead);
+        System.out.println("\n--------------------------------------------------------------------------------");
+    }
 
-    public static int[][] readFile(){
-        int[][] array2d = null;
-        try {
-            BufferedReader bufferReader = new BufferedReader(new InputStreamReader(System.in));
-            int count =0;
-            int numRow = 0;
-            String line = null;
-            int row = 0;
-            while((line = bufferReader.readLine()) != null){
-                String[] array = line.split("\\s+");
-                if(count == 0){
-                    if(array.length > 0){
-                        numRow = Integer.parseInt(array[0]);
-                        array2d  = new int[numRow][numRow];
-                    }
-                } 
-                else{
-                    if(numRow != array.length){
-                        System.out.print("ERROR"); 
-                        return null;
+    static void test3() {
+        System.out.println("\n--------------------------------------------------------------------------------");
+        Aron.name();
+        SingleLinkedList sll = new SingleLinkedList();
+        sll.append(1);
+        sll.append(2);
+        sll.append(3);
+        sll.append(4);
+        Aron.printSLL(sll.head);
+        SNode newHead = reversePair(sll.head);
+        Aron.printSLL(newHead);
+        System.out.println("\n--------------------------------------------------------------------------------");
+    }
+    static void test4() {
+        System.out.println("\n--------------------------------------------------------------------------------");
+        Aron.name();
+        SingleLinkedList sll = new SingleLinkedList();
+        sll.append(1);
+        sll.append(2);
+        Aron.printSLL(sll.head);
+        SNode newHead = reversePair(sll.head);
+        Aron.printSLL(newHead);
+        System.out.println("\n--------------------------------------------------------------------------------");
+    }
+    static void test5() {
+        System.out.println("\n--------------------------------------------------------------------------------");
+        Aron.name();
+        SingleLinkedList sll = new SingleLinkedList();
+        sll.append(1);
+        Aron.printSLL(sll.head);
+        SNode newHead = reversePair(sll.head);
+        Aron.printSLL(newHead);
+        System.out.println("\n--------------------------------------------------------------------------------");
+    }
+
+    static void test6() {
+        System.out.println("\n--------------------------------------------------------------------------------");
+        Aron.name();
+        SingleLinkedList sll = new SingleLinkedList();
+        Aron.printSLL(sll.head);
+        SNode newHead = reversePair(sll.head);
+        Aron.printSLL(newHead);
+        System.out.println("\n--------------------------------------------------------------------------------");
+    }
+    static void test7() {
+        Aron.beg();
+
+        SingleLinkedList sll = new SingleLinkedList();
+        sll.append(1);
+        sll.append(2);
+        sll.append(3);
+        Aron.printSLL(sll.head);
+
+        SNode nhead = reverseLinkedList(sll.head);
+        Aron.printSLL(nhead);
+
+        Aron.end();
+    }
+
+    static void test8() {
+        Aron.beg();
+        SingleLinkedList sll = new SingleLinkedList();
+        sll.append(1);
+        sll.append(2);
+        sll.append(3);
+        Aron.printSLL(sll.head);
+
+        SNode nhead = reverseIte(sll.head);
+        Aron.printSLL(nhead);
+        Aron.end();
+    }
+
+    static void test9() {
+        Aron.beg();
+
+        SingleLinkedList sll = new SingleLinkedList();
+        sll.append(1);
+        sll.append(2);
+        sll.append(3);
+
+        SingleLinkedList sll2 = new SingleLinkedList();
+        sll2.append(1);
+        sll2.append(2);
+        sll2.append(3);
+
+
+        SNode curr = sll.head;
+        SNode head = sll.head;
+
+        while(curr != null && curr.next != null) {
+            curr = curr.next;
+        }
+        curr.next = head;
+
+        boolean circular = isCircular(sll.head);
+        System.out.println("isCircular[" + circular + "]");
+
+        boolean circular2 = isCircular(sll2.head);
+        System.out.println("isCircular2[" + circular2 + "]");
+
+        Aron.end();
+    }
+    static void test10(){
+        Aron.beg();
+        String str = "";
+        System.out.println("empty str " + str + "[" + isBalance(str) + "]");
+
+        str = "()";
+        System.out.println("" + str + "[" + isBalance(str) + "]");
+        str = "(";
+        System.out.println("" + str + "[" + isBalance(str) + "]");
+        str = "(]";
+        System.out.println("" + str + "[" + isBalance(str) + "]");
+        str = "([)]";
+        System.out.println("" + str + "[" + isBalance(str) + "]");
+        str = "()([])";
+        System.out.println("" + str + "[" + isBalance(str) + "]");
+        Aron.end();
+    }
+    
+    static void test11(){
+        Aron.beg();
+        SingleLinkedList ssl = new SingleLinkedList();
+        ssl.append(4);
+        ssl.append(7);
+        ssl.append(9);
+        Aron.printSLL(ssl.head);
+        SNode h = insertNodeToSortedList(ssl.head, 3);
+        Aron.printSLL(h);
+        Aron.end();
+    }
+
+    static void test12(){
+        Aron.beg();
+        SingleLinkedList ssl = new SingleLinkedList();
+        ssl.append(4);
+        ssl.append(7);
+        ssl.append(9);
+        Aron.printSLL(ssl.head);
+        SNode h = insertNodeToSortedList(ssl.head, 3);
+        h = insertNodeToSortedList(ssl.head, 5);
+        Aron.printSLL(h);
+        Aron.end();
+    }
+
+    static void test13(){
+        Aron.beg();
+        SingleLinkedList ssl = new SingleLinkedList();
+        ssl.append(4);
+        ssl.append(7);
+        ssl.append(9);
+        Aron.printSLL(ssl.head);
+        SNode newHead = insertNodeToSortedList(ssl.head, 15);
+        Aron.printSLL(newHead);
+        Aron.end();
+    }
+
+    static void test14(){
+        Aron.beg();
+        SingleLinkedList s1 = new SingleLinkedList();
+        s1.append(4);
+        s1.append(7);
+        s1.append(9);
+
+        Aron.printSLL(s1.head);
+        System.out.println("---------------------------------\n"); 
+        SingleLinkedList s2 = new SingleLinkedList();
+        s2.append(1);
+        s2.append(6);
+        s2.append(11);
+        
+        Aron.printSLL(s2.head);
+        System.out.println("---------------------------------\n"); 
+
+        SNode head = mergeSortedList(s1.head, s2.head);
+        Aron.printSLL(head);
+        Aron.end();
+    }
+
+    static void test15(){
+        Aron.beg();
+        SingleLinkedList s1 = new SingleLinkedList();
+        s1.append(4);
+
+        Aron.printSLL(s1.head);
+        System.out.println("---------------------------------\n"); 
+        SingleLinkedList s2 = new SingleLinkedList();
+        s2.append(1);
+        
+        Aron.printSLL(s2.head);
+        System.out.println("---------------------------------\n"); 
+
+        SNode head = mergeSortedList(s1.head, s2.head);
+        Aron.printSLL(head);
+        Aron.end();
+    }
+
+    static void test16(){
+        Aron.beg();
+        SingleLinkedList s1 = new SingleLinkedList();
+
+        Aron.printSLL(s1.head);
+        System.out.println("---------------------------------\n"); 
+        SingleLinkedList s2 = new SingleLinkedList();
+        s2.append(1);
+        
+        Aron.printSLL(s2.head);
+        System.out.println("---------------------------------\n"); 
+
+        SNode head = mergeSortedList(s1.head, s2.head);
+        Aron.printSLL(head);
+        Aron.end();
+    }
+
+    static void test17(){
+        Aron.beg();
+        SingleLinkedList s1 = new SingleLinkedList();
+        s1.append(1);
+
+        Aron.printSLL(s1.head);
+        System.out.println("---------------------------------\n"); 
+        SingleLinkedList s2 = new SingleLinkedList();
+        
+        Aron.printSLL(s2.head);
+        System.out.println("---------------------------------\n"); 
+
+        SNode head = mergeSortedList(s1.head, s2.head);
+        Aron.printSLL(head);
+        Aron.end();
+    }
+
+    static void test18(){
+        Aron.beg();
+        SingleLinkedList s1 = new SingleLinkedList();
+        s1.append(1);
+        s1.append(4);
+        s1.append(9);
+
+        Aron.printSLL(s1.head);
+        System.out.println("---------------------------------\n"); 
+        SingleLinkedList s2 = new SingleLinkedList();
+        
+        Aron.printSLL(s2.head);
+        System.out.println("---------------------------------\n"); 
+
+        SNode head = mergeSortedList(s1.head, s2.head);
+        Aron.printSLL(head);
+        Aron.end();
+    }
+    static void test19(){
+        Aron.beg();
+        SingleLinkedList s1 = new SingleLinkedList();
+        s1.append(1);
+        s1.append(4);
+        s1.append(9);
+
+        Aron.printSLL(s1.head);
+        System.out.println("---------------------------------\n"); 
+        SingleLinkedList s2 = new SingleLinkedList();
+        s2.append(4);
+        
+        Aron.printSLL(s2.head);
+        System.out.println("---------------------------------\n"); 
+
+        SNode head = mergeSortedList(s1.head, s2.head);
+        Aron.printSLL(head);
+        Aron.end();
+    }
+
+    //[ file=nextnext.html title=""
+    public static SNode reverseIte(SNode curr) {
+        SNode prev = null;
+        SNode next = null;
+        while(curr != null) {
+            next = curr.next;
+            curr.next = prev;
+
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+
+    public static SNode reverseLinkedList(SNode curr) {
+        if(curr == null || curr.next == null)
+            return curr;
+
+        SNode head = reverseLinkedList(curr.next);
+        curr.next.next = curr;
+        curr.next = null;
+
+        return head;
+    }
+
+    public static SNode reversePair(SNode head) {
+        SNode curr = head;
+        while(curr != null && curr.next != null) {
+            int tmp = curr.data;
+            curr.data = curr.next.data;
+            curr.next.data = tmp;
+
+            curr = curr.next.next;
+        }
+        return head;
+    }
+
+    public static boolean isCircular(SNode curr) {
+        if(curr == null)
+            return false;
+        else {
+            SNode next = curr.next;
+            if(curr == next)
+                return true;
+
+            while(next != null) {
+                if(curr == next)
+                    return true;
+
+                curr = curr.next;
+
+                next = next.next;
+                if(next != null)
+                    next = next.next;
+            }
+        }
+        return false;
+    }
+    //]
+
+
+    static SNode cloneLinkedList(SNode head) {
+        SNode newHead = null;
+        SNode newCurr = null;
+        SNode curr = head;
+
+        if(curr != null) {
+            newCurr = newHead = new SNode(head.data);
+
+            while(curr.next != null) {
+                newCurr.next = new SNode(curr.next.data);
+                newCurr = newCurr.next;
+                curr = curr.next;
+            }
+        }
+        return newHead;
+    }
+
+//    static boolean isBal(String str, int index){
+//        if(str != null && index < str.length()){
+//            if(!isBal(str, index + 1))
+//                return false;
+//
+//            if(str.charAt(index) == '(' || str.charAt(index) == '[')
+//                return isBal(str, index + 1);
+//            else
+//                return false;
+//
+//            else if(str.charAt(index) == ')'){
+//               if(index - 1 >= 0 && str.charAt(index - 1) == '(') 
+//                   return isBal(str, index + 1);
+//               else
+//                   return false;
+//            }else if(str.charAt(index) == ']'){
+//               if(index - 1 >= 0 && str.charAt(index - 1) == '[') 
+//                   return isBal(str, index + 1);
+//               else
+//                   return false;
+//            }
+//        }
+//        return true;
+//    }
+
+    static SNode mergeSortedList(SNode head1, SNode head2){
+        if(head1 == null)
+            return head2;
+        if(head2 == null)
+            return head1;
+        SNode curr1 = head1;
+        SNode curr2 = head2;
+        SNode curr = null; 
+        SNode head = null;
+
+        while(curr1 != null || curr2 != null){
+            if(curr1 == null){
+                if(curr != null)
+                    curr.next = new SNode(curr2.data);
+                else
+                    head = curr = new SNode(curr2.data);
+
+                curr2 = curr2.next;
+
+            }else if(curr2 == null){
+                if(curr != null)
+                    curr.next = new SNode(curr1.data);
+                else
+                    head = curr = new SNode(curr1.data);
+
+                curr1 = curr1.next;
+            }else{
+                if(curr1.data < curr2.data){
+                    if(curr == null){
+                        head = curr = new SNode(curr1.data);
                     }else{
-                        for(int i=0; i<array.length; i++){
-                            array2d[row][i] = Integer.parseInt(array[i]);        
-                        }
+                        curr.next = new SNode(curr1.data);
                     }
-                    row++;
+
+                    curr1 = curr1.next;
+                }else{
+                    if(curr == null)
+                        head = curr = new SNode(curr2.data);
+                    else{
+                        curr.next = new SNode(curr2.data);
+                    }
+
+                    curr2 = curr2.next;
                 }
-                count++;
             }
-        } catch (Exception e) {
+
+            if(curr.next != null)
+                curr = curr.next;
         }
-        return array2d;
+        return head;
     }
 
+    static SNode insertNodeToSortedList(SNode head, int num){
+       SNode curr = head; 
+       SNode prev = null;
 
-    public static void test8()
-    {
-        System.out.println("test8");
-        int[][] arr = { 
-            {1,3,3},
-            {0,3,9},
-            {0,3,1}
-        };
+       while(curr != null){
+           if(curr.data < num){
+               prev = curr;
+               if(curr.next == null){
+                   prev.next = new SNode(num);
+                   return head;
+               }
+           }else{
+               if(prev != null){
+                   prev.next = new SNode(num);
+                   prev.next.next = curr;
+                   return head;
+               }else{
+                   // first node
+                   SNode node = new SNode(num);
+                   node.next = curr;
+                   head = node;
+                   return head;
+               }
+           }
+           curr = curr.next;
+       }
+       return head;
 
-        int height = arr.length;
-        int width = arr[0].length;
-
-        int k = 5;
-        boolean ret = false; 
-        for(int h=0; h<height && !ret; h++){ 
-            for(int w=0; w<width && !ret; w++){
-                ret = manhattanDist(arr, h, w, k, arr[h][w]); 
-                System.out.println("ret =" + ret);
-            }
-        }
-        System.out.println("--ret =" + ret);
     }
 
-    public static void test11()
-    {
-        System.out.println("test11");
-        int[][] arr = { 
-            {0,3,1},
-            {0,1,4},
-            {7,1,1}
-        };
+    static boolean isBalance(String str) {
+        Stack<String> stack = new Stack<String>();
+        if(str != null) {
+            for(int i=0; i<str.length(); i++) {
+                String s = str.charAt(i) + "";
+                if(s.equals("(") || s.equals("[")) {
+                    stack.push(s);
+                } else {
+                    if(s.equals(")")) {
+                    if(!stack.empty() && stack.peek().equals("(")) {
+                            stack.pop();
+                        } else {
+                            return false;
+                        }
+                    } else if(s.equals("]")) {
+                    if(!stack.empty() && stack.peek().equals("[")) {
+                            stack.pop();
+                        } else {
+                            return false;
+                        }
+                    } else {
+                        System.out.println("Error");
+                        return false;
+                    }
 
-        int height = arr.length;
-        int width = arr[0].length;
-
-        int k = 4;
-        boolean ret = false; 
-        for(int h=0; h<height && !ret; h++){ 
-            for(int w=0; w<width && !ret; w++){
-                int num = arr[h][w];
-                ret = manhattanDist(arr, w, h, k, num); 
-                System.out.println("ret =" + ret);
+                }
             }
         }
-        System.out.println("--ret =" + ret);
-    }
-
-    public static void test10()
-    {
-        System.out.println("test10");
-        int[][] arr = { 
-            {1,3,6},
-            {0,4,4},
-            {7,9,1}
-        };
-
-        int height = arr.length;
-        int width = arr[0].length;
-
-        int k = 4;
-        boolean ret = false; 
-        for(int h=0; h<height && !ret; h++){ 
-            for(int w=0; w<width && !ret; w++){
-                int num = arr[h][w];
-                ret = manhattanDist(arr, w, h, k, num); 
-                System.out.println("ret =" + ret);
-            }
-        }
-        System.out.println("--ret =" + ret);
-    }
-
-    public static void test9() {
-        System.out.println("test9");
-        int[][] arr = { 
-            {1,3,6},
-            {0,4,4},
-            {7,9,1}
-        };
-
-        int height = arr.length;
-        int width = arr[0].length;
-
-        int k = 1;
-        boolean ret = false; 
-        for(int h=0; h<height && !ret; h++){ 
-            for(int w=0; w<width && !ret; w++){
-                int num = arr[h][w];
-                ret = manhattanDist(arr, w, h, k, num); 
-                System.out.println("ret =" + ret);
-            }
-        }
-        System.out.println("--ret =" + ret);
-    } 
-
-    public static boolean manhattanDist(int[][] arr, int h, int w, int k, int num){
-        //final int visited = Integer.MAX_VALUE; 
-        final int visited = -1000; 
-        boolean ret0 = false;
-        boolean ret1 = false;
-        boolean ret2 = false;
-        boolean ret3 = false;
-        boolean ret4 = false;
-        int height = arr.length;
-        int width = arr[0].length;
-
-        if( k == 0){
-            if(num == arr[h][w])
-                ret0 = true; 
-        }else if(arr[h][w] != visited){
-            int tmp = arr[h][w];
-            arr[h][w] =  visited;
-            if(w + 1 < width){
-                 arr[h][w] = visited;
-                 ret1 = manhattanDist(arr, h, w+1,k-1, num);
-                 arr[h][w] = tmp;
-                 if(ret1)
-                     return ret1;
-             }
-
-            if(w - 1 >= 0){
-                 arr[h][w] = visited;
-                 ret2 = manhattanDist(arr,  h, w-1,k-1, num);
-                 arr[h][w] = tmp;
-                 if(ret2)
-                     return ret2;
-             }
-
-            if(h - 1 >= 0){
-                 ret3 = manhattanDist(arr,  h-1, w, k-1, num);
-                 arr[h][w] = tmp;
-                 if(ret3)
-                     return ret3;
-             }
-
-             if(h + 1 < height){
-                 ret4 = manhattanDist(arr, h+1, w, k-1, num);
-                 arr[h][w] = tmp;
-                 if(ret4)
-                     return ret4;
-             }
-        }
-        return ret0 || ret1 || ret2 || ret3 || ret4;
+        return stack.empty();
     }
 }
