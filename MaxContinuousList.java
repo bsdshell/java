@@ -14,29 +14,81 @@ public class MaxContinuousList{
         test9();
         test10();
         test11();
+        test12();
+        test13();
+        test14();
+        test15();
+        test16();
+        test17();
     }
     static void test8(){
         Aron.beg();
-        int[] arr = {2, -5, 8, -2, 3};
+        Integer[] arr = {2, -5, 8, -2, 3};
+        Aron.printArray(arr);
         System.out.println("max[" + maxList(arr)+ "]");
         Aron.end();
     }
     static void test9(){
         Aron.beg();
-        int[] arr = {-1, -5, 8, -4, 5, -2, 3, -2};
+        Integer[] arr = {-1, -5, 8, -4, 5, -2, 3, -2};
+        Aron.printArray(arr);
         System.out.println("max[" + maxList(arr)+ "]");
         Aron.end();
     }
     static void test10(){
         Aron.beg();
-        int[] arr = {-1, -5, 8};
+        Integer[] arr = {-1, -5, 8};
+        Aron.printArray(arr);
         System.out.println("max[" + maxList(arr)+ "]");
         Aron.end();
     }
 
     static void test11(){
         Aron.beg();
-        int[] arr = {6, -5, 8};
+        Integer[] arr = {6, -5, 8};
+        Aron.printArray(arr);
+        System.out.println("max[" + maxList(arr)+ "]");
+        Aron.end();
+    }
+    static void test12(){
+        Aron.beg();
+        Integer[] arr = {3, -4};
+        Aron.printArray(arr);
+        System.out.println("max[" + maxList(arr)+ "]");
+        Aron.end();
+    }
+    static void test13(){
+        Aron.beg();
+        Integer[] arr = {-4, 5};
+        Aron.printArray(arr);
+        System.out.println("max[" + maxList(arr)+ "]");
+        Aron.end();
+    }
+    static void test14(){
+        Aron.beg();
+        Integer[] arr = {-4};
+        Aron.printArray(arr);
+        System.out.println("max[" + maxList(arr)+ "]");
+        Aron.end();
+    }
+    static void test15(){
+        Aron.beg();
+        Integer[] arr = {4};
+        Aron.printArray(arr);
+        System.out.println("max[" + maxList(arr)+ "]");
+        Aron.end();
+    }
+    static void test16(){
+        Aron.beg();
+        Integer[] arr = {4, 0};
+        Aron.printArray(arr);
+        System.out.println("max[" + maxList(arr)+ "]");
+        Aron.end();
+    }
+    static void test17(){
+        Aron.beg();
+        Integer[] arr = {0, 4};
+        Aron.printArray(arr);
         System.out.println("max[" + maxList(arr)+ "]");
         Aron.end();
     }
@@ -61,7 +113,7 @@ public class MaxContinuousList{
     }
     //[ file=maxlistindex.html title=""
     // begin_index and end_index
-    static int maxList(int[] arr){
+    static int maxList(Integer[] arr){
         int max = -1;
         int start = 0;
         int end = 0;
@@ -69,13 +121,11 @@ public class MaxContinuousList{
             max = arr[0];
             int sum = arr[0];
             for(int i=1; i<arr.length; i++){
-                    sum += arr[i];
                     if(sum < 0){
                         sum = 0;
-                        if(i + 1 < arr.length)
-                            start = i + 1;
+                        start = i;
                     }
-
+                    sum += arr[i];
                     if( max < Math.max(sum, arr[i])){
                         max = Math.max(sum, arr[i]);
                         end = i;

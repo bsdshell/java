@@ -21,30 +21,30 @@ class BinaryIterator {
     }
 
     public Node next() {
-        Node ret = null;
         while(hasNext()) {
             if(curr != null) {
                 stack.push(curr);
                 curr = curr.left;
             } else {
-                Node node = stack.peek();
-                stack.pop();
+                Node node = stack.pop();
                 curr = node.right;
                 return node;
             }
         }
-        return ret;
+        return null;
     }
 }
 //]
 
 public class BinIterator {
     public static void main(String[] args) {
-        System.out.println("---------------------------------");
         test0();
         test1();
+        test2();
     }
+    
     static void test0() {
+        Aron.beg();
         BST bst = new BST();
         bst.insert(10);
         bst.insert(5);
@@ -57,9 +57,10 @@ public class BinIterator {
         while(bi.hasNext()) {
             System.out.println("[" + bi.next().data + "]");
         }
+        Aron.end();
     }
     static void test1(){
-        System.out.println("\n---------------------------------");
+        Aron.beg();
         BST bst = new BST();
         bst.insert(10);
 
@@ -70,6 +71,23 @@ public class BinIterator {
         while(bi.hasNext()) {
             System.out.println("[" + bi.next().data + "]");
         }
+        Aron.end();
+    }
+    static void test2() {
+        Aron.beg();
+        BST bst = new BST();
+        bst.insert(10);
+        bst.insert(5);
+        bst.insert(15);
+        bst.insert(20);
+        bst.insert(18);
+
+        BinaryIterator bi = new BinaryIterator(bst.root);
+        Aron.inorder(bst.root);
         System.out.println("\n---------------------------------");
+        while(bi.hasNext()) {
+            System.out.println("[" + bi.next().data + "]");
+        }
+        Aron.end();
     }
 }
