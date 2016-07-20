@@ -74,6 +74,7 @@ class Compress {
 
         return retStr;
     }
+
     public static String compress2(String str) {
         int c = 1;
         String retStr = "";
