@@ -17,6 +17,7 @@ class Tries {
     public int map(char ch) {
         return (int)ch - 'a';
     }
+
     //[ file=newtries.html title=""
     public  void add(TNode r, int[] arr, int k) {
         if( k < arr.length) {
@@ -29,11 +30,11 @@ class Tries {
         }
     }
 
-    public  boolean contains(TNode r, int[] arr, int h) {
+    public  boolean contains(TNode r, int[] arr, int k) {
         if(r != null){
-            if(h < arr.length) {
-                return contains(r.array[arr[h]], arr, h+1);
-            }else if (h == arr.length){
+            if(k < arr.length) {
+                return contains(r.array[arr[k]], arr, k+1);
+            }else if (k == arr.length){
                 return r.isWord;
             }
         }
