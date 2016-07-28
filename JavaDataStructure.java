@@ -153,6 +153,14 @@ public class JavaDataStructure
             System.out.println("[" + ite.next() + "]"); 
         }
 
+        // double ended queue, deck
+        Deque<Node> queue = new ArrayDeque<Node>();
+        queue.add(new Node(1));
+        queue.add(new Node(2));
+        System.out.println("size[" + queue.size() + "]"); 
+        queue.poll();
+        System.out.println("size[" + queue.size() + "]"); 
+
         List<String> list1 = new ArrayList<String>();
         List<String> list2 = new LinkedList<String>();
         List<String> list3 = new Stack<String>();
@@ -162,6 +170,9 @@ public class JavaDataStructure
         Map<String, String> mymap = new HashMap<String, String>();
         Map<String, String> mymap1 = new Hashtable<String, String>();
         Map<String, String> mymap2 = new LinkedHashMap<String, String>();
+
+        
+
         //]
     }
 }

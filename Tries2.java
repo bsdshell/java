@@ -5,8 +5,10 @@ import classfile.*;
 class MyNode{
     public MyNode[] arr = new MyNode[26];
     public boolean isWord;
+    public String word;
     public MyNode(boolean isWord){
         this.isWord = isWord;
+        word = null;
     }
 }
 
@@ -21,7 +23,17 @@ class Tries{
 public class Tries2{
     public static void main(String[] args) {
         test0();
+        test1();
+        test2();
     }
+    static void test2(){
+        Aron.beg();
+        String str = "abc";
+        Print.p((int)str.charAt(0));
+        Print.p(str.codePointAt(0));
+        Aron.end();
+    } 
+   
     static void test0(){
         Aron.beg();
         int k = 0;
@@ -29,10 +41,44 @@ public class Tries2{
         Tries t = new Tries();
         insert(t.root, str, k);
 
-        System.out.println("[" + contains(t.root, str, k) + "]"); 
-        System.out.println("[" + contains(t.root, "a", k) + "]"); 
-        System.out.println("[" + contains(t.root, "", k) + "]"); 
-        System.out.println("[" + contains(t.root, "d", k) + "]"); 
+        Test.t(contains(t.root, str, k));
+        Test.t(contains(t.root, "", k));
+        Test.f(contains(t.root, "a", k));
+        Test.f(contains(t.root, "d", k));
+
+        Aron.end();
+    }
+    static void test1(){
+        Aron.beg();
+        int k = 0;
+        String str1 = "tea";
+        String str2 = "ten";
+        String str3 = "tenny";
+        String str4 = "tee";
+        String str5 = "teyo";
+        Tries t = new Tries();
+        insert(t.root, str1, k);
+        insert(t.root, str2, k);
+        insert(t.root, str3, k);
+        insert(t.root, str4, k);
+        insert(t.root, str5, k);
+
+        Test.t(contains(t.root, str1, k));
+        Test.t(contains(t.root, str2, k));
+        Test.t(contains(t.root, str3, k));
+        Test.t(contains(t.root, str4, k));
+        Test.t(contains(t.root, str5, k));
+
+        Test.f(contains(t.root, "t", k));
+        Test.f(contains(t.root, "te", k));
+        Test.f(contains(t.root, "teee", k));
+        Test.f(contains(t.root, "teae", k));
+
+        List<String> list = new ArrayList<String>(); 
+        String partialWord = "te";
+        MyNode node = autoComplete(t.root, partialWord, k);
+        getList(node, list);
+        Aron.printList(list);
 
         Aron.end();
     }
@@ -40,9 +86,10 @@ public class Tries2{
     public static void insert(MyNode root, String str, int k){
         if(k == str.length()){
             root.isWord = true;    
+            root.word = str;
         }
         else if(k < str.length()){
-            int inx = getInt(str.charAt(k)); 
+            int inx = Aron.charIndex(str.charAt(k)); 
             MyNode node = root.arr[inx];
             if(node != null){
                 insert(node, str, k+1);
@@ -52,21 +99,40 @@ public class Tries2{
             }
         }
     }
-
     public static boolean contains(MyNode root, String str, int k){
         if(k < str.length()){
-            int inx = str.charAt(k) - 'a';
+            int inx = Aron.charIndex(str.charAt(k)); 
             if(root.arr[inx] != null){
-                contains(root.arr[inx], str, k+1);
+                return contains(root.arr[inx], str, k+1);
             }else{
                 return false;
             }
         }else{
            return root.isWord;
         }
-        return true;
     }
-    public static int getInt(char ch){
-        return ch - 'a';
+
+    public static MyNode autoComplete(MyNode root, String str, int k){
+        if(k < str.length()){
+            int inx = Aron.charIndex(str.charAt(k)); 
+            if(root.arr[inx] != null){
+                return autoComplete(root.arr[inx], str, k+1);
+            }else{
+                return null;
+            }
+        }else{
+           return root;
+        }
+    }
+    public static void getList(MyNode node, List<String> list){
+        if(node != null){
+            if(node.word != null){
+                list.add(node.word);
+            }else{
+                for(int i=0; i<node.arr.length; i++){
+                    getList(node.arr[i], list);
+                }
+            }
+        }
     }
 } 
