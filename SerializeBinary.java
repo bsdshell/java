@@ -5,86 +5,153 @@ import classfile.*;
 
 public class SerializeBinary {
     public static void main(String[] args) {
-        test1();
+        test_serializeLevel();
+        test_deserializeBinary();
+        test1_deserializeIterator();
+        test2_deserializeIterator();
+        test_deSerializeIndex();
     }
-    static void test0(){
+    static void test_serializeLevel(){
         Aron.beg();
+       
         BST bin = new BST();
         bin.insert(10);
-        bin.insert(11);
+        bin.insert(5);
+        bin.insert(15);
+        bin.insert(12);
 
-        System.out.println("");
+        Aron.inorder(bin.root);
+        Aron.line();
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("out.txt"));
-            BufferedWriter out1 = new BufferedWriter(new FileWriter("level.txt"));
+            BufferedWriter out1 = new BufferedWriter(new FileWriter("level0.txt"));
 
-            serializeBinary(bin.root, out);
-            serializeBinary2(bin.root, out1);
-            out.close();
+            serializeLevel(bin.root, out1);
             out1.close();
 
-            BufferedReader in = new BufferedReader(new FileReader("out.txt"));
-            BufferedReader levelIn = new BufferedReader(new FileReader("level.txt"));
+            BufferedReader levelIn = new BufferedReader(new FileReader("level0.txt"));
 
-            BST newbin = new BST();
-            int[] A = new int[1];
-            A[0] = 0;
-            String[] Array = readFile(in);
             List<List<String>> list = createMap(levelIn);
             int depth = 0;
-
-            Node root = deserializeBinary2(list, depth);
-            preorder(root);
-            //newbin.root = deserializeBinary2(list, depth);
-            //newbin.preorder(newbin.root);
+            
+            Map<String, Node> map = new HashMap<String, Node>(); 
+            Node root = deserializeLevel(list, map);
+            Aron.line();
+            Aron.inorder(root);
         } catch(Exception e) {
         }
         Aron.end();
     }
     
-    static void test1(){
+    static void test1_deserializeIterator(){
         Aron.beg();
-
         BST bin = new BST();
         bin.insert(10);
         bin.insert(11);
 
-        System.out.println("");
         try {
-            FileWriter fstream = new FileWriter("out.txt");
-            FileWriter fstream1 = new FileWriter("level.txt");
-            BufferedWriter out = new BufferedWriter(fstream);
-            BufferedWriter out1 = new BufferedWriter(fstream1);
-
+            BufferedWriter out = new BufferedWriter(new FileWriter("out.txt"));
             serializeBinary(bin.root, out);
-            serializeBinary2(bin.root, out1);
             out.close();
-            out1.close();
+
+            List<String> list = Aron.readFileOneLine("out.txt");
+            Iterator<String> ite = list.iterator();
+            Node root = deserializeIterator(ite);
+
+            Aron.inorder(root);
+
+        } catch(Exception e) {
+        }
+
+        Aron.end();
+    } 
+
+    static void test2_deserializeIterator(){
+        Aron.beg();
+        BST bin = new BST();
+        bin.insert(10);
+        bin.insert(5);
+        bin.insert(15);
+        bin.insert(12);
+
+        try {
+            Aron.inorder(bin.root);
+            Aron.line();
+
+            BufferedWriter out = new BufferedWriter(new FileWriter("out.txt"));
+            serializeBinary(bin.root, out);
+            out.close();
+
+            List<String> list = Aron.readFileOneLine("out.txt");
+            Iterator<String> ite = list.iterator();
+            Node root = deserializeIterator(ite);
+
+            Aron.inorder(root);
+
+        } catch(Exception e) {
+        }
+
+        Aron.end();
+    } 
+    
+    static void test_deserializeBinary(){
+        Aron.beg();
+
+        BST bin = new BST();
+        bin.insert(10);
+        bin.insert(5);
+        bin.insert(15);
+        bin.insert(12);
+
+        try {
+            Aron.inorder(bin.root);
+
+            BufferedWriter out = new BufferedWriter(new FileWriter("out.txt"));
+            serializeBinary(bin.root, out);
+            out.close();
 
             BufferedReader in = new BufferedReader(new FileReader("out.txt"));
-            BufferedReader levelIn = new BufferedReader(new FileReader("level.txt"));
 
-            BST newbin = new BST();
             int[] A = new int[1];
             A[0] = 0;
             String[] Array = readFile(in);
-            //newbin.root = deserializeBinary(Array, A);
-            //newbin.preorder(newbin.root);
-            List<List<String>> listList = createMap(levelIn);
-            int depth = 0;
-
-            Node root = deserializeBinary2(listList, depth);
-            preorder(root);
-            //newbin.root = deserializeBinary2(listList, depth);
-            //newbin.preorder(newbin.root);
+            Node root = deserializeBinary(Array, A);
+            Aron.inorder(root);
         } catch(Exception e) {
         }
- 
+
+        Aron.end();
+    }
+
+    static void test_deserializeBinary3(){
+        Aron.beg();
+
+        BST bin = new BST();
+        bin.insert(10);
+        bin.insert(5);
+        bin.insert(15);
+        bin.insert(12);
+
+        System.out.println("");
+        try {
+            Aron.inorder(bin.root);
+
+            BufferedWriter out = new BufferedWriter(new FileWriter("out.txt"));
+            serializeBinary(bin.root, out);
+            out.close();
+
+            BufferedReader in = new BufferedReader(new FileReader("out.txt"));
+
+            String[] Array = readFile(in);
+            Node root = deserializeBinary3(Array);
+            Aron.inorder(root);
+        } catch(Exception e) {
+        }
+
         Aron.end();
     }
 
     //Use Level order to write node to file
-    public static void serializeBinary2(Node root, BufferedWriter out1) {
+    public static void serializeLevel(Node root, BufferedWriter out1) {
         try {
             if(root != null) {
                 Queue<Node> q1 = new LinkedList<Node>();
@@ -163,6 +230,7 @@ public class SerializeBinary {
         }
         return list;
     }
+
     public static String[] readFile(BufferedReader in) {
         String[] Array = null;
         try {
@@ -185,68 +253,102 @@ public class SerializeBinary {
         return Array;
     }
 
-    public static Node deserializeBinary2(List<List<String>> listList, int depth) {
-        Node curr = null;
-        System.out.println("size=" + listList.size());
-        System.out.println("depth=[" + depth+"]");
-        if(depth < listList.size()) {
-            curr = new Node(Integer.parseInt(listList.get(depth).get(0)));
-            if(listList.get(depth).get(1) != "#") {
-                curr.left = deserializeBinary2(listList, depth+1);
-            } else
-                curr.left = null;
+    public static Node deserializeLevel(List<List<String>> listList, Map<String, Node> map) {
+        Node root = null;
+        for(List<String> list : listList){
+            if(root == null){
+                root = new Node(Integer.parseInt(list.get(0)));
+                map.put(list.get(0), root);
 
-            if(listList.get(depth).get(2) != "#") {
-                curr.right = deserializeBinary2(listList, depth+1);
-            } else
-                curr.right = null;
+                String left = list.get(1);
+                if(!left.equals("#")){
+                    Node node =  new Node(Integer.parseInt(left));
+                    root.left = node;
+                    map.put(left, node);
+                }
+
+                String right = list.get(2);
+                if(!right.equals("#")){
+                    Node node =  new Node(Integer.parseInt(right));
+                    root.right = node;
+                    map.put(right, node);
+                }
+            }
+            else{
+                Node curr = map.get(list.get(0));
+                if(curr == null){
+                    curr = new Node(Integer.parseInt(list.get(0)));
+                    map.put(list.get(0), curr);
+                }
+
+                String left = list.get(1);
+                if(!left.equals("#")){
+                    Node node =  new Node(Integer.parseInt(left));
+                    curr.left = node;
+                    map.put(left, node);
+                }
+
+                String right = list.get(2);
+                if(!right.equals("#")){
+                    Node node =  new Node(Integer.parseInt(right));
+                    curr.right = node;
+                    map.put(right, node);
+                }
+            }
         }
-        return curr;
+        return root;
     }
 
-//    public static Node deserializeBinary(String[] Array, int[] A) {
-//        Node root = null;
-//        if(Array != null && A[0] < Array.length) {
-//            System.out.println("k="+A[0]+" Node("+Array[A[0]]+")");
-//            System.out.println("Array["+Array[A[0]]+"]");
-//            if(!Array[A[0]].equals("#")) {
-//                root = new Node(Integer.parseInt(Array[A[0]]));
-//                A[0]++;
-//                root.left = deserializeBinary(Array, A);
-//                A[0]++;
-//                root.right = deserializeBinary(Array, A);
-//            }
-//        } else {
-//            System.out.println("root is null");
-//        }
-//        return root;
-//    }
+    public static Node deserializeBinary(String[] Array, int[] A) {
+        Node root = null;
+        if(Array != null && A[0] < Array.length) {
+            if(!Array[A[0]].equals("#")) {
+                root = new Node(Integer.parseInt(Array[A[0]]));
+                A[0]++;
+                root.left = deserializeBinary(Array, A);
+                A[0]++;
+                root.right = deserializeBinary(Array, A);
+            }
+        } else {
+            Print.plb("root is null");
+        }
+        return root;
+    }
 
-    public static Node deserializeBinaryNew(Iterator<String> ite) {
+    static int index = 0;
+    public static Node deserializeBinary3(String[] Array) {
+        Node root = null;
+        if(Array != null && index < Array.length) {
+            if(!Array[index].equals("#")) {
+                root = new Node(Integer.parseInt(Array[index]));
+                index++;
+                root.left = deserializeBinary3(Array);
+                index++;
+                root.right = deserializeBinary3(Array);
+            }
+        } else {
+            Print.plb("root is null");
+        }
+        return root;
+    }
+
+    public static Node deserializeIterator(Iterator<String> ite) {
         Node root = null;
         if(ite.hasNext()) {
             String token = ite.next();
             if(!token.equals("#")) {
                 root = new Node(Integer.parseInt(token));
-                root.left = deserializeBinaryNew(ite);
-                root.right = deserializeBinaryNew(ite);
-            }else
-                return deserializeBinaryNew(ite);
+                root.left = deserializeIterator(ite);
+                root.right = deserializeIterator(ite);
+            }
         } 
         return root;
     }
 
-    public static void preorder(Node root) {
-        if(root != null) {
-            System.out.println("preorder-["+root.data+"]");
-            preorder(root.left);
-            preorder(root.right);
-        }
-    }
 
-    public static void test3() {
+    public static void test_deSerializeIndex() {
+        Aron.beg();
         BST b1 = new BST();
-
         b1.insert(15);
         b1.insert(12);
         b1.insert(14);
@@ -256,57 +358,49 @@ public class SerializeBinary {
         b1.insert(16);
         b1.insert(10);
 
-        Aron.inorder(b1.getRoot());
+        Aron.inorder(b1.root);
+        Aron.line();
 
         try {
             FileWriter fstream = new FileWriter("out.txt");
             BufferedWriter out = new BufferedWriter(fstream);
-            int k=1;
-            writeNodeToFile(b1.getRoot(), out, k);
+            int k=0;
+            serializeIndex(b1.getRoot(), out, k);
             out.close();
 
             BufferedReader in = new BufferedReader(new FileReader("out.txt"));
             Map<Integer, Integer> map = buildMapFromFile(in);
 
-            k = 1;
-            Node root = buildTree(map, k);
-            System.out.println("[preorder]");
-            Aron.preorder(root);
-
-            System.out.println();
-            System.out.println("[inorder]");
+            k = 0;
+            Node root = deSerializeIndex(map, k);
             Aron.inorder(root);
-
-            System.out.println();
-            System.out.println("[postorder]");
-            Aron.postorder(root);
-
 
         } catch(Exception e) {
             System.err.println("Error" + e.getMessage());
         }
+        Aron.end();
     }
 
     //Write nodes to file with inorder traversal
-    public static void writeNodeToFile(Node root, BufferedWriter out, int k) {
+    public static void serializeIndex(Node root, BufferedWriter out, int k) {
         if(root != null) {
             String s = k + ":" + root.data + "\n";
             try {
                 out.write(s);
-                writeNodeToFile(root.left, out, 2*k);
-                writeNodeToFile(root.right, out, 2*k + 1);
+                serializeIndex(root.left, out, 2*k + 1);
+                serializeIndex(root.right, out, 2*k + 2);
             } catch(Exception e) {
                 System.err.println("Error" + e.getMessage());
             }
         }
     }
-    //Initialize k = 1
-    public static Node buildTree(Map<Integer,Integer> map, int k) {
+    //Initialize k = 0 
+    public static Node deSerializeIndex(Map<Integer,Integer> map, int k) {
         if(map.containsKey(k)) {
             Integer data = map.get(k);
             Node root = new Node(data);
-            root.left = buildTree(map, 2*k);
-            root.right = buildTree(map, 2*k+1);
+            root.left = deSerializeIndex(map, 2*k + 1);
+            root.right = deSerializeIndex(map, 2*k + 2);
             return root;
         }
         return null;

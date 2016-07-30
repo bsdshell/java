@@ -15,6 +15,11 @@ public class SerializeNaryTree{
         test0();
         test1();
         test2();
+
+        test10();
+        test11();
+        test12();
+        test_deserialize_debug();
     }
     static void test0(){
         Aron.beg();
@@ -28,6 +33,27 @@ public class SerializeNaryTree{
         Iterator<String> ite = list.iterator();
 
         NNode node = deserialize(ite);
+        printNary(node);
+
+        Aron.end();
+    }
+
+    static void test_deserialize_debug(){
+        Aron.beg();
+        NNode root = new NNode("1");
+        root.list.add(new NNode("2"));
+        root.list.add(new NNode("3"));
+        root.list.add(new NNode("4"));
+        printNary(root);
+
+        String fName = "file4.txt";
+        write(root, fName);
+
+        List<String> list = read(fName);
+        Aron.printList(list);
+        Iterator<String> ite = list.iterator();
+
+        NNode node = deserialize_debug(ite);
         printNary(node);
 
         Aron.end();
@@ -82,6 +108,80 @@ public class SerializeNaryTree{
 
         Aron.end();
     }
+    static void test10(){
+        Aron.beg();
+        NNode root = new NNode("1");
+        NNode n2 = new NNode("2");
+        NNode n3 = new NNode("3");
+
+        NNode n4 = new NNode("4");
+        NNode n5 = new NNode("5");
+
+        root.list.add(n2);
+        root.list.add(n3);
+
+        n3.list.add(n4);
+        n3.list.add(n5);
+
+        printNary(root);
+
+        String fName = "file4.txt";
+        write(root, fName);
+
+        List<String> list = read(fName);
+        Aron.printList(list);
+        Iterator<String> ite = list.iterator();
+
+        NNode node = deserializeStack(ite);
+        printNary(node);
+
+        Aron.end();
+    }
+
+    static void test11(){
+        Aron.beg();
+
+        NNode root = new NNode("1");
+        NNode n2 = new NNode("2");
+        NNode n3 = new NNode("3");
+
+
+        root.list.add(n2);
+        root.list.add(n3);
+
+        printNary(root);
+
+        String fName = "file4.txt";
+        write(root, fName);
+
+        List<String> list = read(fName);
+        Aron.printList(list);
+        Iterator<String> ite = list.iterator();
+
+        NNode node = deserializeStack(ite);
+        printNary(node);
+ 
+
+        Aron.end();
+    }
+
+    static void test12(){
+        Aron.beg();
+        NNode root = new NNode("1");
+        printNary(root);
+
+        String fName = "file4.txt";
+        write(root, fName);
+
+        List<String> list = read(fName);
+        Aron.printList(list);
+        Iterator<String> ite = list.iterator();
+
+        NNode node = deserializeStack(ite);
+        printNary(node);
+
+        Aron.end();
+    }
     public static void printNary(NNode curr){
         if(curr != null){
             System.out.println("[" + curr.data + "]"); 
@@ -120,6 +220,8 @@ public class SerializeNaryTree{
         }
         return list;
     }
+    //[ file=serializetree.html title=""
+    // serialize n-ary tree from preorder to post order 
     public static void serialize(NNode curr, BufferedWriter bw){
         if(curr != null){
             try{
@@ -134,21 +236,61 @@ public class SerializeNaryTree{
     }
 
     public static NNode deserialize(Iterator<String> ite){
+        NNode root = null;
         if(ite.hasNext()){
             String token = ite.next();
             if(!token.equals("#")){
-                NNode node = new NNode(token);
-                NNode n = deserialize(ite);
-                if(n != null)
-                    node.list.add(n);
-
-                return node;
+                root = new NNode(token);
+                NNode child = deserialize(ite);
+                if(child != null)
+                    root.list.add(child);
             }else{
-                return deserialize(ite);
+                root = deserialize(ite);
             }
         }
-        return null;
+        return root;
     }
+
+    public static NNode deserialize_debug(Iterator<String> ite){
+        NNode root = null;
+        if(ite.hasNext()){
+            String token = ite.next();
+//            Print.pl("[");
+//            Print.pb(token);
+            if(!token.equals("#")){
+                root = new NNode(token);
+                NNode child = deserialize_debug(ite);
+                if(child != null)
+                    root.list.add(child);
+            }else{
+                //Print.pl("]");
+                root = deserialize_debug(ite);
+            }
+        }
+        return root;
+    }
+    //]
+
+    //[ file=deserializetree.html title=""
+    // deserialize with stack
+    public static NNode deserializeStack(Iterator<String> ite){
+        Stack<NNode> stack = new Stack<NNode>(); 
+        while(ite.hasNext()){
+            String token = ite.next();
+            if(!token.equals("#")){
+                stack.push(new NNode(token));
+            }else{
+                if(stack.size() > 1){
+                    NNode top = stack.pop();
+                    NNode peek = stack.peek();
+                    peek.list.add(top);
+                }
+            }
+        }
+        return stack.peek();
+    }
+    //]
+
 //    public static NNode buildTree(String str){
 //        if(!str.equals("#")){
 //            Node r = new NNode(str);

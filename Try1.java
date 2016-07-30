@@ -7,18 +7,19 @@ import classfile.*;
 
 public class Try1 {
     public static void main(String[] args) {
-        test1();
-        test2();
-        test3();
-        test4();
-        test5();
-        test6();
-        test7();
-
-        test10();
-        test11();
-        test12();
-        test13();
+//        test1();
+//        test2();
+//        test3();
+//        test4();
+//        test5();
+//        test6();
+//        test7();
+//
+//        test10();
+//        test11();
+//        test12();
+//        test13();
+        test14();
     }
 
     
@@ -119,27 +120,35 @@ public class Try1 {
         }
     }
 
-    public static void listDir(String directoryName){
+    public static List<String> listDir(String directoryName){
+        List<String> list = new ArrayList<String>(); 
         File directory = new File(directoryName);
+
         File[] fList = directory.listFiles();
         for (File file : fList){
             if (file.isDirectory()){
                 System.out.println(file.getName());
+                list.add(file.getName());
             }
         }
+        return list;
     }
 
-    public static void listFileDir(String directoryName){
+    public static List<String> listFileDir(String directoryName){
+        List<String> list = new ArrayList<String>(); 
         File directory = new File(directoryName);
 
         File[] fList = directory.listFiles();
         for (File file : fList){
             if (file.isFile()){
                 System.out.println(file.getAbsolutePath());
+                list.add(file.getAbsolutePath());
             } else if (file.isDirectory()){
                 listFileDir(file.getAbsolutePath());
+                list.add(file.getAbsolutePath());
             }
         }
+        return list;
     }
     
     static void test10(){
@@ -190,6 +199,17 @@ public class Try1 {
 
         SNode head = insert(sll.head, 3);
         Aron.printSLL(head);
+
+        Aron.end();
+    }
+
+    static void test14(){
+        Aron.beg();
+        List<String> list1 =  listDir("."); 
+        List<String> list2 =  listFileDir("."); 
+        Aron.printlnList(list1);
+        Aron.line();
+        Aron.printlnList(list2);
 
         Aron.end();
     }
