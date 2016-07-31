@@ -10,6 +10,7 @@ public class SerializeBinary {
         test1_deserializeIterator();
         test2_deserializeIterator();
         test_deSerializeIndex();
+        test1_deSerializeIndex();
     }
     static void test_serializeLevel(){
         Aron.beg();
@@ -23,12 +24,12 @@ public class SerializeBinary {
         Aron.inorder(bin.root);
         Aron.line();
         try {
-            BufferedWriter out1 = new BufferedWriter(new FileWriter("level0.txt"));
+            BufferedWriter out1 = new BufferedWriter(new FileWriter("text/level0.txt"));
 
             serializeLevel(bin.root, out1);
             out1.close();
 
-            BufferedReader levelIn = new BufferedReader(new FileReader("level0.txt"));
+            BufferedReader levelIn = new BufferedReader(new FileReader("text/level0.txt"));
 
             List<List<String>> list = createMap(levelIn);
             int depth = 0;
@@ -49,11 +50,11 @@ public class SerializeBinary {
         bin.insert(11);
 
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("out.txt"));
+            BufferedWriter out = new BufferedWriter(new FileWriter("text/out.txt"));
             serializeBinary(bin.root, out);
             out.close();
 
-            List<String> list = Aron.readFileOneLine("out.txt");
+            List<String> list = Aron.readFileOneLine("text/out.txt");
             Iterator<String> ite = list.iterator();
             Node root = deserializeIterator(ite);
 
@@ -77,11 +78,11 @@ public class SerializeBinary {
             Aron.inorder(bin.root);
             Aron.line();
 
-            BufferedWriter out = new BufferedWriter(new FileWriter("out.txt"));
+            BufferedWriter out = new BufferedWriter(new FileWriter("text/out.txt"));
             serializeBinary(bin.root, out);
             out.close();
 
-            List<String> list = Aron.readFileOneLine("out.txt");
+            List<String> list = Aron.readFileOneLine("text/out.txt");
             Iterator<String> ite = list.iterator();
             Node root = deserializeIterator(ite);
 
@@ -105,11 +106,11 @@ public class SerializeBinary {
         try {
             Aron.inorder(bin.root);
 
-            BufferedWriter out = new BufferedWriter(new FileWriter("out.txt"));
+            BufferedWriter out = new BufferedWriter(new FileWriter("text/out.txt"));
             serializeBinary(bin.root, out);
             out.close();
 
-            BufferedReader in = new BufferedReader(new FileReader("out.txt"));
+            BufferedReader in = new BufferedReader(new FileReader("text/out.txt"));
 
             int[] A = new int[1];
             A[0] = 0;
@@ -135,11 +136,11 @@ public class SerializeBinary {
         try {
             Aron.inorder(bin.root);
 
-            BufferedWriter out = new BufferedWriter(new FileWriter("out.txt"));
+            BufferedWriter out = new BufferedWriter(new FileWriter("text/out.txt"));
             serializeBinary(bin.root, out);
             out.close();
 
-            BufferedReader in = new BufferedReader(new FileReader("out.txt"));
+            BufferedReader in = new BufferedReader(new FileReader("text/out.txt"));
 
             String[] Array = readFile(in);
             Node root = deserializeBinary3(Array);
@@ -345,7 +346,6 @@ public class SerializeBinary {
         return root;
     }
 
-
     public static void test_deSerializeIndex() {
         Aron.beg();
         BST b1 = new BST();
@@ -362,13 +362,44 @@ public class SerializeBinary {
         Aron.line();
 
         try {
-            FileWriter fstream = new FileWriter("out.txt");
+            FileWriter fstream = new FileWriter("text/out.txt");
             BufferedWriter out = new BufferedWriter(fstream);
             int k=0;
             serializeIndex(b1.getRoot(), out, k);
             out.close();
 
-            BufferedReader in = new BufferedReader(new FileReader("out.txt"));
+            BufferedReader in = new BufferedReader(new FileReader("text/out.txt"));
+            Map<Integer, Integer> map = buildMapFromFile(in);
+
+            k = 0;
+            Node root = deSerializeIndex(map, k);
+            Aron.inorder(root);
+
+        } catch(Exception e) {
+            System.err.println("Error" + e.getMessage());
+        }
+        Aron.end();
+    }
+
+    public static void test1_deSerializeIndex() {
+        Aron.beg();
+        BST b1 = new BST();
+        b1.insert(10);
+        b1.insert(5);
+        b1.insert(15);
+        b1.insert(12);
+
+        Aron.inorder(b1.root);
+        Aron.line();
+
+        try {
+            FileWriter fstream = new FileWriter("text/out1.txt");
+            BufferedWriter out = new BufferedWriter(fstream);
+            int k=0;
+            serializeIndex(b1.getRoot(), out, k);
+            out.close();
+
+            BufferedReader in = new BufferedReader(new FileReader("text/out1.txt"));
             Map<Integer, Integer> map = buildMapFromFile(in);
 
             k = 0;
@@ -386,8 +417,8 @@ public class SerializeBinary {
         if(root != null) {
             String s = k + ":" + root.data + "\n";
             try {
-                out.write(s);
                 serializeIndex(root.left, out, 2*k + 1);
+                out.write(s);
                 serializeIndex(root.right, out, 2*k + 2);
             } catch(Exception e) {
                 System.err.println("Error" + e.getMessage());
