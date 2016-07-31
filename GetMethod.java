@@ -8,7 +8,7 @@ class GetMethod{
     public String baz() {
         return "";
     }
-    //[ filt=getmethod.html title=""
+    //[ file=getmethod.html title=""
     public static void main(String args[]) {
         try {
             Class c = GetMethod.class;
