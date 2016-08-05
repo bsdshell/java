@@ -1,35 +1,33 @@
-import java.io.*;
-import java.lang.String;
-import java.util.*;
+import java.io.IOException;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 public class Try99 {
     public static void main(String[] args) {
-        System.out.println("---------------------------------\n"); 
-        permutation("", "a");
-        System.out.println("---------------------------------\n"); 
-        permutation("", "ab");
-        System.out.println("---------------------------------\n"); 
-        permutation("", "abc");
-        System.out.println("---------------------------------\n"); 
-    }
-    // prefix = ""
-    static String remove(String str, int index){
-        String s = "";
-        for(int i=0; i<str.length(); i++){
-            if(i != index)
-                s += str.charAt(i) + "";
-        }
-        return s;
-    }
-    static void permutation(String prefix, String str){    
-        if(str != null){
-            if(str.length() == 0){
-                System.out.println(prefix);
-            }else{
-                for(int i=0; i<str.length(); i++){
-                    permutation(prefix + (str.charAt(i) + ""), remove(str, i));
-                }
+        Document doc;
+        try {
+            // need http protocol
+            doc = Jsoup.connect("http://google.com").get();
+
+            // get page title
+            String title = doc.title();
+            System.out.println("title : " + title);
+
+            // get all links
+            Elements links = doc.select("a[href]");
+            for (Element link : links) {
+                // get the value from href attribute
+                System.out.println("\nlink : " + link.attr("href"));
+                System.out.println("text : " + link.text());
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
     }
 }
+
+

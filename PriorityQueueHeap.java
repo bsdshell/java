@@ -1,4 +1,5 @@
 import java.util.*;
+import classfile.*;
 
 // priority heap compareto compareTo heapify heap
 //[ file=priorityheap.html title=""
@@ -38,7 +39,7 @@ public class PriorityQueueHeap {
 
         int k = 3;
         while(k > 0) {
-            System.out.println(miniHeap.remove().toString());
+            Print.p(miniHeap.remove().toString());
             k--;
         }
     }

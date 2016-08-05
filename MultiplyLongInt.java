@@ -1,17 +1,19 @@
 import java.io.*;
+import classfile.*;
 
 class MultiplyLongInt
 {
 	public static void main(String args[])
 	{
-//        test1();
-//        test2();
-//        test3();
-//        test4();
+        test1();
+        test2();
+        test3();
+        test4();
         test5();
-        test6();
-        test7();
-        test8();
+        test1_multiplynew();
+        test2_multiplynew();
+        test3_multiplynew();
+
 	}
     //[file=multiplynew.html title=""     
     public static int[] multiplynew(int[] arr1, int[] arr2){
@@ -24,7 +26,8 @@ class MultiplyLongInt
             int carry = 0;
             int j=0;
             for(j=len1-1; j >= 0; j--){
-                arr[i][(i+1)+j] = (arr1[j]*arr2[i] + carry) %10;
+                int shiftLeft = i + 1;
+                arr[i][j + shiftLeft] = (arr1[j]*arr2[i] + carry) %10;
                 carry = (arr1[j]*arr2[i]+carry) / 10;
             }
             arr[i][(i+1)+j] = carry;
@@ -91,98 +94,91 @@ class MultiplyLongInt
         }
     }
     //]
+    
 
-    public static void test1() {
-        System.out.println("test1");
+    static void test1(){
+        Aron.beg();
 		int[] A = {9, 9, 9};
 		int[] B = {9, 0, 9};
 		int[] S = multiply(A, B);
-        for(int i=0; i<S.length; i++)
-            System.out.print("["+S[i]+"]");
-
-        System.out.println();
-    } 
-
-    public static void test2() {
-        System.out.println("test2");
+        Aron.printArray(S);
+        Aron.end();
+    }
+    static void test2(){
+        Aron.beg();
 		int[] A = {9, 9, 9};
 		int[] B = {9, 9, 9};
 		int[] S = multiply(A, B);
+        Aron.printArray(S);
 
-        for(int i=0; i<S.length; i++)
-            System.out.print("["+S[i]+"]");
-
-        System.out.println();
-    } 
-
-    public static void test3() {
-        System.out.println("test3");
+        Aron.end();
+    }
+    static void test3(){
+        Aron.beg();
 		int[] A = {9};
 		int[] B = {9, 9, 9};
 		int[] S = multiply(A, B);
+        Aron.printArray(S);
 
-        for(int i=0; i<S.length; i++)
-            System.out.print("["+S[i]+"]");
-
-        System.out.println();
+        Aron.end();
     } 
 
-    public static void test4() {
-        System.out.println("test4");
+    static void test4(){
+        Aron.beg();
 		int[] A = {9};
 		int[] B = {1};
 		int[] S = multiply(A, B);
+        Aron.printArray(S);
 
-        for(int i=0; i<S.length; i++)
-            System.out.print("["+S[i]+"]");
+        Aron.end();
+    } 
 
-        System.out.println();
-    }
-
-    public static void test5() {
-        System.out.println("test5");
+    static void test5(){
+        Aron.beg();
 		int[] A = {9, 9};
 		int[] B = {9};
 		int[] S = multiply(A, B);
+        Aron.printArray(S);
+        Aron.end();
+    } 
 
-        for(int i=0; i<S.length; i++)
-            System.out.print("["+S[i]+"]");
+    static void test1_multiplynew(){
+        Aron.beg();
+        int[] A = {9, 9};
+		int[] B = {9};
+		int[] S = multiplynew(A, B);
+        Aron.printArray(S);
 
-        System.out.println();
+        Aron.end();
     }
 
-    public static void test6() {
-        System.out.println("test6");
+    static void test2_multiplynew(){
+        Aron.beg();
+		int[] A = {1};
+		int[] B = {9};
+	    int[] S = multiplynew(A, B);
+        Aron.printArray(S);
+
+        Aron.end();
+    }
+
+    static void test3_multiplynew(){
+        Aron.beg();
+		int[] A = {0};
+		int[] B = {0};
+	    int[] S = multiplynew(A, B);
+        Aron.printArray(S);
+        Print.p(0*0);
+
+        Aron.end();
+    }
+    static void test4_multiplynew(){
+        Aron.beg();
 		int[] A = {9};
 		int[] B = {9};
 		int[] S = multiplynew(A, B);
+        Aron.printArray(S);
 
-        for(int i=0; i<S.length; i++)
-            System.out.print("["+S[i]+"]");
-
-        System.out.println();
+        Aron.end();
     }
-
-    public static void test7() {
-        System.out.println("test7");
-		int[] A = {9, 9};
-		int[] B = {9};
-		int[] S = multiplynew(A, B);
-
-        for(int i=0; i<S.length; i++)
-            System.out.print("["+S[i]+"]");
-        System.out.println();
-    }
-
-    public static void test8() {
-        System.out.println("test8");
-		int[] A = {1};
-		int[] B = {9};
-		int[] S = multiplynew(A, B);
-
-        for(int i=0; i<S.length; i++)
-            System.out.print("["+S[i]+"]");
-        System.out.println();
-    }
-
 }
