@@ -1,48 +1,31 @@
 package com.company;
 
-
-import javafx.util.Pair;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-class Item{
-    String name;
-    double price;
-}
-
-class VendorMachine {
-    Map<String, List<Item>> map = new HashMap<String, List<Item>>();
-    double total;
-    double currentCash;
-    public VendorMachine(){
-    }
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 
 
-    public void displayMessage(){
-
-    }
-
-    public Pair<Item, Double> buy(Double cash, Item item) {
-                
-    }
-}
-
-
-
-
-public class Main {
-
+public class Main{
     public static void main(String[] args) {
-        // write your code here
+        //Method method = Test.getClass().getMethod();
+        //Parameter para = new CachingParameter();
 
-        // input cash
-        // addCash(cash)
-        // keyItem(String key)
-        // if(isEnoughCash() && item != null)
-        //      buy(cash, item)
+//        Class<String> clz = String.class;
+//        for (Method m : clz.getDeclaredMethods()) {
+//           System.err.println(m.getName());
+//           for (Parameter p : m.getParameters()) {
+//              System.err.println("  " + p.getName());
+//           }
+//        }
 
+        Class<Main> clz = Main.class;
+        for (Method m : clz.getDeclaredMethods()) {
+            System.err.println(m.getName());
+            for (Parameter p : m.getParameters()) {
+                System.err.println("  " + p.getName() + " str=" + p.toString());
+            }
+        }
 
+    }
+    static void print(String str1, int num){
     }
 }

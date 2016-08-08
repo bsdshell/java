@@ -10,7 +10,9 @@ import java.net.*;
 import classfile.*;
 /**
  * Example program to list links from a URL.
+ * Use jsoup to parse DOM html file and extract
  */
+
 public class Try101 {
     public static void main(String[] args) throws IOException {
         //Validate.isTrue(args.length == 1, "usage: supply url to fetch");

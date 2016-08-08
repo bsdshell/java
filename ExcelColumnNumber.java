@@ -25,7 +25,35 @@ public class ExcelColumnNumber{
         test5();
         test6();
         test7();
+        test11_printBinary();
+
+        test00_ExcelSheetRowNumberDirect();
     }
+    
+    static void test00_ExcelSheetRowNumberDirect(){
+        Aron.beg();
+        int num = 1;
+        Print.p("num=" + num);
+        ExcelSheetRowNumberDirect(num);
+
+        num = 26;
+        Print.p("num=" + num);
+        ExcelSheetRowNumberDirect(num);
+
+        Aron.end();
+    }
+    static void test11_printBinary(){
+        Aron.beg();
+
+        Test.t(printBinary(0), "0"); 
+        Test.t(printBinary(1), "1"); 
+        Test.t(printBinary(2), "10"); 
+        Test.t(printBinary(3), "11"); 
+        Test.t(printBinary(4), "100");
+
+        Aron.end();
+    } 
+
     public static void test5() {
         System.out.println("test5");
         String prefix = "";
@@ -78,6 +106,7 @@ public class ExcelColumnNumber{
     public static void test2() {
         ExcelSheetRowNumberDirect(1000000);
     }
+
     public static void test3() {
         int n = ExcelSheetStringToInteger("A");
         System.out.println("A=" + n);
@@ -162,8 +191,8 @@ public class ExcelColumnNumber{
         int diff = num - (int)(Math.pow(26, k+1) - 26)/25;
         int[] arr = new int[26];
 
-        System.out.print("k="+k);
-        System.out.print("diff="+diff);
+        Print.p(k);
+        Print.p("diff=" + diff);
 
         for(int i=0; i<26; i++)
             arr[i] = 'a'+i;
@@ -171,9 +200,10 @@ public class ExcelColumnNumber{
         int n = diff;
         if(diff == 0)
             n = num;
+
         while(n > 0) {
             int r = (n-1) % 26;
-            System.out.print("["+(char)arr[r]+"]");
+            Print.p((char)arr[r]);
             n /= 26;
         }
         System.out.println();
@@ -252,4 +282,18 @@ public class ExcelColumnNumber{
         return str;
     }
     //]
+
+    static String printBinary(int n){
+        String str = "";
+        if( n == 0)    
+            str += "0";
+        else{     
+            while(n > 0){
+                int reminder = n % 2;
+                str = (reminder + "") + str;
+                n /= 2;
+            }
+        }
+        return str;
+    }
 }
