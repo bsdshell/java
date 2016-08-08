@@ -10,6 +10,7 @@ public class NonRepeatingChar{
         test2();
         test3();
         test4();
+        test5();
     }
 
     static void test0(){
@@ -60,6 +61,16 @@ public class NonRepeatingChar{
         Integer[] arr = {1, 2, 1, 2}; 
         int len = arr.length;
         Integer value = null;
+        Integer nonRepeating = nonRepeatingChar(arr, len-1);
+        Print.p(nonRepeating);
+        Test.t(nonRepeating, value);
+        Aron.end();
+    }
+    static void test5(){
+        Aron.beg();
+        Integer[] arr = {1, 2, 1}; 
+        int len = arr.length;
+        Integer value = 2;
         Integer nonRepeating = nonRepeatingChar(arr, len-1);
         Print.p(nonRepeating);
         Test.t(nonRepeating, value);
