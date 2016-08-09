@@ -3,6 +3,20 @@ import java.io.*;
 import classfile.*;
 
 
+class Node {
+    public Node left;
+    public Node right;
+    public Node next;
+    public Character data;
+    public boolean isVisited;
+    public Node(Character n) {
+        left = right = null;
+        data = n;
+        isVisited = false;
+    }
+}
+
+
 public class NonRepeatingChar{
     public static void main(String[] args) {
         test0();
@@ -15,10 +29,11 @@ public class NonRepeatingChar{
 
     static void test0(){
         Aron.beg();
-        Integer[] arr = {1}; 
+        Character[] arr = {'a', 'b', 'a'}; 
+
         int len = arr.length;
-        Integer nonRepeating = nonRepeatingChar(arr, len-1);
-        Integer value = 1;
+        Character nonRepeating = nonRepeatingChar(arr, len-1);
+        Character value = 1;
         Print.p(nonRepeating);
         Test.t(nonRepeating, value);
         Aron.end();
@@ -26,20 +41,20 @@ public class NonRepeatingChar{
 
     static void test1(){
         Aron.beg();
-        Integer[] arr = {1, 2, 1, 4, 9, 2, 4, 6, 7, 7}; 
+        Character[] arr = {'a', 'b', 'a', 'c'}; 
         int len = arr.length;
-        Integer nonRepeating = nonRepeatingChar(arr, len-1);
-        Integer value = 9;
+        Character nonRepeating = nonRepeatingChar(arr, len-1);
+        Character value = 9;
         Print.p(nonRepeating);
         Test.t(nonRepeating, value);
         Aron.end();
     }
     static void test2(){
         Aron.beg();
-        Integer[] arr = {1, 2, 1}; 
+        Character[] arr = {'a', 'b', 'a', 'b', 'e', 'b'}; 
         int len = arr.length;
-        Integer nonRepeating = nonRepeatingChar(arr, len-1);
-        Integer value = 2;
+        Character nonRepeating = nonRepeatingChar(arr, len-1);
+        Character value = 2;
         Print.p(nonRepeating);
         Test.t(nonRepeating, value);
         Aron.end();
@@ -47,10 +62,10 @@ public class NonRepeatingChar{
 
     static void test3(){
         Aron.beg();
-        Integer[] arr = {1, 2, 1, 1, 2, 4, 1}; 
+        Character[] arr = {'a'}; 
         int len = arr.length;
-        Integer nonRepeating = nonRepeatingChar(arr, len-1);
-        Integer value = 4;
+        Character nonRepeating = nonRepeatingChar(arr, len-1);
+        Character value = 'a';
         Print.p(nonRepeating);
         Test.t(nonRepeating, value);
         Aron.end();
@@ -58,34 +73,34 @@ public class NonRepeatingChar{
 
     static void test4(){
         Aron.beg();
-        Integer[] arr = {1, 2, 1, 2}; 
+        Character[] arr = {'a', 'b', 'a'}; 
         int len = arr.length;
-        Integer value = null;
-        Integer nonRepeating = nonRepeatingChar(arr, len-1);
+        Character value = 'b';
+        Character nonRepeating = nonRepeatingChar(arr, len-1);
         Print.p(nonRepeating);
         Test.t(nonRepeating, value);
         Aron.end();
     }
     static void test5(){
         Aron.beg();
-        Integer[] arr = {1, 2, 1}; 
+        Character[] arr = {'a', 'a', 'a', 'b', 'a'}; 
         int len = arr.length;
-        Integer value = 2;
-        Integer nonRepeating = nonRepeatingChar(arr, len-1);
+        Character value = 'b';
+        Character nonRepeating = nonRepeatingChar(arr, len-1);
         Print.p(nonRepeating);
         Test.t(nonRepeating, value);
         Aron.end();
     }
 
     //[ file=nonrepeatingchar.html title=""
-    static Integer nonRepeatingChar(Integer[] arr, int index){
+    static Character nonRepeatingChar(Character[] arr, int index){
         List<Node> list =  new LinkedList<Node>();
         if(arr != null){
-            Map<Integer, Node> map = new HashMap<Integer, Node>();
+            Map<Character, Node> map = new HashMap<Character, Node>();
 
             for(int i=0; i<arr.length; i++){
                 if(i <= index){
-                    Integer ch = arr[i];
+                    Character ch = arr[i];
                     if(!map.containsKey(ch)){
                         Node node = new Node(ch);
                         list.add(node);
