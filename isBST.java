@@ -3,64 +3,56 @@ import java.lang.String;
 import java.util.*;
 import classfile.*;
 
-//class Node {
-//    public Node left;
-//    public Node right;
-//    public int data;
-//    public Node(int n) {
-//        data = n;
-//        left = null;
-//        right = null;
+//class BST {
+//    Node root;
+//    public BST() {
+//        root = null;
+//    };
+//    public void insert(int n) {
+//        if(root == null) {
+//            root = new Node(n);
+//        } else {
+//            Node cur = root;
+//            boolean end = false;
+//            while(cur != null && !end) {
+//                if(n < cur.data) {
+//                    if(cur.left == null) {
+//                        cur.left = new Node(n);
+//                        end = true;
+//                    } else
+//                        cur = cur.left;
+//                } else {
+//                    if(cur.right == null) {
+//                        cur.right = new Node(n);
+//                        end = true;
+//                    } else
+//                        cur = cur.right;
+//                }
+//            }
+//        }
 //    }
-//    public Node getLeft() {
-//        return left;
-//    }
-//    public Node getRight() {
-//        return right;
-//    }
-//    public void setLeft(Node l) {
-//        left = l;
-//    }
-//    public void setRight(Node r) {
-//        right = r;
+//    public Node getRoot() {
+//        return root;
 //    }
 //}
-//
-class BST {
-    Node root;
-    public BST() {
-        root = null;
-    };
-    public void insert(int n) {
-        if(root == null) {
-            root = new Node(n);
-        } else {
-            Node cur = root;
-            boolean end = false;
-            while(cur != null && !end) {
-                if(n < cur.data) {
-                    if(cur.left == null) {
-                        cur.left = new Node(n);
-                        end = true;
-                    } else
-                        cur = cur.left;
-                } else {
-                    if(cur.right == null) {
-                        cur.right = new Node(n);
-                        end = true;
-                    } else
-                        cur = cur.right;
-                }
-            }
-        }
-    }
-    public Node getRoot() {
-        return root;
-    }
-}
+
 class isBST {
 
     public static void main(String args[]) {
+        test0();
+        //test1_isBST();
+        //test2_isBST();
+        //test3_isBST();
+        test1_isBSTDef();
+        test2_isBSTDef();
+        test3_isBSTDef();
+
+        test11_isBST();
+        test12_isBST();
+    }
+    
+    static void test0(){
+        Aron.beg();
         BST b1 = new BST();
         b1.insert(10);
         b1.insert(5);
@@ -76,7 +68,7 @@ class isBST {
         second[0] = null;
         //swap(5, 15, b1.getRoot(), first, second);
 
-        inorder(b1.getRoot());
+        Aron.inorder(b1.getRoot());
 
         Node[] prev = new Node[1];
         prev[0] = null;
@@ -84,34 +76,71 @@ class isBST {
         System.out.println(isBST2(b1.getRoot(), prev));
         System.out.println(isBST(b1.getRoot(), null));
         System.out.println(isBSTDef(b1.getRoot()));
+        Aron.end();
+    }
+    static void test1_isBST(){
+        Aron.beg();
+        BST b1 = new BST();
+        b1.insert(10);
+        b1.insert(5);
+        b1.insert(15);
+        Aron.inorder(b1.root);
+        Test.t(isBST(b1.root));
+
+        Aron.end();
+    }
+    static void test11_isBST(){
+        Aron.beg();
+        BST b1 = new BST();
+        b1.insert(10);
+        Node prev = null;
+        Aron.inorder(b1.root);
+        Test.t(isBST(b1.root, prev));
+
+        Aron.end();
+    }
+    static void test12_isBST(){
+        Aron.beg();
+        BST b1 = new BST();
+        b1.insert(10);
+        b1.insert(11);
+        b1.insert(12);
+        b1.insert(13);
+        Node prev = null;
+        Aron.inorder(b1.root);
+        Test.t(isBST(b1.root, prev));
+
+        Aron.end();
     }
 
-//    public static void swap(Node root, int m, int n, Node first, Node second) {
-//        if(root != null){
-//            swap(root.left, m, n, first, second);
-//            if(first == null && second == null){
-//                if(root.data == m)
-//                    first = root;
-//                else if (root.data == n)
-//                    first = root;
-//            }else if(second == null){
-//                if(root.data == m)
-//                    second = root;
-//                else if (root.data == n)
-//                    second = root;
-//            }
-//
-//            swap(root.right, m, n, first, second);
-//
-//            if(first != null && second != null){
-//                int tmp = first.data;
-//                first.data = second.data;
-//                second.data = tmp;
-//                first = second = null;
-//            }
-//        }
-//    }
+    static void test1_isBSTDef(){
+        Aron.beg();
+        BST b1 = new BST();
+        b1.insert(10);
+        Aron.inorder(b1.root);
+        Test.t(isBSTDef(b1.root));
 
+        Aron.end();
+    }
+    static void test2_isBSTDef(){
+        Aron.beg();
+        BST b1 = new BST();
+        b1.insert(10);
+        b1.insert(5);
+        b1.insert(15);
+        Aron.inorder(b1.root);
+        Test.t(isBSTDef(b1.root));
+
+        Aron.end();
+    }
+    static void test3_isBSTDef(){
+        Aron.beg();
+        BST b1 = new BST();
+        Aron.inorder(b1.root);
+        Test.t(isBSTDef(b1.root));
+
+        Aron.end();
+    }
     public static void swap(int m, int n, Node root, Node[] first, Node[] second) {
         if(root != null) {
             swap(m, n, root.left, first, second);
@@ -130,15 +159,7 @@ class isBST {
             swap(m, n, root.right, first, second);
         }
     }
-
-    public static void inorder(Node node) {
-        if(node != null) {
-            inorder(node.left);
-            System.out.println(node.data);
-            inorder(node.right);
-        }
-    }
-
+    //[ file=isbststatic.html title=""
     public static Node prev = null;
     public static boolean isBST(Node r) {
         if(r != null) {
@@ -152,18 +173,22 @@ class isBST {
         }
         return true;
     }
+    //]
 
-    public static boolean isBST(Node root, Node previous) {
+    //[ file=isbst.html title=""
+    public static boolean isBST(Node root, Node prev) {
         if( root != null) {
-            if(!isBST(root.left, previous))
+            if(!isBST(root.left, prev))
                 return false;
-            if(previous != null && previous.data >= root.data)
+            if(prev != null && prev.data >= root.data)
                 return false;
             if(!isBST(root.right, root))
                 return false;
         }
         return true;
     }
+    //]
+
     //prev[0] = null
     public static boolean isBST2(Node root, Node[] prev) {
         if( root != null) {
@@ -179,7 +204,10 @@ class isBST {
         }
         return true;
     }
-    //precondition node != null
+    
+    //[ file=isbstdef.html title=""
+    //
+    // precondition node != null
     public static int max(Node node) {
         if(node.right != null)
             return max(node.right);
@@ -187,7 +215,7 @@ class isBST {
             return node.data;
     }
 
-    //precondition node != null
+    // precondition node != null
     public static int min(Node node) {
         if(node.left != null)
             return min(node.left);
@@ -195,7 +223,7 @@ class isBST {
             return node.data;
     }
 
-    //BST definition
+    // BST definition
     // 1) left subtree is BST
     // 2) right subtree is BST
     // 3) max(left substree) < parent.data && min(right subtree) > parent.data
@@ -205,12 +233,32 @@ class isBST {
         else {
             if(!isBSTDef(node.left))
                 return false;
+
+            if((node.left != null && max(node.left) >= node.data))
+                return false;
+            if(node.right != null && node.data >= min(node.right))
+                return false;
+
             if(!isBSTDef(node.right))
                 return false;
-            if( !((node.left == null || max(node.left) < node.data) &&
-                    (node.right == null || min(node.right) > node.data)))
-                return false;
+            
             return true;
         }
     }
+    //]
+
+//    public static boolean isBSTDef(Node node) {
+//        if(node == null)
+//            return true;
+//        else {
+//            if(!isBSTDef(node.left))
+//                return false;
+//            if(!isBSTDef(node.right))
+//                return false;
+//            if( !((node.left == null || max(node.left) < node.data) &&
+//                    (node.right == null || min(node.right) > node.data)))
+//                return false;
+//            return true;
+//        }
+//    }
 }
