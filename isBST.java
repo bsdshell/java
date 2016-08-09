@@ -3,46 +3,9 @@ import java.lang.String;
 import java.util.*;
 import classfile.*;
 
-//class BST {
-//    Node root;
-//    public BST() {
-//        root = null;
-//    };
-//    public void insert(int n) {
-//        if(root == null) {
-//            root = new Node(n);
-//        } else {
-//            Node cur = root;
-//            boolean end = false;
-//            while(cur != null && !end) {
-//                if(n < cur.data) {
-//                    if(cur.left == null) {
-//                        cur.left = new Node(n);
-//                        end = true;
-//                    } else
-//                        cur = cur.left;
-//                } else {
-//                    if(cur.right == null) {
-//                        cur.right = new Node(n);
-//                        end = true;
-//                    } else
-//                        cur = cur.right;
-//                }
-//            }
-//        }
-//    }
-//    public Node getRoot() {
-//        return root;
-//    }
-//}
-
 class isBST {
-
     public static void main(String args[]) {
         test0();
-        //test1_isBST();
-        //test2_isBST();
-        //test3_isBST();
         test1_isBSTDef();
         test2_isBSTDef();
         test3_isBSTDef();
@@ -66,13 +29,11 @@ class isBST {
         Node[] second = new Node[1];
         first[0] = null;
         second[0] = null;
-        //swap(5, 15, b1.getRoot(), first, second);
 
         Aron.inorder(b1.getRoot());
 
         Node[] prev = new Node[1];
         prev[0] = null;
-        ////System.out.println(isBST(b1.getRoot()));
         System.out.println(isBST2(b1.getRoot(), prev));
         System.out.println(isBST(b1.getRoot(), null));
         System.out.println(isBSTDef(b1.getRoot()));
@@ -247,18 +208,4 @@ class isBST {
     }
     //]
 
-//    public static boolean isBSTDef(Node node) {
-//        if(node == null)
-//            return true;
-//        else {
-//            if(!isBSTDef(node.left))
-//                return false;
-//            if(!isBSTDef(node.right))
-//                return false;
-//            if( !((node.left == null || max(node.left) < node.data) &&
-//                    (node.right == null || min(node.right) > node.data)))
-//                return false;
-//            return true;
-//        }
-//    }
 }
