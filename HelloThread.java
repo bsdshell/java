@@ -1,6 +1,7 @@
 import java.io.*;
 import java.lang.String;
 import java.util.*;
+import classfile.*;
 
 //[file=nonsynthread.html title=""
 public class HelloThread implements Runnable{

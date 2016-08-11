@@ -4,59 +4,49 @@ import java.util.*;
 
 import classfile.*;
 
-class BST {
-    Node root;
-    public BST() {
-        root = null;
-    };
-    public void Insert(int n) {
-        if(root == null) {
-            root = new Node(n);
-        } else {
-            Node curr = root;
-            boolean end = false;
-            while(curr != null && !end) {
-                if(n < curr.data) {
-                    if(curr.left == null) {
-                        curr.left = new Node(n);
-                        end = true;
-                    } else
-                        curr = curr.left;
-                } else {
-                    if(curr.right == null) {
-                        curr.right = new Node(n);
-                        end = true;
-                    } else
-                        curr = curr.right;
-                }
+//[ file=inorderiterator.html title=""     
+class InorderIterator {
+    Node curr;
+    Stack<Node> stack = new Stack<Node>();
+    public InorderIterator(Node r) {
+        this.curr = r;
+    }
+    public boolean hasNext() {
+        if(curr != null || stack.size() > 0)
+            return true;
+        else
+            return false;
+    }
+    public int next() {
+        while(hasNext()) {
+            if(curr != null) {
+                stack.push(curr);
+                curr = curr.left;
+            } else {
+                Node node = stack.pop();
+                curr = node.right;
+                return node.data;
             }
         }
-    }
-    public void Inorder(Node curr) {
-        if(curr != null) {
-            Inorder(curr.left);
-            System.out.print(curr.data + " ");
-            Inorder(curr.right);
-        }
-    }
-    public Node getRoot() {
-        return root;
+        return -1;
     }
 }
+//]
+
 class TraversalIteration{
 
     public static Node prev = null;
     public static void main(String args[]) {
         BST b1 = new BST();
-        b1.Insert(14);
-        b1.Insert(15);
-        b1.Insert(12);
-        b1.Insert(17);
-        b1.Insert(19);
+        b1.insert(14);
+        b1.insert(15);
+        b1.insert(12);
+        b1.insert(17);
+        b1.insert(19);
 
-        b1.Insert(130);
-        b1.Insert(16);
-        b1.Insert(10);
+        b1.insert(130);
+        b1.insert(16);
+        b1.insert(10);
 
         PostOrder(b1.getRoot());
         System.out.println();
