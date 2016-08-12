@@ -87,7 +87,7 @@ public class Hello {
         sll.append(4);
         sll.append(2);
         Aron.printSLL(sll.head);
-        SNode newHead = cloneLinkedList(sll.head);
+        Node newHead = cloneLinkedList(sll.head);
         Aron.printSLL(newHead);
         System.out.println("\n--------------------------------------------------------------------------------");
     }
@@ -100,7 +100,7 @@ public class Hello {
         sll.append(2);
         sll.append(3);
         Aron.printSLL(sll.head);
-        SNode newHead = reversePair(sll.head);
+        Node newHead = reversePair(sll.head);
         Aron.printSLL(newHead);
         System.out.println("\n--------------------------------------------------------------------------------");
     }
@@ -114,7 +114,7 @@ public class Hello {
         sll.append(3);
         sll.append(4);
         Aron.printSLL(sll.head);
-        SNode newHead = reversePair(sll.head);
+        Node newHead = reversePair(sll.head);
         Aron.printSLL(newHead);
         System.out.println("\n--------------------------------------------------------------------------------");
     }
@@ -125,7 +125,7 @@ public class Hello {
         sll.append(1);
         sll.append(2);
         Aron.printSLL(sll.head);
-        SNode newHead = reversePair(sll.head);
+        Node newHead = reversePair(sll.head);
         Aron.printSLL(newHead);
         System.out.println("\n--------------------------------------------------------------------------------");
     }
@@ -135,7 +135,7 @@ public class Hello {
         SingleLinkedList sll = new SingleLinkedList();
         sll.append(1);
         Aron.printSLL(sll.head);
-        SNode newHead = reversePair(sll.head);
+        Node newHead = reversePair(sll.head);
         Aron.printSLL(newHead);
         System.out.println("\n--------------------------------------------------------------------------------");
     }
@@ -145,7 +145,7 @@ public class Hello {
         Aron.name();
         SingleLinkedList sll = new SingleLinkedList();
         Aron.printSLL(sll.head);
-        SNode newHead = reversePair(sll.head);
+        Node newHead = reversePair(sll.head);
         Aron.printSLL(newHead);
         System.out.println("\n--------------------------------------------------------------------------------");
     }
@@ -158,7 +158,7 @@ public class Hello {
         sll.append(3);
         Aron.printSLL(sll.head);
 
-        SNode nhead = reverseLinkedList(sll.head);
+        Node nhead = reverseLinkedList(sll.head);
         Aron.printSLL(nhead);
 
         Aron.end();
@@ -172,7 +172,7 @@ public class Hello {
         sll.append(3);
         Aron.printSLL(sll.head);
 
-        SNode nhead = reverseIte(sll.head);
+        Node nhead = reverseIte(sll.head);
         Aron.printSLL(nhead);
         Aron.end();
     }
@@ -191,8 +191,8 @@ public class Hello {
         sll2.append(3);
 
 
-        SNode curr = sll.head;
-        SNode head = sll.head;
+        Node curr = sll.head;
+        Node head = sll.head;
 
         while(curr != null && curr.next != null) {
             curr = curr.next;
@@ -232,7 +232,7 @@ public class Hello {
         ssl.append(7);
         ssl.append(9);
         Aron.printSLL(ssl.head);
-        SNode h = insertNodeToSortedList(ssl.head, 3);
+        Node h = insertNodeToSortedList(ssl.head, 3);
         Aron.printSLL(h);
         Aron.end();
     }
@@ -244,7 +244,7 @@ public class Hello {
         ssl.append(7);
         ssl.append(9);
         Aron.printSLL(ssl.head);
-        SNode h = insertNodeToSortedList(ssl.head, 3);
+        Node h = insertNodeToSortedList(ssl.head, 3);
         h = insertNodeToSortedList(ssl.head, 5);
         Aron.printSLL(h);
         Aron.end();
@@ -257,7 +257,7 @@ public class Hello {
         ssl.append(7);
         ssl.append(9);
         Aron.printSLL(ssl.head);
-        SNode newHead = insertNodeToSortedList(ssl.head, 15);
+        Node newHead = insertNodeToSortedList(ssl.head, 15);
         Aron.printSLL(newHead);
         Aron.end();
     }
@@ -279,7 +279,7 @@ public class Hello {
         Aron.printSLL(s2.head);
         System.out.println("---------------------------------\n"); 
 
-        SNode head = mergeSortedList(s1.head, s2.head);
+        Node head = mergeSortedList(s1.head, s2.head);
         Aron.printSLL(head);
         Aron.end();
     }
@@ -297,7 +297,7 @@ public class Hello {
         Aron.printSLL(s2.head);
         System.out.println("---------------------------------\n"); 
 
-        SNode head = mergeSortedList(s1.head, s2.head);
+        Node head = mergeSortedList(s1.head, s2.head);
         Aron.printSLL(head);
         Aron.end();
     }
@@ -314,7 +314,7 @@ public class Hello {
         Aron.printSLL(s2.head);
         System.out.println("---------------------------------\n"); 
 
-        SNode head = mergeSortedList(s1.head, s2.head);
+        Node head = mergeSortedList(s1.head, s2.head);
         Aron.printSLL(head);
         Aron.end();
     }
@@ -331,7 +331,7 @@ public class Hello {
         Aron.printSLL(s2.head);
         System.out.println("---------------------------------\n"); 
 
-        SNode head = mergeSortedList(s1.head, s2.head);
+        Node head = mergeSortedList(s1.head, s2.head);
         Aron.printSLL(head);
         Aron.end();
     }
@@ -350,7 +350,7 @@ public class Hello {
         Aron.printSLL(s2.head);
         System.out.println("---------------------------------\n"); 
 
-        SNode head = mergeSortedList(s1.head, s2.head);
+        Node head = mergeSortedList(s1.head, s2.head);
         Aron.printSLL(head);
         Aron.end();
     }
@@ -369,15 +369,15 @@ public class Hello {
         Aron.printSLL(s2.head);
         System.out.println("---------------------------------\n"); 
 
-        SNode head = mergeSortedList(s1.head, s2.head);
+        Node head = mergeSortedList(s1.head, s2.head);
         Aron.printSLL(head);
         Aron.end();
     }
 
     //[ file=nextnext.html title=""
-    public static SNode reverseIte(SNode curr) {
-        SNode prev = null;
-        SNode next = null;
+    public static Node reverseIte(Node curr) {
+        Node prev = null;
+        Node next = null;
         while(curr != null) {
             next = curr.next;
             curr.next = prev;
@@ -388,19 +388,19 @@ public class Hello {
         return prev;
     }
 
-    public static SNode reverseLinkedList(SNode curr) {
+    public static Node reverseLinkedList(Node curr) {
         if(curr == null || curr.next == null)
             return curr;
 
-        SNode head = reverseLinkedList(curr.next);
+        Node head = reverseLinkedList(curr.next);
         curr.next.next = curr;
         curr.next = null;
 
         return head;
     }
 
-    public static SNode reversePair(SNode head) {
-        SNode curr = head;
+    public static Node reversePair(Node head) {
+        Node curr = head;
         while(curr != null && curr.next != null) {
             int tmp = curr.data;
             curr.data = curr.next.data;
@@ -411,11 +411,11 @@ public class Hello {
         return head;
     }
 
-    public static boolean isCircular(SNode curr) {
+    public static boolean isCircular(Node curr) {
         if(curr == null)
             return false;
         else {
-            SNode next = curr.next;
+            Node next = curr.next;
             if(curr == next)
                 return true;
 
@@ -435,16 +435,16 @@ public class Hello {
     //]
 
 
-    static SNode cloneLinkedList(SNode head) {
-        SNode newHead = null;
-        SNode newCurr = null;
-        SNode curr = head;
+    static Node cloneLinkedList(Node head) {
+        Node newHead = null;
+        Node newCurr = null;
+        Node curr = head;
 
         if(curr != null) {
-            newCurr = newHead = new SNode(head.data);
+            newCurr = newHead = new Node(head.data);
 
             while(curr.next != null) {
-                newCurr.next = new SNode(curr.next.data);
+                newCurr.next = new Node(curr.next.data);
                 newCurr = newCurr.next;
                 curr = curr.next;
             }
@@ -477,46 +477,46 @@ public class Hello {
 //        return true;
 //    }
 
-    static SNode mergeSortedList(SNode head1, SNode head2){
+    static Node mergeSortedList(Node head1, Node head2){
         if(head1 == null)
             return head2;
         if(head2 == null)
             return head1;
-        SNode curr1 = head1;
-        SNode curr2 = head2;
-        SNode curr = null; 
-        SNode head = null;
+        Node curr1 = head1;
+        Node curr2 = head2;
+        Node curr = null; 
+        Node head = null;
 
         while(curr1 != null || curr2 != null){
             if(curr1 == null){
                 if(curr != null)
-                    curr.next = new SNode(curr2.data);
+                    curr.next = new Node(curr2.data);
                 else
-                    head = curr = new SNode(curr2.data);
+                    head = curr = new Node(curr2.data);
 
                 curr2 = curr2.next;
 
             }else if(curr2 == null){
                 if(curr != null)
-                    curr.next = new SNode(curr1.data);
+                    curr.next = new Node(curr1.data);
                 else
-                    head = curr = new SNode(curr1.data);
+                    head = curr = new Node(curr1.data);
 
                 curr1 = curr1.next;
             }else{
                 if(curr1.data < curr2.data){
                     if(curr == null){
-                        head = curr = new SNode(curr1.data);
+                        head = curr = new Node(curr1.data);
                     }else{
-                        curr.next = new SNode(curr1.data);
+                        curr.next = new Node(curr1.data);
                     }
 
                     curr1 = curr1.next;
                 }else{
                     if(curr == null)
-                        head = curr = new SNode(curr2.data);
+                        head = curr = new Node(curr2.data);
                     else{
-                        curr.next = new SNode(curr2.data);
+                        curr.next = new Node(curr2.data);
                     }
 
                     curr2 = curr2.next;
@@ -529,25 +529,25 @@ public class Hello {
         return head;
     }
 
-    static SNode insertNodeToSortedList(SNode head, int num){
-       SNode curr = head; 
-       SNode prev = null;
+    static Node insertNodeToSortedList(Node head, int num){
+       Node curr = head; 
+       Node prev = null;
 
        while(curr != null){
            if(curr.data < num){
                prev = curr;
                if(curr.next == null){
-                   prev.next = new SNode(num);
+                   prev.next = new Node(num);
                    return head;
                }
            }else{
                if(prev != null){
-                   prev.next = new SNode(num);
+                   prev.next = new Node(num);
                    prev.next.next = curr;
                    return head;
                }else{
                    // first node
-                   SNode node = new SNode(num);
+                   Node node = new Node(num);
                    node.next = curr;
                    head = node;
                    return head;

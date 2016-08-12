@@ -160,7 +160,7 @@ public class Try1 {
         Aron.printSLL(sll.head);
         Aron.line();  
 
-        SNode head = insert(sll.head, 3);
+        Node head = insert(sll.head, 3);
         Aron.printSLL(head);
 
         Aron.end();
@@ -173,7 +173,7 @@ public class Try1 {
         Aron.printSLL(sll.head);
         Aron.line();  
 
-        SNode head = insert(sll.head, 3);
+        Node head = insert(sll.head, 3);
         Aron.printSLL(head);
 
         Aron.end();
@@ -186,7 +186,7 @@ public class Try1 {
         Aron.printSLL(sll.head);
         Aron.line();  
 
-        SNode head = insert(sll.head, 3);
+        Node head = insert(sll.head, 3);
         Aron.printSLL(head);
 
         Aron.end();
@@ -197,7 +197,7 @@ public class Try1 {
         Aron.printSLL(sll.head);
         Aron.line();  
 
-        SNode head = insert(sll.head, 3);
+        Node head = insert(sll.head, 3);
         Aron.printSLL(head);
 
         Aron.end();
@@ -216,10 +216,10 @@ public class Try1 {
 
     //[ file=insertsortedlist.html title=""
     // Insert node to a sorted list
-    public static SNode insert(SNode node, int n){
-        SNode head = node;
-        SNode curr = node; 
-        SNode prev = null; 
+    public static Node insert(Node node, int n){
+        Node head = node;
+        Node curr = node; 
+        Node prev = null; 
         while(curr != null && n > curr.data){
             prev = curr;
             curr = curr.next;
@@ -228,20 +228,20 @@ public class Try1 {
         if(curr != null){
             if(prev != null){
                 // 3, [2]<-[4]  >  [2]<-{3}<-[4]
-                prev.next = new SNode(n);
+                prev.next = new Node(n);
                 prev.next.next = curr;
             }else{
                 // {1} [2] > {1}<-[2]
-                head = new SNode(n);
+                head = new Node(n);
                 head.next = curr;
             }
         }else{
             // [2] {3}  > [2]<-{3}
             if(prev != null){
-                prev.next = new SNode(n);
+                prev.next = new Node(n);
             }else{
                 // {3}
-                head = new SNode(n);
+                head = new Node(n);
             }
         }
         return head;

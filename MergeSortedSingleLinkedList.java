@@ -34,7 +34,7 @@ public class MergeSortedSingleLinkedList{
         Aron.printSLL(s2.head);
         System.out.println("---------------------------------\n"); 
 
-        SNode head = mergeSortedList(s1.head, s2.head);
+        Node head = mergeSortedList(s1.head, s2.head);
         Aron.printSLL(head);
         Aron.end();
     }
@@ -52,7 +52,7 @@ public class MergeSortedSingleLinkedList{
         Aron.printSLL(s2.head);
         System.out.println("---------------------------------\n"); 
 
-        SNode head = mergeSortedList(s1.head, s2.head);
+        Node head = mergeSortedList(s1.head, s2.head);
         Aron.printSLL(head);
         Aron.end();
     }
@@ -69,7 +69,7 @@ public class MergeSortedSingleLinkedList{
         Aron.printSLL(s2.head);
         System.out.println("---------------------------------\n"); 
 
-        SNode head = mergeSortedList(s1.head, s2.head);
+        Node head = mergeSortedList(s1.head, s2.head);
         Aron.printSLL(head);
         Aron.end();
     }
@@ -86,7 +86,7 @@ public class MergeSortedSingleLinkedList{
         Aron.printSLL(s2.head);
         System.out.println("---------------------------------\n"); 
 
-        SNode head = mergeSortedList(s1.head, s2.head);
+        Node head = mergeSortedList(s1.head, s2.head);
         Aron.printSLL(head);
         Aron.end();
     }
@@ -105,7 +105,7 @@ public class MergeSortedSingleLinkedList{
         Aron.printSLL(s2.head);
         System.out.println("---------------------------------\n"); 
 
-        SNode head = mergeSortedList(s1.head, s2.head);
+        Node head = mergeSortedList(s1.head, s2.head);
         Aron.printSLL(head);
         Aron.end();
     }
@@ -124,52 +124,52 @@ public class MergeSortedSingleLinkedList{
         Aron.printSLL(s2.head);
         System.out.println("---------------------------------\n"); 
 
-        SNode head = mergeSortedList(s1.head, s2.head);
+        Node head = mergeSortedList(s1.head, s2.head);
         Aron.printSLL(head);
         Aron.end();
     }
 
     //[ file=mergesortedsll.html title=""
-    static SNode mergeSortedList(SNode head1, SNode head2){
+    static Node mergeSortedList(Node head1, Node head2){
         if(head1 == null)
             return head2;
         if(head2 == null)
             return head1;
-        SNode curr1 = head1;
-        SNode curr2 = head2;
-        SNode curr = null; 
-        SNode head = null;
+        Node curr1 = head1;
+        Node curr2 = head2;
+        Node curr = null; 
+        Node head = null;
 
         while(curr1 != null || curr2 != null){
             if(curr1 == null){
                 if(curr != null)
-                    curr.next = new SNode(curr2.data);
+                    curr.next = new Node(curr2.data);
                 else
-                    head = curr = new SNode(curr2.data);
+                    head = curr = new Node(curr2.data);
 
                 curr2 = curr2.next;
 
             }else if(curr2 == null){
                 if(curr != null)
-                    curr.next = new SNode(curr1.data);
+                    curr.next = new Node(curr1.data);
                 else
-                    head = curr = new SNode(curr1.data);
+                    head = curr = new Node(curr1.data);
 
                 curr1 = curr1.next;
             }else{
                 if(curr1.data < curr2.data){
                     if(curr == null){
-                        head = curr = new SNode(curr1.data);
+                        head = curr = new Node(curr1.data);
                     }else{
-                        curr.next = new SNode(curr1.data);
+                        curr.next = new Node(curr1.data);
                     }
 
                     curr1 = curr1.next;
                 }else{
                     if(curr == null)
-                        head = curr = new SNode(curr2.data);
+                        head = curr = new Node(curr2.data);
                     else{
-                        curr.next = new SNode(curr2.data);
+                        curr.next = new Node(curr2.data);
                     }
 
                     curr2 = curr2.next;
