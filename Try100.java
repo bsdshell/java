@@ -36,6 +36,49 @@ public class Try100{
         return map.get(sortStr(input));
     }
 
+        
+        Map<String, String> map = new HashMap<String, String>(); 
+        String str;
+        
+        Map<String, String> map = new HashMap<String, String>();
+        for(Map.Entry<String, String> entry : map.entrySet()){
+            System.out.println("[" + entry.getKey() + " , " + entry.getValue() + "]");
+        } 
+        
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+            System.out.println("[" + entry.getKey() + " , " + entry.getValue() + "]");
+        } 
+        String str;
+        
+        
+        
+        BST b1 = new BST();
+        b1.insert(10);
+        b1.insert(5);
+        b1.insert(15);
+        b1.insert(1);
+        b1.insert(7); 
+
+        BST b1 = new BST();
+        b1.insert(10);
+        b1.insert(5);
+        b1.insert(15);
+        b1.insert(1);
+        b1.insert(7); 
+        String str;
+        stri
+
+
+        
+        List<String> list = new ArrayList<String>();
+        List<String> list = new LinkedList<String>();
+        List<String> list = new Stack<String>();
+        List<String> list = new Vector<String>();
+        Queue<String> queue = new ArrayList<String>();
+        Queue<String> queue = new PriorityQueue<String>(); 
+        List<String> list = new ArrayList<String>(); 
+    List<Integer> list = new ArrayList<Integer>(); 
     public static void test0() {
         List<String> list = new ArrayList<String>() {
             {
@@ -44,6 +87,12 @@ public class Try100{
                 add("nice");
                 add("debitcard");
                 add("badcredit");
+                String str = "";
+
+
+
+
+                
             }
         };
         List<String> l = anagrams(list, "dog");

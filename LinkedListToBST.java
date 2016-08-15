@@ -4,7 +4,8 @@ import classfile.*;
 
 public class LinkedListToBST{
     public static void main(String[] args) {
-        test0_buildTree();
+        //test0_buildTree();
+        test01_buildTree();
         test2_middleLinkedList();
         test3_middleLinkedList();
         test4_buildTree2();
@@ -19,13 +20,30 @@ public class LinkedListToBST{
         Node root = buildTree(arr, lo, hi);
         Aron.levelOrder(root);
         Aron.inorder(root);
+        Aron.binImage(root);
 
         Aron.end();
     }
 
+    static void test01_buildTree() {
+        Aron.beg();
+        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
+        int lo = 0;
+        int hi = arr.length-1;
+        Node root = buildTree(arr, lo, hi);
+        Aron.levelOrder(root);
+        Aron.inorder(root);
+        Aron.binImage(root);
+
+        Aron.end();
+    }
     public static Node buildTree(int[] arr, int lo, int hi) {
         if(lo <= hi) {
-            int mid = (lo + hi)/2;
+            int mid = 0;
+            if ((lo + hi)%2 == 1)
+                mid = (lo + hi)/2 + 1;
+            else
+                mid = (lo + hi)/2;
             Node parent = new Node(arr[mid]);
             parent.left = buildTree(arr, lo, mid-1);
             parent.right = buildTree(arr, mid+1, hi);

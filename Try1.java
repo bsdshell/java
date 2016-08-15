@@ -20,15 +20,15 @@ public class Try1 {
 //        test12();
 //        test13();
         test14();
+        String str;
     }
-
-    
     static void test3(){
         Aron.beg();
         Integer[] arr = {2, 0, 3, 0};
         partition(arr);
         Aron.printArray(arr);
         Aron.end();
+        String str;
     } 
     static void test4(){
         Aron.beg();
@@ -36,6 +36,7 @@ public class Try1 {
         partition(arr);
         Aron.printArray(arr);
         Aron.end();
+        String str = new String("dog");
     }
     static void test5(){
         Aron.beg();
@@ -44,18 +45,34 @@ public class Try1 {
         Aron.printArray(arr);
         Aron.end();
     }
+
     static void test6(){
         Aron.beg();
         Integer[] arr = {0, 0, 0, 0, 0};
         Aron.printArray(arr);
         Aron.end();
+        String str;
+        public String concat(String str)  
+        public String concat(String str)  
+        str.for(int xxx=0; xxx<10; xxx++){
+        }
+        str.ArrayList<ArrayList<String>> list2d = new ArrayList<ArrayList<String>>();
+        String str;
+        public int lastIndexOf(String str)  
+        String str;
+        public String concat(String str) 
+        str.c
     } 
+
     static void test7(){
         Aron.beg();
         Integer[] arr = {2, 3};
         Aron.printArray(arr);
         Aron.end();
+        String str;
+        str.border-left-color: 
     } 
+
 
     static void partition(Integer[] arr){
         if(arr != null){
@@ -79,6 +96,7 @@ public class Try1 {
         System.out.println("[" + reverseWord(str) + "]");
         
         StringBuilder sb = new StringBuilder(str);
+        sb.lastIndexOf(String str, int fromIndex) 
         System.out.println("[" + sb.reverse() + "]");
         Aron.end();
     }
@@ -97,9 +115,16 @@ public class Try1 {
             }
         }
         return ret;
+        String str;
     }
     public static String reverseW(String str){
         StringBuilder sb = new StringBuilder();
+        sb.append(char c) 
+        sb.lastIndexOf(String str, int fromIndex) 
+
+        sblastIndexOf()
+        sb.lastIndexOf(String str, int fromIndex)
+        sb.lastIndexOf(String str) 
         sb.append(str);
         int len = sb.length();
         for(int i=0; i<len/2; i++){
@@ -112,6 +137,9 @@ public class Try1 {
 
     public static void test1(){
         String str = "123";
+        str.indexOf(String str) 
+        str.substring(int beginIndex) 
+
         for(int i=0; i< str.length(); i++){
             String prefix = str.substring(0, i);
             String suffix = str.substring(i);
@@ -121,8 +149,10 @@ public class Try1 {
     }
 
     public static List<String> listDir(String directoryName){
-        List<String> list = new ArrayList<String>(); 
+        List <String> list = new ArrayList<String>(); 
         File directory = new File(directoryName);
+        StringBuilder st = new StringBuilder();
+        list.
 
         File[] fList = directory.listFiles();
         for (File file : fList){
