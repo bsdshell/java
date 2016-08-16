@@ -2,9 +2,6 @@ import java.io.*;
 import java.lang.String;
 import java.util.*;
 
-import classfile.*;
-
-
 public class Try1 {
     public static void main(String[] args) {
 //        test1();
@@ -21,6 +18,7 @@ public class Try1 {
 //        test13();
         test14();
         String str;
+        str.codePointCount(int beginIndex, int endIndex) 
     }
     static void test3(){
         Aron.beg();
@@ -37,6 +35,10 @@ public class Try1 {
         Aron.printArray(arr);
         Aron.end();
         String str = new String("dog");
+        
+        List<String> list = new ArrayList<String>(); 
+        list.forEach(Consumer<? super E> action)
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>(); 
     }
     static void test5(){
         Aron.beg();
@@ -44,6 +46,7 @@ public class Try1 {
         partition(arr);
         Aron.printArray(arr);
         Aron.end();
+        String str;
     }
 
     static void test6(){
@@ -62,6 +65,13 @@ public class Try1 {
         String str;
         public String concat(String str) 
         str.c
+        List<String> list = new String<String>();
+        for(String s : list){
+            Print.pl(s);
+        } 
+
+        list.codePointCount(int beginIndex, int endIndex) 
+        List<Integer> list3 = new ArrayList<Integer>(); 
     } 
 
     static void test7(){
@@ -69,8 +79,13 @@ public class Try1 {
         Integer[] arr = {2, 3};
         Aron.printArray(arr);
         Aron.end();
-        String str;
         str.border-left-color: 
+        str.codePointCount(int beginIndex, int endIndex) 
+        String str33 = null;
+        str33.compare(String s1, String s2) 
+        
+        List<String> list4 = new ArrayList<String>(); 
+        list4.
     } 
 
 

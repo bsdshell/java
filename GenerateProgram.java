@@ -1,21 +1,33 @@
 import java.util.*;
 import java.io.*;
 import classfile.*;
+
+/**
+* Generate Java simple template code
+*/ 
 public class GenerateProgram{
+    final static String fName = "/Users/cat/myfile/github/java/program.txt";
     public static void main(String[] args) {
-        String str = "Try199";
+        printInfo();
+        Print.p("Argument len=" + args.length);
+
         for(String s : args){
-            Print.p("s=" + s);
+            Print.p("args:" + s);
         }
-        Print.p("len=" + args.length);
         if(args.length > 0)
-            test0(args[0]);
+            generateCode(args[0]);
         else
-            Print.p("no argument is provided");
+            Print.p("No Class Name is provided");
     }
-    static void test0(String pName){
+
+    public static void printInfo(){
+        Print.pb(fName);
+    }
+    /**
+    * Generate Java file from a class name(e.g. MyClass => MyClass.java)
+    */ 
+    public static void generateCode(String pName){
         Aron.beg();
-        String fName = "/Users/cat/myfile/github/java/program.txt";
         List<String> list = Aron.readFile(fName);
 
         for(int i=0; i<list.size(); i++){ 
