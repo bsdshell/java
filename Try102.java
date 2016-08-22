@@ -23,6 +23,7 @@ class Interval implements Comparable<Interval> {
 }
 public class Try102 {
     public static void main(String[] args) {
+        List<Integer> list = new ArrayList<Integer>(); 
         test0();
         test1();
         test2();
@@ -84,6 +85,16 @@ public class Try102 {
         Aron.levelOrder(r);
 
         Aron.end();
+
+        String str;
+        str.getBytes(int srcBegin, int srcEnd, byte dst[], int dstBegin) 
+        str.compareTo(String anotherString) 
+        str.compareTo(String anotherString) 
+        str.getChars(int srcBegin, int srcEnd, char dst[], int dstBegin) 
+        str.getBytes(int srcBegin, int srcEnd, byte dst[], int dstBegin) 
+        str.indexOf(int ch)
+        str.charAt(int index)
+        str.concat(String str) 
     } 
     static void test4(){
         Aron.beg();
@@ -94,6 +105,9 @@ public class Try102 {
         Test.f(bs(arr, lo, hi, 9));
         Test.t(bs(arr, lo, hi, 1));
         Test.f(bs(arr, lo, hi, 0));
+        StringBuffer st = new StringBuffer();
+        
+        
 
         Aron.end();
     } 

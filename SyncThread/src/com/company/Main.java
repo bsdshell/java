@@ -1,5 +1,6 @@
-//package com.company;
+package com.company;
 import classfile.*;
+
 
 //[ file=synthread.html title=""
 class Account{

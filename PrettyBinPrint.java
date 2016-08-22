@@ -19,15 +19,14 @@ class PrettyBinPrint {
         b1.insert(14);
         b1.insert(17);
         b1.insert(19);
-        b1.insert(50);
+
         b1.insert(16);
         b1.insert(10);
-        b1.insert(20);
-        b1.insert(18);
-        b1.insert(60);
-        b1.insert(2);
-        b1.insert(8);
-        b1.insert(70);
+//        b1.insert(18);
+//        b1.insert(60);
+//        b1.insert(2);
+//        b1.insert(8);
+//        b1.insert(70);
 
         int[] Arr = new int[100];
         int len=0;
