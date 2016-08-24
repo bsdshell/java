@@ -6,6 +6,7 @@ public class Try33{
         test0();
     }
     static void test0(){
+        List<String> list = new ArrayList<String>(); 
         Aron.beg();
         List<String> list = new ArrayList<String>(); 
         list.add("Pronunciation");

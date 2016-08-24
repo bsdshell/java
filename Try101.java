@@ -18,7 +18,8 @@ public class Try101 {
         //Validate.isTrue(args.length == 1, "usage: supply url to fetch");
         //String url = "https://vancouver.craigslist.ca/van/roo/5713465798.html";
         //String url = "https://vancouver.craigslist.ca/rch/roo/5704455405.html";
-        String url = "https://vancouver.craigslist.ca/rch/roo/5689790425.html";
+        String url = "https://vancouver.craigslist.ca/rch/roo/5734309851.html";
+
         print("Fetching %s...", url);
 
         Document doc = Jsoup.connect(url).get();
@@ -31,8 +32,6 @@ public class Try101 {
             Print.p(content);
             Print.p(content.text());
         }
-
-
 
         print("\nMedia: (%d)", media.size());
         for (Element src : media) {

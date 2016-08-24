@@ -97,7 +97,7 @@ public class JsonParser{
      * {"dog":"cat", "cow":"rat"}
      * {"dog":{"cat":"rat"}}
      * {"dog":{"cat":"rat", "cow":"pig"}}
-     * {"dog":["cat":"rat", "cow":"pig"}]
+     * {"dog":[{"cat":"rat"}, {"cow":"pig"}]
      * dog->{<cat, rat>, <cow, pig>}
      * dog->[<cat, rat>, <cow, pig>]
      */

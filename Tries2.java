@@ -25,6 +25,7 @@ public class Tries2{
         test0();
         test1();
         test2();
+        test3();
     }
     static void test2(){
         Aron.beg();
@@ -78,6 +79,32 @@ public class Tries2{
         String partialWord = "te";
         MyNode node = autoComplete(t.root, partialWord, k);
         getList(node, list);
+        Aron.line();
+        Aron.printList(list);
+
+        Aron.end();
+    }
+    static void test3(){
+        Aron.beg();
+        int k = 0;
+        String str1 = "tea";
+        String str2 = "ten";
+        String str3 = "tenny";
+        String str4 = "tee";
+        String str5 = "teyo";
+        Tries t = new Tries();
+        insert(t.root, str1, k);
+        insert(t.root, str2, k);
+        insert(t.root, str3, k);
+        insert(t.root, str4, k);
+        insert(t.root, str5, k);
+
+        List<String> list = new ArrayList<String>(); 
+        String partialWord = "te";
+        MyNode node = autoComplete(t.root, partialWord, k);
+        getList(node, list);
+        Aron.line();
+        Print.plb(partialWord);
         Aron.printList(list);
 
         Aron.end();
@@ -125,12 +152,12 @@ public class Tries2{
         }
     }
     public static void getList(MyNode node, List<String> list){
-        if(node != null){
-            if(node.word != null){
-                list.add(node.word);
-            }else{
-                for(int i=0; i<node.arr.length; i++){
+        for(int i=0; i<node.arr.length; i++){
+            if(node.arr[i] != null){
+                if(!node.arr[i].isWord){
                     getList(node.arr[i], list);
+                }else{
+                    list.add(node.arr[i].word);
                 }
             }
         }
