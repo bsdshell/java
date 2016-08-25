@@ -1,6 +1,26 @@
 import classfile.*;
 import java.util.*;
 
+class CharacterIterator implements Iterator<Character>{
+    String str;
+    int index = 0;
+    public CharacterIterator(String str){
+        this.str = str;
+    }
+    public boolean hasNext(){
+        return index < str.length();
+    }
+    public Character next(){
+        Character ch = str.charAt(index);
+        index++;
+        return ch;
+    }
+}
+
+class MyJSon{
+    public Map<String, Object> map = new HashMap<String, Object>();
+}
+
 // Json parser
 class JObj{
     public String value;
@@ -35,8 +55,16 @@ public class JsonParser{
         // this will affect the [static index]
         //test1(); 
 
-        //test2();
-        test3();
+    }
+    public static void test00() {
+        Aron.beg();
+        MyJSon son = new MyJSon();
+        List<MyJSon> list = new ArrayList<MyJSon>(); 
+        son.map.put("a", "b");
+        son.map.put("k", new MyJSon());
+        son.map.put("k", list);
+
+        Aron.end();
     }
     public static void test0() {
         Aron.beg();
@@ -50,27 +78,9 @@ public class JsonParser{
     public static void test1() {
         Aron.beg();
         String str = "{\"a\":\"b\"}";
-        char[] arr = str.toCharArray();
-        JObj obj = jsonParser(arr);
-        print(obj);
-        Aron.end();
-    }
-    public static void test2() {
-        Aron.beg();
-        String str = "{\"a\":{\"b\":\"c\"}}";
-        char[] arr = str.toCharArray();
+        CharacterIterator ite = str.iterator(); 
 
-        JObj obj = jsonParser(arr);
-        print(obj);
-        Aron.end();
-    }
-    public static void test3() {
-        Aron.beg();
-        //String str = "{\"a\":{\"b\":\"c\",\"b1\":\"c1\"}}";
-        String str = "{\"a\":\"b\",\"a1\":\"b1\"}";
-        char[] arr = str.toCharArray();
-
-        JObj obj = jsonParser(arr);
+        JObj obj = jsonParser(ite);
         print(obj);
         Aron.end();
     }
@@ -102,30 +112,7 @@ public class JsonParser{
      * dog->[<cat, rat>, <cow, pig>]
      */
     static int index = 0;
-    public static JObj jsonParser(char[] arr){
-        if(arr[index] == '{' || arr[index] == ','){
-            index++;
-            JObj json = new JObj("");
-            String name = parseName(arr);
-            if(name == null)
-                return null;
-
-            index++;
-            if(arr[index] != ':') 
-                return null;
-            
-            index++;
-            if(arr[index] == '"')
-                // "dog":"cat"
-                return json.map.put(name, new JObj(parseName(arr)));
-            else{
-                // "dog":{}
-                return json.map.put(name, jsonParser(arr)); 
-            }
-
-        }else if(arr[index] == '}'){
-            return jsonParser(arr);
-        }
+    public static JObj jsonParser(Iterator<Character> ite){
 
         return null;
     }

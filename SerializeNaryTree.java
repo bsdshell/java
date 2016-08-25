@@ -16,10 +16,11 @@ public class SerializeNaryTree{
         test1();
         test2();
 
-        test10();
-        test11();
-        test12();
-        test_deserialize_debug();
+        test0_deserialize_debug();
+        test10_deserialize();
+        test11_deserializeStack();
+        test12_deserializeStack();
+        test13_deserializeStack();
     }
     static void test0(){
         Aron.beg();
@@ -38,7 +39,7 @@ public class SerializeNaryTree{
         Aron.end();
     }
 
-    static void test_deserialize_debug(){
+    static void test0_deserialize_debug(){
         Aron.beg();
         NNode root = new NNode("1");
         root.list.add(new NNode("2"));
@@ -108,7 +109,7 @@ public class SerializeNaryTree{
 
         Aron.end();
     }
-    static void test10(){
+    static void test10_deserialize(){
         Aron.beg();
         NNode root = new NNode("1");
         NNode n2 = new NNode("2");
@@ -138,13 +139,12 @@ public class SerializeNaryTree{
         Aron.end();
     }
 
-    static void test11(){
+    static void test11_deserializeStack(){
         Aron.beg();
 
         NNode root = new NNode("1");
         NNode n2 = new NNode("2");
         NNode n3 = new NNode("3");
-
 
         root.list.add(n2);
         root.list.add(n3);
@@ -165,9 +165,33 @@ public class SerializeNaryTree{
         Aron.end();
     }
 
-    static void test12(){
+    static void test12_deserializeStack(){
         Aron.beg();
         NNode root = new NNode("1");
+        printNary(root);
+
+        String fName = "file4.txt";
+        write(root, fName);
+
+        List<String> list = read(fName);
+        Aron.printList(list);
+        Iterator<String> ite = list.iterator();
+
+        NNode node = deserializeStack(ite);
+        printNary(node);
+
+        Aron.end();
+    }
+    static void test13_deserializeStack(){
+        Aron.beg();
+
+        NNode root = new NNode("1");
+        NNode n2 = new NNode("2");
+        NNode n3 = new NNode("3");
+        NNode n4 = new NNode("4");
+        root.list.add(n2);
+        root.list.add(n3);
+        root.list.add(n4);
         printNary(root);
 
         String fName = "file4.txt";

@@ -1,22 +1,64 @@
+package com.company;
+
+import classfile.Aron;
+import classfile.Print;
 import org.jsoup.Jsoup;
-import org.jsoup.helper.Validate;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.*;
-import java.net.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import classfile.*;
-/**
- * Example program to list links from a URL.
- * Use jsoup to parse DOM html file and extract
- */
 
-public class Try101 {
-    public static void main(String[] args) throws IOException {
-        String url = "https://vancouver.craigslist.ca/rch/roo/5734309851.html";
-        downloadContent(url);
+public class Main {
+    public static void main(String[] args) {
+	// write your code here
+        test0();
+    }
+    static void test0(){
+        Aron.beg();
+        List<String> urllist = new ArrayList<String>();
+        String url = "https://vancouver.craigslist.ca/";
+        List<String> fullURLList = new ArrayList<String>(); 
+
+        String regex = "(a href=\"[^\"]*\\.html\")";
+        String htmlPage = "\"([^\"]*)\"";
+
+        Pattern p = Pattern.compile(regex);
+        Pattern htmlPat = Pattern.compile(htmlPage);
+
+        String path = "/Users/cat/myfile/github/java/CraiglistProject/src/com/company/resource/van.html";
+        List<String> list  = Aron.readFile(path);
+        for(String str : list){
+            Matcher m = p.matcher(str);
+            //Print.plb(str);
+            //Print.plb(m.groupCount());
+            while(m.find()){
+                Print.plb(m.group());
+                urllist.add(m.group());
+                Matcher htmlMatch = htmlPat.matcher(m.group());
+                while(htmlMatch.find()){
+                    Print.plb(htmlMatch.groupCount());
+                    fullURLList.add(url + htmlMatch.group(1));
+                }
+            }
+        }
+        Aron.printlnList(fullURLList);
+
+        for(String fullURL : fullURLList){ 
+            try{
+                downloadContent(fullURL);
+            }
+            catch(IOException io){
+                io.printStackTrace();
+            }
+        }
+
+        Aron.end();
     }
 
     public static void downloadContent(String url) throws IOException{
@@ -85,8 +127,8 @@ public class Try101 {
 
         }
         //--------------------------------------------------------------------------------
-
     }
+
     private static void print(String msg, Object... args) {
         System.out.println(String.format(msg, args));
     }
