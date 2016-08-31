@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=900">
+<title>Java Regular Expression Tutorial - Java Regex Groups</title>
+<meta http-equiv='content-style-type' content='text/css'>
+<meta name='author' content=''Demo Source and Support Ltd.'>
+<meta name='copyright' content='2013 Demo Source and Support Ltd.'>
+<meta name='description' content='Java Regular Expression Tutorial - Java Regex Groups'>
+<meta name='keywords' content='Java Regular Expression Tutorial - Java Regex Groups'>
+<link rel='shortcut icon' href='http://www.java2s.com/style/favicon.ico'>
+<link href="http://java2s.com/style/bootstrap.min.css" rel="stylesheet">
+<link href="http://java2s.com/style/longTutorial.css" rel="stylesheet">
+<script src="http://java2s.com/style/jquery-1.11.0.js"></script>
+<script src="http://java2s.com/style/bootstrap.min.js"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script>
+$(document).ready(function() {
+  $('[data-toggle=offcanvas]').click(function() {
+    $('.row-offcanvas').toggleClass('active');
+  });
+});
+</script>	
+</head><body>
+<div class="container-fluid">
+   <div class="row row-offcanvas row-offcanvas-left">
+<div class='col-sm-12 col-md-12'>
+<br/><br/><script type="text/javascript"><!--
+google_ad_client="pub-1130008796007602";google_ad_width=728;google_ad_height=90;google_ad_format="728x90_as";google_ad_type="text_image";google_ad_channel="";google_color_border="ffffff";google_color_bg="ffffff";google_color_link="003399";google_color_text="000000";google_color_url="75a3ed";
+//--></script><script type="text/javascript"src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+<br/><br/>
+</div>
+      <div class="col-sm-3 col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
+         <ul class="nav nav-sidebar"><li class='tag'>Website Home</li><li><a href='http://www.java2s.com'>HOME</a></li><li class='tag'>Java Regex</li><li><a href='index.htm'>Java Regular Expression</a></li><li><a href='0020__Java_Regex_Character_Classes.htm'>Java Regex Metacharacters</a></li><li><a href='0030__Java_Regex_Pattern.htm'>Java Pattern Matcher</a></li><li><a href='0040__Java_Regex_Matcher.htm'>Java Regex Matcher</a></li><li><a href='0050__Java_Regex_Quantifiers.htm'>Java Regex Quantifiers</a></li><li><a href='0060__Java_Regex_Boundaries.htm'>Java Regex Boundaries</a></li><li class='active'><a href=''>Java Regex Groups</a></li><li><a href='0080__Java_String_Find_Replace.htm'>Java Regex Find/Replace</a></li></ul>          
+       </div>
+       <div class="col-sm-9 col-md-9">
+          <!--<div class="visible-xs"><button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Menu</button></div>-->
+          <form class="form-inline pull-right" action="http://www.google.com/cse" id="cse-search-box">
+             <fieldset>
+                <label class="control-label">
+                <input type="hidden" name="cx" value="partner-pub-1130008796007602:iri8be-v211"/>
+                <input type="hidden" name="ie" value="ISO-8859-1" />        
+                <input type="text" size='15' name="q">
+                <input type="submit" name="sa" value="Search"/>
+             </fieldset>
+          </form>
+          <script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=en"></script>
+		  <div class='row'><div class='col-lg-12'><h1>Java Regular Expression Tutorial - Java Regex Groups</h1><ul class='pager'><li class='previous'><a href='0060__Java_Regex_Boundaries.htm'>&#xAB;&nbsp;Previous</a></li><li class='next'><a href='0080__Java_String_Find_Replace.htm'>Next&nbsp;&#xBB;</a></li></ul><p>
+We can group multiple characters as a unit by parentheses. 
+For example, <code>(ab)</code>.
+</p>
+<p>
+Each group in a regular expression has a group number, which starts at 1. 
+</p>
+<p>
+Method <code>groupCount()</code> from <code>Matcher</code> class returns the number of groups in the pattern associated with the Matcher instance. 
+</p>
+<p>
+The group 0 refers to the entire regular expression and
+is not reported by the groupCount() method.
+</p>
+
+<p>
+Each left parenthesis inside a regular expression marks the start of a new group. 
+</p>
+<p>
+We can back reference group numbers in a regular expression. 
+</p>
+
+<p>
+Suppose we want to match text that starts with "abc" followed by "xyz", which is followed by "abc". 
+</p>
+<p>
+We can write a regular expression as "abcxyzabc". 
+</p>
+<p>
+We can use the back reference to rewrite the regular expression as "(abc)xyz\1".
+<code>\1</code> refers to group 1, which is <code>(abc)</code>.
+</p>
+<p>
+<code>\2</code> to refer to group 2, <code>\3</code> to refer to group 3, and so on. 
+</p>
+
+<p>
+The following code shows how to display formatted phone numbers.
+In the regular expression <code>\b(\d{3})(\d{3})(\d{4})\b</code>,
+<code>\b</code> denotes that we are interested in matching ten digits only at word boundaries. 
+</p>
+
+<pre>
+<span class='r'>import</span> java.util.regex.Matcher;
+<span class='r'>import</span> java.util.regex.Pattern;
+<span style='color:#99bbbb'>/</span><span style='color:#bbb9aa'>/</span><span style='color:#9bbb9a'>w</span><span style='color:#99abba'> </span><span style='color:#baab9b'>w</span><span style='color:#bba99a'> </span><span style='color:#99ab9b'> </span><span style='color:#b9abbb'>w</span><span style='color:#a99b99'> </span><span style='color:#9bbbbb'>.</span><span style='color:#9baaab'> </span><span style='color:#ab9bbb'> </span><span style='color:#babb9a'>j</span><span style='color:#9bab9b'> </span><span style='color:#a99bab'> </span><span style='color:#aa9bab'>a</span><span style='color:#abbba9'> </span><span style='color:#9b99ba'>v</span><span style='color:#a99aba'>a</span><span style='color:#aa9ba9'> </span><span style='color:#9a9aaa'>2</span><span style='color:#a9abb9'> </span><span style='color:#b9aaba'> </span><span style='color:#a99aa9'>s</span><span style='color:#9bb9aa'> </span><span style='color:#bb9ab9'>.</span><span style='color:#99abbb'> </span><span style='color:#a9ba9b'> </span><span style='color:#9aaaaa'>c</span><span style='color:#bb99aa'> </span><span style='color:#abbb9a'> </span><span style='color:#b9bbaa'>o</span><span style='color:#9baaaa'>m</span>
+<span class='r'>public</span> <span class='r'>class</span> Main {
+  <span class='r'>public</span> <span class='r'>static</span> <span class='r'>void</span> main(String[] args) {
+    String regex = <span class='q'>"\\b(\\d{3})(\\d{3})(\\d{4})\\b"</span>;
+
+    Pattern p = Pattern.compile(regex);
+    String source = <span class='q'>"1234567890, 12345,  and  9876543210"</span>;
+
+    Matcher m = p.matcher(source);
+
+    <span class='r'>while</span> (m.find()) {
+      System.out.println(<span class='q'>"Phone: "</span> + m.group() + <span class='q'>", Formatted Phone:  ("</span>
+          + m.group(1) + <span class='q'>") "</span> + m.group(2) + <span class='q'>"-"</span> + m.group(3));
+    }
+  }
+}
+</pre>
+<p>The code above generates the following result.</p>
+<img src='../../JavaImage/myResult/D/DESCRIPTION__1E92DF93EE0765AD496B.PNG'/><div><br/><br/>
+<script type="text/javascript"><!--
+google_ad_client="pub-1130008796007602";
+google_ad_width=300;
+google_ad_height=250;
+google_ad_format="300x250_as";
+google_ad_type="text_image";
+google_ad_channel="";
+google_color_border="ffffff";
+google_color_bg="FFFFFF";
+google_color_link="0077cc";
+google_color_url="0077cc";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" 
+      src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+<br/><br/></div><h2 id='Example'>Example</h2><p>
+The following code shows how to reference groups in a replacement text.
+</p>
+<p>
+<code>$n</code>, where <code>n</code> is a group number, inside a replacement text refers to the matched text for group <code>n</code>. 
+</p>
+<p>
+For example, <code>$1</code> refers to the first matched group. 
+To reformat phone numbers, we would use <code>($1) $2-$3</code>. 
+</p>
+
+<pre>
+<span class='r'>import</span> java.util.regex.Matcher;
+<span class='r'>import</span> java.util.regex.Pattern;
+<span style='color:#a9a99b'>/</span><span style='color:#9a9a99'>/</span><span style='color:#9b9a9a'>f</span><span style='color:#aaaaba'>r</span><span style='color:#bab9b9'>o</span><span style='color:#99bab9'>m</span><span style='color:#9a9b9a'> </span><span style='color:#9aaa9b'> </span><span style='color:#9bba9b'> </span><span style='color:#ab99aa'>w</span><span style='color:#bbaa99'> </span><span style='color:#9a9a9b'>w</span><span style='color:#abb999'> </span><span style='color:#a99ba9'>w</span><span style='color:#a99aaa'>.</span><span style='color:#9b9b9b'> </span><span style='color:#a9babb'> </span><span style='color:#9bbaba'>j</span><span style='color:#bbab99'>a</span><span style='color:#9b9a99'> </span><span style='color:#9baa9b'>v</span><span style='color:#9a9bb9'> </span><span style='color:#bbabab'> </span><span style='color:#bb9baa'>a</span><span style='color:#b9a9ba'> </span><span style='color:#abbbba'>2</span><span style='color:#a9a99b'> </span><span style='color:#9bbb99'>s</span><span style='color:#bbaabb'>.</span><span style='color:#aaa99b'>c</span><span style='color:#ab9b9b'> </span><span style='color:#99bab9'> </span><span style='color:#aa9aab'>o</span><span style='color:#9ab99a'>m</span>
+<span class='r'>public</span> <span class='r'>class</span> Main {
+  <span class='r'>public</span> <span class='r'>static</span> <span class='r'>void</span> main(String[] args) {
+    String regex = <span class='q'>"\\b(\\d{3})(\\d{3})(\\d{4})\\b"</span>;
+    String replacementText = <span class='q'>"($1) $2-$3"</span>;
+    String source = <span class='q'>"1234567890, 12345, and 9876543210"</span>;
+
+    Pattern p = Pattern.compile(regex);
+    Matcher m = p.matcher(source);
+
+    String formattedSource = m.replaceAll(replacementText);
+
+    System.out.println(<span class='q'>"Text: "</span> + source);
+    System.out.println(<span class='q'>"Formatted Text: "</span> + formattedSource);
+  }
+}
+</pre>
+<p>The code above generates the following result.</p>
+<img src='../../JavaImage/myResult/E/EXAMPLE__FBD771E58912055F17C4.PNG'/><div><br/><br/>
+<script type="text/javascript"><!--
+google_ad_client="pub-1130008796007602";
+google_ad_width=300;
+google_ad_height=250;
+google_ad_format="300x250_as";
+google_ad_type="text_image";
+google_ad_channel="";
+google_color_border="ffffff";
+google_color_bg="FFFFFF";
+google_color_link="0077cc";
+google_color_url="0077cc";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" 
+      src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+<br/><br/></div><h2 id='Named_Groups'>Named Groups</h2><p>
+We can use named groups in regular expressions.
+</p>
+<p>
+We can name a group then back reference groups using their names.
+</p>
+
+<p>
+We can reference group names in replacement text and get the matched text using the group names.
+</p>
+<p>
+The format to define a named group is
+</p>
+<pre>
+(?&lt;groupName&gt;pattern)
+</pre>
+<p>
+A pair of parentheses marks a group. 
+The start parenthesis is followed by a <code>?</code> and a group name placed in angle brackets. 
+</p>
+<p>
+The group name can only have letters and digits, and can only start with a letter.
+</p>
+<p>
+The following regular expression has three named groups. 
+</p>
+<UL>
+<LI>areaCode</LI>
+<LI>prefix</LI>
+<LI>postPhoneNumber</LI>
+</UL>
+<p>
+The regular expression matches a 10-digit phone number.
+</p>
+<pre>
+\b(?&lt;areaCode&gt;\d{3})(?&lt;prefix&gt;\d{3})(?&lt;postPhoneNumber&gt;\d{4})\b
+</pre>
+<p>
+The following code shows how to use the named group.
+</p>
+<pre>
+String  replacementText = <span class='q'>"(${areaCode}) ${prefix}-${postPhoneNumber}"</span>;
+</pre>
+<p>
+We can mix the group number and a group name. 
+</p>
+<p>
+The above regular expression can be rewritten as follows.
+</p>
+<pre>
+String  replacementText = <span class='q'>"(${areaCode}) ${prefix}-$3"</span>;
+</pre>
+<p>
+The following code shows how to use group names in a regular expression 
+and how to use the names in a replacement text.
+</p>
+
+<pre>
+<span class='r'>import</span> java.util.regex.Matcher;
+<span class='r'>import</span> java.util.regex.Pattern;
+<span style='color:#baa9ab'>/</span><span style='color:#aab9bb'>/</span><span style='color:#aba9bb'> </span><span style='color:#9a9999'>w</span><span style='color:#9ba9bb'> </span><span style='color:#abb9bb'>w</span><span style='color:#aaabab'>w</span><span style='color:#9a999b'> </span><span style='color:#a9bab9'>.</span><span style='color:#bbbbaa'>j</span><span style='color:#bbb9bb'>a</span><span style='color:#abbabb'> </span><span style='color:#a9bbba'>v</span><span style='color:#9b9ab9'>a</span><span style='color:#baaabb'> </span><span style='color:#9bbaba'>2</span><span style='color:#aab99b'>s</span><span style='color:#9aabb9'> </span><span style='color:#99bbaa'> </span><span style='color:#9a9bb9'>.</span><span style='color:#99bb9b'> </span><span style='color:#a9b99a'>c</span><span style='color:#aa9b99'>o</span><span style='color:#9b9aaa'> </span><span style='color:#a999a9'>m</span>
+<span class='r'>public</span> <span class='r'>class</span> Main {
+  <span class='r'>public</span> <span class='r'>static</span> <span class='r'>void</span> main(String[] args) {
+    String regex = <span class='q'>"\\b(?&lt;areaCode&gt;\\d{3})(?&lt;prefix&gt;\\d{3})(?&lt;postPhoneNumber&gt;\\d{4})\\b"</span>;
+
+    String replacementText = <span class='q'>"(${areaCode}) ${prefix}-$3"</span>;
+    String source = <span class='q'>"1234567890 and 9876543210"</span>;
+    Pattern p = Pattern.compile(regex);
+
+    Matcher m = p.matcher(source);
+
+    String formattedSource = m.replaceAll(replacementText);
+
+    System.out.println(<span class='q'>"Text: "</span> + source);
+    System.out.println(<span class='q'>"Formatted Text: "</span> + formattedSource);
+  }
+}
+</pre>
+<p>The code above generates the following result.</p>
+<img src='../../JavaImage/myResult/N/NAMED_GROUPS__0380133C812564F80638.PNG'/><h2 id='Group_boundary'>Group boundary</h2><p>
+We can use <code>start()</code> and <code>end()</code> methods to get 
+the match boundary for groups. These methods are overloaded:
+</p>
+<pre>
+int start()
+int start(int groupNumber)
+int start(String groupName)
+int end()
+int end(int groupNumber)
+int  end(String groupName)
+</pre>
+<p>
+The methods return  the start and end of the previous match. 
+</p>
+<p>
+The following code shows how to match 10-digit phone number and print the start of each group for each successful match.
+</p>
+<pre>
+<span class='r'>import</span> java.util.regex.Matcher;
+<span class='r'>import</span> java.util.regex.Pattern;
+<span style='color:#aaa99a'>/</span><span style='color:#ab99aa'>/</span><span style='color:#aabbaa'>f</span><span style='color:#ab99b9'>r</span><span style='color:#a9aa9a'>o</span><span style='color:#babaa9'>m</span><span style='color:#babaa9'> </span><span style='color:#aaaa9a'>w</span><span style='color:#aa9bab'> </span><span style='color:#aa9999'>w</span><span style='color:#bb99aa'> </span><span style='color:#9aaba9'> </span><span style='color:#a9abba'>w</span><span style='color:#a9aaab'> </span><span style='color:#b9bba9'> </span><span style='color:#abaa9a'>.</span><span style='color:#9b999a'> </span><span style='color:#ba999b'> </span><span style='color:#99a9b9'>j</span><span style='color:#a99bab'> </span><span style='color:#99a9aa'> </span><span style='color:#bb999a'>a</span><span style='color:#a9a999'> </span><span style='color:#99aa9b'>v</span><span style='color:#99bab9'>a</span><span style='color:#a9ba99'> </span><span style='color:#ab9a9b'> </span><span style='color:#aa9ab9'>2</span><span style='color:#a99bb9'> </span><span style='color:#9ab9b9'> </span><span style='color:#9a9baa'>s</span><span style='color:#9a99a9'> </span><span style='color:#b99b9a'>.</span><span style='color:#baaa99'> </span><span style='color:#aaa999'> </span><span style='color:#999bba'>c</span><span style='color:#ba9a9b'> </span><span style='color:#9b99b9'>o</span><span style='color:#aaab99'> </span><span style='color:#9ba99b'> </span><span style='color:#aaaba9'>m</span>
+<span class='r'>public</span> <span class='r'>class</span> Main {
+  <span class='r'>public</span> <span class='r'>static</span> <span class='r'>void</span> main(String[] args) {
+    String regex = <span class='q'>"\\b(?&lt;areaCode&gt;\\d{3})(?&lt;prefix&gt;\\d{3})(?&lt;postPhoneNumber&gt;\\d{4})\\b"</span>;
+    String source = <span class='q'>"1234567890, 12345, and 9876543210"</span>;
+    Pattern p = Pattern.compile(regex);
+
+    Matcher m = p.matcher(source);
+    <span class='r'>while</span> (m.find()) {
+      String matchedText = m.group();
+      <span class='r'>int</span> start1 = m.start(<span class='q'>"areaCode"</span>);
+      <span class='r'>int</span> start2 = m.start(<span class='q'>"prefix"</span>);
+      <span class='r'>int</span> start3 = m.start(<span class='q'>"postPhoneNumber"</span>);
+      System.out.println(<span class='q'>"Matched Text:"</span> + matchedText);
+      System.out.println(<span class='q'>"Area code start:"</span> + start1);
+      System.out.println(<span class='q'>"Prefix start:"</span> + start2);
+      System.out.println(<span class='q'>"Line Number start:"</span> + start3);
+    }
+  }
+}
+</pre>
+<p>The code above generates the following result.</p>
+<img src='../../JavaImage/myResult/G/GROUP_BOUNDARY__135F1342C992D567BED9.PNG'/><ul class='pager'><li class='button pull-right'><a href='0080__Java_String_Find_Replace.htm'>Next&nbsp;&#xBB;</a></li><li class='button pull-right'><a href='0060__Java_Regex_Boundaries.htm'>&#xAB;&nbsp;Previous</a></li></ul></div></div>
+       </div>
+   </div>
+   <footer>
+      <p class='pull-right'><a href="http://www.java2s.com/">java2s.com</a>  &nbsp;|&nbsp;Email:info at java2s.com&nbsp;|&nbsp;&copy; Demo Source and Support. All rights reserved.</p>
+   </footer>	
+</div>
+</body>
+</html>

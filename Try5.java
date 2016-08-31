@@ -44,7 +44,6 @@ public class Try5{
         test3();
         test4();
         test5();
-        test6();
     }
 
     // init: index = 0
@@ -169,25 +168,5 @@ public class Try5{
         Aron.end();
     }
 
-    static void test6(){
-        Aron.beg();
-        BST bst = new BST();
-        bst.insert(10);
-        bst.insert(5);
-        bst.insert(15);
-        Aron.inorder(bst.root);
-        Node first = null;
-        Node second = null;
-        
-        Aron.swap2(bst.root, 5, 15, first, second);
-        System.out.println("[swap 5, 15]"); 
-        Aron.inorder(bst.root);
-
-        Node prev = null;
-        boolean boo = Aron.isBST(bst.root, prev);
-        System.out.println("[" + boo + "]"); 
-
-        Aron.end();
-    }
 
 }

@@ -8,6 +8,7 @@ import java.io.*;
 import java.net.*;
 
 import classfile.*;
+
 /**
  * Example program to list links from a URL.
  * Use jsoup to parse DOM html file and extract
@@ -22,12 +23,12 @@ public class Try101 {
     public static void downloadContent(String url) throws IOException{
         print("Fetching %s...", url);
 
-        Document doc = Jsoup.connect(url).get();
-        Elements links = doc.select("a[href]");
-        Elements media = doc.select("[src]");
-        Elements imports = doc.select("link[href]");
-        Elements bodyContent = doc.select("#postingbody");
-
+//        Document doc = Jsoup.connect(url).get();
+//        Elements links = doc.select("a[href]");
+//        Elements media = doc.select("[src]");
+//        Elements imports = doc.select("link[href]");
+//        Elements bodyContent = doc.select("#postingbody");
+//
         for (Element content : bodyContent) {
             Print.p(content);
             Print.p(content.text());
