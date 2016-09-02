@@ -1,4 +1,4 @@
-package com.company;
+package com;
 
 import classfile.Aron;
 import classfile.Print;

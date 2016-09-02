@@ -1,19 +1,11 @@
-import java.util.*;
-import java.io.*;
+import classfile.Print;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-import classfile.*;
+import java.sql.*;
 
 // Notice, do not import com.mysql.jdbc.*
 // or you will have problems!
 
-public class SqlConnection{
+public class Main{
     public static void main(String[] args) {
         Connection connect = null;
         Statement statement = null;
