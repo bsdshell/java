@@ -5,7 +5,7 @@ import java.sql.*;
 // Notice, do not import com.mysql.jdbc.*
 // or you will have problems!
 
-public class Main{
+public class Main {
     public static void main(String[] args) {
         Connection connect = null;
         Statement statement = null;
@@ -19,8 +19,8 @@ public class Main{
             // table: item
             // user: root
             // password: {empty}
-            // no ssh: autoReconnect=true&useSSL=false 
-            //-------------------------------------------------------------------------------- 
+            // no ssh: autoReconnect=true&useSSL=false
+            //--------------------------------------------------------------------------------
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             connect = DriverManager
                       .getConnection("jdbc:mysql://localhost/testdb?autoReconnect=true&useSSL=false&"
@@ -31,12 +31,24 @@ public class Main{
             // Result set get the result of the SQL query
             resultSet = statement
                         .executeQuery("select * from testdb.item");
-            if(resultSet.next()){
+            if(resultSet.next()) {
                 // get the second column
-               String name = resultSet.getString(2);
+                String name = resultSet.getString(2);
                 Print.plb(name);
             }
-        }catch (Exception ex) {
+
+            preparedStatement = connect
+                                .prepareStatement("insert into  testdb.item (name, phone, email, description)values (?, ?, ?, ?)");
+            // "myuser, webpage, datum, summary, COMMENTS from feedback.comments");
+            // Parameters start with 1
+            preparedStatement.setString(1, "You have to be the first");
+            preparedStatement.setString(2, "You have to be the first");
+            preparedStatement.setString(3, "The third of food");
+            preparedStatement.setString(4, "Build an array strip");
+
+
+            preparedStatement.executeUpdate();
+        } catch (Exception ex) {
             // handle the error
             Print.plb(ex.getMessage());
         }
