@@ -203,19 +203,6 @@ public class SerializeBinary {
         }
     }
 
-    public static void serializeBinary(Node root, BufferedWriter out) {
-        try {
-            if(root != null) {
-                out.write(root.data + " ");
-                serializeBinary(root.left, out);
-                serializeBinary(root.right, out);
-            } else {
-                out.write("# ");
-            }
-        } catch(Exception e) {
-            System.err.println("Error" + e.getMessage());
-        }
-    }
     public static List<List<String>> createMap(BufferedReader in) {
         List<List<String>> list = new ArrayList<List<String>>();
         try {
@@ -333,6 +320,20 @@ public class SerializeBinary {
         return root;
     }
 
+    //[ file=serializebin.html title=""
+    public static void serializeBinary(Node root, BufferedWriter out) {
+        try {
+            if(root != null) {
+                out.write(root.data + " ");
+                serializeBinary(root.left, out);
+                serializeBinary(root.right, out);
+            } else {
+                out.write("# ");
+            }
+        } catch(Exception e) {
+            System.err.println("Error" + e.getMessage());
+        }
+    }
     public static Node deserializeIterator(Iterator<String> ite) {
         Node root = null;
         if(ite.hasNext()) {
@@ -345,6 +346,7 @@ public class SerializeBinary {
         } 
         return root;
     }
+    //]
 
     public static void test_deSerializeIndex() {
         Aron.beg();
