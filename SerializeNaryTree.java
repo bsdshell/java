@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import java.util.stream.*;
 import classfile.*;
 
 class NNode<T>{
@@ -12,7 +13,7 @@ class NNode<T>{
 
 public class SerializeNaryTree{
     public static void main(String[] args) {
-//        test1();
+        test1();
 //        test2();
 //
 //        test0_deserialize_debug();
@@ -290,18 +291,15 @@ public class SerializeNaryTree{
         }
     }
     public static List<String> read(String fname){
-        List<String> list = new ArrayList<String>(); 
+        List<String> list = null; 
         if(fname != null){
             try(BufferedReader br = new BufferedReader(new FileReader(fname))){
                 String line; 
                 while((line = br.readLine()) != null){
                     break;
                 }
-                String[] arr = line.trim().split("\\s+");
-                for(int i=0; i<arr.length; i++){
-                    if(arr[i].length() > 0)
-                        list.add(arr[i]); 
-                } 
+                list = Arrays.asList(line.trim().split("\\s+"));
+
                 Aron.printList(list);
             }catch(IOException e){
                 System.out.println(e.getMessage());
@@ -422,18 +420,11 @@ public class SerializeNaryTree{
                BufferedReader br = new BufferedReader(new FileReader(fName));
                String line = null;
                while((line = br.readLine()) != null){
-                   String[] arr = line.split(":");
-                   List<Integer> list = new ArrayList<Integer>(); 
-                   for(int i=0; i<arr.length; i++){
-                       if(arr[i].trim().length() > 0){
-                           list.add(Integer.parseInt(arr[i]));
-                       }
-                   } 
-                   if(list.size() > 1){
-                       map.put(list.get(0), list.subList(1, list.size()));
-                   }else if(list.size() == 1){
-                       map.put(list.get(0), new ArrayList<Integer>());
-                   }
+                   List<String> strList = Arrays.asList(line.split(":"));
+                   // Java 8 lambda expr
+                   List<Integer> list = strList.stream().map(Integer::parseInt).collect(Collectors.toList());
+                   if(list.size() > 0) 
+                       map.put(list.get(0), list.size() > 1? list.subList(1, list.size()) : new ArrayList<Integer>());
                }
            }catch(IOException ie){
                ie.printStackTrace();
