@@ -5,7 +5,7 @@ import classfile.*;
 
 class NNode<T>{
     public T data;
-    public List<NNode> list = new ArrayList<NNode>();
+    public List<NNode> list = new ArrayList<>();
     public NNode(T data){
         this.data = data;
     }
@@ -29,7 +29,7 @@ public class SerializeNaryTree{
     }
     static void test0(){
         Aron.beg();
-        NNode<String> root = new NNode<String>("1");
+        NNode<String> root = new NNode<>("1");
 
         String fName = "file4.txt";
         write(root, fName);
@@ -366,7 +366,7 @@ public class SerializeNaryTree{
     //[ file=deserializetree.html title=""
     // deserialize with stack
     public static NNode<String> deserializeStack(Iterator<String> ite){
-        Stack<NNode> stack = new Stack<NNode>(); 
+        Stack<NNode> stack = new Stack<>(); 
         while(ite.hasNext()){
             String token = ite.next();
             if(!token.equals("#")){
@@ -414,7 +414,7 @@ public class SerializeNaryTree{
         }
     }
     public static Map<Integer, List<Integer>> readFile(String fName){
-       Map<Integer, List<Integer>> map = new HashMap<Integer, List<Integer>>(); 
+       Map<Integer, List<Integer>> map = new HashMap<>(); 
        if(fName != null){
            try{
                BufferedReader br = new BufferedReader(new FileReader(fName));
