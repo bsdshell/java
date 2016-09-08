@@ -29,7 +29,7 @@ class Queen{
             Ut.l();
         }else{
             for(int r=0; r<len; r++){
-                if(isValidMove(c, r, list)){
+                if(isValidMove(c, r)){
                     list.add(new Move(c, r));
                     queenSolver(c+1);
                     list.remove(list.size()-1);
@@ -37,7 +37,7 @@ class Queen{
             }
         }
     }
-    public boolean isValidMove(int c, int r, List<Move> list){
+    public boolean isValidMove(int c, int r){
         for(Move m : list){
             if(m.r == r || Math.abs(m.c - c) == Math.abs(m.r - r))
                 return false;
