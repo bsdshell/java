@@ -7,8 +7,13 @@ import java.util.StringTokenizer;
 import java.util.Vector; 
 
 //[ file=eightqueen.html title=""
+// n queens problem
 class Queen{
     List<Move> list = new ArrayList<>();
+    private int width = 4;
+    public Queen(int width){
+        this.width = width;
+    }
 
     class Move{
         public int c;
@@ -21,14 +26,13 @@ class Queen{
 
     // int c = 0;
     public void queenSolver(int c){
-        final int len = 8;
-        if(c == len){
+        if(c == width){
             for(Move m:list){
                 Print.p("[" + m.c + "," + m.r + "]");
             }
             Ut.l();
         }else{
-            for(int r=0; r<len; r++){
+            for(int r=0; r<width; r++){
                 if(isValidMove(c, r)){
                     list.add(new Move(c, r));
                     queenSolver(c+1);
@@ -55,7 +59,7 @@ public class EightQueen{
     
     static void test0(){
         Aron.beg();
-        Queen q = new Queen();
+        Queen q = new Queen(4);
         int c = 0;
         q.queenSolver(c);
         Aron.end();
