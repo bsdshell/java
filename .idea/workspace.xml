@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29c8d9d9-bcd2-4fc0-adfd-0b9bce7e4163" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/EightQueen.java" afterPath="$PROJECT_DIR$/EightQueen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JavaDataStructure.java" afterPath="$PROJECT_DIR$/JavaDataStructure.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PermRecursive.java" afterPath="$PROJECT_DIR$/PermRecursive.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ReplaceMultiString.java" afterPath="$PROJECT_DIR$/ReplaceMultiString.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lambdaExample/.idea/workspace.xml" afterPath="$PROJECT_DIR$/lambdaExample/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tries2.java" afterPath="$PROJECT_DIR$/Tries2.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Try1.java" afterPath="$PROJECT_DIR$/Try1.java" />
     </list>
     <ignored path="java.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -75,6 +72,16 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>

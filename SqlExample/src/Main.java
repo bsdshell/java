@@ -13,7 +13,6 @@ public class Main {
         ResultSet resultSet = null;
 
         try {
-
             // -----------------------------------------------------
             // database: testdb
             // table: item
@@ -24,7 +23,7 @@ public class Main {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             connect = DriverManager
                       .getConnection("jdbc:mysql://localhost/testdb?autoReconnect=true&useSSL=false&"
-                                     + "user=root&password=");
+                                     + "user=root&password="); // password is empty
 
             // Statements allow to issue SQL queries to the database
             statement = connect.createStatement();

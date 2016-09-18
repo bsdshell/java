@@ -2,6 +2,7 @@ import java.util.*;
 import java.io.*;
 import classfile.*;
 
+
 class MyNode{
     public MyNode[] arr = new MyNode[26];
     public boolean isWord;

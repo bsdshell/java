@@ -23,6 +23,9 @@ public class Main {
         //[ file=lambda.html title=""
         // list sum
 
+
+
+
         Optional<Double> sum = list.stream().reduce(Double::sum);
         sum.ifPresent(System.out::println);
 
