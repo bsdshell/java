@@ -6,7 +6,7 @@ import classfile.*;
 * Generate Java simple template code
 */ 
 public class GenerateProgram{
-    final static String fName = "/Users/cat/myfile/github/java/program.txt";
+    final static String fName = "/Users/cat/myfile/github/java/text/program.txt";
     public static void main(String[] args) {
         printInfo();
         Print.p("Argument len=" + args.length);

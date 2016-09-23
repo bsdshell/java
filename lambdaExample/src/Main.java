@@ -8,6 +8,7 @@ public class Main {
         test0();
         test1();
     }
+
     public static void test0() {
         Aron.beg();
         Random ran = new Random();
@@ -22,8 +23,6 @@ public class Main {
         
         //[ file=lambda.html title=""
         // list sum
-
-
 
 
         Optional<Double> sum = list.stream().reduce(Double::sum);
@@ -72,6 +71,13 @@ public class Main {
     }
     public static void test1() {
         Aron.beg();
+        List<Integer> list = Arrays.asList(1, 2, 3); 
+        List<Integer> left = list.stream().filter(x -> x < 2).collect(Collectors.toList());
+        List<Integer> right = list.stream().filter(x -> x > 2).collect(Collectors.toList());
+        
+        Aron.printList(left);
+        Aron.printList(right);
+
         Aron.end();
     }
 }
