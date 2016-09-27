@@ -508,7 +508,4 @@ class Spiral {
             }
         }
     }
-
-
-
 }
