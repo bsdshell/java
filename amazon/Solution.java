@@ -45,6 +45,7 @@ public class Solution{
 //    }
 
     public static void main(String[] args) {
+        // stdio stdin std in, std io, readline from stdin 
         Scanner sc = new Scanner(System.in);
         String line = sc.nextLine();
         String[] threeArray = line.split("\\s+");

@@ -65,6 +65,9 @@ public class Main {
         List<Integer> strIntList = list1.stream().map(Integer::parseInt).collect(Collectors.toList());
         Aron.printList(strIntList);
 
+        List<Integer> list2 = new ArrayList<Integer>(Arrays.asList(1, 2, 3)); 
+        boolean ret = list2.stream().anyMatch(s -> s.intValue() > 2); 
+
         //]
 
         Aron.end();

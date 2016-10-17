@@ -2,82 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc7db09d-6557-4cb5-9e1a-6405aabaeef6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/.exrc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/Session.vim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/code.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/email.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/free.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/free1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/html/2.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/html/20.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/html_tmp/1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/html_tmp/10.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/html_tmp/11.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/html_tmp/12.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/html_tmp/13.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/html_tmp/14.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/html_tmp/15.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/html_tmp/16.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/html_tmp/17.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/html_tmp/18.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/html_tmp/19.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/html_tmp/20.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/html_tmp/3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/html_tmp/4.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/html_tmp/5.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/html_tmp/6.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/html_tmp/7.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/html_tmp/8.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/html_tmp/9.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/p1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/page1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/page2.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/t1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/t2.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/van.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Hello/com/company/resource/vansky.html" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/.exrc" afterPath="$PROJECT_DIR$/src/com/.exrc" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/Main.java" afterPath="$PROJECT_DIR$/src/com/Main.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/Session.vim" afterPath="$PROJECT_DIR$/src/com/Session.vim" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/1.html" afterPath="$PROJECT_DIR$/src/com/resource/1.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/3.html" afterPath="$PROJECT_DIR$/src/com/resource/3.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/code.html" afterPath="$PROJECT_DIR$/src/com/resource/code.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/email.html" afterPath="$PROJECT_DIR$/src/com/resource/email.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/free.html" afterPath="$PROJECT_DIR$/src/com/resource/free.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/free1.html" afterPath="$PROJECT_DIR$/src/com/resource/free1.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/html/2.html" afterPath="$PROJECT_DIR$/src/com/resource/html/2.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/html/20.html" afterPath="$PROJECT_DIR$/src/com/resource/html/20.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/html_tmp/1.html" afterPath="$PROJECT_DIR$/src/com/resource/html_tmp/1.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/html_tmp/10.html" afterPath="$PROJECT_DIR$/src/com/resource/html_tmp/10.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/html_tmp/11.html" afterPath="$PROJECT_DIR$/src/com/resource/html_tmp/11.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/html_tmp/12.html" afterPath="$PROJECT_DIR$/src/com/resource/html_tmp/12.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/html_tmp/13.html" afterPath="$PROJECT_DIR$/src/com/resource/html_tmp/13.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/html_tmp/14.html" afterPath="$PROJECT_DIR$/src/com/resource/html_tmp/14.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/html_tmp/15.html" afterPath="$PROJECT_DIR$/src/com/resource/html_tmp/15.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/html_tmp/16.html" afterPath="$PROJECT_DIR$/src/com/resource/html_tmp/16.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/html_tmp/17.html" afterPath="$PROJECT_DIR$/src/com/resource/html_tmp/17.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/html_tmp/18.html" afterPath="$PROJECT_DIR$/src/com/resource/html_tmp/18.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/html_tmp/19.html" afterPath="$PROJECT_DIR$/src/com/resource/html_tmp/19.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/html_tmp/20.html" afterPath="$PROJECT_DIR$/src/com/resource/html_tmp/20.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/html_tmp/3.html" afterPath="$PROJECT_DIR$/src/com/resource/html_tmp/3.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/html_tmp/4.html" afterPath="$PROJECT_DIR$/src/com/resource/html_tmp/4.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/html_tmp/5.html" afterPath="$PROJECT_DIR$/src/com/resource/html_tmp/5.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/html_tmp/6.html" afterPath="$PROJECT_DIR$/src/com/resource/html_tmp/6.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/html_tmp/7.html" afterPath="$PROJECT_DIR$/src/com/resource/html_tmp/7.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/html_tmp/8.html" afterPath="$PROJECT_DIR$/src/com/resource/html_tmp/8.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/html_tmp/9.html" afterPath="$PROJECT_DIR$/src/com/resource/html_tmp/9.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/p1.html" afterPath="$PROJECT_DIR$/src/com/resource/p1.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/page1.html" afterPath="$PROJECT_DIR$/src/com/resource/page1.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/page2.html" afterPath="$PROJECT_DIR$/src/com/resource/page2.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/t1.html" afterPath="$PROJECT_DIR$/src/com/resource/t1.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/t2.html" afterPath="$PROJECT_DIR$/src/com/resource/t2.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/van.html" afterPath="$PROJECT_DIR$/src/com/resource/van.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/company/resource/vansky.html" afterPath="$PROJECT_DIR$/src/com/resource/vansky.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BuildTree/src/Main.java" afterPath="$PROJECT_DIR$/../BuildTree/src/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SqlConnection.java" afterPath="$PROJECT_DIR$/../SqlConnection.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FlapBST.java" afterPath="$PROJECT_DIR$/../FlapBST.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../InvertBinTree.java" afterPath="$PROJECT_DIR$/../InvertBinTree.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ShortestPathKthEdge.java" afterPath="$PROJECT_DIR$/../ShortestPathKthEdge.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SqlExample/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../SqlExample/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TryS5.java" afterPath="$PROJECT_DIR$/../TryS5.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../bintree.gv" afterPath="$PROJECT_DIR$/../bintree.gv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../lambdaExample/src/Main.java" afterPath="$PROJECT_DIR$/../lambdaExample/src/Main.java" />
     </list>
     <ignored path="Hello.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -102,9 +35,11 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33950618">
-              <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-              <folding />
+            <state vertical-scroll-proportion="-0.021929825">
+              <caret line="0" column="12" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -160,7 +95,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+    <option name="x" value="384" />
+    <option name="y" value="417" />
     <option name="width" value="1440" />
     <option name="height" value="828" />
   </component>
@@ -205,6 +141,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -244,16 +182,14 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../JavaLib/jar/jsoup-1.9.2.jar!/" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.20689656" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -531,31 +467,31 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="828" extended-state="0" />
+    <frame x="384" y="417" width="1440" height="828" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08309859" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.90140843" sideWeight="0.5028612" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27605635" sideWeight="0.49713877" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27753934" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3869814" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31690142" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08309859" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48591548" sideWeight="0.49713877" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31690142" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -598,7 +534,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -632,6 +570,70 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../JavaLib/jar/Aron.jar!/classfile/Aron.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="716" column="0" selection-start-line="716" selection-start-column="0" selection-end-line="716" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../JavaLib/jar/jsoup-1.9.2.jar!/org/jsoup/Jsoup.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding>
+            <element signature="e#1002#1003#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../JavaLib/jar/jsoup-1.9.2.jar!/org/jsoup/helper/HttpConnection.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../JavaLib/jar/Aron.jar!/classfile/Aron.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="716" column="0" selection-start-line="716" selection-start-column="0" selection-end-line="716" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../JavaLib/jar/jsoup-1.9.2.jar!/org/jsoup/Jsoup.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding>
+            <element signature="e#1002#1003#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../JavaLib/jar/jsoup-1.9.2.jar!/org/jsoup/helper/HttpConnection.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -640,7 +642,91 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../JavaLib/jar/Aron.jar!/classfile/Aron.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="716" column="0" selection-start-line="716" selection-start-column="0" selection-end-line="716" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../JavaLib/jar/jsoup-1.9.2.jar!/org/jsoup/Jsoup.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding>
+            <element signature="e#1002#1003#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../JavaLib/jar/jsoup-1.9.2.jar!/org/jsoup/helper/HttpConnection.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../JavaLib/jar/Aron.jar!/classfile/Aron.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="716" column="0" selection-start-line="716" selection-start-column="0" selection-end-line="716" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../JavaLib/jar/jsoup-1.9.2.jar!/org/jsoup/Jsoup.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding>
+            <element signature="e#1002#1003#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../JavaLib/jar/jsoup-1.9.2.jar!/org/jsoup/helper/HttpConnection.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -679,9 +765,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33950618">
-          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-          <folding />
+        <state vertical-scroll-proportion="-0.021929825">
+          <caret line="0" column="12" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -694,7 +782,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.20689656" />
               </list>
             </option>
           </splitter-proportions>
@@ -706,7 +794,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.20689656" />
               </list>
             </option>
           </splitter-proportions>
@@ -718,7 +806,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.20689656" />
               </list>
             </option>
           </splitter-proportions>
@@ -730,7 +818,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.20689656" />
               </list>
             </option>
           </splitter-proportions>

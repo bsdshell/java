@@ -45,7 +45,6 @@ public class Main {
             preparedStatement.setString(3, "The third of food");
             preparedStatement.setString(4, "Build an array strip");
 
-
             preparedStatement.executeUpdate();
         } catch (Exception ex) {
             // handle the error

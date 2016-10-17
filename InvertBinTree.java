@@ -1,13 +1,12 @@
 import java.io.*;
 import java.lang.String;
 import java.util.*;
-
-
+import classfile.*;
 
 public class InvertBinTree{
     public static void main(String[] args) {
-        System.out.println("Hello World!");
         test0();
+        test1();
     }
     
     public static Node invert(Node root){
@@ -26,10 +25,25 @@ public class InvertBinTree{
        bst.insert(5);
        bst.insert(15);
        bst.insert(7);
-       System.out.println("---------------------------------\n"); 
+       Ut.l();
        Aron.inorder(bst.getRoot());
-       System.out.println("---------------------------------\n"); 
+       Ut.l();
        Node r = invert(bst.getRoot());
+       Aron.inorder(r);
+    }
+    public static void test1(){
+       BST bst = new BST(); 
+       bst.insert(10);
+       bst.insert(5);
+       bst.insert(7);
+       bst.insert(15);
+       bst.insert(12);
+       bst.insert(18);
+       Ut.l();
+       Aron.inorder(bst.getRoot());
+       Ut.l();
+       Node r = invert(bst.getRoot());
+       Aron.binImage(r);
        Aron.inorder(r);
     }
 }

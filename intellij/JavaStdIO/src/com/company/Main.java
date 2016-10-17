@@ -15,14 +15,12 @@ public class Main {
     }
 
     public static void stdioExample() {
-        try{
-
-
+        try {
             BufferedReader br =
-                    new BufferedReader(new FileReader("src/com/company/input.txt"));
+                new BufferedReader(new FileReader("src/com/company/input.txt"));
             String input;
 
-            while((input=br.readLine())!=null){
+            while((input=br.readLine())!=null) {
                 System.out.println(input);
 
                 String[] array = input.split(":");
@@ -32,30 +30,30 @@ public class Main {
 
             }
 
-        }catch(IOException io){
+        } catch(IOException io) {
             io.printStackTrace();
         }
     }
 
-    public static HashMap<String, List<String>> readFileToMap(String fileName){
+    public static HashMap<String, List<String>> readFileToMap(String fileName) {
         HashMap<String, List<String>> map = new LinkedHashMap<String, List<String>>();
-        try{
+        try {
             BufferedReader br =
-                    new BufferedReader(new FileReader(fileName));
+                new BufferedReader(new FileReader(fileName));
             String input;
 
-            while((input=br.readLine())!=null){
+            while((input=br.readLine())!=null) {
                 System.out.println(input);
 
                 String[] array = input.split(":");
                 String[] vArray = array[1].trim().split("\\s+");
                 List<String> list = new ArrayList<String>(Arrays.asList(vArray));
-                if(array.length == 2){
+                if(array.length == 2) {
                     map.put(array[0], list);
                 }
             }
 
-        }catch(IOException io){
+        } catch(IOException io) {
             io.printStackTrace();
         }
         return map;

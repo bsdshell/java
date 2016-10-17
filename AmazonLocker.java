@@ -3,7 +3,7 @@ import java.lang.String;
 import java.util.*;
 import java.util.List;
 
-public class Add2{
+public class AmazonLocker{
     public static void main(String[] args) {
         System.out.println("Hello World!");
         test();
@@ -34,6 +34,8 @@ public class Add2{
         System.out.println(countOp(6));
     }
 
+    
+    // amazon locker, locker, problem, manhattan problem,
     static int[][] getLockerDistanceGrid(int cityLength, int cityWidth, int[] lockerXCoordinates, int[] lockerYCoordinates) {
         int[][] gridArray = new int[cityLength][cityWidth];
         
@@ -56,27 +58,4 @@ public class Add2{
         }
         return gridArray;
     }
-
-//    static int[][] grid(int height, int width, int[] coordX, int[] coordY) {
-//        int[][] gridArray = new int[height][width];
-//        for (int i = 0; i < height; i++) {
-//            for (int j = 0; j < width; j++) {
-//                for (int k = 0; k < coordX.length; k++) {
-//                    int distance1 = Math.abs(coordX[k] - i + 1);
-//                    int distance2 = Math.abs(coordY[k] - j + 1);
-//                    int sumDistance = distance1 + distance2;
-//                    
-//                    if (k != 0) {
-//                            if (sumDistance < gridArray[i][j]) {
-//                                gridArray[i][j] = sumDistance;
-//                            }
-//                    }else{
-//                        
-//                        gridArray[i][j] = sumDistance;
-//                    }
-//                }
-//            }
-//        }
-//        return gridArray;
-//    }
 }

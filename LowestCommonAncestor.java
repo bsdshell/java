@@ -247,21 +247,23 @@ class LowestCommonAncestor{
             return false;
         return true;
     }
-        public static Node LCA2(Node root, int n1, int n2) {
-        if(root != null){
-            if(root.data == n1 || root.data == n2)
-                return root;
 
-            Node l = LCA2(root.left, n1, n2);
-            Node r = LCA2(root.right, n1, n2);
-            if(l != null && r != null)
-                return root;
-            else if( l != null)
-                return l;
-            else if( r != null)
-                return r;
-        }
-        return null;
+    // lowest common ancestor, least common ancestor, lca, LCA
+    public static Node LCA2(Node root, int n1, int n2) {
+    if(root != null){
+        if(root.data == n1 || root.data == n2)
+            return root;
+
+        Node l = LCA2(root.left, n1, n2);
+        Node r = LCA2(root.right, n1, n2);
+        if(l != null && r != null)
+            return root;
+        else if( l != null)
+            return l;
+        else if( r != null)
+            return r;
+    }
+    return null;
     }
 
 }

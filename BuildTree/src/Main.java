@@ -13,7 +13,6 @@ public class Main{
         test0_right();
     }
 
-
     public  static void test0_BuidTree() {
         Aron.beg();
         List<Integer> preList = new LinkedList<Integer>(Arrays.asList(5, 3, 1, 4, 7, 6, 8));
