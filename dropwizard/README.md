@@ -9,11 +9,7 @@
 ```
     mvn install 
 ```
-- jar filel will be created in target directory
-
-```sh
-    target/tasklist-service-1.0-SNAPSHOT.jar
-```
+- jar filel will be created in target directory in target/tasklist-service-1.0-SNAPSHOT.jar
 - run
 ```sh
     java -jar target/tasklist-service-1.0-SNAPSHOT.jar server tasklist-service.yml
