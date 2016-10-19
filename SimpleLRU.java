@@ -7,6 +7,7 @@ import classfile.*;
 //
 
 //[ file=simpleLRU.html title=""
+// Least Recent Used Cache, LRU
 class LNode {
     String key;
     Object data;
