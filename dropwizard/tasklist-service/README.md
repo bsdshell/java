@@ -1,8 +1,19 @@
-# tasklist-service
-Example microservice for showing tasks with dropwizard.
+# Simple Dropwizard example
 
-Build it with `mvn install`. You can run it with `java -jar target/tasklist-service-1.0-SNAPSHOT.jar server tasklist-service.yml`.
+- Last Updated: 
 
-To learn more about dropwizard and java microservices, please read the blog post that I wrote:
+#### tasklist-service 
+- How to run the service in your localhost
+- cd to tasklist-service and run following commands
 
-[Java Microservices with Dropwizard](http://blog.scottlogic.com/2016/01/05/java-microservices-with-dropwizard-tutorial.html)
+```
+    mvn install 
+```
+- jar filel will be created in target directory in target/tasklist-service-1.0-SNAPSHOT.jar
+- run
+```sh
+    java -jar target/tasklist-service-1.0-SNAPSHOT.jar server tasklist-service.yml
+```
+- above command will run localhost in port 8080
+- point your browse to following URL 
+- http://localhost:8080/task-list
