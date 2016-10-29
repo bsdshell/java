@@ -24,7 +24,7 @@ public class TryDeleteLine {
         List<String> list = Aron.listFile(fName);
         for(String name : list){
             if(Aron.match("\\.html$", name)){
-                Print.plb(name);
+                Print.pbl(name);
                 List<String> list1 = Aron.readFile(name);
                 for(String s:list1){
                     Print.p(s);

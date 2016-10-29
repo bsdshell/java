@@ -17,6 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
+
 /**
  * Created by bartoszjedrzejewski on 03/01/2016.
  */
@@ -62,4 +67,34 @@ public class TaskListResource {
         }
         return tasks;
     }
+
+    @POST
+    @Path("/{id}")
+    public String parameterDemoMethod(String body,
+                                      @PathParam("id") long id,
+                                      @QueryParam("foo") String foo,
+                                      @HeaderParam("X-Auth-Token") String token,
+                                      @Context HttpServletRequest request) {
+        String response;
+        response = "id = " + id + "\n";
+        response += "body = " + body + "\n";
+        response += "foo = " + foo + "\n";
+        response += "token = " + token + "\n";
+        response += "ip = " + request.getRemoteAddr() + "\n";
+        return response;
+    }
+
+
+    @POST
+    @Path("/{id}")
+    public String parameterDemoMethod() {
+        return "id";
+    }
+
+    @GET
+    @Path("/hello")
+    public String sayHello() {
+        return "Hello";
+    }
+
 }

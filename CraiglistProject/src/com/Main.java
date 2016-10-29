@@ -43,7 +43,7 @@ public class Main {
         String path = "http://www.vansky.com/info/ZFBG08.html?page=1&location=&direct=&title=";
         
         try{
-            Print.plb("path=" + path);
+            Print.pbl("path=" + path);
             getCityAndAdID(path); 
         }catch(IOException io){
             io.printStackTrace();
@@ -78,7 +78,7 @@ public class Main {
 
            // city, name, phone, content
            String oneRow = htmlTemplate(list); 
-           Print.plb(oneRow);
+           Print.pbl(oneRow);
            htmlList.add(oneRow);
            Ut.l();
         }
@@ -111,7 +111,7 @@ public class Main {
 
            // city, name, phone, content
            String oneRow = htmlTemplate(list); 
-           Print.plb(oneRow);
+           Print.pbl(oneRow);
            htmlList.add(oneRow);
            Ut.l();
         }
@@ -181,7 +181,7 @@ public class Main {
                 List<ArrayList<String>> lists = getCityAndAdID(htmlPath); 
                 for(ArrayList<String> list : lists){
                     String adURL = vanskyURL + list.get(1);    
-                    Print.plb("adURL=" + adURL);
+                    Print.pbl("adURL=" + adURL);
 
                     // add URL and city
                     list2d.add(downloadOneRow(adURL, list.get(0)));
@@ -226,8 +226,8 @@ public class Main {
             
             if(list.size() == elementList.size()){
                 for(int i=0; i<list.size(); i++){
-                    Print.plb(elementList.get(i).text());
-                    Print.plb(list.get(i));
+                    Print.pbl(elementList.get(i).text());
+                    Print.pbl(list.get(i));
                     ArrayList<String> ll = new ArrayList<String>(); 
 
                     ll.add(elementList.get(i).text());
@@ -235,7 +235,7 @@ public class Main {
                     cityAdList2d.add(ll);
                 }
             }else{
-                Print.plb("ERROR=" + "Number of cities and Number of ads are not matched");
+                Print.pbl("ERROR=" + "Number of cities and Number of ads are not matched");
                 System.exit(0);
             }
         }
@@ -251,8 +251,8 @@ public class Main {
         for(String str : list){
             Matcher htmlMatch = patternRegex.matcher(str);
                 while(htmlMatch.find()){
-                    //Print.plb(htmlMatch.groupCount());
-                    //Print.plb(vanskyURL + htmlMatch.group(1));
+                    //Print.pbl(htmlMatch.groupCount());
+                    //Print.pbl(vanskyURL + htmlMatch.group(1));
                     fullURLList.add(vanskyURL + htmlMatch.group(1));
                 }
         }

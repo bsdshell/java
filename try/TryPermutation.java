@@ -54,7 +54,7 @@ public class TryPermutation {
     public static void permutation(String prefix, String str) {
         if(str != null) {
             if(str.length() == 0) {
-                Print.plb(prefix);
+                Print.pbl(prefix);
             }else if(str.length() > 0){
                 for(int i=0; i<str.length(); i++) {
                     String s = str.charAt(i) + "";

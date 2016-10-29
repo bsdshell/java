@@ -33,7 +33,7 @@ public class Main {
             if(resultSet.next()) {
                 // get the second column
                 String name = resultSet.getString(2);
-                Print.plb(name);
+                Print.pbl(name);
             }
 
             preparedStatement = connect
@@ -48,7 +48,7 @@ public class Main {
             preparedStatement.executeUpdate();
         } catch (Exception ex) {
             // handle the error
-            Print.plb(ex.getMessage());
+            Print.pbl(ex.getMessage());
         }
     }
 }
