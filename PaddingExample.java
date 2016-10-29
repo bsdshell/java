@@ -3,6 +3,8 @@ import java.io.*;
 import classfile.*;
 import org.apache.commons.lang3.StringUtils;
 
+// use apache common lib
+// jar file /Users/cat/myfile/github/JavaLib/commons-lang3-3.5.jar
 public class PaddingExample{
     public static void main(String[] args) {
         String s1 = StringUtils.leftPad("", 3, 'z');
