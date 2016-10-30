@@ -10,13 +10,14 @@ public class GraphExample{
         test0();
         test1();
         test2();
+        test3();
     }
     public static void test0(){
         Aron.beg();
         int level = 0;
-        Node root = createGraph();
+        Node root = createGeneralTree();
         preorderGraph(root);
-        preorderGraph(root, level);
+        prettyPrintGeneral(root, level);
         Aron.line();
         postorderGraph(root);
         Aron.end();
@@ -56,11 +57,18 @@ public class GraphExample{
         Aron.line();
         Aron.prettyPrint(b1.root, level);
         Aron.binImage(b1.root);
-        
+
+        Aron.end();
+    } 
+    static void test3(){
+        Aron.beg();
+        Node root = createGeneralTree();
+
         Aron.end();
     } 
 
-    public static Node createGraph(){
+    // create generate tree and pretty print 
+    public static Node createGeneralTree(){
         Aron.beg();
         Node root = new Node(1);
         Node n1 = new Node(2);
@@ -87,6 +95,9 @@ public class GraphExample{
         n2.list.add(nn22);
         n2.list.add(nn33);
 
+        int level = 0;
+        prettyPrintGeneral(root, level);
+
         return root;
     }
 
@@ -99,12 +110,12 @@ public class GraphExample{
         }
     }
 
-    public static void preorderGraph(Node curr, int level){
+    public static void prettyPrintGeneral(Node curr, int level){
         if(curr != null){
-            String s = StringUtils.leftPad("", 2*level, '-');
+            String s = StringUtils.leftPad("", 2*level, ' ');
             Print.pl(s + "[" + curr.data + "]");
             for(Node n : curr.list){
-                preorderGraph(n, level + 1);
+                prettyPrintGeneral(n, level + 1);
             }
         }
     }
