@@ -17,7 +17,7 @@ public class GraphExample{
         int level = 0;
         Node root = createGeneralTree();
         preorderGraph(root);
-        prettyPrintGeneral(root, level);
+        Aron.prettyPrintGeneral(root, level);
         Aron.line();
         postorderGraph(root);
         Aron.end();
@@ -35,7 +35,8 @@ public class GraphExample{
         b1.print();
         Aron.line();
         int level = 0;
-        Aron.prettyPrint(b1.root, level);
+        boolean isLeaf = true;
+        Aron.prettyPrint(b1.root, level, isLeaf);
 
         Aron.end();
     }
@@ -43,23 +44,27 @@ public class GraphExample{
         Aron.beg();
         BST b1 = new BST();
         b1.insert(10);
-        b1.insert(5);
+        b1.insert(51);
         b1.insert(16);
-        b1.insert(115);
-        b1.insert(135);
+        b1.insert(35);
+        b1.insert(45);
         b1.insert(15);
         b1.insert(1);
-        b1.insert(1145);
+        b1.insert(95);
         b1.insert(7); 
 
         int level = 0;
         b1.print();
         Aron.line();
         Aron.prettyPrint(b1.root, level);
+        Aron.line();
+        boolean isLeaf = true;
+        Aron.prettyPrint(b1.root, level, isLeaf);
         Aron.binImage(b1.root);
 
         Aron.end();
     } 
+
     static void test3(){
         Aron.beg();
         Node root = createGeneralTree();
@@ -96,7 +101,7 @@ public class GraphExample{
         n2.list.add(nn33);
 
         int level = 0;
-        prettyPrintGeneral(root, level);
+        Aron.prettyPrintGeneral(root, level);
 
         return root;
     }
@@ -110,15 +115,15 @@ public class GraphExample{
         }
     }
 
-    public static void prettyPrintGeneral(Node curr, int level){
-        if(curr != null){
-            String s = StringUtils.leftPad("", 2*level, ' ');
-            Print.pl(s + "[" + curr.data + "]");
-            for(Node n : curr.list){
-                prettyPrintGeneral(n, level + 1);
-            }
-        }
-    }
+//    public static void prettyPrintGeneral(Node curr, int level){
+//        if(curr != null){
+//            String s = StringUtils.leftPad("", 4*level, ' ');
+//            Print.pl(s + "[" + curr.data + "]");
+//            for(Node n : curr.list){
+//                prettyPrintGeneral(n, level + 1);
+//            }
+//        }
+//    }
 
     public static void postorderGraph(Node curr){
         if(curr != null){

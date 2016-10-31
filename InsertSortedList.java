@@ -1,9 +1,7 @@
 import java.io.*;
 import java.lang.String;
 import java.util.*;
-
 import classfile.*;
-
 
 public class InsertSortedList{
     public static void main(String[] args) {
@@ -14,6 +12,20 @@ public class InsertSortedList{
     }
     
     static void test10(){
+        Aron.beg();
+        SingleLinkedList sll = new SingleLinkedList();        
+        sll.append(1);
+        sll.append(4);
+        sll.append(7);
+        Aron.printSLL(sll.head);
+        Aron.line();  
+
+        Node head = insert(sll.head, 3);
+        Aron.printSLL(head);
+
+        Aron.end();
+    }
+    static void test11_thread(){
         Aron.beg();
         SingleLinkedList sll = new SingleLinkedList();        
         sll.append(1);

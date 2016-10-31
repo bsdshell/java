@@ -1,6 +1,4 @@
-package com.company;
 import classfile.*;
-
 
 //[ file=synthread.html title=""
 class Account{
@@ -18,8 +16,8 @@ class Account{
             }
         }
     }
-    public synchronized void addNode(){
-//    public void addNode(){
+
+     public synchronized void addNodeSync(){
         SingleLinkedList sll = new SingleLinkedList();
         for(int i=0; i<5; i++){
             sll.append(i);
@@ -31,6 +29,22 @@ class Account{
             }
         } 
         Aron.printSLL(sll.head);
+        Aron.line();
+    }
+
+    public void addNodeNonSync(){
+        SingleLinkedList sll = new SingleLinkedList();
+        for(int i=0; i<5; i++){
+            sll.append(i);
+
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } 
+        Aron.printSLL(sll.head);
+        Aron.line();
     }
 }
 
@@ -41,7 +55,7 @@ class SimpleThread implements Runnable{
     }
     public void run(){
         //acc.deposit(1);
-        acc.addNode();
+        acc.addNodeSync();
     }
 }
 
@@ -74,9 +88,16 @@ public class Main {
     static void test1(){
         Account acc = new Account();
         for (int i = 0; i < 4; i++) {
+
+            StopWatch sw = new StopWatch();
+            sw.start();
+
             Thread t = new Thread(new SimpleThread(acc));
             t.start();
+
+            sw.stop();
         }
+
     }
 }
 //]
