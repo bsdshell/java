@@ -54,7 +54,7 @@ public class SerializeBinary {
             serializeBinary(bin.root, out);
             out.close();
 
-            List<String> list = Aron.readFileOneLine("text/out.txt");
+            List<String> list = Aron.readFileOneLineSplit("text/out.txt");
             Iterator<String> ite = list.iterator();
             Node root = deserializeIterator(ite);
 
@@ -82,7 +82,7 @@ public class SerializeBinary {
             serializeBinary(bin.root, out);
             out.close();
 
-            List<String> list = Aron.readFileOneLine("text/out.txt");
+            List<String> list = Aron.readFileOneLineSplit("text/out.txt");
             Iterator<String> ite = list.iterator();
             Node root = deserializeIterator(ite);
 

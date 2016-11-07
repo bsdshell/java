@@ -2,67 +2,31 @@ import java.util.*;
 import java.io.*;
 import classfile.*;
 
-interface CarElement{
-    public void accept(PartVistor visitor);
+// gf http://stackoverflow.com/questions/31986332/visitor-vs-servant-vs-command-patterns
+interface IMobile{
 }
 
-class Engine implements CarElement{
-    public String name;
-    public Engine(String name){
-        this.name = name;
-    }
-
-    public void accept(PartVistor visit){
-        visit.visit(this);
+class IPhone implements IMobile{
+    public void turnOn(IBluetooth b){
+        b.switchOn(this);
     }
 }
 
-class Body implements CarElement{
-    public String name;
-    public Body(String name){
-        this.name = name;
-    }
-
-    public void accept(PartVistor visit){
-        visit.visit(this);
+class Android implements IMobile{
+    public void turnOn(IBluetooth b){
+        b.switchOn(this);
     }
 }
 
-class Car implements CarElement{
-    List<CarElement> list = new ArrayList<>();
-    public String name;
-    public Car(String name){
-        this.name = name;
-        list.add(new Body("body"));
-        list.add(new Engine("engine"));
-    }
-    public void accept(PartVistor visit){
-        for(CarElement e : list){
-            e.accept(visit);
-        }
-        visit.visit(this);
-    }
+interface IBluetooth{
+    public void switchOn(IPhone iphone);
+    public void switchOn(Android android);
 }
 
-interface PartVistor{
-    public void visit(Engine c);
-    public void visit(Body c);
-    public void visit(Car c);
-}
-
-class CarElementDoVisitor implements PartVistor{
-    public void visit(Engine e){
-        Print.p("From Visit Engine Object"); 
-        Print.p("Ferrari Has the best Car Engine " + e.name);
+class VisitorBlueTooth implements IBluetooth{
+    public void switchOn(IPhone iphone){
     }
-    public void visit(Body b){
-        Print.p("This is body part");
-        Print.p("Body part is body " + b.name);
-    }
-
-    public void visit(Car b){
-        Print.p("This is main Car");
-        Print.p("name=" + b.name);
+    public void switchOn(Android android){
     }
 }
 
@@ -73,8 +37,6 @@ public class VisitorPattern{
     }
     public static void test0(){
         Aron.beg();
-        CarElement car = new Car("Car");
-        car.accept(new CarElementDoVisitor());
         Aron.end();
     }
     public static void test1(){
