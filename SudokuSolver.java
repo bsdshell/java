@@ -159,17 +159,13 @@ class Sudoku {
 public class SudokuSolver {
     public static void main(String[] args) {
         Sudoku s = new Sudoku();
-        StopWatch sw = new StopWatch();
-        sw.start();
         int k=0;
         //s.solver(k);
         int[] arr = {0};
         System.out.println("digraph G {\n");
         //s.solver_Graph(k, arr);
         s.solver(k);
-        sw.stop();
 
-        System.out.println("time=" + sw.getElapsedTimeSecs());
         System.out.println("}\n");
     }
 }
