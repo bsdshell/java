@@ -5,6 +5,7 @@ import classfile.*;
 public class TryMin2{
     public static void main(String[] args) {
         test0();
+        String str = "test it";
         test1();
     }
     public static void test0(){
