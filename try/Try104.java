@@ -6,6 +6,7 @@ public class Try104{
     public static void main(String[] args) {
         test0();
     }
+    // *j_test*
     static void test0(){
         
         BST b1 = new BST();

@@ -31,18 +31,18 @@ public class Main {
         Integer[] array = {1, 2, 3, 4};
         List<Integer> listInt = Arrays.asList(array);
 
-        // list filter
+        // list filter  *j_filter* *java_filter* *list_filter*
         List<Integer> leftList = listInt.stream().filter(x-> x < 3).collect(Collectors.toList());
         List<Integer> rightList = listInt.stream().filter(x-> x > 3).collect(Collectors.toList());
 
         Aron.printList(leftList);
         Aron.printList(rightList);
 
-        // list forEach
+        // list forEach  *j_foreach*
         leftList.forEach(System.out::println);
         leftList.forEach(x->System.out.println(x));
 
-        // HashMap filter
+        // HashMap filter  *j_hashmap_filter*
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
         map.put(1, 4);
         map.put(2, 5);

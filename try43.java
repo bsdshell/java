@@ -19,7 +19,7 @@ public class try43 {
     }
     public static void test0() {
         Aron.beg();
-
+        // cool
         // This is Binary Search Tree, the runtime is O(log n)
         // deletion, lookup and insection are all O(log n)
         // deletion, lookup and insection are all O(log n)
