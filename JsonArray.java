@@ -5,7 +5,7 @@ import java.util.*;
 import java.io.*;
 import classfile.*;
 
-// *j_json* *json* *json_array* *json seri *
+// *j_json* *json* *json_array* *json_Serializable* *json_class* *j_json_example*
 class Item implements Serializable {
     @SerializedName("_OrderDetails")
     private OrderDetails[] mOrderDetails;
