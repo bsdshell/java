@@ -94,7 +94,6 @@ public class TaskListResource {
     @GET
     @Path("/hello")
     public String sayHello() {
-        return "Hello";
+        return "Hello World";
     }
-
 }
