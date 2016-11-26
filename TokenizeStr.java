@@ -15,6 +15,7 @@ public class TokenizeStr{
         test2_tokenize();
         test22_tokenize();
         test3_tokenize();
+        test4_tokenize();
 
     }
     static void test00_tokenize(){
@@ -68,6 +69,18 @@ public class TokenizeStr{
     static void test3_tokenize(){
         Aron.beg();
         String str = "<name>david</name><addr>abc</addr>";
+        List<String> list = tokenize(str);
+        Aron.printList(list);
+
+        Aron.end();
+    }
+    static void test4_tokenize(){
+        Aron.beg();
+        String str = "<name>david</name>" 
+                    +"<addr>abc"
+                    +"<phone>cc</phone>"
+                    +"<dog>dog</dog>"
+                    +"</addr>";
         List<String> list = tokenize(str);
         Aron.printList(list);
 

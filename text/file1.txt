@@ -1,2 +1,9 @@
-dog
-God
+{
+    "Name": "my name",
+    "Author": "Quantum Satellite",
+    "Company List": [
+        "Compnay: eBay",
+        "Compnay: Paypal",
+        "Compnay: Google"
+    ]
+}

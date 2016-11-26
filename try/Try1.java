@@ -30,6 +30,16 @@ public class Try1 {
             public print() {
             }
         }
+        
+        List<ArrayList<Integer>> list2d = new ArrayList<ArrayList<Integer>>();
+        ArrayList<String> list = new ArrayList<String>(); 
+        List<Node> list = new ArrayList<>();
+        ArrayList<String> list = new ArrayList<String>();
+        List<Node> list = new ArrayList<>();
+        List<Node> list = new ArrayList<>();
+        List<Node> list = new ArrayList<>();
+        List<Node> list = new ArrayList<>();
+        arr
 
         import classfile.*;
 
@@ -189,21 +199,6 @@ str.border-left-color:
         String str;
     }
     public static String reverseW(String str) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(char c)
-        sb.lastIndexOf(String str, int fromIndex)
-
-        sblastIndexOf()
-        sb.lastIndexOf(String str, int fromIndex)
-        sb.lastIndexOf(String str)
-        sb.append(str);
-        int len = sb.length();
-        for(int i=0; i<len/2; i++) {
-            char ch = sb.charAt(i);
-            sb.setCharAt(i, sb.charAt(len - 1 - i));
-            sb.setCharAt(len - 1 - i, ch);
-        }
-        return sb.toString();
     }
 
     public static void test1() {

@@ -84,7 +84,6 @@ public class TaskListResource {
         return response;
     }
 
-
     @POST
     @Path("/{id}")
     public String parameterDemoMethod() {
