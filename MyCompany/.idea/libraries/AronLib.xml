@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="AronLib">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../JavaLib/jar/AronLib.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
