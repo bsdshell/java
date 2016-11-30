@@ -1,10 +1,12 @@
+package MyApp;
+
 import classfile.Aron;
-import classfile.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class TokenizeStr{
+public class App{
     public static void main(String[] args) {
 //        test00_tokenize();
 //        test0_tokenize();
@@ -18,10 +20,6 @@ public class TokenizeStr{
 //        test4_tokenize();
 
         test0_tokenize2();
-        test1_tokenize2();
-        test2_tokenize2();
-        test3_tokenize2();
-        test4_tokenize2();
     }
     static void test00_tokenize(){
         Aron.beg();
@@ -81,22 +79,18 @@ public class TokenizeStr{
     }
     static void test4_tokenize(){
         Aron.beg();
-        String str = "<name>david</name>" 
-                    +"<addr>abc"
-                    +"<phone>cc</phone>"
-                    +"<dog>dog</dog>"
-                    +"</addr>";
+        String str = "<name>david</name>"
+                +"<addr>abc"
+                +"<phone>cc</phone>"
+                +"<dog>dog</dog>"
+                +"</addr>";
         List<String> list = tokenize(str);
         Aron.printList(list);
 
         Aron.end();
     }
     public static char lookAhead(String str, int index){
-        int i = 1;
-        while(str.charAt(index + i) == ' ')
-            i++;
-
-        return str.charAt(index + i);
+        return str.charAt(index + 1);
     }
 
     //[ file=tokenizestr.html title=""
@@ -244,8 +238,8 @@ public class TokenizeStr{
                             }
                         }
                     }else if(currChar == ']'){
-                       curr = 3;
-                       list.add(currChar + ""); 
+                        curr = 3;
+                        list.add(currChar + "");
                     }else if(currChar == '['){
                         curr = 1;
                         list.add(currChar + "");
@@ -253,10 +247,6 @@ public class TokenizeStr{
                 }else if(curr == 3){
                     if(currChar == ']')
                         list.add(currChar + "");
-                    else if(currChar == '['){
-                        curr = 1;
-                        list.add(currChar + "");
-                    }
                 }
             }
         }
@@ -270,57 +260,4 @@ public class TokenizeStr{
 
         Aron.end();
     }
-    static void test1_tokenize2(){
-        Aron.beg();
-        String str = "[ 1 "
-                    +" [ 2 ]"
-                    +" [ 3 ]"
-                    +" ]";
-        List<String> list = tokenize2(str);
-        Aron.printList(list, " " );
-        Aron.end();
-    }
-    static void test2_tokenize2(){
-        Aron.beg();
-        String str = "[ 1 "
-                    +" [ 2 ]"
-                    +" [ 3 "
-                    +"  [ 4 ]"
-                    +"  [ 5 ]"
-                    +" ]"
-                    +"]";
-        List<String> list = tokenize2(str);
-        Aron.printList(list, "<" );
-    }
-    static void test3_tokenize2(){
-        Aron.beg();
-        String str = "[ abc "
-                    +" [ 123 ]"
-                    +" [ 3 "
-                    +"  [ 4 ]"
-                    +"  [ 5 ]"
-                    +" ]"
-                    +" [ 6 ]"
-                    +" ]";
-        List<String> list = tokenize2(str);
-        Aron.printList(list, " " );
-
-        Aron.end();
-    }
-    static void test4_tokenize2(){
-        Aron.beg();
-        String str = "[abc"
-                    +"[123]"
-                    +"[3"
-                    +"[4]"
-                    +"[5]"
-                    +"]"
-                    +"[6]"
-                    +"]";
-        List<String> list = tokenize2(str);
-        Aron.printList(list, " " );
-
-        Aron.end();
-    }
 }
-

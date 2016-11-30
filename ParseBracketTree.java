@@ -17,6 +17,8 @@ public class ParseBracketTree{
         test0();
         test1();
         test2();
+        test3();
+        test4();
     }
     public static void test0(){
         Aron.beg();
@@ -72,6 +74,58 @@ public class ParseBracketTree{
          
         Aron.end();
     }
+    public static void test3(){
+        Aron.beg();
+        String str = "[ 1 ]";
+        String[] arr = str.split("\\s+");
+        List<String> list = Arrays.asList(arr);
+        List<String> list2 = new ArrayList<String>(); 
+
+        for(String s : list){
+            if(getTokenType(s) != Type.OPEN)
+                list2.add(s);
+        }
+        
+        Iterator<String> ite = list2.iterator(); 
+        Node root = buildTreeRecursion(ite);
+        int level = 0;
+        Aron.prettyPrintGeneral(root, level);
+        Aron.preorderGraph(root);
+        Aron.printList(list, "(");
+         
+        Aron.end();
+    }
+    public static void test4(){
+        Aron.beg();
+        String str = "[ 1"
+                    +" [ 12 ]"
+                    +" [ 13 ]"
+                    +" [ 14 ]"
+                    +"  [ 111 "
+                         +" [ 112 ]"
+                         +" [ 113 ]"
+                    +"  ]"
+                    +" ]";
+        String[] arr = str.split("\\s+");
+        List<String> list = Arrays.asList(arr);
+        List<String> list2 = new ArrayList<String>(); 
+
+        for(String s : list){
+            if(getTokenType(s) != Type.OPEN)
+                list2.add(s);
+        }
+
+        Aron.printList(list2, "(");
+        
+        Iterator<String> ite = list2.iterator(); 
+        Node root = buildTreeRecursion(ite);
+        int level = 0;
+        Aron.prettyPrintGeneral(root, level);
+        Aron.preorderGraph(root);
+        Aron.printList(list, "(");
+         
+        Aron.end();
+    }
     public static boolean validate(String fname){
         try{
             BufferedReader br = new BufferedReader(new FileReader(fname));
@@ -102,6 +156,18 @@ public class ParseBracketTree{
         }
         return stack.peek();
     }
+    public static Node buildTreeRecursion(Iterator<String> ite){
+        Node root = null;
+        if(ite.hasNext()){
+            String item = ite.next();
+            if(getTokenType(item) == Type.ITEM){
+                root = buildTreeRecursion(ite);
+            }else if(getTokenType(item) == Type.CLOSE){
+                Node ret = buildTreeRecursion(ite);     
+            }
+        }
+        return root;
+    }
 
     public static Type getTokenType(String str){
         Pattern r = Pattern.compile("\\d+");
@@ -115,7 +181,7 @@ public class ParseBracketTree{
         return Type.NONE;
     }
     
-    static void test3(){
+    static void test9(){
         Aron.beg();
         Type type1 = getTokenType("[");
         Type type2 = getTokenType("]");
