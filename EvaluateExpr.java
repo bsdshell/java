@@ -9,6 +9,7 @@ public class EvaluateExpr{
         test1();
         test2();
         test3();
+        test1();
     }
     public static void test0(){
         Aron.beg();
@@ -36,6 +37,13 @@ public class EvaluateExpr{
         String str = "( 1 - ( ( 2 - 4 ) + 3 ) )";
         int sum = evaluate(str);
         Test.t(sum == 0);
+        Aron.end();
+    }
+    public static void test4(){
+        Aron.beg();
+        String str = "( 1 )";
+        int sum = evaluate(str);
+        Test.t(sum == 1);
         Aron.end();
     }
     public static void test10(){
@@ -74,13 +82,12 @@ public class EvaluateExpr{
                             Print.pbl("Expression Error");
                     }
             }
-                
         }
         Aron.printArray(arr);
         return operandStack.peek();
     }
     public static boolean isNumeric(String str){
-        return str.matches("[0-9]+");
+        return str.matches("[1-9][0-9]+\\|0");
     }
 } 
 

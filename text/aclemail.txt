@@ -1,0 +1,18 @@
+> > Code exercise:
+> > Our product is using a flat (text) file to store data. The flat file has table-like structure, data are grouped with fields (columns) and records (rows). The field's length is fixed, hence the record length is also fixed. The field can be numeric type (integer or decimal) or character (string) types. Numeric field is saved as right aligned text and string field is saved as left aligned text, with padding space to ensure fixed length. For example, following is a data file which contains two records with 6 fields, FirstName, LastName, SIN, Department, Title and Salary (numeric field)
+> > Cole   Slaten 767-20-1490 Finance   Controller         124321.12
+> > MatthewHakala 448-17-9542 Operations Service Associate 60023.53
+> > 
+> > 
+> > Please write a simple application which will read a CSV (delimited) and convert to our data file structure.
+> > We know the CSV file:
+> > *         Records are broken with \r\n
+> > *         Fields are separated with comma (","), text field is always quoted with double quotes. The text field has no embedded double quotes, but may have "," or line break (\r\n, Windows system line break). When write to our data file, line break will need to be replaced with single space.
+> > *         First line is data, not the field names
+> > *         File size could be big.
+> > Hints:
+> > 1.    The program needs to detect the length of each field
+> > 2.    The program needs to detect if field is numeric field or not.
+> > 3.    No need to consider the field names
+> > 
+>

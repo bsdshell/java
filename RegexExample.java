@@ -73,7 +73,7 @@ public class RegexExample{
     static void test4(){
         Aron.beg();
 
-        // match number
+        // match number and group
         Pattern pattern = Pattern.compile("\\w+");
         Matcher matcher = pattern.matcher("334-4467777 yes... 334666-4456 415-333-9674 whatever 4264491569");
         while(matcher.find()) {

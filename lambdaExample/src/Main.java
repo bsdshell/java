@@ -1,4 +1,5 @@
 import classfile.Aron;
+import classfile.Print;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -20,7 +21,7 @@ public class Main {
             arr[i] = num;
         }
         List<Double> list = Arrays.asList(arr);
-        
+
         //[ file=lambda.html title=""
         // list sum
 
@@ -60,13 +61,25 @@ public class Main {
         Aron.printMap(newMap2);
 
         // list of String to list of Integer
-        String[] arrStr = {"0", "1", "2", "3"}; 
+        String[] arrStr = {"0", "1", "2", "3"};
         List<String> list1 = Arrays.asList(arrStr);
         List<Integer> strIntList = list1.stream().map(Integer::parseInt).collect(Collectors.toList());
         Aron.printList(strIntList);
 
-        List<Integer> list2 = new ArrayList<Integer>(Arrays.asList(1, 2, 3)); 
-        boolean ret = list2.stream().anyMatch(s -> s.intValue() > 2); 
+        List<Integer> list2 = new ArrayList<Integer>(Arrays.asList(1, 2, 3));
+        boolean ret = list2.stream().anyMatch(s -> s.intValue() > 2);
+
+        List<String> animalList = Arrays.asList("dog", "cow", "cat", "squirrel");
+        Aron.printList(animalList);
+        String max11 = animalList.stream().max(Comparator.comparing(String::valueOf)).get();
+        Print.pbl(max11 + " maxlen=" + max11.length());
+
+        List<String> list4 = Arrays.asList("G","B","F","E");
+		String max4 = list4.stream().max(Comparator.comparing(String::valueOf)).get();
+		System.out.println("Max:"+ max4);
+
+
+//        Stream.of("a","bb","aaa","z","b").max(Comparator.comparing(s->s.length()))
 
         //]
 

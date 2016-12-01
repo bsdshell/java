@@ -1,263 +1,147 @@
 package MyApp;
 
 import classfile.Aron;
+import classfile.Print;
+import classfile.Test;
+import classfile.Ut;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class App{
     public static void main(String[] args) {
-//        test00_tokenize();
-//        test0_tokenize();
-//
-//        test1_tokenize();
-//
-//        test11_tokenize();
-//        test2_tokenize();
-//        test22_tokenize();
-//        test3_tokenize();
-//        test4_tokenize();
-
-        test0_tokenize2();
+        test0();
+        test1();
+        test3();
     }
-    static void test00_tokenize(){
+    public static void test0(){
         Aron.beg();
-        String str = "<a>b";
-        List<String> list = tokenize(str);
-        Aron.printList(list);
+        String fileName = "/Users/cat/myfile/github/java/text/acl.cvs";
+        readCVS(fileName);
+        Aron.end();
+    }
+    static void test1(){
+        Aron.beg();
+        //Pattern pattern = Pattern.compile("[0-9]{3}[-]{0,1}[0-9]{3}[-]{0,1}[0-9]{4}");
+        Pattern pattern = Pattern.compile("\"[^\"]+\"");
+        Matcher matcher = pattern.matcher("\"dog\", \"cat\"");
+        Print.pbl("groupCount=" + matcher.groupCount());
+        while(matcher.find()) {
+            System.out.println(matcher.group());
+        }
 
         Aron.end();
     }
-    static void test0_tokenize(){
+    static void test2(){
         Aron.beg();
-        String str = "<a>";
-        List<String> list = tokenize(str);
-        Aron.printList(list);
+
+//        List<String> animalList = Arrays.asList("dog", "cow", "cat", "squirrel");
+//        Aron.printList(animalList);
+//        String max11 = animalList.stream().max(Comparator.comparing(String::valueOf)).get();
+//        Print.pbl(max11 + " maxlen=" + max11.length());
 
         Aron.end();
     }
-    static void test11_tokenize(){
+
+    static void test3(){
         Aron.beg();
-        String str = "<b>c</b>";
-        List<String> list = tokenize(str);
-        Aron.printList(list);
+
+        String s = getString("\"abc\"");
+        Print.pbl("s=" + s);
+        Test.t(s.equals("abc"));
+
+        String s1 = getString("abc");
+        Test.t(s1 == null);
+
+        String s2 = getString(null);
+        Test.t(s2 == null);
+
+        String s3 = getString("");
+        Test.t(s3 == null);
 
         Aron.end();
     }
-    static void test1_tokenize(){
-        Aron.beg();
-        String str = "<a>b</a>";
-        List<String> list = tokenize(str);
-        Aron.printList(list);
 
-        Aron.end();
+    public static String leftPad(String str, int max, int len){
+        int diff = max - len;
+        if(diff > 0){
+            for(int i=0; i<diff; i++)
+                str = "=" + str;
+        }
+        return str;
     }
-    static void test2_tokenize(){
-        Aron.beg();
-        String str = "<na>da</na>";
-        List<String> list = tokenize(str);
-        Aron.printList(list);
-
-        Aron.end();
-    }
-    static void test22_tokenize(){
-        Aron.beg();
-        String str = "<name>a</name>";
-        List<String> list = tokenize(str);
-        Aron.printList(list);
-
-        Aron.end();
-    }
-    static void test3_tokenize(){
-        Aron.beg();
-        String str = "<name>david</name><addr>abc</addr>";
-        List<String> list = tokenize(str);
-        Aron.printList(list);
-
-        Aron.end();
-    }
-    static void test4_tokenize(){
-        Aron.beg();
-        String str = "<name>david</name>"
-                +"<addr>abc"
-                +"<phone>cc</phone>"
-                +"<dog>dog</dog>"
-                +"</addr>";
-        List<String> list = tokenize(str);
-        Aron.printList(list);
-
-        Aron.end();
-    }
-    public static char lookAhead(String str, int index){
-        return str.charAt(index + 1);
+    public static String rightPad(String str, int max, int len){
+        int diff = max - len;
+        if(diff > 0){
+            for(int i=0; i<diff; i++)
+                str += "-";
+        }
+        return str;
     }
 
-    //[ file=tokenizestr.html title=""
-    /**
-     * tokenize xml file like format.
-     * read character one by one and feed it to state machine.
-     * if token is found, add to a list. Otherwise terminate
-     * the process and return null.
-     * for example, <name>david</name> => [<name>, david, </name>]
-     *
-     * @param strChar xxx
-     *
-     * @return list of tokens if all tokens are valid, otherwise return null
-     */
-    public static List<String> tokenize(String strChar){
-        List<String> list = new ArrayList<String>();
-        int state = 0;
-        int curr = state;
-        String str = "";
-        boolean isValid = true;
-        for(int i=0; i<strChar.length() && isValid; i++){
-            if(curr == 0){
-                if(str.length() > 0){
-                    list.add(str);
-                    str = "";
-                }
-
-                if(strChar.charAt(i) == '<'){
-                    str += strChar.charAt(i);
-                    curr = 1;
-                }else if('a' <= strChar.charAt(i) && strChar.charAt(i) <= 'z'){
-                    str += strChar.charAt(i);
-                    curr = 2;
-                    if(i + 1 < strChar.length() && lookAhead(strChar, i) == '<'){
-                        curr = 0;
-                    }
-                }else{
-                    isValid = false;
-                }
-            }else if(curr == 2){
-                if('a' <= strChar.charAt(i) && strChar.charAt(i) <= 'z'){
-                    str += strChar.charAt(i);
-                    curr = 2;
-                    if(i + 1 < strChar.length() && lookAhead(strChar, i) == '<'){
-                        curr = 0;
-                    }
-                }else{
-                    isValid = false;
-                }
-            }else if(curr == 1){
-                if('a' <= strChar.charAt(i) && strChar.charAt(i) <= 'z'){
-                    str += strChar.charAt(i);
-                    curr = 3;
-                }
-                else if(strChar.charAt(i) == '/'){
-                    str += strChar.charAt(i);
-                    curr = 4;
-                }else{
-                    isValid = false;
-                }
-            }else if(curr == 3){
-                if(strChar.charAt(i) == '>'){
-                    str += strChar.charAt(i);
-                    curr = 5; // final
-                    curr = 0;
-                }else if('a' <= strChar.charAt(i) && strChar.charAt(i) <= 'z'){
-                    str += strChar.charAt(i);
-                    curr = 3;
-                }else{
-                    isValid = false;
-                }
-            }else if(curr == 4){
-                if('a' <= strChar.charAt(i) && strChar.charAt(i) <= 'z'){
-                    str += strChar.charAt(i);
-                    curr = 7;
-                }else{
-                    isValid = false;
-                }
-
-            }else if(curr == 7){
-                if('a' <= strChar.charAt(i) && strChar.charAt(i) <= 'z'){
-                    str += strChar.charAt(i);
-                }else if(strChar.charAt(i) == '>'){
-                    str += strChar.charAt(i);
-                    curr = 8; // final
-                    list.add(str);
-                    str = "";
-                    curr = 0;
-                }else{
-                    isValid = false;
+    // if str is a string, strim two double quotes. O.W return null
+    public static String getString(String str){
+        if(str != null){
+            Pattern pattern = Pattern.compile("\"([^\"]*)\"");
+            Matcher matcher = pattern.matcher(str);
+            while(matcher.find()) {
+                for(int i=1; i<=matcher.groupCount(); i++){
+                    if(matcher.group(i) != null)
+                        return matcher.group(i);
                 }
             }
         }
-
-        if(curr == 2){
-            if(str.length() > 0){
-                list.add(str);
-                str = "";
+        return null;
+    }
+    public static int getMax(List<String> list){
+        int max = 0;
+        for(String s : list){
+            if(getString(s) != null){
+                if(s.length() - 2 > max)
+                    max = s.length();
+            }else{
+                if(s.length() > max)
+                    max = s.length();
             }
         }
-
-        return isValid ? list : null;
+        return max;
     }
-    //]
-
-    // gx /Users/cat/myfile/github/math/StateMachine2.png
-    public static List<String> tokenize2(String strChar){
-        List<String> list = new ArrayList<String>();
-        int state = 0;
-        int curr = state;
-        String str = "";
-        boolean isValid = true;
-        int len = strChar.length();
-        for(int i=0; i<len && isValid; i++){
-            char currChar = strChar.charAt(i);
-            if(currChar != ' '){
-                if(curr == 0){
-                    if(currChar == '['){
-                        list.add(currChar + "");
-                        curr = 1;
+    public static void readCVS(String fileName){
+        List<String> list = Aron.readFile(fileName);
+        Pattern pattern = Pattern.compile("(\"[^\"]*\")|([0-9]*\\.?[0-9]+)");
+        for(String s : list){
+            Matcher matcher = pattern.matcher(s);
+            int len = 0;
+            List<String> row = new ArrayList<String>();
+            while(matcher.find()) {
+                for(int i=1; i<=matcher.groupCount(); i++){
+                    if(matcher.group(i) != null && matcher.group(i).length() > 0){
+                        len = matcher.group(i).length();
+                        Print.pb(matcher.group(i));
+                        row.add(matcher.group(i));
+                        Print.pbl("glen=" + len);
                     }
-                }else if(curr == 1){
-                    if(currChar == '['){
-                        list.add(currChar + "");
-                    }else if(currChar == ']'){
-                        curr = 3;
-                        list.add(currChar + "");
-                    }else if(Character.isLetterOrDigit(currChar)){
-                        curr = 2;
-                        str += currChar + "";
-                        if(i < len - 1){
-                            if(lookAhead(strChar, i) == ']' || lookAhead(strChar, i) == '['){
-                                list.add(str);
-                                str = "";
-                            }
-                        }
-                    }
-                }else if(curr == 2){
-                    if(Character.isLetterOrDigit(currChar)){
-                        str += currChar + "";
-                        if(i < len - 1){
-                            if(lookAhead(strChar, i) == ']' || lookAhead(strChar, i) == '['){
-                                list.add(str);
-                                str = "";
-                            }
-                        }
-                    }else if(currChar == ']'){
-                        curr = 3;
-                        list.add(currChar + "");
-                    }else if(currChar == '['){
-                        curr = 1;
-                        list.add(currChar + "");
-                    }
-                }else if(curr == 3){
-                    if(currChar == ']')
-                        list.add(currChar + "");
                 }
             }
-        }
-        return list;
-    }
-    static void test0_tokenize2(){
-        Aron.beg();
-        String str = "[ 1 ]";
-        List<String> list = tokenize2(str);
-        Aron.printList(list, "(" );
 
-        Aron.end();
+            int max = getMax(row);
+            Print.pbl("max=" + max);
+
+            for(String item : row){
+                String newStr = getString(item);
+                if(newStr != null){
+                    Print.pb("newStr=" + newStr, "<");
+                    String str1 = newStr.replace("\\r\\n", " ");
+                    Print.pb("str1=" + str1, "{");
+                    Print.pb(rightPad("str1=" + str1, max, str1.length()));
+                }
+                else
+                    Print.pb(leftPad(item, max, item.length()));
+
+            }
+            Ut.l();
+        }
     }
 }
