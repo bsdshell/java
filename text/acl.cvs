@@ -2,3 +2,6 @@
 "MatthewHakala",  "448-17-9542", "Operations", "Service", "Associate", 60023.53
 "Matthe\r\nakala",  "448-17-9542", "Operations", "Service", "Associate", 60023.53
 "1234",  ",", "Operations", "Service", "Associate", 60023.53
+"1234  ",  "dog,cat", "Operations",     "Service", "Associate",             60023.53
+"1234  ",  "dog,cat", "Operations",     "Service", "Associate",   1234     60023.53
+

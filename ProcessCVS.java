@@ -15,7 +15,7 @@ public class ProcessCVS{
     public static void test0() {
         String cvsFile = "/Users/cat/myfile/github/java/text/acl.cvs";
         String outFile = "/Users/cat/myfile/github/java/text/acl_out.txt";
-        readCVS(cvsFile, outFile);
+        convertCVS(cvsFile, outFile);
     }
 
     public static String leftPad(String str, int max, int len) {
@@ -64,30 +64,14 @@ public class ProcessCVS{
         }
         return max;
     }
-    public static List<String> readFile(String cvsFile) {
-        List<String> list = new ArrayList<String>();
-        try {
-            BufferedReader in = new BufferedReader(new FileReader(cvsFile));
-            String str;
-            while((str = in.readLine()) != null) {
-                list.add(str.trim());
-            }
-            in.close();
-        } catch(IOException io) {
-            io.printStackTrace();
-        }
-        return list;
-    }
-    public static void readCVS(String cvsFile, String outFile) {
-        List<String> list = readFile(cvsFile);
+
+    public static void convertCVS(String cvsFile, String outFile) {
 
         // match string or number/decimal
         Pattern pattern = Pattern.compile("(\"[^\"]*\")|([0-9]*\\.?[0-9]+)");
         List<ArrayList<String>> list2d = new ArrayList<ArrayList<String>>();
         FileWriter fstream = null;
         BufferedWriter out = null;
-
-
 
         try {
             fstream = new FileWriter(outFile);
@@ -96,10 +80,6 @@ public class ProcessCVS{
             LineIterator it = FileUtils.lineIterator(new File(cvsFile), "UTF-8");
             while (it.hasNext()) {
                 String s = it.next();
-                //System.out.println(it.next());
-            //}
-
-            //for(String s : list) {
                 Matcher matcher = pattern.matcher(s);
                 int len = 0;
                 List<String> row = new ArrayList<String>();
