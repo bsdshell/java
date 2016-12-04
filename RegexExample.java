@@ -19,6 +19,7 @@ public class RegexExample{
         test7();
         test8();
         test9();
+        test10();
     }
     static void test0(){
         Aron.beg();
@@ -136,5 +137,26 @@ public class RegexExample{
         }
         Aron.end();
     } 
+
+    // grouping
+    static void test10(){
+        Aron.beg();
+        //import java.util.regex.Matcher;
+        //import java.util.regex.Pattern;
+        String str = "\"dog cat\" 3241.10 "; 
+        Pattern pattern = Pattern.compile("(\"[^\"]*\")|([0-9]*\\.?[0-9]+)");
+        Matcher matcher = pattern.matcher(str);
+        while(matcher.find()) {
+            for(int i=1; i<= matcher.groupCount(); i++) {
+                if(matcher.group(i) != null && matcher.group(i).length() > 0) {
+                    String ss = matcher.group(i);
+                    Print.pbl(ss);
+                }
+            }
+        }
+
+        
+        Aron.end();
+    }
 } 
 

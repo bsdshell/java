@@ -59,7 +59,6 @@ public class MyStopWatch {
         for(int i=0; i < 100; i++)
             System.out.println(i);
         sw.stop();
-        Print.pbl(sw.getElapsedTimeSecs());
     }
 }
 
