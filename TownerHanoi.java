@@ -7,69 +7,32 @@ import java.util.stream.*;
 
 public class TownerHanoi{
     public static void main(String[] args) {
-        test0();
+        test1();
     }
-    public static void test0(){
+
+    // gf http://www.mathcs.emory.edu/~cheung/Courses/170/Syllabus/13/hanoi.html
+    public static String hanoi(int n, int fromPeg, int toPeg) {
+        if(n == 1){
+            return (fromPeg + "->" + toPeg + "\n");
+        }else{
+            int helperPeg = 6 - fromPeg - toPeg; 
+            String s1 = hanoi(n-1, fromPeg, helperPeg);
+            String myStep = fromPeg + "->" + toPeg + "\n";
+            String s2 = hanoi(n-1, helperPeg, toPeg);
+            return s1 + myStep + s2; 
+        }
+    }
+
+    static void test1(){
         Aron.beg();
-        int index = 0;
-        int k = 0;
-        int max = 1;
-        towner(index, k, max);
+        int n = 3;
+        int fromPeg   = 1;
+        int helperPeg = 2; 
+        int toPeg     = 3;
+        String ss        = hanoi(n, fromPeg, toPeg);
+        Print.p(ss);
+
         Aron.end();
-    }
-
-    public static void towner(int index, int k, int max){
-        if(k < max){
-            for(int i=0; i<3; i++){
-                if(i != index){
-                    Print.p("[" + i + " k=" + k);
-                    towner(i, k+1, max);
-                    Print.p("]");
-                }
-            }
-        }
-    }
-
-    public static void fun(List<Stack<Integer>> li, int index){
-        if(index < li.size()){
-            Stack<Integer> s = li.get(index);
-            if(!s.empty()){
-                Integer n = s.pop();
-            }
-
-            while(!s.empty()){
-                Print.pbl(s.pop());
-            }
-        }
-    }
-    public static boolean isValid(Stack<Integer> s){
-        boolean ret = true;
-        if(s.size() > 1){
-            Integer top = s.pop();
-            if(top > s.peek())
-                ret = true;
-            s.push(top);
-        }
-        return ret;
-
-    }
-    public static void townerHanoi(){
-        List<Stack<Integer>> li = new ArrayList<Stack<Integer>>();
-        Stack<Integer> s1 = new Stack<Integer>(); 
-        Stack<Integer> s2 = new Stack<Integer>(); 
-        Stack<Integer> s3 = new Stack<Integer>(); 
-        s1.push(3);
-        s1.push(2);
-        s1.push(1);
-        li.add(s1);
-        li.add(s2);
-        li.add(s3);
-
-        for(Stack<Integer> s : li){
-            while(!s.empty()){
-                Print.pbl(s.pop());
-            }
-        }
     }
 } 
 
