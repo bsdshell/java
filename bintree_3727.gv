@@ -1,7 +1,0 @@
-digraph G{
-10[color=red];
-10->5[color=red];
-5->15[color=red];
-5->7[color=green];
-10->1[color=green];
-}
