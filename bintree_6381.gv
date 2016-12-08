@@ -1,0 +1,8 @@
+digraph G{
+10[color=red];
+10->5[color=red];
+10->15[color=green];
+15->17[color=green];
+17->16[color=red];
+17->199[color=green];
+}
