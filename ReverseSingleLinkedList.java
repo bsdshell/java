@@ -1,93 +1,17 @@
 import java.io.*;
 import java.lang.String;
 import java.util.*;
-
-class Node {
-    Node next;
-    int data;
-    public Node(int n) {
-        next = null;
-        data = n;
-    }
-}
-
-class SLL {
-    Node head;
-    public SLL() {
-        head = null;
-    }
-    public void append(Node no) {
-        Node cur = head;
-        if(head == null)
-            head = no;
-        else {
-            while(cur.next != null) {
-                cur = cur.next;
-            }
-            cur.next = no;
-        }
-    }
-    static Node next=null;
-    public void Reverse(Node cur) {
-        if(cur != null) {
-            Reverse(cur.next);
-            if(next != null)
-                next.next = cur;
-            else
-                head = cur;
-            next = cur;
-            cur.next = null;
-        }
-    }
-    public Node getHead() {
-        return head;
-    }
-    public void Remove(Node no) {
-        if(no != null && head != null) {
-            Node curr = head;
-            Node prev = null;
-            while(curr != null && curr.data != no.data) {
-                prev = curr;
-                curr = curr.next;
-            }
-            if(curr != null) { //The node is in the list
-                //prev
-                //curr
-                Node next = curr.next;
-                if(prev == null && next == null) {
-                    System.out.print("curr.data=1["+curr.data+"]");
-                    head = curr = null;
-                } else if(prev != null && next == null) {
-                    System.out.print("curr.data=2["+curr.data+"]");
-                    prev.next = null;
-                    curr = null;
-                } else if(prev == null && next != null) {
-                    System.out.print("curr.data=3["+curr.data+"]");
-                    head = next;
-                    curr.next = null;
-                    curr = null;
-                } else { //if(prev != null && next != null)
-                    System.out.print("curr.data=4["+curr.data+"]");
-                    prev.next = next;
-                    curr.next = null;
-                    curr = null;
-                }
-            }
-        }
-        System.out.println();
-    }
-    public void show() {
-        Node cur=head;
-        while(cur != null) {
-            System.out.println("cur.data=" + cur.data);
-            cur=cur.next;
-        }
-    }
-}
+import classfile.*;
 
 class ReverseSingleLinkedList {
     public static void main(String args[]) {
-        SLL s = new SLL();
+        test0();
+        test1();
+        test2();
+    }
+    static void test0(){
+        Aron.beg();
+        SingleLinkedList s = new SingleLinkedList();
         Node n1 = new Node(1);
         Node n2 = new Node(2);
         Node n3 = new Node(3);
@@ -95,30 +19,46 @@ class ReverseSingleLinkedList {
         s.append(n1);
         s.append(n2);
         s.append(n3);
-        s.show();
-
-        //s.Reverse(s.getHead());
-
-        //System.out.println ("Reverse");
-        //s.show();
-        //Node h = Reverse2(s.getHead());
-        //show(h);
-
-        Node newH = ReverseIterationClone(s.getHead());
+        s.print();
+        Node head = ReverseIterationClone(s.head);
         s.Remove(n1);
         s.Remove(n2);
-        //s.Remove(n3);
-        //System.out.println ("Clone");
-        System.out.println ("Clone and Reverse the list");
-        show(newH);
-        System.out.println ("Original List");
-        show(s.getHead());
+        Print.pbl("Clone and Reverse the list");
+        Aron.printSLL(head);
+        Ut.l();
+        Print.pbl("Original List");
+        Aron.printSLL(s.head);
+        Aron.end();
+    }
+    static void test1(){
+        Aron.beg();
 
-        /*
-        System.out.println ("Stack Clone");
-        Node head1 = ReverseCloneStack(s.getHead());
-        show(head1);
-        */
+        SingleLinkedList s = new SingleLinkedList();
+        Node n1 = new Node(1);
+        Node n2 = new Node(2);
+        Node n3 = new Node(3);
+        s.append(n1);
+        s.append(n2);
+        s.append(n3);
+        s.print();
+        Ut.l();
+        Node head = Reverse3(s.head);
+        Aron.printSLL(head);
+
+        Aron.end();
+    }
+    static void test2(){
+        Aron.beg();
+
+        SingleLinkedList s = new SingleLinkedList();
+        Node n1 = new Node(1);
+        s.append(n1);
+        s.print();
+        Ut.l();
+        Node head = Reverse3(s.head);
+        Aron.printSLL(head);
+
+        Aron.end();
     }
     static Node head = null;
     public static Node Reverse(Node curr) {
@@ -146,6 +86,20 @@ class ReverseSingleLinkedList {
             curr.next = null;
         }
         return tmp;
+    }
+
+    public static Node Reverse3(Node curr) {
+        Node tmpHead = null;
+        if(curr != null){
+            tmpHead = Reverse3(curr.next);
+            if(tmpHead == null)
+                tmpHead = curr;
+            else{
+                curr.next.next = curr;
+                curr.next = null;
+            }
+        }
+        return tmpHead;
     }
     // Modified the original list
     public static Node ReverseOriginalList(Node head) {
@@ -181,11 +135,11 @@ class ReverseSingleLinkedList {
         Stack<Node> st = new Stack<Node>();
         Node curr = mycurr;
         while(curr != null) {
-            System.out.print("-["+curr.data+"]");
+            Print.pbl(curr.data);
             st.push(curr);
             curr = curr.next;
         }
-        System.out.println();
+        Ut.l();
 
         Node head = null;
         Node newPrev = null;
@@ -218,11 +172,5 @@ class ReverseSingleLinkedList {
             newCurr = newCurr.next;
         }
         return newPrev;
-    }
-    public static void show(Node curr) {
-        while(curr != null) {
-            System.out.println("["+curr.data+"]");
-            curr = curr.next;
-        }
     }
 }
