@@ -34,13 +34,14 @@ public class NonConsecutive{
         int max = 0;
         if(arr != null && arr.length > 0){
             int len = arr.length;
-            int curr = arr[0];
+            int pmax = 0;
+            max = arr[0];
             for(int i=1; i<len; i++){
-                int m = Math.max(max, curr);
-                curr = max + arr[i];
-                max = m;
+                int m1 = Math.max(pmax + arr[i], arr[i]);
+                int m2 = Math.max(max, arr[i]);
+                pmax = max;
+                max = Math.max(m1, m2);
             } 
-            max = Math.max(max, curr);
         }
         return max;
     }
