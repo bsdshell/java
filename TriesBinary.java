@@ -111,6 +111,7 @@ public class TriesBinary{
 
         Aron.end();
     }
+
     static void test2(){
         Aron.beg();
 

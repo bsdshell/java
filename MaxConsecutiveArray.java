@@ -16,6 +16,12 @@ public class MaxConsecutiveArray{
 
         test00();
         test11();
+        test12();
+        test_maxConsecutiveSum_1();
+        test_maxConsecutiveSum_2();
+        test_maxConsecutiveSum_3();
+        test_maxConsecutiveSum_4();
+        test_maxConsecutiveSum_5();
     }
     //[ file=consecutive.html title=""
     //  4, -5, 9, 7, -8, 3
@@ -64,6 +70,7 @@ public class MaxConsecutiveArray{
     //]
 
     //[ file=maxsumnegative.html  title=""
+    // wrong code
     public static int maxConsecutiveNegative(int[] arr) {
         int max_so_far = arr[0], currMax = arr[0];
         if(arr != null) {
@@ -75,6 +82,40 @@ public class MaxConsecutiveArray{
         return currMax;
     }
     //]
+
+    // -4, 2 
+    // 2, 
+    // -4, 2, -1, 5
+    // -4, 2, -3, 5
+    // first and last index
+    static int maxConsecutiveSum(int[] arr){
+        int max = 0;
+        if(arr != null){
+            int len = arr.length;
+            if(len > 0){
+                max = arr[0];
+                int sum = arr[0];
+                int first = 0;
+                int second = 0;
+                int tmpFirst = 0;
+                for(int i=1; i<len; i++){
+                    if(sum < 0){
+                        sum = 0;
+                        tmpFirst = i;
+                    }
+                    sum += arr[i];
+                    if(max < sum){
+                        max = sum;
+                        first = tmpFirst;
+                        second = i;
+                    }
+                }
+                Print.pb("first=" + first);
+                Print.pb("second=" + second);
+            }
+        }
+        return max;
+    } 
 
     static void test0() {
         Aron.beg();
@@ -168,6 +209,66 @@ public class MaxConsecutiveArray{
         Aron.printArray(arr);
         int max = maxConsecutiveNegative(arr);
         Test.t(max, 7);
+
+        Aron.end();
+    }
+    public static void test12(){
+        Aron.beg();
+        int[] arr = {-3, 2, -4, 9}; 
+        Aron.printArray(arr);
+        int max = maxConsecutiveNegative(arr);
+        Test.t(max, 9);
+
+        Aron.end();
+    }
+
+    public static void test_maxConsecutiveSum_1(){
+        Aron.beg();
+        int[] arr = {-4, 2, -3, 5}; 
+        Aron.printArray(arr);
+        int max = maxConsecutiveSum(arr);
+        Aron.printArray(arr);
+        Test.t(max, 5);
+
+        Aron.end();
+    }
+    public static void test_maxConsecutiveSum_2(){
+        Aron.beg();
+        int[] arr = {-4, 2, -1, 5}; 
+        Aron.printArray(arr);
+        int max = maxConsecutiveSum(arr);
+        Aron.printArray(arr);
+        Test.t(max, 6);
+
+        Aron.end();
+    }
+    public static void test_maxConsecutiveSum_3(){
+        Aron.beg();
+        int[] arr = {-4, 2}; 
+        Aron.printArray(arr);
+        int max = maxConsecutiveSum(arr);
+        Aron.printArray(arr);
+        Test.t(max, 2);
+
+        Aron.end();
+    }
+    public static void test_maxConsecutiveSum_4(){
+        Aron.beg();
+        int[] arr = {2}; 
+        Aron.printArray(arr);
+        int max = maxConsecutiveSum(arr);
+        Aron.printArray(arr);
+        Test.t(max, 2);
+
+        Aron.end();
+    }
+    public static void test_maxConsecutiveSum_5(){
+        Aron.beg();
+        int[] arr = {2, 3}; 
+        Aron.printArray(arr);
+        int max = maxConsecutiveSum(arr);
+        Aron.printArray(arr);
+        Test.t(max, 5);
 
         Aron.end();
     }
