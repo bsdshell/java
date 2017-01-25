@@ -112,6 +112,7 @@ public class MaxPath{
         return max;
     }
 
+    // max path in tree, max path tree, maxpath binarytree
     public static int maxPathTree(Node r){
         if(r != null){
             int left = maxPathTree(r.left);
