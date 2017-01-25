@@ -2,6 +2,12 @@ import java.util.*;
 import java.io.*;
 import classfile.*;
 
+
+// max sum, max continuous sum, consecutive sum, max consecutive sum 
+// maximum continuous sum, maximum consecutive sum, max array sum, max sum array
+// max sum with index, 
+// max sum index, first index, last index, first last index
+// maxsum
 public class MaxConsecutiveArray{
     public static void main(String[] args) {
         test0();

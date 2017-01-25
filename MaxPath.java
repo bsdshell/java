@@ -6,8 +6,8 @@ import classfile.*;
 import java.util.stream.*;
 
 // graph with weight
-// maximum path in graph, max path in graph, max path in gree, 
-// maximum graph in tree
+// maximum path in graph, max path in graph, max path tree, 
+// maximum graph in tree, maxpath, path tree
 //
 // gx /Library/WebServer/Documents/zsurface/image/maxpath.png
 public class MaxPath{
