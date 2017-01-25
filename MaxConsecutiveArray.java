@@ -272,6 +272,5 @@ public class MaxConsecutiveArray{
 
         Aron.end();
     }
-
 }
 

@@ -115,16 +115,6 @@ public class GraphExample{
         }
     }
 
-//    public static void prettyPrintGeneral(Node curr, int level){
-//        if(curr != null){
-//            String s = StringUtils.leftPad("", 4*level, ' ');
-//            Print.pl(s + "[" + curr.data + "]");
-//            for(Node n : curr.list){
-//                prettyPrintGeneral(n, level + 1);
-//            }
-//        }
-//    }
-
     public static void postorderGraph(Node curr){
         if(curr != null){
             for(Node n : curr.list){
