@@ -5,6 +5,22 @@ import java.io.*;
 import classfile.*;
 import java.util.stream.*;
 
+
+// gx /Library/WebServer/Documents/zsurface/image/lrucache.png
+// LRU cache, least recent used cache, lru cache new
+// In memory catche.
+// e.g. memcache 
+//
+//
+// insert - if the key is in the map, remove the node from the list
+//          update the map with new node, append the node to the list
+// 
+//          if the list is full, remove the oldest node, and append
+//          the new node to the list, and update the map with new node
+//  
+//          update the map with new key/node
+//          update the map with new key/node
+// 
 class RNode{
     String key;
     String data;
@@ -30,6 +46,8 @@ class LRUCacheNew {
         }
         return node;
     }
+
+    // gx /Library/WebServer/Documents/zsurface/image/lrucache.png
     public void insert(String key, RNode node){
         RNode vnode = map.get(key);
         if(vnode != null){
