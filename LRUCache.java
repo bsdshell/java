@@ -1,6 +1,9 @@
 import java.util.*;
 import classfile.*; 
 
+// LRU cache
+// least recent used cache
+// lru cache  
 class Node<T> {
     Node next;
     Node prev;
@@ -70,7 +73,7 @@ class LRU {
         }
     }
     void append(String key, String data) {
-        if(least == null) {
+        if(least == null && count < maxSize) {
             Node<String> node = new Node<String>(key, data);
             least = most = node;
             map.put(key, node);
@@ -81,8 +84,8 @@ class LRU {
                 most.next = node;
                 node.prev = most;
                 most = node;
-                count++;
                 map.put(key, node);
+                count++;
             } else {
                 Node next = least.next;
                 least.next = null;
@@ -107,6 +110,12 @@ class LRU {
 
 public class LRUCache {
     public static void main(String[] args) {
+        test0();
+    }
+    
+    static void test0(){
+        Aron.beg();
+
         System.out.println("Least Recent Used Cache");
         LRU  lru = new LRU(4);
 
@@ -119,5 +128,14 @@ public class LRUCache {
         lru.get("key2");
         lru.insert("key3", "mydatakey3");
         lru.print();
+        Aron.end();
     }
+    static void test1(){
+        Aron.beg();
+        Aron.end();
+    }
+    static void test2(){
+        Aron.beg();
+        Aron.end();
+    } 
 }
