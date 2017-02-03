@@ -20,6 +20,7 @@ public class RegexExample{
         test8();
         test9();
         test10();
+        test11();
     }
     static void test0(){
         Aron.beg();
@@ -156,6 +157,29 @@ public class RegexExample{
         }
 
         
+        Aron.end();
+    }
+
+    public static void test11(){
+        Aron.beg();
+        
+        // match boundary word, match word, match words, match word only
+        // boundary word, boundary words only, boundary only, word boundary
+        String[] arr = {
+            "dog",
+            "cat",
+            "key-value"
+        };
+        Pattern pattern = Pattern.compile("(?<=^|\\s)[a-z]+(?=\\s|$)");
+        Aron.printArray(arr);
+        for(String s : arr){
+            Matcher matcher = pattern.matcher(s);
+            if(matcher.find()){
+                Print.pbl("match word=" + matcher.group());
+            }
+        }
+        Print.pbl("Does not match key-value");
+
         Aron.end();
     }
 } 

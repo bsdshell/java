@@ -64,8 +64,8 @@ public class JavaDataStructure {
         blockingDeque.addFirst("first");
         blockingDeque.addLast("last");
 
-        // ConcurrentLinkedDeque
-        // non-blocking
+        // non-blocking, non blocking, nonblocking queue
+        // ConcurrentLinkedDeque, concurrent queue concurrentqueue
         Deque<String> concurrentDeque = new ConcurrentLinkedDeque<String>();
         concurrentDeque.addFirst("first");
         concurrentDeque.addLast("last");

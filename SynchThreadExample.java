@@ -6,8 +6,9 @@ class Account{
     int balance = 0;
     public Account(){
     }
-    //public synchronized void deposit(int n){
-    public void deposit(int n){
+
+    public synchronized void deposit(int n){
+    //public void deposit(int n){
         for(int i=0; i<3; i++) {
             balance += n;
             System.out.println("acc=[" + balance + "]");

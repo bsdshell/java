@@ -1,3 +1,7 @@
-line 1
-line 2 
-line 3 
+up vote
+0
+down vote
+favorite
+I want to search a whole word in paragraph and word may end with special character. For example text to be searched is "search:" and the paragraph is "search: no search result found". In this search result start index would be 0 and end index would be 6.
+
+Regular expression i am using is "\\bsarch:\\b" however this regular expression escape special character ':' .
