@@ -2,20 +2,115 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.*;
 import java.io.*;
-import classfile.*;
 import java.util.stream.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.atomic.AtomicInteger;
+import classfile.*;
 
-//class DeleteLinkedList{
-//    SingleLinkedList sll = new SingleLinkedList();  
-//    public DeleteLinkedList(){
+class AtomicCount{
+    private AtomicInteger num = new AtomicInteger(0);
+    public AtomicCount(){
+    }
+    public void add(){
+        int n = num.getAndIncrement();
+        Print.pbl("n=" + n);
+    } 
+    public int get(){
+        return num.get();
+    }
+
+    public void print(){
+        Print.pbl("num=" + num.get());
+        int n = num.getAndIncrement();
+        Print.pbl("num.getAndIncrement()=" + n);
+        int newValue = num.getAndSet(10);
+        Print.pbl("newValue=" + newValue);
+
+        for(int i=0; i<3; i++){
+            int n1 = num.getAndIncrement();
+            Print.pbl("n1=" + n1);
+        }
+
+    }
+}
+
+class AtomicCountThread implements Runnable{
+    AtomicCount ac;
+    public AtomicCountThread(AtomicCount ac){
+        this.ac = ac;
+    }
+    public void run(){
+        ac.add();
+    }
+}
+
+
+class MyLock{
+    private boolean isLocked = false;
+    public synchronized boolean lock(){
+        if(!isLocked){
+            isLocked = true;
+            return isLocked;
+        }
+        return false;
+    }
+    public synchronized void unlock(){
+        isLocked = false;
+    }
+}
+
+class DeleteLinkedList{
+    public SingleLinkedList sll;
+//    public SingleLinkedList sll = new SingleLinkedList(); 
+    int count = 0;
+    public DeleteLinkedList(){
+        sll = new SingleLinkedList(); 
+    }
+//    public synchronized void add(){
+    public void add(){
+        synchronized(this){
+            count++;
+            sll.add(new Node(count));
+        }
+    }
+}
+
+class ConcurrentQueue{
+    // ConcurrentLinkedQueue queue = new ConcurrentLinkedQueue();
+    Queue<Node> queue = new LinkedList<Node>();
+    MyLock lock = new MyLock();
+    //ConcurrentLinkedQueue queue = new ConcurrentLinkedQueue();
+    int sum = 0;
+    public void add(){
+        if(lock.lock()){
+            sum++;
+            queue.add(new Node(sum));
+        }
+    }
+//    public synchronized void add(){
+//        sum++;
+//        queue.add(new Node(sum));
 //    }
-//    public void add(Node n){
-//        sll.add(n);
-//    }
-//    public void delete(Node n){
-//        sll.delete
-//    }
-//}
+    public void remove(){
+        queue.poll();
+    }
+    public void print(){
+        while(!queue.isEmpty()){
+            Node n = (Node)queue.poll();
+            Print.pbl(n.data);
+        }
+    }
+}
+
+class QueueThread implements Runnable{
+    ConcurrentQueue queue;
+    public QueueThread(ConcurrentQueue q){
+        queue = q;
+    }
+    public void run(){
+        queue.add();        
+    }
+}
 
 
 // simple thread example, thread simple
@@ -62,6 +157,7 @@ class Account{
         else
             remove();
     }
+    
 
     public synchronized void add(Node n){
         if(queue.size() < max){
@@ -78,11 +174,21 @@ class Account{
             Print.pbl("sleep 3000");
 
             try{
-                Thread.sleep(3000);
+                Thread.sleep(1000);
             }catch(InterruptedException e) {}
         }
         else
             Print.pbl("queue is empty");
+    }
+}
+
+class ThreadLinkedList implements Runnable{
+    DeleteLinkedList dll;
+    public ThreadLinkedList(DeleteLinkedList dll){
+        this.dll = dll;
+    }
+    public void run(){
+        dll.add();
     }
 }
 
@@ -102,7 +208,11 @@ class MyThread implements Runnable{
 public class Thread_example{
     public static void main(String[] args) {
 //        test0();
-        test1();
+//        test1();
+//        test2();
+//        test3();
+//        test4();
+        test5();
     }
     public static void test0(){
         Aron.beg();
@@ -135,6 +245,44 @@ public class Thread_example{
             t.start();
         }
         Aron.end();
+    }
+    public static void test2(){
+        Aron.beg();
+        
+        DeleteLinkedList dll = new DeleteLinkedList();
+        for(int i=0; i<1000; i++){
+            Thread t = new Thread(new ThreadLinkedList(dll));
+            t.start();
+        }
+
+        dll.sll.print();
+
+        Aron.end();
+    }
+    public static void test3(){
+        Aron.beg();
+        ConcurrentQueue queue = new ConcurrentQueue();
+
+        for(int i=0; i<50; i++){
+            Thread t = new Thread(new QueueThread(queue));
+            t.start();
+        } 
+
+        queue.print();
+        
+        Aron.end();
+    }
+    public static void test4(){
+        AtomicCount count = new AtomicCount();
+        count.print();
+    }
+
+    public static void test5(){
+        AtomicCount ac = new AtomicCount(); 
+        for(int i=0; i<10; i++){
+            Thread t = new Thread(new AtomicCountThread(ac));
+            t.start();
+        }
     }
 } 
 
