@@ -1,0 +1,181 @@
+Numbered files have a clearly defined ordering. For the most part humans and computers alike agree how to sort the numbers. This is especially true for numbers with leading zeroes. 015 clearly comes before 110. Without leading zeroes things get a bit more complicated. Most computers will sort 15 after 110. But this problem is solved by the %d notation.
+
+When the files are no longer numbered or not regularly then things can get very strange. For example should ae sort before or after aaa? Computers are deterministic and always have an idea of how to sort things, but that idea of order does not necessarily makes sense for a human.
+
+The order of the files from a glob pattern is determined by the glob system call. On most systems the idea of order of the glob system call can be manipulated using an environment variable named LC_COLLATE. But this book will not discuss that.
+
+For small number of files the order returned by a glob can be inspected by letting a shell expand the glob. This works because most shells uses the same glob system call as ffmpeg would.
+
+This command typed in a shell:
+
+In legal terms, a non-literal copy is one that is “substantially similar” to the original. In his post, Carmack disputed the testimony of an expert for the plaintiff, who had told the jury a non-literal copy would be like a duplicate Harry Potter book with only the names changed. It’s not an exact copy, but it still constitutes copyright infringement.
+“I agree; that is the literary equivalent of changing the variable names when you copy source code,” Carmack wrote. “However, if you abstract Harry Potter up a notch or two, you get Campbell’s Hero’s Journey, which also maps well onto Star Wars and hundreds of other stories. These are not copyright infringement.”
+Carmack, a celebrated game developer who revolutionized the field of computer graphics in the 1990s, left ZeniMax for Oculus in 2013 after becoming enamored with virtual reality. Before his departure, according to the suit, he had been collaborating with Oculus co-founder Palmer Luckey on the development of the Oculus Rift. ZeniMax filed its lawsuit the following year, shortly after Oculus had been acquired by Facebook for $2.3 billion. The suit claimed that Carmack had essentially smuggled out intellectual property he’d developed using ZeniMax’s time and resources, and used it to build the Rift.
+ 
+“I was wondering if gangsters had kidnapped his grandchildren and were holding them for ransom.”
+ 
+The jury cleared Carmack of many of ZeniMax’s accusations, including one that he’d deleted data to cover his tracks in the alleged heist. Carmack was also not found personally liable for any of the $500 million—that was spread out among Oculus itself, Luckey, and former Oculus CEO Brendan Iribe.
+Still, the copyright infringement allegation stuck, and as he watched the expert testimony that led to that finding, Carmack took serious issue with the assessment.
+“After he had said he was ‘Absolutely certain there was non-literal copying’ in several cases, I just wanted to shout ‘You lie!'” Carmack wrote in his post. “By the end, after seven cases of ‘absolutely certain,’ I was wondering if gangsters had kidnapped his grandchildren and were holding them for ransom.”
+Copyright law, particularly when applied to software, is tricky. When Carmack writes about “abstracting up” Harry Potter to the “hero’s journey,” a generic story template defined by Joseph Campbell in 1949, he’s making a well-worn argument about copyrighting code. He’s suggesting that the code in question isn’t so much the thing itself, but an abstraction of the thing:
+A hero ventures forth from the world of common day into a region of supernatural wonder: fabulous forces are there encountered and a decisive victory is won: the hero comes back from this mysterious adventure with the power to bestow boons on his fellow man. – The Hero with a Thousand Faces by Joseph Campbell (1949)
+The point is that if Carmack and his team wrote the Oculus Rift code from scratch, as he says they did, there are only so many ways to implement the abstract functionality that makes virtual reality work. This is similar to arguments made in the Oracle vs. Google lawsuit that ended last year. Oracle had accused Google of stealing its software interface to the Java programming language for use in its Android devices. Google argued that such code was too low-level to be subject to copyright. Google ultimately won the case, but not before a federal court ruled that interface code is indeed something than can be copyrighted.
+On Friday (Feb. 3), ZeniMax released a statement in response to Carmack’s post:
+In addition to expert testimony finding both literal and non-literal copying, Oculus programmers themselves admitted using Zenimax’s copyrighted code (one saying he cut and pasted it into the Oculus SDK), and [Oculus VR co-founder] Brendan Iribe, in writing, requested a license for the ‘source code shared by Carmack’ they needed for the Oculus Rift. Not surprisingly, the jury found Zenimax code copyrights were infringed. The Oculus Rift was built on a foundation of Zenimax technology.
+ZeniMax has also said it may now seek to stop the sale Oculus Rift headsets. And according to reporting by Polygon, Oculus says it will appeal the verdict.
+
+
+It’s powered by the Google search engine, so it’s really good at answering questions. Beware, though, users have to precede every question with the phrase, “OK, Google.” (This can get tiresome, though it’s arguably kinder than the alternative.) The speaker quality is solid, it’s easy to set up, and it can sync with other home devices made by Google (like Nest and Chromecast), along with Philips Hue lights, and Samsung SmartThings.
+The negatives: It can be a little slow in answering questions, and its responses are sometimes a little wordy. (Sample from Mike Murphy’s review in Quartz: “If you ask it for the weather where you are, it’ll tell you ‘Right now in Astoria, New York 11102, it’s currently 73 and mostly cloudy. It’ll be partly cloudy today with a forecasted high of 73 and a low of 52.’”
+Still, if you’re in the market for an a voice-activated home assistant, the Google Home is a solid choice. Just know that your $130 is going toward technology that’s still nascent and has a lot of room for improvement.
+(You can find Quartz’s complete review here.)
+Amazon Echo
+
+The Echo has been around a bit longer than Google Home—Amazon debuted it in 2014—so it’s already had it’s own Super Bowl commercial. Here the one that ran in 2016:
+
+And here is what Quartz had to say about the Echo back then.
+The natural question for people interested in this $180 product is how it has improved since.
+It’s been lambasted as a “glorified radio clock,” but the Echo has its selling points, too. It can order you an Uber, help you shop for things on Amazon, and, like Google Home, can sync with Spotify. But for general queries, it’s less adept with conversation. Product reviews show people generally love it or are frustrated by its limitations, which range from not listening well for ambient voice commands to not being portable.
+At the end of the day…
+
+No matter which home assistant you choose, one thing was pretty clear to Quartz’s reviewers: These products are essentially middlemen that massive tech companies are using to get people to spend more money with them. The Echo, for example, will gladly steer you into purchasing more items from Amazon and its vast network of retailers. And Google Home will happily connect you to YouTube Red pay subscriptions, and songs and films from Google Play Music. Oh, and as always, these products vacuum up as much data about their users as possible.
+Still, they’re pretty cool to play with.
+
+Could the Super Bowl see the same drop as in the regular season?
+
+It could—but the experts say that’s unlikely. “Viewership for Super Bowl may well have peaked,” said Curran. “But I don’t think it’s going to be a overnight cliff.”
+Let’s remember that the Super Bowl is much more than a championship football game. It’s a cultural touchstone. It attracts the biggest names in music—this year, pop icon Lady Gaga will headline the halftime show. And the advertisements, which are refreshingly designed to entertain more than to sell, are a quarter of the draw.
+
+“While regular-season ratings can ebb and flow over a tide in which nobody has any control, Super Bowl is still one of the few collective moments of a nation during the year,” said Curran. “It is a moment that people like to get together for… That’s what keeps it slightly immune from the overall drop in figures.”
+As such, the Super Bowl cannot be compared to a regular NFL season, especially not the one that just concluded.
+There were a myriad of other factors that impacted the regular-season numbers that wouldn’t affect Sunday’s game, including a high-impact election season with debates that coincided with NFL games, lackluster match-ups, and a controversial protest of the national anthem by player Colin Kaepernick.
+Broadcasters have historically commanded such exorbitant prices for the Super Bowl because it’s one of the few times during the year when average Americans actually want to watch commercials. The game also reaches fans of almost every US demographic, which puts its ad inventory in high demand.
+What would tip the scales?
+
+If advertisers find that tech is a better ad spend than TV. In 2016, Gatorade reached even more people during the Super Bowl with a clever Snapchat filter than it would have during the TV broadcast. The filter of a virtual Gatorade cooler dunk reportedly made 160 million impressions.
+But interest in the Super Bowl as a whole has remained rather steady, other metrics show, which is good news for the NFL. Adobe Digital Insights also compared (pdf) social media mentions around this year’s post-game NFL season to last year’s and found that it’s pacing down just 5% season-over-season at 6.2 million monthly US mentions—despite the benefit Super Bowl 50 had from being a milestone year and the retirement of superstar quarterback Peyton Manning.
+Statista also found that 78% of people in the US plan to watch the game this year, based on a survey of 1,200 people in the US that was shared with Quartz by Maxus.
+Fox is also expecting to hit a Super Bowl best with its free live stream of the game on Sunday, beating out the nearly 4 million viewers CBS pulled in the previous year. That would, of course, pull ratings away from the TV broadcast. But they’re likely folks who wouldn’t have watched through traditional TV channels anyway. What we’re seeing, said Curran, “is less a drop in ratings, as opposed to a diversification of ratings.”
+In other words, the fans are still there.They just aren’t watching the way they used to.
+Read this next: This year’s Super Bowl perfectly encapsulates the contradictions of Trump’s America
+
+
+https://qz.com/901453
+Get the Quartz Daily Brief in your inbox:
+
+Enter email address
+Subscribe
+Please also keep me updated about new Quartz products and events.
+JUSTICE BY COLLECTION
+Crowdfunding for public-interest lawsuits has come to the US, just in time for Trump’s presidency
+Demonstrators participate in a protest by the Yemeni community against U.S. President Donald Trump's travel ban in the Brooklyn borough of New York, U.S., February 2, 2017.  REUTERS/Lucas Jackson      TPX IMAGES OF THE DAY - RTX2ZEZX
+A groundswell for lawsuits. (Reuters/Lucas Jackson)
+SHARE
+
+WRITTEN BY
+
+Hanna Kozlowska
+@hannakozlowska
+February 05, 2017
+Two weeks in, the Trump administration is deluged with lawsuits, from challenges to the president’s conflicts of interest to multiple cases against his travel ban (currently suspended by order of a federal judge). One of those lawsuits has been brought by two Yemeni brothers whose case is being funded by CrowdJustice, a UK crowdfunding platform for lawsuits that launched its US operation this week.
+The platform is designed for public-interest cases, making it easier for people to band together in legal fights. Individual contributions add up to cover legal fees, and CrowdJustice helps promote the issue online. The platform’s pitch is simple—justice should be accessible to anyone.
+“It’s one step beyond petitions,” said Julia Salasky, the founder of the platform, who is a former United Nations lawyer.
+In the UK, CrowdJustice cases are wide-ranging, from the families of three British soldiers killed by IRA gunmen in the 1970s who are raising money to identify and prosecute their killers, to two neighbors in Exeter who are trying to save a local field from being divided by a new road. One case funded on the platform went all the way to the UK Supreme Court, resulting in the ruling that parliament must vote to finalize the country’s departure from the European Union.
+CrowdJustice was planning to launch in the US in several weeks, but with the fallout from the immigration executive order, it decided to start early with a campaign to fund Aziz v. Trump.
+Tareq and Ammar Aqel Mohammad Aziz arrived at Dulles Airport in Washington, DC on Saturday, Jan. 28. The two Yemeni citizens, aged 21 and 19, were coming to live with their father, who is a US citizen. They were detained at the airport and forced to sign papers that waived their immigration status, according to their lawyers from the Legal Aid Justice Center (LAJC), a small non-profit based in Virginia. Then they were deported.
+On Feb. 3 the lawyers announced they had reached an agreement with the US government to bring the Aziz brothers back. But the case isn’t over: The state of Virginia has joined it on behalf of other visa-holders stuck abroad.
+Salasky said the launch of CrowdJustice was in the US was in some ways coincidental, and in some serendipitous. “This past weekend in particular has really been a bellwether moment for people feeling disenfranchised and feeling that the legal system is a really important antidote to executive power and a really important part of functioning democracy,” she said.
+The LAJC is not a well-known organization like the American Civil Liberties Union, which raised $24 million in donations online the weekend the travel ban went into force. “We haven’t seen the kind of uptick in donations. And so the opportunity to talk about the work that we’re doing….is really important for us,” said Mary Bauer, the LAJC’s head. The case quickly reached its initial target of $15,000, and is now over $35,000 towards a new, $60,000 goal. The funds will go toward paying the organization’s staff.
+To crowdfund a case on CrowdJustice, you need to have an attorney who has agreed to represent you. The platform vets the lawyer, and applies a “subjective filter,” as Salasky puts it, to determine whether it should take on the case. (A case wouldn’t make the cut if, for example, it compromised a child’s anonymity, Salasky said.) If you reach your fundraising goal, the money will go straight to the attorney’s account, where it will be held in a trust for the client. The platform takes 5% of the full amount for itself.
+Just like third-party financing for lawsuits, crowdfunding legal cases is not a new idea in the US. GoFundMe, a general crowdfunding platform, teems with campaigns to fundraise for legal fees. Other platforms have been built specifically for legal cases. But the purpose of those websites, such as LexShares or Legalist, is for people to invest in lawsuits expecting financial return. This has raised a host of ethical issues, including concerns about third parties interfering in legal cases, particularly after it emerged that Silicon Valley mogul Peter Thiel was financing Hulk Hogan’s lawsuit against Gawker.
+But since CrowdJustice doesn’t promise financial benefit, and the funds are a collection of small donations, Salasky said these types of ethical concerns are “minimal.” “The rewards, incentives and trade-offs in that sphere are much different and are subject to very different rules,” she said.
+David Udell, executive director of the National Center for Access to Justice at Fordham Law School said that “at a glance, CrowdJustice looks great.” However, he underlined that it doesn’t solve the lack of access to justice—an acute problem in America, where there is less than one civil legal-aid lawyer per 10,000 US citizens. These lawyers provide crucial help to the poor who face eviction, child custody battles or rent disputes.
+“It can come to the rescue for select cases that are portrayable in ways that tug at the heartstrings or alarm the public,” he said. “Third-party funding is an important complement to government-funded free civil legal aid, but for the large number of people with genuine unmet legal needs, the critically important thing is to preserve and expand free civil legal aid.”
+
+https://qz.com/902934
+CORPORATE RESPONSIBILITY
+In the fight against government-ordered internet blackouts, where are Africa’s mobile providers?
+Norman Kazarire, 38, speaks on his mobile phone outside an internet shop in Epworth, east of the capital Harare, Zimbabwe, August 11, 2016. REUTERS/Philimon Bulawayo - RTSMWH4
+Some African governments are concerned about the use of Whatsapp as an organizing tool. (Reuters/Philimon Bulawayo)
+SHARE
+
+WRITTEN BY
+
+Yinka Adegoke
+@yinkawrites
+OBSESSION
+
+The Next Billion
+February 05, 2017Quartz Africa
+It’s been more than two weeks since Cameroon’s English-speaking regions, roughly 20% of the country, had its internet access switched off. Cameroon’s government pressured local telcos to shut down access after protests against the French-language-dominated government’s marginalization of people from Anglophone regions.
+The government is keen to stop protest organizers from using apps like WhatsApp, Facebook, and Twitter to get the word out efficiently. Activists in Cameroon’s big cities, the notably French-dominant Yaoundé and Douala, had been making their voices heard with the #BringBackOurInternet hashtag.
+Much has been written about the role of the government in enforcing the shutdown. But this issue is bigger than just the 34-year old government of president Paul Biya. In 2016, the United Nations adopted a Human Rights Council resolution on promoting and protecting freedom online. That year, the internet was switched off to stifle dissent in 11 African countries.
+Some have suggested democratic African countries should follow the UN’s lead and enshrine internet freedom in local laws. But there is well-placed skepticism as to whether countries with weak democratic practices would adhere to even their own laws in the event of a political crisis.
+What’s interesting is that no one ever brings up the role of the phone companies in these shutdowns. Most Africans connect to the internet via mobile phone. In the case of Cameroon, there’s evidence the phone companies were worried about losing their licenses if they didn’t comply with the local regulator’s demands.
+
+MTN is the dominant network in Cameroon, with a 51% market share. It is also easily one of Africa’s largest homegrown companies, with more than 229 million customers in Africa and Middle East and annual revenue of $15 billion. The second-largest network, with 35% market share, is France’s Orange, which is one of the largest networks in the world, bringing in more than $40 billion in annual revenue.
+In dollar terms, these companies are larger than many of the small- to medium-sized African countries they serve. They have real clout. They can push back. Phone companies may not be able to stop the shutdowns altogether, but they can certainly make it difficult for the next government to think about this strategy.
+There should be more to being a telco license holder than just expanding service delivery and faster internet speeds. Will Africa’s mobile service providers be willing to take up the corporate social responsibility they have to the customers they serve?
+Sign up for the Quartz Africa Weekly Brief — the most important and interesting news from across the continent, in your inbox.
+
+https://qz.com/903311
+IN A STATE
+Another reason people outside the US are wary of “America First”: the semantics
+Zocalo Square in Mexico City, Mexico
+This is America, too. (Reuters/Henry Romero)
+SHARE
+
+WRITTEN BY
+
+Ana Campoy
+@ana_campoy_
+OBSESSION
+
+"America First"
+February 05, 2017
+It has long been a sore point south of the Rio Grande that Americans—or estadounidenses, literally united staters, as Latin Americans prefer to call them—have co-opted the name “America” for their country. To many outside of the 50 United States, America is not a nation, but rather the entire region stretching from Alaska to Patagonia.
+The semantics add a layer of offense to US president Donald Trump’s “America First” motto. Surely it’s not the most alarming thing Trump’s southern neighbors have heard from the White House in recent weeks. But it’s representative of the split in world view between the US and the 30-plus nations in its longitudinal neighborhood.
+A new ad for Mexican beer brand Corona captures the consternation. It shows postcard-worthy images of the colorful diversity of North, Central, and South America. “Stop using our name to generate divisions,” says the voiceover. “That’s not what we are. We are the land of mixture. We are the continent that touches the two poles.” It’s part of a campaign called Desfronterizate, or unborder yourself. (Another beer company, Tecate, also used Trump’s border obsession to plug its brand during one of the US presidential debates.)
+
+As it turns out, the term “America” has a long history of controversy. The most widely accepted explanation is that it comes from the name of Italian explorer Amerigo Vespucci—Americus Vesputius in Latin—who traveled to South America at the turn of the 16th century. German cartographer Martin Waldseemüller decided to label the continent in Vespucci’s honor in his version of the world map, which was widely circulated.
+But many saw it an injustice that the name not be attributed to Christopher Columbus, who set foot in the region first. In 1875, geologist Jules Marcou published an article arguing that “America” really came from a Nicaraguan mountain chain known as Amerrique, a name Columbus heard during his encounters with the continent’s native inhabitants. He theorized that Waldseemüller got confused about where the name had come from. “It is well chosen, also, as it probably was heard by the great Admiral Colombo on his fourth voyage, the illustrious discoverer of the New World being the first European who heard and pronounced the word Americ or Amerrique, although we have no material certainty of this,” wrote Marcou.
+But the real name of the Nicaraguan mountain chain, points out one George C. Hurlbut, who tracked the origins of “America” in a paper published in the Journal of the American Geographical Society of New York in 1886, is Amerrisque.” He thus concludes that Marcou got his story wrong.
+The wrangling over the name did not end there. In the early 1900s, an English antiquarian forwarded yet another theory, that America was a derivation of the name of Richard Ameryk, a customs collector at the Port of Bristol. His story goes like this: After landing in Canada in 1497—accidentally thinking it was Asia—and claiming the land for England, British explorer John Cabot received a pension. Although the money came from the king, it was handed to him by Ameryk as part of his official duties. Cabot, in gratitude, named the land after Ameryk.
+Adherents of the Ameryk theory continued to promote it. Others, like Marcou, still speculate the word is derived from indigenous words.
+Regardless of its origin, what we know for sure is that the US founding fathers adopted the word as part of their new country’s official name: the United States of America.
+
+https://qz.com/895533
+IT'S GAME TIME
+How to watch Super Bowl 51 on all your devices—for free
+Atlanta Falcons' Matt Ryan is seen on a phone during opening night for the NFL Super Bowl 51 football game at Minute Maid Park Monday, Jan. 30, 2017, in Houston. (AP Photo/Eric Gay)
+Are you ready for some football? (AP Photo/Eric Gay)
+SHARE
+
+WRITTEN BY
+
+Ashley Rodriguez
+@ashleyrreports
+OBSESSION
+
+Glass
+February 04, 2017
+Super Bowl 51 is almost upon us. On Sunday (Feb. 5), the New England Patriots will face off against the Atlanta Falcons in Houston, Texas.
+More than 100 million US viewers are expected to watch the game on TV. But broadcaster Fox is also expecting a record number of people to stream the game online. Last year, nearly 4 million people watched CBS’s live stream of the game.
+Below are all the ways you can tune in.
+How to watch in the US
+
+Fox’s TV broadcast can be accessed through any pay-TV provider or with an HD antenna. The channel is also available on online-TV packages including Comcast’s Stream TV, DirecTV Now, Playstation Vue, and SlingTV. Cable network Fox Deportes will air the Spanish-language broadcast.
+If you don’t have a pay-TV subscription, don’t fret. There are plenty of ways to stream the game without one:
+On desktop: Fox will be streaming the game through FoxSports.com. You don’t need a pay-TV subscription to access the feed—it’s available to everyone in the US for free. Fox is promoting the live stream to boost viewership.
+On tablet: The stream on FoxSports.com will also be available on tablets, and through the Fox Sports Go app on iOS, Android, Amazon, and Windows devices.
+On Xbox One, Apple TV, Android TV, Chromecast, Fire TV, or Roku: These devices can stream the game through the Fox Sports Go app, too.
+On mobile: Only Verizon Wireless customers can stream the Super Bowl on their phones because the wireless carrier has the exclusive mobile-streaming rights to the game. If you’re a Verizon customer, you can access the stream through the NFL Mobile app. Just be sure to connect through a Wi-Fi network if you don’t have unlimited data.
+All the streaming options above will give you access to the game as well as the national commercials and halftime show.
+And, in a first this year, Fox is streaming the game in 360-degree video. You can access the stream through the Fox Sports VR app, and make it immersive by using a Gear VR or Cardboard headset. But, unlike the streaming options above, it’s not free. You’ll need a pay-TV subscription.
+How to watch outside the US
+
+To watch the US broadcast, you can use VPN software to make your device appear to be located within the country. Then, you can use any of the solutions above to stream. Otherwise, here are your options:
+United Kingdom: On TV, the Super Bowl will air on BBC 1 and Sky Sports 1. The BBC will also stream the game online, on the BBC iPlayer, and on the BBC Sport app. Sky customers can also stream on the Sky Go app.
+Canada: CTV will broadcast the game on three networks this year: CTV, CTV Two, and TSN. It will also be streamed on CTV.ca or the CTV Go app, which is available on iOS, Android, and Windows devices. And, new this year, Canadians will be able to watch the US commercials during the broadcast.
+Elsewhere: Seven Network and Foxtel are carrying the game in Australia, Televisa is broadcasting it in Mexico, and W9 has the TV rights in France. Total Sportek has an incomplete list of broadcasters around the world. International viewers can also watch the game online through NFL Game Pass, for a price, or try the 7-day free trial.
+

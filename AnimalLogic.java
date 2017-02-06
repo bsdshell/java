@@ -19,10 +19,135 @@ public class AnimalLogic{
 //        test0();
 //        test1();
         //test2();
-        test11();
 //        test3();
 //        test4();
 //        test5();
+//        test00();
+//        test11();
+//        test12();
+        test13();
+    }
+
+    static void test00(){
+        Aron.beg();
+        
+        int n = random(1);
+        Print.pbl("n=" + n);
+
+        for(int i=0; i<10; i++){
+            int n1 = random(2);
+            Print.pbl("n1=" + n1);
+        }
+
+        Aron.end();
+    }
+
+    // generate number [1...n] 
+    public static int random(int n){
+        Random ran = new Random();
+        int num = ran.nextInt(n) + 1;
+        return num;
+    }
+
+    public static void test12(){
+        Aron.beg();
+
+        Map<Map<String, String>, Map<Integer, String>> revMap = new HashMap<Map<String, String>, Map<Integer, String>>();
+        List<String> list = Aron.getWords("./text/animal_logic.txt"); 
+        Map<Map<String, String>, Map<String, Integer>> map = createMap(list); 
+
+        for(Map.Entry<Map<String, String>, Map<String, Integer>> entry : map.entrySet()){
+            Map<String, String> key = entry.getKey(); 
+            Map<String, Integer> value = entry.getValue(); 
+            for(Map.Entry<String, String> keyEntry : key.entrySet()){
+                Print.pp(keyEntry.getKey() + " " + keyEntry.getValue() + "=>");
+
+                Map<Integer, String> rmap = inverseMap(value);
+                revMap.put(key, rmap);
+
+                for(Map.Entry<String, Integer> valueEntry: value.entrySet()){
+                    Print.pb(valueEntry.getKey() + "->" + valueEntry.getValue());
+                }
+
+                Ut.l();
+                for(Map.Entry<Integer, String> revEntry: rmap.entrySet()){
+                    Print.pb(revEntry.getKey() + "->" + revEntry.getValue());
+                }
+                Print.pbl("size=" + rmap.size());
+                Print.pp("\n");
+            }
+            Ut.l();
+        } 
+
+        Aron.end();
+    }
+
+    public static void test13(){
+        Aron.beg();
+
+        List<String> list = Aron.getWords("./text/animal_logic.txt"); 
+        Map<Map<String, String>, Map<String, Integer>> map = createMap(list); 
+
+        Map<Map<String, String>, Map<Integer, String>> revMap = createBiMap(map);
+
+        generateText(map, revMap);
+    }
+
+    public static void generateText(Map<Map<String, String>, Map<String, Integer>> map , Map<Map<String, String>, Map<Integer, String>> revMap){
+        String seedFirst = "one";
+        String seedSecond = "two";
+
+        for(int i=0; i<2; i++){
+            Map<String, String> key = new  HashMap<String, String>();
+            key.put(seedFirst, seedSecond);
+
+            Map<String, Integer> value = map.get(key);
+            if(value != null){
+                 Map<Integer, String> revValueMap = revMap.get(key);
+                 if(revValueMap != null){
+                     int ranKey = random(revValueMap.size());
+                     String nextWord = revValueMap.get(ranKey);
+                     Print.pbl("nextWord=" + nextWord + " " + "ranKey=" + ranKey);
+                     seedFirst = seedSecond;
+                     seedSecond = nextWord;
+                 }
+            }else{
+                break;
+            }
+        }
+    }
+
+//    public static Map<String, String> newKeyMap(Map<String, String> map, String newWord){
+//        map.get
+//    }
+
+    public static Map<Map<String, String>, Map<Integer, String>> createBiMap(Map<Map<String, String>, Map<String, Integer>> map){
+        Aron.beg();
+
+        Map<Map<String, String>, Map<Integer, String>> revMap = new HashMap<Map<String, String>, Map<Integer, String>>();
+        for(Map.Entry<Map<String, String>, Map<String, Integer>> entry : map.entrySet()){
+            Map<String, String> key = entry.getKey(); 
+            Map<String, Integer> value = entry.getValue(); 
+            for(Map.Entry<String, String> keyEntry : key.entrySet()){
+                Print.pp(keyEntry.getKey() + " " + keyEntry.getValue() + "=>");
+
+                Map<Integer, String> rmap = inverseMap(value);
+                revMap.put(key, rmap);
+
+                for(Map.Entry<String, Integer> valueEntry: value.entrySet()){
+                    Print.pb(valueEntry.getKey() + "->" + valueEntry.getValue());
+                }
+
+                Ut.l();
+                for(Map.Entry<Integer, String> revEntry: rmap.entrySet()){
+                    Print.pb(revEntry.getKey() + "->" + revEntry.getValue());
+                }
+                Print.pbl("size=" + rmap.size());
+                Print.pp("\n");
+            }
+            Ut.l();
+        } 
+        return revMap;
     }
 
     public static void test11(){
@@ -33,15 +158,15 @@ public class AnimalLogic{
                         "dog", 
                         "cat", 
                         "cow", 
-                        "dog", 
-                        "dog", 
-                        "rat", 
-                        "pig", 
-                        "cow", 
                         "rat", 
                         "pig"}; 
 
-        Map<Map<String, String>, Map<String, Integer>> map = createMap(arr); 
+        Map<Map<String, String>, Map<Integer, String>> revMap = new HashMap<Map<String, String>, Map<Integer, String>>();
+
+        List<String> list = Aron.getWords("./text/animal_logic.txt"); 
+        //Map<Map<String, String>, Map<String, Integer>> map = createMap(arr); 
+        Map<Map<String, String>, Map<String, Integer>> map = createMap(list); 
+
 
         for(Map.Entry<Map<String, String>, Map<String, Integer>> entry : map.entrySet()){
             Map<String, String> key = entry.getKey(); 
@@ -49,38 +174,53 @@ public class AnimalLogic{
             for(Map.Entry<String, String> keyEntry : key.entrySet()){
                 Print.pp(keyEntry.getKey() + " " + keyEntry.getValue() + "=>");
 
+                Map<Integer, String> rmap = inverseMap(value);
+                revMap.put(key, rmap);
+
                 for(Map.Entry<String, Integer> valueEntry: value.entrySet()){
                     Print.pb(valueEntry.getKey() + "->" + valueEntry.getValue());
                 }
+
+                Ut.l();
+                for(Map.Entry<Integer, String> revEntry: rmap.entrySet()){
+                    Print.pb(revEntry.getKey() + "->" + revEntry.getValue());
+                }
                 Print.pp("\n");
             }
+            Ut.l();
         } 
 
         Aron.end();
     }
 
 
-    public static Map<Map<String, String>, Map<String, Integer>> createMap(String[] arr){
+    public static Map<Map<String, String>, Map<String, Integer>> createMap(List<String> list){
         Map<Map<String, String>, Map<String, Integer>> map = new HashMap<Map<String, String>, Map<String, Integer>>(); 
-        for(int i=0; i<arr.length - 2; i++){
+        for(int i=0; i<list.size() - 2; i++){
             Map<String, String> key = new HashMap<String, String>(); 
             Map<String, Integer> value = new HashMap<String, Integer>(); 
-            key.put(arr[i], arr[i+1]); 
-            value.put(arr[i+2], 1);
+            key.put(list.get(i), list.get(i+1)); 
+            value.put(list.get(i+2), 1);
 
             Map<String, Integer> v = map.get(key); 
             if(v == null){
                 map.put(key, value);
             }else{
-                Integer n = v.get(arr[i+2]);
+                Integer n = v.get(list.get(i+2));
                 if(n == null){
-                    v.put(arr[i+2], 1);
+                    v.put(list.get(i+2), 1);
                 }else{
                     n++;
-                    v.put(arr[i+2], n);
+                    v.put(list.get(i+2), n);
                 }
             }
         }
+        return map;
+    }
+    public static Map<Map<String, String>, Map<String, Integer>> createMap(String[] arr){
+        Map<Map<String, String>, Map<String, Integer>> map = new HashMap<Map<String, String>, Map<String, Integer>>(); 
+        List<String> list = Arrays.asList(arr); 
+        map = createMap(list);
         return map;
     }
     public static void test0(){
