@@ -14,6 +14,65 @@ class MyNode{
     }
 }
 
+class TextMap{
+
+    public TextMap(){
+    }
+
+    // read a text file and capture all words
+    // word: a-z char
+    public List<String> getWords(String fileName){
+        Pattern pattern = Pattern.compile("(?<=^|\\s)[a-zA-Z]+(?=\\s|$)");
+        
+        List<String> wordList = new ArrayList<String>(); 
+        List<String> list = Aron.readFile(fileName);
+        for(String s : list){
+            String[] arr = s.split("\\s+");
+            for(String str : arr){
+                Matcher matcher = pattern.matcher(str.toLowerCase());
+                if(matcher.find()){
+                    wordList.add(matcher.group());
+                }
+            }
+        }
+        return wordList;
+    }
+
+    // generate number [1...n] 
+    public static int random(int n){
+        Random ran = new Random();
+        int num = ran.nextInt(n) + 1;
+        return num;
+    }
+
+    public List<String> generateText(int numWords, String seedFirst, String seedSecond, Map<Map<String, String>, Map<String, Integer>> map , Map<Map<String, String>, Map<Integer, String>> revMap){
+
+        List<String> list = new ArrayList<String>(); 
+        list.add(seedFirst);
+        list.add(seedSecond);
+        for(int i=0; i<numWords-2; i++){
+            Map<String, String> key = new  HashMap<String, String>();
+            key.put(seedFirst, seedSecond);
+
+            Map<String, Integer> value = map.get(key);
+            if(value != null){
+                 Map<Integer, String> revValueMap = revMap.get(key);
+                 if(revValueMap != null){
+                     int ranKey = random(revValueMap.size());
+                     String nextWord = revValueMap.get(ranKey);
+                     Print.pbl("nextWord=" + nextWord + " " + "ranKey=" + ranKey);
+                     seedFirst = seedSecond;
+                     seedSecond = nextWord;
+                     list.add(nextWord);
+                 }
+            }else{
+                break;
+            }
+        }
+        return list;
+    }
+}
+
 public class AnimalLogic{
     public static void main(String[] args) {
 //        test0();
@@ -53,7 +112,7 @@ public class AnimalLogic{
         Aron.beg();
 
         Map<Map<String, String>, Map<Integer, String>> revMap = new HashMap<Map<String, String>, Map<Integer, String>>();
-        List<String> list = Aron.getWords("./text/animal_logic.txt"); 
+        List<String> list = getWords("./text/animal_logic.txt"); 
         Map<Map<String, String>, Map<String, Integer>> map = createMap(list); 
 
         for(Map.Entry<Map<String, String>, Map<String, Integer>> entry : map.entrySet()){
@@ -85,19 +144,24 @@ public class AnimalLogic{
     public static void test13(){
         Aron.beg();
 
-        List<String> list = Aron.getWords("./text/animal_logic.txt"); 
+        List<String> list = getWords("./text/animal_logic.txt"); 
         Map<Map<String, String>, Map<String, Integer>> map = createMap(list); 
 
         Map<Map<String, String>, Map<Integer, String>> revMap = createBiMap(map);
 
-        generateText(map, revMap);
-    }
-
-    public static void generateText(Map<Map<String, String>, Map<String, Integer>> map , Map<Map<String, String>, Map<Integer, String>> revMap){
         String seedFirst = "one";
         String seedSecond = "two";
+        int numWords = 10;
+        List<String> wordList = generateText(numWords, seedFirst, seedSecond, map, revMap);
+        Aron.printList(wordList);
+    }
 
-        for(int i=0; i<2; i++){
+    public static List<String> generateText(int numWords, String seedFirst, String seedSecond, Map<Map<String, String>, Map<String, Integer>> map , Map<Map<String, String>, Map<Integer, String>> revMap){
+
+        List<String> list = new ArrayList<String>(); 
+        list.add(seedFirst);
+        list.add(seedSecond);
+        for(int i=0; i<numWords-2; i++){
             Map<String, String> key = new  HashMap<String, String>();
             key.put(seedFirst, seedSecond);
 
@@ -110,11 +174,13 @@ public class AnimalLogic{
                      Print.pbl("nextWord=" + nextWord + " " + "ranKey=" + ranKey);
                      seedFirst = seedSecond;
                      seedSecond = nextWord;
+                     list.add(nextWord);
                  }
             }else{
                 break;
             }
         }
+        return list;
     }
 
 //    public static Map<String, String> newKeyMap(Map<String, String> map, String newWord){
@@ -163,10 +229,9 @@ public class AnimalLogic{
 
         Map<Map<String, String>, Map<Integer, String>> revMap = new HashMap<Map<String, String>, Map<Integer, String>>();
 
-        List<String> list = Aron.getWords("./text/animal_logic.txt"); 
+        List<String> list = getWords("./text/animal_logic.txt"); 
         //Map<Map<String, String>, Map<String, Integer>> map = createMap(arr); 
         Map<Map<String, String>, Map<String, Integer>> map = createMap(list); 
-
 
         for(Map.Entry<Map<String, String>, Map<String, Integer>> entry : map.entrySet()){
             Map<String, String> key = entry.getKey(); 
@@ -217,6 +282,7 @@ public class AnimalLogic{
         }
         return map;
     }
+
     public static Map<Map<String, String>, Map<String, Integer>> createMap(String[] arr){
         Map<Map<String, String>, Map<String, Integer>> map = new HashMap<Map<String, String>, Map<String, Integer>>(); 
         List<String> list = Arrays.asList(arr); 
@@ -284,10 +350,10 @@ public class AnimalLogic{
         return wordList;
     }
 
-    // read a text file capture all words
+    // read a text file and capture all words
     // word: a-z char
     public static List<String> getWords(String fileName){
-        Pattern pattern = Pattern.compile("(?<=^|\\s)[a-z]+(?=\\s|$)");
+        Pattern pattern = Pattern.compile("(?<=^|\\s)[a-zA-Z]+(?=\\s|$)");
         
         List<String> wordList = new ArrayList<String>(); 
         List<String> list = Aron.readFile(fileName);
