@@ -1,2 +1,9 @@
-one two three four cat two three four rat three four cat
-one two three four cat two three four rat three four cat
+The Alert class subclasses the Dialog class, and provides support for a number of pre-built dialog types that can be easily shown to users to prompt for a response. Therefore, for many users, the Alert class is the most suited class for their needs (as opposed to using Dialog directly). Alternatively, users who want to prompt a user for text input or to make a choice from a list of options would be better served by using TextInputDialog and ChoiceDialog, respectively.
+When creating an Alert instance, users must pass in an Alert.AlertType enumeration value. It is by passing in this value that the Alert instance will configure itself appropriately (by setting default values for many of the Dialog properties, including title, header, and graphic, as well as the default buttons that are expected in a dialog of the given type.
+
+To instantiate (but not yet show) an Alert, simply use code such as the following: Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to format your system?");
+
+Once an Alert is instantiated, we must show it. More often than not, alerts (and dialogs in general) are shown in a modal and blocking fashion. 'Modal' means that the dialog prevents user interaction with the owning application whilst it is showing, and 'blocking' means that code execution stops at the point in which the dialog is shown. This means that you can show a dialog, await the user response, and then continue running the code that directly follows the show call, giving developers the ability to immediately deal with the user input from the dialog (if relevant).
+
+JavaFX dialogs are modal by default (you can change this via the Dialog.initModality(javafx.stage.Modality) API). To specify whether you want blocking or non-blocking dialogs, developers simply choose to call Dialog.showAndWait() or Dialog.show() (respectively). By default most developers should choose to use Dialog.showAndWait(), given the ease of coding in these situations. Shown below is three code snippets, showing three equally valid ways of showing the Alert dialog that was specified above:
+
