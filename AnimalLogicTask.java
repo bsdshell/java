@@ -28,6 +28,12 @@ import java.io.*;
 import java.util.stream.*;
 
 
+// Markov chain algorithm, markov chain generate text, random text, rand text, 
+// random markov chain text
+//
+// java javafx, javaui, java ui, java ui api, javafx ui, javafx api
+// javafx textarea textfield, javafx messagebox, javafx control, javavx vbox hbox, javafx button
+// animal logic task, animal logic project, animallogic, animal_logic task
 final class TextMap {
     String fileName;
     Map<Map<String, String>, Map<String, Integer>> map = new HashMap<Map<String, String>, Map<String, Integer>>();
