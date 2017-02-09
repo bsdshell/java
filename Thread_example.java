@@ -40,7 +40,7 @@ class Producer implements Runnable{
     public synchronized void add() throws InterruptedException{
         Aron.threadInfo();
 
-        while(queue.size() >= 10){
+        while(queue.size() >= 20){
             wait();
         }
 
@@ -55,7 +55,7 @@ class Producer implements Runnable{
             wait();
         }
         String s = queue.poll();
-        Print.pbl("s=" + s);
+        Print.pbl("kkget msg=" + s);
         return s;
     }
 }
@@ -67,9 +67,10 @@ class Consumer implements Runnable{
     }
     public void run(){
         try{
+            Aron.threadInfo();
             while(true){
                 String s = producer.get();
-                Print.pbl("get msg=" + s);
+                //Print.pbl("get msg=" + s);
                 Thread.sleep(2000);
             }
         }catch(InterruptedException e){
@@ -567,7 +568,7 @@ public class Thread_example {
         Thread t2 = new Thread(new Notifier(mq), "Notifier Thread");
         t2.start();
 
-        Aron.threadInfo();
+//        Aron.threadInfo();
 
         Aron.end();
     }
@@ -582,10 +583,11 @@ public class Thread_example {
         Thread pt = new Thread(p);
         pt.start();
 
-        for(int i=0; i<2; i++){
-            Thread t = new Thread(new Consumer(p));
-            t.start();
-        } 
+        Thread t = new Thread(new Consumer(p));
+        t.start();
+
+        Thread t1 = new Thread(new Consumer(p));
+        t1.start();
 
         Aron.end();
     }
