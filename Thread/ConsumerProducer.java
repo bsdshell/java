@@ -4,12 +4,18 @@ import java.util.List;
 import java.util.StringTokenizer;
 import java.util.Vector; 
 import classfile.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
+import java.util.Queue; 
+import java.util.LinkedList; 
+import java.util.concurrent.atomic.AtomicInteger;
  
 // consumer and producer, consumer producer problem,
 // multiple therad consumer producer 
 class MyProducer extends Thread {
     static final int MAXQUEUE = 5;
-    private Vector messages = new Vector();
+    private Queue queue = new LinkedList();
  
     @Override
     public void run() {
@@ -23,26 +29,26 @@ class MyProducer extends Thread {
     }
  
     private synchronized void putMessage() throws InterruptedException {
-        while (messages.size() == MAXQUEUE) {
+        while (queue.size() == MAXQUEUE) {
             wait();
         }
-        messages.addElement(new java.util.Date().toString());
-        System.out.println("put message");
+        queue.add(new java.util.Date().toString());
+        System.out.println("Put message");
         notify();
         //Later, when the necessary event happens, the thread that is running it calls notify() from a block synchronized on the same object.
     }
- 
-    // Called by Consumer
     public synchronized String getMessage() throws InterruptedException {
         notify();
         Aron.threadInfo();
+        Ut.l();
 
-        while (messages.size() == 0) {
+        while (queue.size() == 0) {
             wait();//By executing wait() from a synchronized block, a thread gives up its hold on the lock and goes to sleep.
         }
-        String message = (String) messages.firstElement();
-        messages.removeElement(message);
-        return message;
+        String msg = (String) queue.poll();
+        
+        Print.pbl("msglen[" + queue.size() + "]");
+        return msg ;
     }
 }
  
@@ -57,7 +63,7 @@ class MyConsumer extends Thread {
         try {
             while (true) {
                 String message = producer.getMessage();
-                System.out.println("Got message: " + message);
+                Print.pbl("getmsg[" + message + "]");
                 Thread.sleep(2000);
             }
         } catch (InterruptedException e) {
@@ -71,7 +77,7 @@ public class ConsumerProducer{
         MyProducer producer = new MyProducer();
         producer.start();
         
-        for(int i=0; i<3; i++){
+        for(int i=0; i<5; i++){
             new MyConsumer(producer).start();
         } 
     }
