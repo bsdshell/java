@@ -2,15 +2,21 @@ import java.util.Vector;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.Vector; 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.StringTokenizer;
 import java.util.Queue; 
 import java.util.LinkedList; 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.Collections;
+import java.io.IOException;
+
+import java.util.logging.Level;
+import java.util.logging.FileHandler;
+import java.util.logging.Formatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
 import classfile.*;
 
  
@@ -32,32 +38,36 @@ class AtomicModulo{
 }
 
 class HelloThread implements Runnable {
+    private final static Logger LOGGER = Logger.getLogger(Thread_AtomicModulo.class.getName());
+    static private FileHandler fileTxt;
+    static private SimpleFormatter formatterTxt;
+
     private AtomicModulo atom;
     public HelloThread(AtomicModulo atom){
         this.atom = atom;
+        try{
+            fileTxt = new FileHandler("../text/Logging.txt");
+            formatterTxt = new SimpleFormatter();
+            LOGGER.setLevel(Level.INFO);
+            fileTxt.setFormatter(formatterTxt);
+            LOGGER.addHandler(fileTxt);
+        }catch(IOException e){
+            e.printStackTrace();
+        } 
     }
     public void run(){
         doWork();
     }
     
-//    public synchronized void doWork(){
-//      while(true){
-//          int num = atom.n.incrementAndGet();
-//          Print.pbl("mod=" + (num % atom.len) + " n=" + num + " id=" + Thread.currentThread().getId());
-//
-//          try{
-//              Thread.sleep(2000); 
-//          }catch(InterruptedException e){}
-//      }
-//    }
     public void doWork(){
       while(true){
           int num = atom.n.incrementAndGet();
           Print.pbl("mod=" + (num % atom.len) + " n=" + num + " id=" + Thread.currentThread().getId());
+          LOGGER.info("mod=" + (num % atom.len) + " n=" + num + " id=" + Thread.currentThread().getId()); 
 
           try{
               Thread.sleep(2000); 
-          }catch(InterruptedException e){}
+          }catch(InterruptedException e) {}
       }
     }
 }
@@ -77,6 +87,13 @@ public class Thread_AtomicModulo{
             Thread t = new Thread(new HelloThread(am));
             t.start();
         } 
+
+        Aron.end();
+    }
+    
+    static void test1(){
+        Aron.beg();
+
 
         Aron.end();
     }
