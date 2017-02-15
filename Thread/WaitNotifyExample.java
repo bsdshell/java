@@ -22,14 +22,18 @@ import classfile.*;
 // wait and notify example
 public class WaitNotifyExample{
     public static void main(String[] args){
+        String fName = "../text/wait.txt";
         ThreadB b = new ThreadB();
         b.start();
  
+        //Aron.threadInfo(b);
         synchronized(b){
             try{
                 System.out.println("Waiting for b to complete...");
-                Aron.threadInfo(b);
+                Aron.threadInfo(b, fName);
+                
                 b.wait();
+                Print.pbl("get notified");
                 Aron.threadInfo(b);
             }catch(InterruptedException e){
                 e.printStackTrace();
@@ -45,7 +49,7 @@ class ThreadB extends Thread{
     @Override
     public void run(){
         synchronized(this){
-            for(int i=0; i<10 ; i++){
+            for(int i=0; i<5 ; i++){
                 Aron.threadInfo(this);
                 try{
                     Thread.sleep(1000);  // sleep two seconds
@@ -56,7 +60,7 @@ class ThreadB extends Thread{
                 total += i;
             }
             notify();
-            Aron.threadInfo(this);
+//            Aron.threadInfo(this);
         }
     }
 }
