@@ -1,0 +1,14 @@
+Feb 15, 2017 1:15:16 PM Main main
+INFO: logging it
+Feb 15, 2017 1:15:16 PM Main main
+INFO: Id=1  State=BLOCKED       Time=1:15:16 PM     Name=main           
+Feb 15, 2017 1:15:16 PM ThreadB run
+INFO: Id=11 State=RUNNABLE      Time=1:15:16 PM     Name=Thread-1       
+Feb 15, 2017 1:15:17 PM ThreadB run
+INFO: Id=11 State=RUNNABLE      Time=1:15:17 PM     Name=Thread-1       
+Feb 15, 2017 1:15:18 PM ThreadB run
+INFO: Id=11 State=RUNNABLE      Time=1:15:18 PM     Name=Thread-1       
+Feb 15, 2017 1:15:19 PM ThreadB run
+INFO: Id=11 State=RUNNABLE      Time=1:15:19 PM     Name=Thread-1       
+Feb 15, 2017 1:15:20 PM ThreadB run
+INFO: Id=11 State=RUNNABLE      Time=1:15:20 PM     Name=Thread-1       
