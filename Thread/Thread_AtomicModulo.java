@@ -34,7 +34,6 @@ class AtomicModulo{
     public int get(){
         return n.get();
     }
-
 }
 
 class HelloThread implements Runnable {
@@ -46,7 +45,7 @@ class HelloThread implements Runnable {
     public HelloThread(AtomicModulo atom){
         this.atom = atom;
         try{
-            fileTxt = new FileHandler("../text/Logging.txt");
+            fileTxt = new FileHandler("../text/atomic1.txt");
             formatterTxt = new SimpleFormatter();
             LOGGER.setLevel(Level.INFO);
             fileTxt.setFormatter(formatterTxt);
@@ -54,6 +53,9 @@ class HelloThread implements Runnable {
         }catch(IOException e){
             e.printStackTrace();
         } 
+
+        if(fileTxt != null)
+            fileTxt.close();
     }
     public void run(){
         doWork();

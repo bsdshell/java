@@ -21,16 +21,46 @@ import classfile.*;
 
 // wait and notify example
 public class WaitNotifyExample{
-    public static void main(String[] args){
-        String fName = "../text/wait.txt";
-        ThreadB b = new ThreadB();
+        //private final static Logger LOGGER = Logger.getLogger(WaitNotifyExample.class.getName());
+        private final static Logger LOGGER = logInit(WaitNotifyExample.class.getName());
+        static private SimpleFormatter formatterTxt = new SimpleFormatter();
+        static FileHandler fileTxt;
+
+        public static Logger logInit(String name){
+            Logger LOGGER = Logger.getLogger(name);
+            try{
+                fileTxt = new FileHandler("../text/Logging3.txt");
+            }catch(IOException e){
+                e.printStackTrace();
+            } 
+
+            LOGGER.setLevel(Level.INFO);
+            LOGGER.addHandler(fileTxt);
+            fileTxt.setFormatter(formatterTxt);
+            return LOGGER;
+        }
+        public static void main(String[] args){
+
+//        try{
+//            fileTxt = new FileHandler("../text/Logging3.txt");
+//        }catch(IOException e){
+//            e.printStackTrace();
+//        } 
+//
+//        LOGGER.setLevel(Level.INFO);
+//        LOGGER.addHandler(fileTxt);
+//        fileTxt.setFormatter(formatterTxt);
+
+        ThreadB b = new ThreadB(LOGGER);
         b.start();
  
         //Aron.threadInfo(b);
         synchronized(b){
             try{
                 System.out.println("Waiting for b to complete...");
-                Aron.threadInfo(b, fName);
+                
+                LOGGER.info("logging it"); 
+                LOGGER.info(Aron.threadInfo(b)); 
                 
                 b.wait();
                 Print.pbl("get notified");
@@ -41,16 +71,24 @@ public class WaitNotifyExample{
  
             System.out.println("Total is: " + b.total);
         }
+//        if(fileTxt != null)
+//            fileTxt.close();
     }
 }
  
 class ThreadB extends Thread{
     int total;
+    Logger LOGGER;
+    public ThreadB(){}
+    public ThreadB(Logger LOGGER){
+        this.LOGGER = LOGGER;
+    }
     @Override
     public void run(){
         synchronized(this){
-            for(int i=0; i<5 ; i++){
-                Aron.threadInfo(this);
+            for(int i=0; i<5; i++){
+//                Aron.threadInfo(this);
+                LOGGER.info(Aron.threadInfo(this)); 
                 try{
                     Thread.sleep(1000);  // sleep two seconds
                 }catch(InterruptedException e){
