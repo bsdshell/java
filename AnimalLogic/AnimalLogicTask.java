@@ -30,8 +30,8 @@ import java.util.stream.*;
 
 final class TextMap {
     String fileName;
-    Map<Map<String, String>, Map<String, Integer>> map = new HashMap<Map<String, String>, Map<String, Integer>>();
-    Map<Map<String, String>, Map<Integer, String>> revMap = new HashMap<Map<String, String>, Map<Integer, String>>();
+    Map<Map<String, String>, Map<String, Integer>> map = new HashMap<>();
+    Map<Map<String, String>, Map<Integer, String>> revMap = new HashMap<>();
     public TextMap() { }
     public TextMap(String fileName) {
         this.fileName = fileName;

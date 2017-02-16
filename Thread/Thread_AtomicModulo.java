@@ -37,25 +37,16 @@ class AtomicModulo{
 }
 
 class HelloThread implements Runnable {
-    private final static Logger LOGGER = Logger.getLogger(Thread_AtomicModulo.class.getName());
+    private final static Logger LOGGER = Aron.logInit(HelloThread.class.getName(), "/Users/cat/myfile/github/java/text/atomic1.txt");
     static private FileHandler fileTxt;
     static private SimpleFormatter formatterTxt;
+    private static Object obj = new Object();
+
+    static long ti = System.currentTimeMillis();
 
     private AtomicModulo atom;
     public HelloThread(AtomicModulo atom){
         this.atom = atom;
-        try{
-            fileTxt = new FileHandler("../text/atomic1.txt");
-            formatterTxt = new SimpleFormatter();
-            LOGGER.setLevel(Level.INFO);
-            fileTxt.setFormatter(formatterTxt);
-            LOGGER.addHandler(fileTxt);
-        }catch(IOException e){
-            e.printStackTrace();
-        } 
-
-        if(fileTxt != null)
-            fileTxt.close();
     }
     public void run(){
         doWork();
@@ -63,13 +54,22 @@ class HelloThread implements Runnable {
     
     public void doWork(){
       while(true){
-          int num = atom.n.incrementAndGet();
-          Print.pbl("mod=" + (num % atom.len) + " n=" + num + " id=" + Thread.currentThread().getId());
-          LOGGER.info("mod=" + (num % atom.len) + " n=" + num + " id=" + Thread.currentThread().getId()); 
+          synchronized(obj){
+              int num = atom.n.incrementAndGet();
+              Print.pbl("mod=" + (num % atom.len) + " n=" + num + " id=" + Thread.currentThread().getId());
+              LOGGER.info("mod=" + (num % atom.len) + " n=" + num + " id=" + Thread.currentThread().getId()); 
+
+              long tf = System.currentTimeMillis();
+              long diff = tf - ti;
+              Print.pbl("Finish. Total time:" + diff + " init time:" + ti); 
+              if(diff > 20000)
+                  break;
+          }
 
           try{
-              Thread.sleep(2000); 
+              Thread.sleep(100); 
           }catch(InterruptedException e) {}
+
       }
     }
 }
@@ -95,7 +95,7 @@ public class Thread_AtomicModulo{
     
     static void test1(){
         Aron.beg();
-
+        
 
         Aron.end();
     }
