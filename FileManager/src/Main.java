@@ -1,6 +1,8 @@
 import classfile.Aron;
 import classfile.Print;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -25,212 +27,25 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-//final class TextMap {
-//    String fileName;
-//    Map<Map<String, String>, Map<String, Integer>> map = new HashMap<>();
-//    Map<Map<String, String>, Map<Integer, String>> revMap = new HashMap<>();
-//    public TextMap() { }
-//    public TextMap(String fileName) {
-//        this.fileName = fileName;
-//    }
-//
-//    // read a text file and capture all words
-//    // word: a-z char
-//    public List<String> getWords() {
-//        //Pattern pattern = Pattern.compile("(?<=^|\\s)[a-zA-Z]+(?=\\s|$)");
-//        Pattern pattern = Pattern.compile("(?<=^|\\s)[a-zA-Z]+(?=\\s|$)");
-//
-//        List<String> wordList = new ArrayList<String>();
-//        List<String> list = readFile(fileName);
-//        for(String s : list) {
-//            String[] arr = s.split("\\s+");
-//            for(String str : arr) {
-//                Matcher matcher = pattern.matcher(str.toLowerCase());
-//                if(matcher.find()) {
-//                    wordList.add(matcher.group());
-//                }
-//            }
-//        }
-//        return wordList;
-//    }
-//
-//    // read file line by line to list
-//    public List<String> readFile(String fileName) {
-//        List<String> list = new ArrayList<String>();
-//        try {
-//            BufferedReader in = new BufferedReader(new FileReader(fileName));
-//            String str;
-//            while((str = in.readLine()) != null) {
-//                list.add(str.trim());
-//            }
-//            in.close();
-//        } catch(IOException io) {
-//            io.printStackTrace();
-//        }
-//        return list;
-//    }
-//
-//
-//    // generate map from prefix -> suffix, e.g.  <my, dog> -> <is, 1>
-//    public Map<Map<String, String>, Map<String, Integer>> prefixSuffixMap(List<String> list) {
-//        Map<Map<String, String>, Map<String, Integer>> map = new HashMap<Map<String, String>, Map<String, Integer>>();
-//        for(int i=0; i<list.size() - 2; i++) {
-//            Map<String, String> key = new HashMap<String, String>();
-//            Map<String, Integer> value = new HashMap<String, Integer>();
-//            key.put(list.get(i), list.get(i+1));
-//            value.put(list.get(i+2), 1);
-//
-//            Map<String, Integer> v = map.get(key);
-//            if(v == null) {
-//                map.put(key, value);
-//            } else {
-//                Integer n = v.get(list.get(i+2));
-//                if(n == null) {
-//                    v.put(list.get(i+2), 1);
-//                } else {
-//                    n++;
-//                    v.put(list.get(i+2), n);
-//                }
-//            }
-//        }
-//        return map;
-//    }
-//
-//    // generate number [1...n]
-//    public int random(int n) {
-//        Random ran = new Random();
-//        int num = ran.nextInt(n) + 1;
-//        return num;
-//    }
-//
-//    // generate list of words from prefix, suffix
-//    public List<String> generateText(int numWords, String prefix, String suffix, Map<Map<String, String>, Map<String, Integer>> map , Map<Map<String, String>, Map<Integer, String>> reverseFreMap) {
-//        List<String> list = new ArrayList<String>();
-//
-//        // clean up prefix and suffix, e.g. trim white-space
-//        String[] arr = prefix.split("\\s+");
-//        List<String> inputList = new ArrayList<String>();
-//        for(String s : arr) {
-//            if(s.trim().length() > 0)
-//                inputList.add(s);
-//        }
-//
-//        String inputSuffix = suffix.trim();
-//        if(inputList.size() == 2) {
-//            String firstPrefix = inputList.get(0);
-//            String secondPrefix = inputList.get(1);
-//            list.add(firstPrefix);
-//            list.add(secondPrefix);
-//            list.add(inputSuffix);
-//
-//            firstPrefix = secondPrefix;
-//            secondPrefix = inputSuffix;
-//            while(true){
-//                Map<String, String> key = new  HashMap<String, String>();
-//                key.put(firstPrefix, secondPrefix);
-//
-//                Map<String, Integer> value = map.get(key);
-//
-//                if(value != null) {
-//                    Map<Integer, String> revValueMap = reverseFreMap.get(key);
-//                    if(revValueMap != null) {
-//                        int ranKey = random(revValueMap.size());
-//                        String newSuffix = revValueMap.get(ranKey);
-//                        firstPrefix = secondPrefix;
-//                        secondPrefix= newSuffix;
-//                        list.add(newSuffix);
-//
-//                        if(list.size() >= numWords){
-//                            break;
-//                        }
-//                    }
-//                }else{
-//                    break;
-//                }
-//            }
-//        }
-//        return list;
-//    }
-//
-//    // generate map: <prefix, suffix> -> <frequency, word>
-//    public Map<Map<String, String>, Map<Integer, String>>  reverseFrequencyMap(Map<Map<String, String>, Map<String, Integer>> map) {
-//        Map<Map<String, String>, Map<Integer, String>> tableMap = new HashMap<Map<String, String>, Map<Integer, String>>();
-//        for(Map.Entry<Map<String, String>, Map<String, Integer>> entry : map.entrySet()) {
-//            Map<String, String> key = entry.getKey();
-//            Map<String, Integer> value = entry.getValue();
-//            for(Map.Entry<String, String> keyEntry : key.entrySet()) {
-//                Map<Integer, String> rmap = inverseMap(value);
-//                tableMap.put(key, rmap);
-//            }
-//        }
-//        return tableMap;
-//    }
-//
-//    public List<String> textGeneMap() {
-//        List<String> list = getWords();
-//        map = prefixSuffixMap(list);
-//
-//        List<String> retList = new ArrayList<String>();
-//        for(Map.Entry<Map<String, String>, Map<String, Integer>> entry : map.entrySet()) {
-//            Map<String, String> key = entry.getKey();
-//            Map<String, Integer> value = entry.getValue();
-//            String str = "";
-//            for(Map.Entry<String, String> keyEntry : key.entrySet()) {
-//                str += keyEntry.getKey() + " " + keyEntry.getValue() + " => ";
-//
-//                for(Map.Entry<String, Integer> valueEntry: value.entrySet()) {
-//                    str += valueEntry.getKey()  + "[" + valueEntry.getValue() + "] ";
-//                }
-//                str += "\n";
-//            }
-//            retList.add(str);
-//        }
-//        return retList;
-//    }
-//
-//    // generate list of words from user inputs: maximum number of words, prefix, and suffix
-//    public List<String> processFile(int maxWords, String prefix, String suffix) {
-//        revMap = reverseFrequencyMap(map);
-//        List<String> listWords= generateText(maxWords, prefix, suffix, map, revMap);
-//        return listWords;
-//    }
-//
-//    // return investable map: <k, v> => <v, k>
-//    // v = 1, 2, ... , n
-//    public Map<Integer, String> inverseMap(Map<String, Integer> map) {
-//
-//        Map<Integer, String> rMap = new HashMap<Integer, String>();
-//        int k = 1;
-//        for(Map.Entry<String, Integer> entry : map.entrySet()) {
-//            Integer n = entry.getValue();
-//
-//            int init = k;
-//            while(k < init + n) {
-//                rMap.put(k, entry.getKey());
-//                k++;
-//            }
-//        }
-//        return rMap;
-//    }
-//}
-//
-
-
-
 public class Main  extends Application {
     String fileName = null;
-//    TextMap textMap = new TextMap();
-    final int numCharLine = 10;
+    final String allPathsFileName = "/Users/cat/myfile/github/java/text/path.txt";
+
+    ListView<String> list = new ListView<String>();
+
+    ObservableList<String> data = FXCollections.observableArrayList();
+
+
     public static void main(String[] args) {
         launch(args);
     }
 
-    public boolean isNumeric(String str) {
-        return str.matches("[1-9][0-9]*|0");
-    }
     @Override
     public void start(final Stage primaryStage) {
+        List<String> pathList = new ArrayList<>();
+
         Group root = new Group();
+
 
         final Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Error");
@@ -238,6 +53,17 @@ public class Main  extends Application {
         final TextArea textTable = new TextArea();
         textArea.setMinSize(500,500);
         textTable.setMinSize(500,500);
+
+        pathList = Aron.readFile(allPathsFileName);
+        for(String s : pathList){
+            data.add(s + "\n");
+        }
+
+
+        list.setItems(data);
+
+        final HBox listBox = new HBox();
+        listBox.getChildren().add(list);
 
 
         final TextField selectedFileTF = new TextField();
@@ -260,13 +86,14 @@ public class Main  extends Application {
         HBox hboxField = new HBox();
         hboxField.setAlignment(Pos.CENTER);
         hboxField.setPadding(new Insets(1, 1, 1, 1));
-        hboxField.getChildren().add(textTable);
+        hboxField.getChildren().add(list);
         hboxField.getChildren().add(textArea);
 
 
         VBox box = new VBox();
         box.setAlignment(Pos.TOP_CENTER);
         box.setSpacing(5);
+        box.getChildren().add(listBox);
         box.getChildren().add(searchParentHBox);
         box.getChildren().add(hboxField);
 
@@ -314,14 +141,6 @@ public class Main  extends Application {
                     fileName = file.getAbsolutePath();
 
                     if(fileName != null) {
-//                        textMap = new TextMap(fileName);
-//                        selectedFileTF.setText(file.getName());
-//
-//                        List<String> textList = textMap.textGeneMap();
-//                        textTable.clear();
-//                        for(String s : textList) {
-//                            textTable.appendText(s + " ");
-//                        }
                     }
                 }
             }
@@ -332,9 +151,6 @@ public class Main  extends Application {
             public void handle(ActionEvent arg0) {
             }
         });
-
-
-
 
         HBox lbtTFBox1 = new HBox();
         HBox lbtTFBox2 = new HBox();
@@ -388,4 +204,5 @@ public class Main  extends Application {
         }
         return matchList;
     }
+
 }

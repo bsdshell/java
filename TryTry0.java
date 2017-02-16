@@ -3,6 +3,8 @@ import java.io.*;
 import classfile.*;
 import java.util.stream.*;
 
+/Users/cat/myfile/github/java
+
 public class TryTry0{
     public static void main(String[] args) {
         test0();
