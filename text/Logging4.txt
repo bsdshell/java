@@ -1,0 +1,2 @@
+Feb 15, 2017 2:27:04 PM try99Log test0
+INFO: LOGGER.info logging

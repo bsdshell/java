@@ -17,9 +17,12 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 //final class TextMap {
@@ -245,7 +248,7 @@ public class Main  extends Application {
 
         final TextField searchTF = new TextField ();
 
-        HBox searchBox = new HBox();
+        final HBox searchBox = new HBox();
         searchBox.getChildren().add(searchTF);
 
         HBox searchParentHBox  = new HBox();
@@ -285,6 +288,16 @@ public class Main  extends Application {
             @Override
             public void handle(ActionEvent arg0) {
                 Print.pbl(searchTF.getText());
+
+                String fname = "/Users/cat/myfile/github/java/text";
+                List<String> wlist = Aron.getCurrentFiles(fname);
+                String input = searchTF.getText();
+                List<String> matchList = fileSearch(wlist, input);
+
+                textArea.clear();
+                for(String s : matchList) {
+                    textArea.appendText(s + "\n");
+                }
             }
         });
 
@@ -320,11 +333,7 @@ public class Main  extends Application {
             }
         });
 
-        String fname = "/Users/cat/myfile/github/java/";
-        List<String> wlist = Aron.getCurrentFiles(fname);
-                for(String s : wlist) {
-                    textArea.appendText(s + "\n");
-                }
+
 
 
         HBox lbtTFBox1 = new HBox();
@@ -363,13 +372,20 @@ public class Main  extends Application {
         primaryStage.setScene(new Scene(box, 1000, 800));
         primaryStage.show();
     }
-    public static  void FileSearch(List<String> list, String pattern){
-        Map<String, String> map = new HashMap<>();
-        for(String s : list){
-            Path p = Paths.get(s);
-            map.put(s, p.getFileName().toString());
-        }
 
-        String str = "dog";
+    public static  List<String> fileSearch(List<String> list, String pattern){
+        Map<String, String> map = new HashMap<>();
+        Pattern pat = Pattern.compile(pattern);
+        List<String> matchList = new ArrayList<>();
+        for(String s : list){
+            Path path = Paths.get(s);
+            Matcher match = pat.matcher(path.getFileName().toString());
+            Print.pbl("fname=" + path.getFileName().toString());
+            if(match.find()){
+                Print.pbl(s);
+                matchList.add(s);
+            }
+        }
+        return matchList;
     }
 }
