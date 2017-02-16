@@ -1,3 +1,5 @@
+import classfile.Aron;
+import classfile.Print;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,16 +14,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import classfile.*; 
-
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 //final class TextMap {
@@ -213,6 +211,9 @@ import classfile.*;
 //    }
 //}
 //
+
+
+
 public class Main  extends Application {
     String fileName = null;
 //    TextMap textMap = new TextMap();
@@ -320,7 +321,7 @@ public class Main  extends Application {
         });
 
         String fname = "/Users/cat/myfile/github/java/";
-        List<String> wlist = Aron.getCurrentFiles(fname); 
+        List<String> wlist = Aron.getCurrentFiles(fname);
                 for(String s : wlist) {
                     textArea.appendText(s + "\n");
                 }
@@ -361,5 +362,14 @@ public class Main  extends Application {
         box.getChildren().add(buttonGeneText);
         primaryStage.setScene(new Scene(box, 1000, 800));
         primaryStage.show();
+    }
+    public static  void FileSearch(List<String> list, String pattern){
+        Map<String, String> map = new HashMap<>();
+        for(String s : list){
+            Path p = Paths.get(s);
+            map.put(s, p.getFileName().toString());
+        }
+
+        String str = "dog";
     }
 }
