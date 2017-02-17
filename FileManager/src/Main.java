@@ -11,12 +11,16 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -49,10 +53,11 @@ public class Main  extends Application {
 
         final Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Error");
-        final TextArea textArea = new TextArea();
-        final TextArea textTable = new TextArea();
-        textArea.setMinSize(500,500);
-        textTable.setMinSize(500,500);
+
+        final TextArea textAreaFile = new TextArea();
+        final TextArea textAreaPath = new TextArea();
+        textAreaFile.setMinSize(500,500);
+        textAreaPath.setMinSize(500,500);
 
         pathList = Aron.readFile(allPathsFileName);
         for(String s : pathList){
@@ -73,9 +78,12 @@ public class Main  extends Application {
         Button buttonGeneText= new Button("Generate Text");
 
         final TextField searchTF = new TextField ();
+        final TextField pathTF = new TextField ();
 
+        pathTF.setMinWidth(400);
         final HBox searchBox = new HBox();
         searchBox.getChildren().add(searchTF);
+        searchBox.getChildren().add(pathTF);
 
         HBox searchParentHBox  = new HBox();
 
@@ -87,7 +95,7 @@ public class Main  extends Application {
         hboxField.setAlignment(Pos.CENTER);
         hboxField.setPadding(new Insets(1, 1, 1, 1));
         hboxField.getChildren().add(list);
-        hboxField.getChildren().add(textArea);
+        hboxField.getChildren().add(textAreaFile);
 
 
         VBox box = new VBox();
@@ -98,7 +106,7 @@ public class Main  extends Application {
         box.getChildren().add(hboxField);
 
         HBox hboxTextField1 = new HBox();
-        HBox hboxtextField2 = new HBox();
+
         hboxTextField1.setAlignment(Pos.CENTER);
         hboxTextField1.setSpacing(20);
 
@@ -111,22 +119,41 @@ public class Main  extends Application {
         final TextField suffixTF = new TextField ();
         final TextField maxWordsTF = new TextField ();
 
+
+
+        list.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("clicked on " + list.getSelectionModel().getSelectedItem());
+                String selectedItem = list.getSelectionModel().getSelectedItem();
+                pathTF.setText(list.getSelectionModel().getSelectedItem());
+
+                List<String> flist = fileList(selectedItem.trim());
+                textAreaFile.clear();
+                for(String s : flist) {
+                    textAreaFile.appendText(s + "\n");
+                }
+            }
+        });
+
         searchTF.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent arg0) {
                 Print.pbl(searchTF.getText());
 
-                String fname = "/Users/cat/myfile/github/java/text";
-                List<String> wlist = Aron.getCurrentFiles(fname);
+                String fname = pathTF.getText();
+                List<String> wlist = fileList(fname);
                 String input = searchTF.getText();
                 List<String> matchList = fileSearch(wlist, input);
 
-                textArea.clear();
+                textAreaFile.clear();
                 for(String s : matchList) {
-                    textArea.appendText(s + "\n");
+                    textAreaFile.appendText(s + "\n");
                 }
             }
         });
+
 
         buttonLoad.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -187,6 +214,9 @@ public class Main  extends Application {
         box.getChildren().add(buttonGeneText);
         primaryStage.setScene(new Scene(box, 1000, 800));
         primaryStage.show();
+
+
+        //test2();
     }
 
     public static  List<String> fileSearch(List<String> list, String pattern){
@@ -204,5 +234,27 @@ public class Main  extends Application {
         }
         return matchList;
     }
+    public static  void test1() {
+        String dir = "/Users/cat/myfile/github/java";
+        List<String> list = Aron.getCurrentDir(dir);
+        Aron.printList(list);
+    }
+    public static  void test2() {
+        String dir = "/Users/cat/myfile/github/java";
+        List<String> list = fileList(dir);
+        Aron.printList(list);
+    }
+
+    public static List<String> fileList(String directory) {
+        List<String> fileNames = new ArrayList<>();
+        try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(Paths.get(directory))) {
+            for (Path path : directoryStream) {
+                fileNames.add(path.getFileName().toString());
+                Print.pbl(path.getFileName().toString());
+            }
+        } catch (IOException ex) {}
+        return fileNames;
+    }
+
 
 }
