@@ -26,8 +26,8 @@ import classfile.*;
 class FileRead {
     public static void main(String args[]) {
 //        test0();
-//        test1();
-        test2();
+        test1();
+//        test2();
     }
     
     static void test0(){
@@ -59,28 +59,68 @@ class FileRead {
     static void test1(){
         Aron.beg();
 
+//        try {
+//            String fName = "/Users/cat/myfile/github/java/text/file3.txt";
+//            File file = new File(fName);
+//
+//            FileInputStream fstream = new FileInputStream(fName);
+//            int nbyte = 0;
+//            //Read File Line By Line
+//            byte[] arr = new byte[20];
+//            while ((nbyte = fstream.read(arr)) != -1) {
+//                for(int i=0; i<nbyte; i++){
+//                    Print.pbl(arr[i]);
+//                } 
+//                String str = new String(arr);
+//                Print.pbl(str + " size=" + nbyte);
+//            }
+//            //Close the input stream
+//            fstream.close();
+//        } catch (Exception e) {
+//            //Catch exception if any
+//            System.err.println("Error: " + e.getMessage());
+//        }
+        
+        String fName = "/Users/cat/myfile/github/java/text/file3.txt";
+        int bufSize = 40;
+        List<String> list = readFileLineByte(fName, bufSize); 
+        Aron.printList(list);
+        Aron.end();
+    }
+    public static List<String> readFileLineByte(String fName, int bufSize){
+        List<String> list = new ArrayList<String>(); 
         try {
-            String fName = "/Users/cat/myfile/github/java/text/file3.txt";
-            File file = new File(fName);
-
             FileInputStream fstream = new FileInputStream(fName);
             int nbyte = 0;
             //Read File Line By Line
-            byte[] arr = new byte[10];
+            byte[] arr = new byte[bufSize];
+            byte[] lineArr = new byte[bufSize];
+            int k=0;
             while ((nbyte = fstream.read(arr)) != -1) {
-                for(int i=0; i<nbyte; i++){
-                    Print.pbl(arr[i]);
-                } 
                 String str = new String(arr);
-                Print.pbl(str + " size=" + nbyte);
+
+                for(int i=0; i<nbyte; i++){
+                    Print.pbl("char=" + arr[i]);
+                    if(arr[i] == '\n'){
+                        Print.pbl("newline=" + arr[i]);
+
+                        lineArr[k] = arr[i];
+                        list.add(new String(lineArr));
+                        k = 0;
+                        lineArr = new byte[bufSize];
+                    }else{
+                        lineArr[k] = arr[i];
+                        k++;
+                    }
+                }
             }
             //Close the input stream
             fstream.close();
         } catch (Exception e) {
-            //Catch exception if any
             System.err.println("Error: " + e.getMessage());
+            e.printStackTrace();
         }
-        Aron.end();
+        return list;
     }
     
     static void test2(){

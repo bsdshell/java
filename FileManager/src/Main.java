@@ -11,6 +11,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -47,6 +48,7 @@ public class Main  extends Application {
     @Override
     public void start(final Stage primaryStage) {
         List<String> pathList = new ArrayList<>();
+        final Map<String, List<List<String>>> codeMap = processCodeFile();
 
         Group root = new Group();
 
@@ -136,7 +138,7 @@ public class Main  extends Application {
                 }
             }
         });
-
+/*
         searchTF.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent arg0) {
@@ -151,6 +153,61 @@ public class Main  extends Application {
                 for(String s : matchList) {
                     textAreaFile.appendText(s + "\n");
                 }
+            }
+        });
+*/
+
+        searchTF.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent key) {
+                Print.pbl("Key Pressed: " + key.getText());
+            }
+        });
+        searchTF.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent key) {
+                Print.pbl("Key Released: " + key.getText());
+
+                String prefix = searchTF.getText();
+                List<List<String>> lists = codeMap.get(prefix);
+                textAreaFile.clear();
+                for(List<String> list : lists){
+                    for(String s : list) {
+                        textAreaFile.appendText(s);
+                    }
+                    textAreaFile.appendText("----------------\n");
+                }
+            }
+        });
+
+        searchTF.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                Print.pbl(searchTF.getText());
+
+
+/*
+                String key = searchTF.getText();
+                List<List<String>> lists = codeMap.get(key);
+                textAreaFile.clear();
+                for(List<String> list : lists){
+                    for(String s : list) {
+                        textAreaFile.appendText(s + "\n");
+                    }
+                    textAreaFile.appendText("----------------\n");
+                }
+*/
+
+
+/*
+                    String fname = pathTF.getText();
+                List<String> wlist = fileList(fname);
+                String input = searchTF.getText();
+                List<String> matchList = fileSearch(wlist, input);
+
+                textAreaFile.clear();
+                for(String s : matchList) {
+                    textAreaFile.appendText(s + "\n");
+                }
+*/
             }
         });
 
@@ -217,6 +274,7 @@ public class Main  extends Application {
 
 
         //test2();
+        //test3();
     }
 
     public static  List<String> fileSearch(List<String> list, String pattern){
@@ -245,6 +303,72 @@ public class Main  extends Application {
         Aron.printList(list);
     }
 
+    public static void test3(){
+        Aron.beg();
+
+        String fName = "/Users/cat/myfile/github/snippets/snippet.m";
+        List<List<String>> list2d = readCode(fName);
+        Map<String, List<List<String>>> map = buildMap(list2d);
+
+        Aron.printList2dln(list2d);
+
+        Aron.end();
+    }
+    public static Map<String, List<List<String>>> processCodeFile() {
+        String fName = "/Users/cat/myfile/github/snippets/snippet.m";
+        List<List<String>> list2d = readCode(fName);
+        Map<String, List<List<String>>> map = buildMap(list2d);
+        return map;
+    }
+
+    public static Map<String, List<List<String>>> buildMap(List<List<String>> lists){
+        Map<String, List<List<String>>> map = new HashMap<>();
+        for(List<String> list : lists){
+            if(list.size() > 0){
+                List<String> listToken = Aron.split(list.get(0), ":");
+                if(listToken.size() > 0){
+                    String key = listToken.get(0).trim();
+                    Print.pbl("key=" + key);
+                    for(int i=0; i<key.length(); i++){
+                        String prefix = key.substring(0, i+1);
+                        //String suffix = key.substring(i, key.length());
+                        Print.pbl("prefix=" + prefix);
+                        List<List<String>> listValue = map.get(prefix);
+
+                        if(listValue != null){
+                            listValue.add(list);
+                        }else{
+                            List<List<String>> list2d = new ArrayList<>();
+                            list2d.add(list);
+                            map.put(prefix, list2d);
+                        }
+
+                    }
+                }
+            }
+        }
+        return map;
+    }
+
+    public static List<List<String>> readCode(String fName){
+//        List<String> list = Aron.readFile(fName);
+        List<String> list = Aron.readFileLineByte(fName, 200);
+        List<List<String>> list2d = new ArrayList<>();
+
+        List<String> line = new ArrayList<>();
+        for(String s : list){
+
+            if(s.trim().length() > 0){
+                line.add(s);
+            }else{
+                if(line.size() > 0) {
+                    list2d.add(line);
+                    line = new ArrayList<>();
+                }
+            }
+        }
+        return list2d;
+    }
     public static List<String> fileList(String directory) {
         List<String> fileNames = new ArrayList<>();
         try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(Paths.get(directory))) {
