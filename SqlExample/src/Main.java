@@ -4,7 +4,7 @@ import java.sql.*;
 
 // Notice, do not import com.mysql.jdbc.*
 // or you will have problems!
-
+// java mysql, mysql java, mysql conneciton, mysql table
 public class Main {
     public static void main(String[] args) {
         Connection connect = null;
@@ -36,6 +36,7 @@ public class Main {
                 Print.pbl(name);
             }
 
+            // insert data to table: tabledb.item(name, phone, email, description)
             preparedStatement = connect
                                 .prepareStatement("insert into  testdb.item (name, phone, email, description)values (?, ?, ?, ?)");
             // "myuser, webpage, datum, summary, COMMENTS from feedback.comments");

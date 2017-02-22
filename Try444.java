@@ -70,7 +70,10 @@ public class Try444{
     }
 
     public static void delete(Node r, Node n){
-        
+        Random ran = new Random();
+        // 0 - 9
+        int num = ran.nextInt(10);
+        Print.p(num); 
     }
 } 
 
