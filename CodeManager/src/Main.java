@@ -32,11 +32,45 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 /**
- * The app. read a text file that contains search key words and source code.
- *
+ * convert a text file to a "list of list"
+ * The first of the each list contains the key and file type are separated by colon
  */
+final class ProcessList {
+    public ProcessList() {
+    }
+
+    /**
+     * extract all the keys from a list of list of string
+     *
+     * @return a list of string that contains all the keys
+     */
+    public List<String> getKeyList() {
+        return null;
+    }
+
+    // parameter
+    //
+    //
+    // e.g.
+    // jlist : *.java
+    // line contains code 1
+    //
+    // return a map that contains following:
+    // j -> line contains code 1
+    // jl -> line contains code 1
+    // jli -> line contains code 1
+    // jlis -> line contains code 1
+    // jlist -> line contains code 1
+
+    // return map that contains key and value [K, v], key is prefix of string before ":"
+    // value is List<String> contains all code after the first line
+    public Map<String, List<String>> getPrefixMap(){
+        return null;
+    }
+}
+
+
 public class Main  extends Application {
     String fileName = null;
     final String allPathsFileName = "/Users/cat/myfile/github/java/text/path.txt";
@@ -315,6 +349,14 @@ public class Main  extends Application {
         }
         return list2d;
     }
+
+    /**
+     * The method open the given directory and add all files and directoreis
+     * to a list.
+     *
+     * @param directory is to be read
+     * @return a list of files or directories in the given directory.
+     */
     public static List<String> fileList(String directory) {
         List<String> fileNames = new ArrayList<>();
         try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(Paths.get(directory))) {
@@ -325,6 +367,15 @@ public class Main  extends Application {
         } catch (IOException ex) {}
         return fileNames;
     }
+
+    /**
+     * The method splits "search key" to prefix and suffix, and store
+     * the prefix as key and the suffix as value in HashMap
+     *
+     * @param list is list of string that contains all the search string
+     * @return a map contains key which is prefix of the "search string" and
+     *          value which is suffix of "search string".
+     */
     public static Map<String, Set<String>> buildPrefixMap(List<String> list){
         Map<String, Set<String>> map = new HashMap<>();
 
@@ -344,17 +395,27 @@ public class Main  extends Application {
         return map;
     }
 
+    /**
+     * Test the getCurrentDir method
+     */
     public static  void test1() {
         String dir = "/Users/cat/myfile/github/java";
         List<String> list = Aron.getCurrentDir(dir);
         Aron.printList(list);
     }
+
+    /**
+     * Test fileList method
+     */
     public static  void test2() {
         String dir = "/Users/cat/myfile/github/java";
         List<String> list = fileList(dir);
         Aron.printList(list);
     }
 
+    /**
+     * Test readCode method
+     */
     public static void test3(){
         Aron.beg();
 
