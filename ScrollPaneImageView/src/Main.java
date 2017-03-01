@@ -2,6 +2,7 @@ import classfile.Print;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -20,12 +21,19 @@ public class Main extends Application {
     final ImageView[] pics = new ImageView[5];
     final VBox vb = new VBox();
     final Label fileName = new Label();
-    final String [] imageNames = new String [] {"/Users/cat/try/draw10.png", "/Users/cat/try/draw11.png"};
+    final String [] imageNames = new String [] {
+            "/Users/cat/try/draw10.png",
+            "/Users/cat/try/draw11.png",
+            "/Users/cat/try/draw12.png",
+            "/Users/cat/try/draw13.png",
+            "/Users/cat/try/draw14.png",
+            "/Users/cat/try/draw15.png"
+    };
 
     @Override
     public void start(Stage stage) {
         VBox box = new VBox();
-        Scene scene = new Scene(box, 180, 180);
+        Scene scene = new Scene(box, 400, 400);
         stage.setScene(scene);
         stage.setTitle("Scroll Pane");
         box.getChildren().addAll(sp, fileName);
@@ -34,24 +42,25 @@ public class Main extends Application {
         fileName.setLayoutX(30);
         fileName.setLayoutY(160);
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 5; i++) {
             //images[i] = new Image(getClass().getResourceAsStream(imageNames[i]));
             //Print.pbl(images[i].toString());
             pics[i] = new ImageView(new File(imageNames[i]).toURI().toString());
-            pics[i].setFitWidth(100);
+            pics[i].setFitHeight(400);
+            pics[i].setFitWidth(400);
             pics[i].setPreserveRatio(true);
             vb.getChildren().add(pics[i]);
         }
 
         sp.setVmax(440);
-        sp.setPrefSize(115, 150);
+        sp.setPrefSize(400, 400);
         sp.setContent(vb);
-//        sp.vvalueProperty().addListener(new ChangeListener<Number>() {
-//            public void changed(ObservableValue<? extends Number> ov,
-//                                Number old_val, Number new_val) {
-//                fileName.setText(imageNames[(new_val.intValue() - 1)/100]);
-//            }
-//        });
+        sp.vvalueProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> ov,
+                                Number old_val, Number new_val) {
+                fileName.setText(imageNames[(new_val.intValue() - 1)/100]);
+            }
+        });
         stage.show();
     }
 
