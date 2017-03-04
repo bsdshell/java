@@ -28,6 +28,24 @@ import classfile.*;
 public class try_search{
     public static void main(String[] args) {
         test0();
+        
+        String[] array = str.split("\\s+");
+        List<String> list = Arrays.asList(array);
+
+        
+        List<ArrayList<Integer>> list2d = new ArrayList<ArrayList<Integer>>();
+        
+        // immutable list
+        List<Integer> list = Arrays.asList(1, 2, 3);
+        // mutable list
+        List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3)); 
+
+        List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3));
+        List<Integer> ll = list.stream().collect(Collectors.toList());
+        Aron.printList(ll); 
+
+        String[] array = str.split("\\s+");
+        List<String> list = Arrays.asList(array);
     }
 
     public static  void FileSearch(List<String> list, String pattern){
