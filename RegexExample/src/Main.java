@@ -1,3 +1,6 @@
+import classfile.Print;
+import classfile.Aron;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.*;
@@ -7,7 +10,7 @@ import classfile.*;
 // regex example, regular expression example
 // match, case insensitive, case-insensitive, case-sensitive, group, find
 // *jregex* *j_regex_example_many*
-public class RegexExample{
+public class Main {
     public static void main(String[] args) {
         test0();
         test1();
@@ -21,15 +24,17 @@ public class RegexExample{
         test9();
         test10();
         test11();
+        test_split1();
+        test_split2();
     }
-    static void test0(){
+    static void test0() {
         Aron.beg();
         String pattern = "([a-z]+).([a-zA-Z-]+)(/)";
         String[] strArr = {
-            "www.google.com/search?q=goog/nice",
-            "www.google.com/search?q=goog",
-            "http://www.google.msn.ca/search?q=goog",
-            "http://www.google.msn.ca/a/b/c/d"
+                "www.google.com/search?q=goog/nice",
+                "www.google.com/search?q=goog",
+                "http://www.google.msn.ca/search?q=goog",
+                "http://www.google.msn.ca/a/b/c/d"
         };
 
         Pattern r = Pattern.compile(pattern);
@@ -42,7 +47,7 @@ public class RegexExample{
 
         Aron.end();
     }
-    static void test1(){
+    static void test1() {
         Aron.beg();
         Pattern r = Pattern.compile("captheorem", Pattern.CASE_INSENSITIVE);
         Matcher mat = r.matcher("CAPTHEOREM");
@@ -51,7 +56,7 @@ public class RegexExample{
         }
         Aron.end();
     }
-    static void test2(){
+    static void test2() {
         Aron.beg();
         //Pattern pattern = Pattern.compile("[0-9]{3}[-]{0,1}[0-9]{3}[-]{0,1}[0-9]{4}");
         Pattern pattern = Pattern.compile("[0-9]{3}[-]?[0-9]{3}[-]?[0-9]{4}");
@@ -60,8 +65,8 @@ public class RegexExample{
             System.out.println(matcher.group());
         }
         Aron.end();
-    } 
-    static void test3(){
+    }
+    static void test3() {
         Aron.beg();
 
         // match number
@@ -71,8 +76,8 @@ public class RegexExample{
             System.out.println(matcher.group());
         }
         Aron.end();
-    } 
-    static void test4(){
+    }
+    static void test4() {
         Aron.beg();
 
         // match number and group
@@ -82,8 +87,8 @@ public class RegexExample{
             System.out.println(matcher.group());
         }
         Aron.end();
-    } 
-    static void test5(){
+    }
+    static void test5() {
         Aron.beg();
 
         // match number
@@ -93,8 +98,8 @@ public class RegexExample{
             Print.pbl(matcher.group());
         }
         Aron.end();
-    } 
-    static void test6(){
+    }
+    static void test6() {
         Aron.beg();
 
         // match number
@@ -104,8 +109,8 @@ public class RegexExample{
             Print.pbl(matcher.group());
         }
         Aron.end();
-    } 
-    static void test7(){
+    }
+    static void test7() {
         Aron.beg();
 
         // excluding a,n, and space
@@ -115,36 +120,36 @@ public class RegexExample{
             Print.pbl(matcher.group());
         }
         Aron.end();
-    } 
-    static void test8(){
+    }
+    static void test8() {
         Aron.beg();
 
-        // excluding all vowels 
+        // excluding all vowels
         Pattern pattern = Pattern.compile("[a-z&&[^youiea]]+");
         Matcher matcher = pattern.matcher("show all the words which do not contains vowel");
         while(matcher.find()) {
             Print.pbl(matcher.group());
         }
         Aron.end();
-    } 
-    static void test9(){
+    }
+    static void test9() {
         Aron.beg();
 
-        // POSIX character classes \p{Lower}+ => [a-z]+ 
+        // POSIX character classes \p{Lower}+ => [a-z]+
         Pattern pattern = Pattern.compile("\\p{Lower}+");
         Matcher matcher = pattern.matcher("show all the words which do not contains vowel");
         while(matcher.find()) {
             Print.pbl(matcher.group());
         }
         Aron.end();
-    } 
+    }
 
     // grouping
-    static void test10(){
+    static void test10() {
         Aron.beg();
         //import java.util.regex.Matcher;
         //import java.util.regex.Pattern;
-        String str = "\"dog cat\" 3241.10 "; 
+        String str = "\"dog cat\" 3241.10 ";
         Pattern pattern = Pattern.compile("(\"[^\"]*\")|([0-9]*\\.?[0-9]+)");
         Matcher matcher = pattern.matcher(str);
         while(matcher.find()) {
@@ -156,25 +161,25 @@ public class RegexExample{
             }
         }
 
-        
+
         Aron.end();
     }
 
-    public static void test11(){
+    public static void test11() {
         Aron.beg();
-        
+
         // match boundary word, match word, match words, match word only
         // boundary word, boundary words only, boundary only, word boundary
         String[] arr = {
-            "dog",
-            "cat",
-            "key-value"
+                "dog",
+                "cat",
+                "key-value"
         };
         Pattern pattern = Pattern.compile("(?<=^|\\s)[a-z]+(?=\\s|$)");
         Aron.printArray(arr);
-        for(String s : arr){
+        for(String s : arr) {
             Matcher matcher = pattern.matcher(s);
-            if(matcher.find()){
+            if(matcher.find()) {
                 Print.pbl("match word=" + matcher.group());
             }
         }
@@ -182,5 +187,23 @@ public class RegexExample{
 
         Aron.end();
     }
-} 
 
+    public static void test_split1() {
+        Aron.beg();
+        String str = "The fun()  { dog it now }; ";
+        List<String> list = Aron.split(str, "[{};()]+");
+        Aron.printList(list);
+        // [The fun][  ][ dog it now ][ ]
+
+        Aron.end();
+    }
+    public static void test_split2() {
+        Aron.beg();
+        String str = "This is a sentence.  This is a question, right?  Yes!  It is.";
+        String delims = "[ .,?!]+";
+        List<String> list = Aron.split(str, delims);
+        Aron.printList(list);
+        // [This][is][a][sentence][This][is][a][question][right][Yes][It][is]
+        Aron.end();
+    }
+}
