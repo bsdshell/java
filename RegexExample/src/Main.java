@@ -24,6 +24,7 @@ public class Main {
         test9();
         test10();
         test11();
+        test_split0();
         test_split1();
         test_split2();
     }
@@ -187,9 +188,29 @@ public class Main {
 
         Aron.end();
     }
+    /**
+     * split string with special char, e.g. "{" -> escape "\\{"
+     * or use Character Group: [{]
+     */
+    public static void test_split0() {
+        Aron.beg();
 
+        String str = "The fun()  { dog it now }; ";
+        List<String> list = Aron.split(str, "\\{");
+        Aron.printList(list);
+        // [The fun()  ][ dog it now }; ]
+
+        Aron.end();
+    }
+
+
+    /**
+     * split string to different tokens with multiple delimiters
+     * Character Group: [{};{}]
+     */
     public static void test_split1() {
         Aron.beg();
+
         String str = "The fun()  { dog it now }; ";
         List<String> list = Aron.split(str, "[{};()]+");
         Aron.printList(list);
@@ -197,6 +218,10 @@ public class Main {
 
         Aron.end();
     }
+
+    /**
+     * split string with multiple delimiters such as [ .,?!]
+     */
     public static void test_split2() {
         Aron.beg();
         String str = "This is a sentence.  This is a question, right?  Yes!  It is.";
