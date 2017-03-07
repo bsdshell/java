@@ -21,14 +21,14 @@ public class Main extends Application {
         flowPane.setVgap(10);
         flowPane.setHgap(10);
         flowPane.setPadding(new Insets(25));
-//        Random random = new Random();
-//        int r, g, b;
-//        for (int i=10; i<80; i+=5) {
-//            r = random.nextInt(256);
-//            g = random.nextInt(256);
-//            b = random.nextInt(256);
-//            addCirc(i, Color.rgb(r, g, b));
-//        }
+        Random random = new Random();
+        int r, g, b;
+        for (int i=10; i<80; i+=5) {
+            r = random.nextInt(256);
+            g = random.nextInt(256);
+            b = random.nextInt(256);
+            addCirc(i, Color.rgb(r, g, b));
+        }
 
         addTextFlow();
         Scene scene = new Scene(flowPane, 500, 500, Color.HONEYDEW);

@@ -8,12 +8,14 @@ public class Try104{
     }
     // *j_test*
     static void test0(){
-        
         BST b1 = new BST();
         b1.insert(10);
         b1.insert(5);
         b1.insert(15);
         b1.insert(1);
         b1.insert(7); 
+    }
+
+    public void get(){
     }
 } 
