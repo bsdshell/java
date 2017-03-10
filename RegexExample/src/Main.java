@@ -1,5 +1,6 @@
 import classfile.Print;
 import classfile.Aron;
+import classfile.Test;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,21 +13,22 @@ import classfile.*;
 // *jregex* *j_regex_example_many*
 public class Main {
     public static void main(String[] args) {
-        test0();
-        test1();
-        test2();
-        test3();
-        test4();
-        test5();
-        test6();
-        test7();
-        test8();
-        test9();
-        test10();
-        test11();
-        test_split0();
-        test_split1();
-        test_split2();
+//        test0();
+//        test1();
+//        test2();
+//        test3();
+//        test4();
+//        test5();
+//        test6();
+//        test7();
+//        test8();
+//        test9();
+//        test10();
+//        test11();
+//        test_split0();
+//        test_split1();
+//        test_split2();
+        test0_fileType();
     }
     static void test0() {
         Aron.beg();
@@ -164,6 +166,53 @@ public class Main {
 
 
         Aron.end();
+    }
+    static void test0_fileType(){
+        Aron.beg();
+        String fName = "file.png";
+        Test.t(fileType(fName).equals("IMG"));
+
+        String fName1 = "file.jpeg";
+        Test.t(fileType(fName1).equals("IMG"));
+
+        String fName2 = "file.jpg";
+        Test.t(fileType(fName2).equals("IMG"));
+
+        String fName3 = "file.jpgk";
+        Test.f(fileType(fName3).equals("IMG"));
+
+        String fName4 = "file.jpg ";
+        Test.f(fileType(fName4).equals("IMG"));
+
+        String fName5 = "file.pdf";
+        Test.t(fileType(fName5).equals("PDF"));
+
+        Aron.end();
+    }
+
+    /**
+     * detect file types from file extensions: image(.png, .jpeg, .jpg) and PDF(.pdf)
+     *
+     * @param fName is name of file.
+     * @return image file: "IMG" or pdf file: "PDF", empty otherwise
+     *
+     */
+     static String fileType(String fName){
+        String type = "";
+        Pattern pdfPattern = Pattern.compile("\\.pdf$", Pattern.CASE_INSENSITIVE);
+        Matcher pdfMatcher = pdfPattern.matcher(fName);
+
+        Pattern pattern = Pattern.compile("\\.png|\\.jpeg|\\.jpg$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(fName);
+
+        if(matcher.find()){
+            Print.pbl("fName=" + fName);
+            type = "IMG";
+        }else if(pdfMatcher.find()){
+            Print.pbl("fName=" + fName);
+            type = "PDF";
+        }
+        return type;
     }
 
     public static void test11() {

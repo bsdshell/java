@@ -32,7 +32,7 @@ public class Main extends Application {
         Scene scene = new Scene(new ScrollPane(root), 250, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
-        test1();
+        test2();
     }
 
     public static void test1(){
@@ -40,6 +40,19 @@ public class Main extends Application {
         List<String> list = new ArrayList<>();
         prefixWordMap(str, list);
     }
+
+    static void test2(){
+        Aron.beg();
+        List<String> list = new ArrayList<>(Arrays.asList("cat", "dog", "cow"));
+        Collections.reverse(list);
+
+        Aron.printList(list);
+
+
+        Aron.end();
+    }
+
+
 
     public static void prefixWordMap(String str, List<String> listCode){
         List<String> list = Aron.split(str, ",");
