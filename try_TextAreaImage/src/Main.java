@@ -1,4 +1,8 @@
-import java.awt.Font;
+import java.awt.*;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import com.sun.javafx.tk.FontMetrics;
 import com.sun.javafx.tk.Toolkit;
@@ -7,6 +11,8 @@ import javafx.application.*;
 import javafx.geometry.Insets;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.*;
@@ -47,33 +53,30 @@ public class Main extends Application {
         vbox.getChildren().add(area);
         Scene scene = new Scene(vbox);
 
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        primaryStage.hide();
+        area.setPrefSize(600, 600);
 
-        FontMetrics metrics = Toolkit.getToolkit().getFontLoader().getFontMetrics(area.getFont());
-        Text t = (Text) area.lookup(".text");
+        List<String> imagesList = new ArrayList<String>(Arrays.asList("/Users/cat/try/draw14.png", "/Users/cat/try/draw15.png"));
+        List<ImageView> imageViewList = imageFileToImageView(imagesList, 600, 600);
+        for(ImageView iv : imageViewList){
+            vbox.getChildren().add(iv);
+        }
 
-        double lineHeight = metrics.getLineHeight();
-        double actualLineHeight = t.getBoundsInLocal().getHeight() / lineCount;
-
-        System.out.println("LineHeight: " + lineHeight);
-        System.out.println("ActualHeight: " + actualLineHeight);
-        System.out.println("Diff: " + (actualLineHeight - lineHeight));
-
-        System.out.println();
-        System.out.println(metrics);
-        System.out.println();
-        System.out.println("LayoutX "+t.getLayoutX());
-        System.out.println("LayoutY "+t.getLayoutY());
-        System.out.println("Width: "+t.getBoundsInLocal().getWidth());
-        System.out.println("Height: "+t.getBoundsInLocal().getHeight());
-
-
-        area.setMaxHeight(t.getBoundsInLocal().getHeight()*lineCount);
 
         primaryStage.setScene(scene);
         primaryStage.show();
 
+    }
+
+    private static List<ImageView> imageFileToImageView(List<String> listImgNames, double imgWidth, double imgHeight){
+        List<ImageView> imageList = new ArrayList<ImageView>();
+
+        for (String imgPath : listImgNames) {
+            ImageView imageView = new ImageView(new File(imgPath).toURI().toString());
+            imageList.add(imageView);
+            imageView.setFitHeight(imgWidth);
+            imageView.setFitWidth(imgHeight);
+            imageView.setPreserveRatio(true);
+        }
+        return imageList;
     }
 }

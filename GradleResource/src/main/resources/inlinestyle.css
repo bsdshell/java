@@ -1,0 +1,11 @@
+* {
+    -fx-opacity: 0.5;
+}
+
+HBox {
+    -fx-spacing: 10;
+}
+
+Region {
+    -fx-background-color: white;
+}

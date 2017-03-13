@@ -1,5 +1,7 @@
 import java.awt.Font;
+import java.util.List;
 
+import classfile.Aron;
 import com.sun.javafx.tk.FontMetrics;
 import com.sun.javafx.tk.Toolkit;
 
@@ -30,16 +32,18 @@ public class Main extends Application {
 
         int lineCount = 10;
 
-        String text = "";
-        for (int i = 0; i < lineCount; i++) {
-            if(i < lineCount - 1)
-                text += "LINE" + (i + 1) + "\n";
-            else
-                text += "LINE" + (i + 1);
+        String fName = "/Users/cat/myfile/github/java/text/file.txt";
+        List<String> list = Aron.readFileWithWhiteSpace(fName);
+        for(String s : list) {
+            area.appendText(s + "\n");
         }
-        area.setText(text);
+
+
         area.setEditable(false);
-        area.setFont(javafx.scene.text.Font.font(Font.MONOSPACED));
+//        area.setFont(javafx.scene.text.Font.font(Font.MONOSPACED));
+        area.setFont(javafx.scene.text.Font.font (Font.MONOSPACED, 14));
+        area.setPrefSize(600, 400);
+
 
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10));
