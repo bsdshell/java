@@ -16,4 +16,4 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 'ff444'
+rootProject.name = 'GradleResource'

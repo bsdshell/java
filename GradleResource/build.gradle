@@ -40,8 +40,13 @@ sourceSets {
             include '**/*.css'
         }
     }
+//    test {
+//        resources {
+//            srcDir "mytest/myfolder1"
+//        }
+//    }
 }
 
 
 apply plugin:'application'
-mainClassName = "mypath.MyMain"
+mainClassName = "MyMain"
