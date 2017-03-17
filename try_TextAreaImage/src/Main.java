@@ -13,6 +13,7 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.*;
@@ -44,16 +45,15 @@ public class Main extends Application {
                 text += "LINE" + (i + 1);
         }
         area.setText(text);
+        area.setMinSize(600, 600);
         area.setEditable(false);
         area.setFont(javafx.scene.text.Font.font(Font.MONOSPACED));
 
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10));
         vbox.setSpacing(8);
-        vbox.getChildren().add(area);
-        Scene scene = new Scene(vbox);
+        vbox.getChildren().add(new HBox(area));
 
-        area.setPrefSize(600, 600);
 
         List<String> imagesList = new ArrayList<String>(Arrays.asList("/Users/cat/try/draw14.png", "/Users/cat/try/draw15.png"));
         List<ImageView> imageViewList = imageFileToImageView(imagesList, 600, 600);
@@ -61,7 +61,7 @@ public class Main extends Application {
             vbox.getChildren().add(iv);
         }
 
-
+        Scene scene = new Scene(vbox);
         primaryStage.setScene(scene);
         primaryStage.show();
 
