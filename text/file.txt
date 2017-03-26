@@ -1,31 +1,3 @@
-
-    git_command_all_cmds : * : git cmd, git command, git help, git tips
-    [Git command git branch show on command prompt]
-    `[
-        :git branch myfeature_branchcreate                   // create new feature branch
-        :git branch -d delete_branchdelete                   // [git delete] feature branch
-        :git branch -D delete_branchdelete                   // unmerged feature branch
-        :git checkout master                                 // switch to master branch 
-        :git merge --no-ff feature_branch                    // merge feature_branch to master without fast forwrad. 
-        :git merge feature_branch                            // merge feature_branch to master with fast forward.
-        :git rm -r --cached myfile                           // remove file from your index
-        :git refloghow                                       // all the reference log
-        :git reset --hard 828c8c0b1995                       // revert to previous commit
-        :git diff --stat hash1  hash2                        // diff two commits from two hashes 
-        :git log -- specific_file                            // get log on specific file
-        :git commit --amend -m "new message"                 // change the most recent message, amend your most recent message.
-        :git stash                                           // save your modified tracked files to a stack and that you can reapply late. 
-        :git stash list                                      // list all the stashes
-        :git rm -r myfile                                    // remove file from local repository and file system.
-        :git rm --cached rm_repos_file                       // remove file only from local repository but from file system. 
-        :git commit -m "msg" 
-        :.git/info/exclude                                   // for local file that does't need to be shared, just add file or dir pattern
-        parse_git_branch(){
-            git branch 2> /dev/null | sed -e 's/* \(.*\)/ \(\1)/'
-        }
-        export PS1="\u$(parse_git_branch)\w$"
-        \u - Username
-        \w - Full path
-        \h - Host name
-    `]
-    img,/Users/cat/try/gitfastforward.png
+The job is not very interesting.
+Are you interested in the job?
+I'm good person, and you are the bad person.

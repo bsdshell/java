@@ -13,7 +13,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/myfile/github/JavaLib/jar/AronLib.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../../JavaLib/jar/AronLib.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

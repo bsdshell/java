@@ -37,3 +37,39 @@ dependencies {
 
 apply plugin:'application'
 mainClassName = "mypath.MyMain"
+
+apply plugin: GreetingPlugin
+
+class GreetingPlugin implements Plugin<Project> {
+    void apply(Project project) {
+        project.task('hello') {
+            doLast {
+                println "Hello from the GreetingPlugin"
+            }
+        }
+    }
+}
+
+apply plugin: ScaffoldPlugin
+
+
+
+class ScaffoldPlugin implements Plugin<Project> {
+
+    public static final String PLUGIN_TASK_NAME = "scaffold";
+
+    private final ClassLoader loader = getClass().getClassLoader();
+
+    @Override
+    public void apply(final Project project) {
+        project.getTasks().create(PLUGIN_TASK_NAME, Copy.class, new Action<Copy>() {
+            @Override
+            public void execute(Copy copy) {
+                // in the case of buildSrc dir
+                copy.from(project.fileTree(loader.getResource("scaffold")));
+                copy.into(String.format("%s/scaffold", project.getBuildDir()));
+                // TODO: in the case of plugin is provided as jar.
+            }
+        });
+    }
+}

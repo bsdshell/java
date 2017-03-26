@@ -42,7 +42,6 @@ final class TextMap {
     public List<String> getWords() {
         //Pattern pattern = Pattern.compile("(?<=^|\\s)[a-zA-Z]+(?=\\s|$)");
         Pattern pattern = Pattern.compile("(?<=^|\\s)[a-zA-Z]+(?=\\s|$)");
-
         List<String> wordList = new ArrayList<String>();
         List<String> list = readFile(fileName);
         for(String s : list) {

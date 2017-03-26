@@ -43,10 +43,12 @@ public class Main extends Application {
         vbox.setSpacing(8);
         vbox.getChildren().add(comboboxAbbreSearch);
 
-        String str = "java list linkedlist stack java thread";
-        List<String> wlist = Aron.splitTrim(str, "\\s+");
+        List<String> listCode = new ArrayList<>(Arrays.asList("vi cmd, vi help, vi code", "line 1", "line 2"));
 
-        Map<String, Set<String>> map = prefixStringMap(wlist);
+
+        String str = "vi cmd, vi help, vi code";
+        Map<String, Set<String>> map = new HashMap<>();
+        prefixStringMap(listCode, map);
         comboboxAbbreSearch.getEditor().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             String gettext = comboboxAbbreSearch.getEditor().getText();
             String getcode = event.getCode().toString();
@@ -72,7 +74,17 @@ public class Main extends Application {
                 }else{
                     Print.pbl("inputKey.length():=" + inputKey.length());
                 }
-            }else{
+            }else if(event.getCode() == KeyCode.DOWN) {
+                String inputKey = gettext + event.getCode().toString().toLowerCase();
+                Print.pbl("KEY_PRESSED: KeyEvent                 :=" + gettext);
+                Print.pbl("KEY_PRESSED: KeyEvent.getCode()       :=" + getcode);
+                Print.pbl("inputKey                              :=" + inputKey);
+            }else if(event.getCode() == KeyCode.ENTER) {
+                String inputKey = gettext + event.getCode().toString().toLowerCase();
+                Print.pbl("KEY_PRESSED: KeyEvent                 :=" + gettext);
+                Print.pbl("KEY_PRESSED: KeyEvent.getCode()       :=" + getcode);
+                Print.pbl("inputKey                              :=" + inputKey);
+            } else {
                 String inputKey = gettext + event.getCode().toString().toLowerCase();
                 Print.pbl("KEY_PRESSED: KeyEvent                 :=" + gettext);
                 Print.pbl("KEY_PRESSED: KeyEvent.getCode()       :=" + getcode);
@@ -150,9 +162,56 @@ public class Main extends Application {
 
     }
 
+    // str = "vi cmd, vi help"
+    //
+    // v -> "vi cmd"
+    // vi -> "vi cmd"
+    // c -> "cmd"
+    // cm -> "cmd"
+    // cmd -> "cmd"
+    //
+    // v -> "vi help"
+    // vi -> "vi help"
+    // h -> help
+    // he -> help
+    // hel-> help
+    // help -> help
+    //
+    // listKeyWords = [vi cmd, vi help]
+    // words = "vi cmd"
+    // words = "vi help"
+    //
+    static void prefixStringMap(List<String> oneBlock, Map<String, Set<String>> map){
+    //  Map<String, Set<String>> map = new HashMap<>();
+        List<String> listKeyWords = Aron.splitTrim(oneBlock.get(0), ",");
+        for(String words : listKeyWords) {
+            List<String> list = Aron.split(words, "\\s+");
+            for (int k = 0; k < list.size(); k++) {
+                String word = list.get(k);
+
+                for (int i = 0; i < word.length(); i++) {
+                    String key = word.substring(0, i + 1);
+                    Print.pbl("key=" + key);
+                    List<String> subList = list.subList(k, list.size());
+                    Set<String> value = map.get(key);
+                    if (value != null) {
+                        value.add(listToStr(subList));
+                    } else {
+                        Set<String> set = new HashSet<>();
+                        set.add(listToStr(subList));
+                        map.put(key, set);
+                    }
+                }
+            }
+            for (Map.Entry<String, Set<String>> entry : map.entrySet()) {
+                System.out.print("[" + entry.getKey() + "]->[" + entry.getValue() + "]");
+                Print.line();
+            }
+        }
+    }
     // "vi cmd"
     // "v" -> "vi cmd"
-    // "vi -> "vi cmd"
+    // "vi" -> "vi cmd"
     // "vi "-> "vi cmd"
     // "vi c"-> "vi cmd"
     // "vi cm" -> "vi cmd"
@@ -161,37 +220,41 @@ public class Main extends Application {
     // "c" -> "vi cmd"
     // "cm" -> "vi cmd"
     // "cmd" -> "vi cmd"
+//    static Map<String, Set<String>> prefixStringMap(String words){
+//        List<String> list = Aron.split(words, "\\s+");
+//
+//        Map<String, Set<String>> map = new HashMap<>();
+//        for(int k=0; k<list.size(); k++) {
+//            String s = list.get(k);
+//            for(int i=0; i<s.length(); i++) {
+//                String key = s.substring(0, i + 1);
+//                Print.pbl("key=" + key);
+//                List<String> preList = list.subList(0, k);
+//                Print.pbl("->" + listToStr(preList));
+//                List<String> subList = list.subList(k, list.size());
+//
+//                Set<String> set = map.get(key);
+//                if(set != null){
+////                    value.add(listToStr(subList));
+//                    set.add(words);
+//                }else{
+//                    Set<String> tmpSet = new HashSet<>();
+////                    set.add(listToStr(subList));
+//                    tmpSet.add(words);
+//                    map.put(key, tmpSet);
+//                }
+//            }
+//        }
+//
+//        for(Map.Entry<String, Set<String>> entry : map.entrySet()){
+//            System.out.print("[" + entry.getKey() + "]->[" + entry.getValue() + "]");
+//            Print.line();
+//        }
+//
+//        return map;
+//    }
 
-    static Map<String, Set<String>> prefixStringMap(List<String> list){
-        Map<String, Set<String>> map = new HashMap<>();
 
-        for(int k=0; k<list.size(); k++) {
-            String s = list.get(k);
-            for(int i=0; i<s.length(); i++) {
-                String key = s.substring(0, i + 1);
-                Print.pbl("key=" + key);
-                List<String> preList = list.subList(0, k);
-                Print.pbl("->" + listToStr(preList));
-                List<String> subList = list.subList(k, list.size());
-
-                Set<String> value = map.get(key);
-                if(value != null){
-                    value.add(listToStr(subList));
-                }else{
-                    Set<String> set = new HashSet<>();
-                    set.add(listToStr(subList));
-                    map.put(key, set);
-                }
-            }
-        }
-
-        for(Map.Entry<String, Set<String>> entry : map.entrySet()){
-            System.out.print("[" + entry.getKey() + "]->[" + entry.getValue() + "]");
-            Print.line();
-        }
-
-        return map;
-    }
     static String listToStr(List<String> list){
         String retStr = "";
         for(String s : list)
