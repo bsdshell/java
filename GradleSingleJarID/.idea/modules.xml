@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GradleSingleJarID.iml" filepath="$PROJECT_DIR$/.idea/modules/GradleSingleJarID.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GradleSingleJarID_main.iml" filepath="$PROJECT_DIR$/.idea/modules/GradleSingleJarID_main.iml" group="GradleSingleJarID" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GradleSingleJarID_test.iml" filepath="$PROJECT_DIR$/.idea/modules/GradleSingleJarID_test.iml" group="GradleSingleJarID" />
+    </modules>
+  </component>
+</project>
