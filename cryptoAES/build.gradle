@@ -1,0 +1,33 @@
+group 'try_crypto1'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'idea'
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+
+dependencies {
+    // commons-crypto-1.0.0.jar
+    // The production code uses the SLF4J logging API at compile time
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-crypto
+    compile group: 'org.apache.commons', name: 'commons-crypto', version: '1.0.0'
+    compile group: 'commons-codec', name: 'commons-codec', version: '1.5'
+}
+//
+dependencies {
+    compile fileTree('Lib')  // this includes all the files under 'Lib'
+}
+
+dependencies{
+    compile 'com.google.guava:guava:12.0'
+}
+
+task showMeCache << {
+    configurations.compile.each { println it }
+}

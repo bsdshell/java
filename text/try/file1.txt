@@ -1,0 +1,10 @@
+    line 1
+    line 2 
+ <!-- Column 2 start -->
+ "middle stuff"
+ <!-- Column 2 end -->
+
+    line 3 
+
+
+
