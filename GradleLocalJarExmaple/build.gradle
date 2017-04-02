@@ -1,0 +1,22 @@
+group 'try_gradle_reload'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+// use local dependency jar
+//def repositoryPath = '/Users/cat/myfile/github/JavaLib/jar'
+//repositories {
+//    flatDir {
+//        dirs repositoryPath
+//    }
+//}
+//dependencies {
+//    compile name: 'AronLib'
+//}
+
+// make sure restart your Intellij if something you don't know to fix
+dependencies {
+    compile files('/Users/cat/myfile/github/JavaLib/jar/AronLib.jar')
+}
