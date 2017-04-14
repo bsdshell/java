@@ -16,6 +16,11 @@ sourceCompatibility = 1.8
 //    compile name: 'AronLib'
 //}
 
+dependencies {
+    // https://mvnrepository.com/artifact/org.mockito/mockito-all
+    compile group: 'org.mockito', name: 'mockito-all', version: '1.9.5'
+}
+
 // make sure restart your Intellij if something you don't know to fix
 dependencies {
     compile files('/Users/cat/myfile/github/JavaLib/jar/AronLib.jar')
