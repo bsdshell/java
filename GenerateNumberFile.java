@@ -5,7 +5,7 @@ import java.io.*;
 import classfile.*;
 import java.util.stream.*;
 
-public class try_Generandom{
+public class GenerateNumberFile{
     public static void main(String[] args) {
         test0();
     }
