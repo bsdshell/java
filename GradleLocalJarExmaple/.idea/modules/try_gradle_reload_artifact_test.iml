@@ -9,8 +9,16 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="try_gradle_reload_artifact_main" />
-    <orderEntry type="library" name="Gradle: :AronLib:" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../../JavaLib/jar/AronLib.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Gradle: org.mockito:mockito-all:1.9.5" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="try_gradle_reload_artifact_main" />
 </module>

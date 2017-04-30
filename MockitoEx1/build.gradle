@@ -1,9 +1,9 @@
-group 'GradleSingleJar'
+group 'MockitoEx1'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 1.5
 
 repositories {
     mavenCentral()
@@ -14,5 +14,5 @@ dependencies {
 }
 
 dependencies {
-    compile fileTree('Lib')  // this includes all the files under 'Lib'
+    compile files('/Users/cat/myfile/github/JavaLib/jar/AronLib.jar')
 }

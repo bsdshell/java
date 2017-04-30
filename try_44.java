@@ -12,6 +12,16 @@ public class try_44 {
     }
     public static void test0() {
         Aron.beg();
+        
+        List<ArrayList<Integer>> list2d = new ArrayList<ArrayList<Integer>>(); 
+        
+        // immutable list
+        
+        List<ArrayList<Integer>> list2d = new ArrayList<ArrayList<Integer>>();
+        List<Integer> list = Arrays.asList(1, 2, 3);
+        // mutable list
+        List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3)); 
+
 
         try {
             FileInputStream fstream = new FileInputStream("./text/file99.txt");

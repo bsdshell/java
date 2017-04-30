@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: org.mockito:mockito-all:1.9.5">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/Cannot resolve external dependency org.mockito:mockito-all:1.9.5 because no repositories are defined." />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
