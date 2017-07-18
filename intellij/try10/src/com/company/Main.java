@@ -1,7 +1,9 @@
 package com.company;
 
+import java.io.Writer;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
+import java.nio.charset.StandardCharsets;
 
 
 public class Main{
@@ -17,6 +19,10 @@ public class Main{
 //           }
 //        }
 
+
+
+
+        Writer
         Class<Main> clz = Main.class;
         for (Method m : clz.getDeclaredMethods()) {
             System.err.println(m.getName());

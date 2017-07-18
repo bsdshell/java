@@ -14,7 +14,7 @@ class Student {
     }
 } 
 
-class Operator {
+class Operator{
     Integer num1;
     Integer num2;
     public Operator(Integer num1, Integer num2){
@@ -23,6 +23,13 @@ class Operator {
     }
     public Integer ope(Function<Operator, Integer> fun){
         return fun.apply(this);
+    }
+}
+
+class MyClass implements Function<Integer, String>{
+    public String apply(Integer n){
+        System.out.println("call apply()");
+        return "str:" + n.toString();
     }
 }
 
@@ -68,5 +75,10 @@ public class FunctionDemo {
         System.out.println(myop.ope(p1));
         System.out.println(myop.ope(p2));
         //-------------------------------------------------------------------------------- 
+        System.out.println(new MyClass());
+
+        MyClass c = new MyClass();
+        System.out.println(c.apply(100));
+
     }
 } 
